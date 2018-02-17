@@ -1,0 +1,12 @@
+/dev/mapper/vg1_new_pv_data5 /dev/mapper/vg1_pv_data5
+/dev/mapper/vg1_new_pv_arch1 /dev/mapper/vg1_pv_arch1
+/dev/mapper/vg1_new_pv_arch2 /dev/mapper/vg1_pv_arch2
+/dev/mapper/vg1_new_pv_arch3 /dev/mapper/vg1_pv_arch3
+/dev/mapper/vg1_new_pv_arch4 /dev/mapper/vg1_pv_arch4
+/dev/mapper/vg1_new_pv_data2 /dev/mapper/vg1_pv_data2
+/dev/mapper/vg1_new_pv_data1 /dev/mapper/vg1_pv_data1
+/dev/mapper/vg1_new_pv_data3 /dev/mapper/vg1_pv_data3
+/dev/mapper/vg1_new_pv_data4 /dev/mapper/vg1_pv_data4
+/dev/mapper/vg1_new_pv_log1  /dev/mapper/vg1_pv_log1 
+/dev/mapper/vg1_new_pv_log2  /dev/mapper/vg1_pv_log2 
+/dev/mapper/vg1_new_pv_log3  /dev/mapper/vg1_pv_log3 
