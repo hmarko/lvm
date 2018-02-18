@@ -58,13 +58,19 @@ foreach $p (keys %pv) {
 createmapping();
 
 foreach $p (keys %pv) {
-	if ($pv{$p}{configured} and $pv{$p}{srcname} and not $pv{$p}{vg}) {
+	if ($pv{$p}{configured} and $pv{$p}{srcname}) {
 		$vg = $pv{$pv{$p}{srcname}}{vg};
-		if ($vg) {
+		if ($vg and not $pv{$p}{vg}) {
 			$dev = $deviceprefix.$p;
 			print "extanding VG:$vg with $dev :";
 			@pvextand = `vgextend $vg $dev`;
 			print "$pvextand[0]\n";
+		} elsif (not $vg) {
+			print "WARNING: $deviceprefix$p source PV:$pv{$p}{srcname} is not part of a VG\n";
+			$pv{$p}{nomigrate} = 1;
+		} elsif ($vg ne $pv{$p}{vg}) {
+			print "WARNING: $deviceprefix$p is already part of VG:$pv{$p}{vg} which is diffrent than it's source VG:$vg\n";
+			$pv{$p}{nomigrate} = 1;
 		}
 	}
 }
