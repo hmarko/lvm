@@ -105,7 +105,8 @@ foreach $p (keys %pv) {
 		$vg = $pv{$pv{$p}{srcname}}{vg};
 		$dstdev = $deviceprefix.$p;
 		print "starting pvmove from $srcdev to $dstdev\n";
-		`pvmove -i 2 $srcdev $dstdev`;
+		@pvmove = `pvmove -i 2 $srcdev $dstdev`;
+		print @pvmove;
 		createmapping();
 		$dstvgfree = $pv{$p}{vgfree};
 		$srcvgused = $pv{$pv{$p}{srcname}}{vgsize} - $pv{$pv{$p}{srcname}}{vgfree};
@@ -124,4 +125,4 @@ foreach $p (keys %pv) {
 
 my $pvmdjson = encode_json \%pvmd;
 
-print " $pvmdjson\n";
+#print " $pvmdjson\n";
