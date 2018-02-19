@@ -62,20 +62,66 @@ foreach $p (keys %pv) {
 		$vg = $pv{$pv{$p}{srcname}}{vg};
 		if ($vg and not $pv{$p}{vg}) {
 			$dev = $deviceprefix.$p;
-			print "extanding VG:$vg with $dev :";
+			print "extanding VG:$vg with PV:$dev :";
 			@pvextand = `vgextend $vg $dev`;
 			print "$pvextand[0]\n";
 		} elsif (not $vg) {
 			print "WARNING: $deviceprefix$p source PV:$pv{$p}{srcname} is not part of a VG\n";
-			$pv{$p}{nomigrate} = 1;
+			$pvmd{$p}{nomigrate} = 1;
 		} elsif ($vg ne $pv{$p}{vg}) {
 			print "WARNING: $deviceprefix$p is already part of VG:$pv{$p}{vg} which is diffrent than it's source VG:$vg\n";
-			$pv{$p}{nomigrate} = 1;
+			$pvmd{$p}{nomigrate} = 1;
 		}
 	}
 }
 createmapping();
 
-my $pvjson = encode_json \%pv;
+foreach $p (keys %pv) {
+	if ($pv{$p}{configured} and $pv{$p}{srcname} and not $pvmd{$p}{nomigrate}) {
+		$dstvgfree = $pv{$p}{vgfree};
+		$srcvgused = $pv{$pv{$p}{srcname}}{vgsize} - $pv{$pv{$p}{srcname}}{vgfree};
+		if ($srcvgused > $dstvgfree) {
+			print "WARNING: $deviceprefix$p free size is $srcvgfree".'m while used size on source PV is '.$dstvgused."m\n";
+			$pvmd{$p}{nomigrate} = 1;
+		} elsif ($srcvgused eq 0) {
+			$dev = $deviceprefix.$pv{$p}{srcname};
+			$vg = $pv{$pv{$p}{srcname}}{vg};		
+			print "WARNING: $deviceprefix$p source PV:$deviceprefix$pv{$p}{srcname} does not contain any data\n";
+			$pvmd{$pv{$p}{srcname}}{pvreducedone} = 1;
 
-print " $pvjson\n";
+			print "reducing PV:$dev from VG:$vg :";
+			@vgreduce = `vgreduce $vg $dev`;
+			print "$vgreduce[0]\n";
+			$pvmd{$p}{nomigrate} = 1;
+		}
+	}
+}
+
+createmapping();
+
+foreach $p (keys %pv) {
+	if ($pv{$p}{configured} and $pv{$p}{srcname} and not $pvmd{$p}{nomigrate}) {
+		$srcdev = $deviceprefix.$pv{$p}{srcname};
+		$vg = $pv{$pv{$p}{srcname}}{vg};
+		$dstdev = $deviceprefix.$p;
+		print "starting pvmove from $srcdev to $dstdev\n";
+		`pvmove -i 2 $srcdev $dstdev`;
+		createmapping();
+		$dstvgfree = $pv{$p}{vgfree};
+		$srcvgused = $pv{$pv{$p}{srcname}}{vgsize} - $pv{$pv{$p}{srcname}}{vgfree};
+		if ($srcvgused eq 0) {
+			print "reducing PV:$srcdev from VG:$vg :";
+			@vgreduce = `vgreduce $vg $srcdev`;
+			print "$vgreduce[0]\n";
+			$pvmd{$p}{nomigrate} = 1;
+			$pvmd{$p}{pvmovecompleted} = 1;			
+		} else {
+			print "ERROR - pvmove $srcdev to $dstdev didnot completed\n"
+		}
+	}
+}
+
+
+my $pvmdjson = encode_json \%pvmd;
+
+print " $pvmdjson\n";
