@@ -1,0 +1,29 @@
+defaults {
+	user_friendly_names no
+	queue_without_daemon no
+	flush_on_last_del yes
+	max_fds max
+	pg_prio_calc avg
+}
+# All data under blacklist must be specific to your system.
+blacklist {
+	devnode "^hd[a-z]"
+	devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+	devnode "^cciss.*"
+}
+devices {
+	device {
+		vendor "NETAPP"
+		product "LUN"
+		path_grouping_policy group_by_prio
+		features "1 queue_if_no_path"
+		prio_callout "/sbin/mpath_prio_alua /dev/%n"
+		path_checker directio
+		path_selector "round-robin 0"
+		failback immediate
+		hardware_handler "1 alua"
+		rr_weight uniform
+		rr_min_io 128
+		getuid_callout "/sbin/scsi_id -g -u -s /block/%n"
+	}
+}
