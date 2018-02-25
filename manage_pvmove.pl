@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use JSON;
+#use JSON;
 
 $deviceprefix = '/dev/mapper/';
 $pvcreateparams = '--dataalignment 4k';
@@ -123,6 +123,6 @@ foreach $p (keys %pv) {
 }
 
 
-my $pvmdjson = encode_json \%pvmd;
+#my $pvmdjson = encode_json \%pvmd;
 
 #print " $pvmdjson\n";
