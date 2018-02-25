@@ -141,10 +141,16 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 		foreach $lun (@existinglunmappingss ) { 
 			if ($lun=~/\S+\s+($lunpath)\s+(\S+)/) {
 				$mappedigroup = $2;
+				if ($mappedigroup ne $igroup) {
+					print "ERROR: lun:$lunpath is already mapped to another igroup:$mappedigroup\n";
+					exit 1;
+				}
 			}
-				
-			print "mapping lun: $lunpath to igroup:$igroup\n";
-			$found = 0;		
+		}
+		print "mapping lun: $lunpath to igroup:$igroup\n";
+		$cmd = "lun map -path $lunpath -igroup $igroup";
+		#`$sshcmdsvm $cmd`;
+		$found = 0;				
 	}
 }
 
@@ -187,7 +193,13 @@ END_TEXT
 		foreach $vg (keys %{$vol{'vgs'}}) {
 			foreach $lunpath (keys %{$vol{'vgs'}{$vg}{'created-luns'}}) {
 				$serial = $vol{'vgs'}{$vg}{'created-luns'}{$lunpath };
-				print "$lunpath  $serial\n";
+				$lunpath =~ /\/vol\/$volume\/(\S+)/;
+				$lunname = $1;
+				$wwid = $wwidprefix .$serial;
+				$newfile .= "\t".'multipath {'."\n";
+				$newfile .= "\t\t".'alias cdotsan_'.$server.'_'.$lunname."\n";
+				$newfile .= "\t\t".'wwid '.$wwid."\n";
+				$newfile .= "\t".'}'."\n";
 			}
 		}
 		
@@ -195,6 +207,7 @@ END_TEXT
 	
 }
 
+print "$newfile\n";
 
 exit ;
 
