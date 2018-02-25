@@ -306,4 +306,4 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 createmapping();
 
 my $pvjson = encode_json \%pv;
-print " $pvjson\n";
+#print " $pvjson\n";
