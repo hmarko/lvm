@@ -15,6 +15,7 @@ $wwidprefix = '3600a0980';
 $deviceprefix = '/dev/mapper/';
 $pvcreateparams = '--dataalignment 4k';
 $rescancmd="iscsiadm -m session --rescan";
+$newdevprefix = 'cdotsan_';
 
 $vol{'size'} = '100';
 $vol{'max-autosize'} = '15t';
@@ -31,22 +32,53 @@ $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
 $sshcmdserver = $sshcmd.' '.$server.' ';
 
 sub createlvmapping {
-	@lvs = `$sshcmdserver lvs -o +devices --units g --separator ^`;
+	@lvs = `$sshcmdserver lvs --all -o +devices --units g --separator ^`;
 	foreach my $line (@lvs) {
 		chomp $line;
 		@param = split(/\^/,$line);
 		if ($param[1] ne 'VG' and $param[2] ne 'Attr') {
 			$lv = $param[0];
 			$lv =~ s/\s//g;
-			$vg = $param[1];			
+			$vg = $param[1];
+			$lv{$vg}{$lv}{'attr'} = $param[2];
+			$lv{$vg}{$lv}{'sizeg'} = $param[3];
+			$lv{$vg}{$lv}{'sizeg'} =~ s/g$//;
 			$lv{$vg}{$lv}{'copy-percent'} = $param[10];
 			@devices = split(/,/,$param[12]);
 			foreach $device (@devices) {
 				$device =~ s/\(\d+\)$//;
-				$lv{$vg}{$lv}{'devices'}{$device} = 1;
+				$lv{$vg}{$lv}{'used-devices'} .= "$device ";
 			}			
 		}
 #		LV^VG^Attr^LSize^Pool^Origin^Data%^Meta%^Move^Log^Cpy%Sync^Convert^Devices
+	}
+	@extents = `$sshcmdserver pvdisplay -m`;
+	foreach my $line (@extents) {
+		chomp $line;
+		if ($line =~ /-- Physical volume ---/) {
+			$pv = ''; $vg='';
+		}
+		if ($line =~ /^\s*PV Name\s+$deviceprefix(\S+)\S*$/) {
+			$pv = $1;
+		}
+		if ($line =~ /^\s*VG Name\s+(\S+)\S*$/) {
+			$vg = $1;
+		}
+		if ($line =~ /^\s*Physical extent\s+(\d+)\s+to\s+(\d+)\s*\:\s*$/) {
+			$pestart = $1;
+			$peend = $2;
+			
+		}
+		if ($line =~ /^\s*Logical volume\s+\/dev\/$vg\/(\S+)\s*$/) {
+			$lv = $1;
+			if ($lv =~ /_mimage_(\d+)/) {
+				$lv = '['.$lv.']';
+			}
+			if ($peend and $pv and $vg) {
+				push @{$lv{$vg}{$lv}{'pe-used'}{$pv}}, {'pe-start' => $pestart, 'pe-end' => $peend};
+				$pestart = 0; $peend = 0; $lv = '';
+			}
+		}
 	}
 }
 
@@ -108,13 +140,16 @@ foreach $inputvg (split(/,/,$vgs)) {
 		if ($line =~ /$deviceprefix(\S+)\s+(\S+)\s+([0-9]*\.[0-9]+|[0-9]+)(g|G)/) {
 			$dev = $1;
 			$vg = $2;
-			if (not $dev =~/^cdotsan_/) {	
+			if (not $dev =~/^$newdevprefix/) {	
 				#add 1g on the netapp luns
 				$sizeg = floor($3) + 1;
 				if ($vg eq $inputvg) {
 					$vol{'total-pv-size'} += $sizeg;
 					$vol{'vgs'}{$vg}{'lun-count'} += 1;
-					$vol{'vgs'}{$vg}{'luns'}[$vol{'vgs'}{$vg}{'lun-count'}] = $sizeg;
+					$vol{'vgs'}{$vg}{'old-dev-list'} .= "$deviceprefix$dev ";
+					$vol{'vgs'}{$vg}{'luns'}[$vol{'vgs'}{$vg}{'lun-count'}]{'sizeg'} = $sizeg;
+					$vol{'vgs'}{$vg}{'luns'}[$vol{'vgs'}{$vg}{'lun-count'}]{'old-device'} = $dev;
+					$vol{'vgs'}{$vg}{'luns'}[$vol{'vgs'}{$vg}{'lun-count'}]{'new-device'} = $newdevprefix.$server.'_'.$vg.'_'.$vol{'vgs'}{$vg}{'lun-count'};			
 				}
 			}
 		}
@@ -164,8 +199,7 @@ if (not $igroup[2] =~ /\s+($igroup)\s+/) {
 foreach $vg (keys %{$vol{'vgs'}}) {
 	for ($lun=1;$lun <= $vol{'vgs'}{$vg}{'lun-count'};$lun++) {
 		$lunpath = '/vol/'.$volume.'/'.$vg.'_'.$lun;
-		$lunsize = $vol{'vgs'}{$vg}{'luns'}[$lun];
-		
+		$lunsize = $vol{'vgs'}{$vg}{'luns'}[$lun]{'sizeg'};
 		
 		$found = 0;
 		foreach $lun (@existingluns ) {
@@ -188,7 +222,7 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 			$serial = $1;
 			$vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'serial'} = $serial;
 			$vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'lun-name'} = $vg.'_'.$lun;
-			$vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'} = 'cdotsan_'.$server.'_'.$vg.'_'.$lun;
+			$vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'} = $newdevprefix.$server.'_'.$vg.'_'.$lun;
 			$vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'wwid'} = $wwidprefix .$serial;
 		}		
 		
@@ -329,8 +363,20 @@ createlvmapping();
 foreach $vg (keys %{$vol{'vgs'}}) {
 	if (exists $lv{$vg}) {
 		foreach $lvol (keys %{$lv{$vg}}) {
-			$vol{'vgs'}{$vg}{'lv'}{$lvol} = 1;
-			print "$vg $lvol\n";
+			print "AAA $lvol $lv{$vg}{$lvol}{'attr'}\n";
+			if (not $lv{$vg}{$lvol}{'attr'} =~ /m/) {
+				foreach $pe (keys %{$lv{$vg}{$lvol}{'pe-used'}}) {
+					if ($vol{'vgs'}{$vg}{'old-dev-list'} =~ /\s*$deviceprefix$pe\s+/) {
+						$replacementdevice = '';
+						for ($lun=1;$lun <= $vol{'vgs'}{$vg}{'lun-count'};$lun++) {
+							if ($vol{'vgs'}{$vg}{'luns'}[$lun]{'old-device'} eq $pe) {
+								$replacementdevice = $vol{'vgs'}{$vg}{'luns'}[$lun]{'new-device'};
+							}
+						}
+						print "$vg $lvol old:$pe new:$replacementdevice\n";
+					}
+				}
+			}
 		}
 	}
 }
