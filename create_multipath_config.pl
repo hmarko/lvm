@@ -160,7 +160,7 @@ foreach $inputvg (split(/,/,$vgs)) {
 	}
 	
 	if (not $vol{'vgs'}{$inputvg}{'lun-count'}) {
-		print "ERROR: could not identify PVs for VG: $inputvg\n";
+		print "ERROR: could not identify PVs for VG or all been migrated: $inputvg\n";
 		exit 1;
 	}
 }
