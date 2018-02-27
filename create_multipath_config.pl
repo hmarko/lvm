@@ -9,8 +9,10 @@ $svm = $ARGV[1];
 $app = $ARGV[2];
 $aggr = $ARGV[3];
 $igroup = $ARGV[4];
-
 $vgs = $ARGV[5];
+$drsvm = $ARGV[6];
+$draggr = $ARGV[7];
+$drsched = $ARGV[8];
 
 $wwidprefix = '3600a0980';
 $deviceprefix = '/dev/mapper/';
@@ -30,6 +32,7 @@ $hak = '/root/netapp_linux_unified_host_utilities-7-1.x86_64.rpm';
 
 $sshcmd = 'ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey ';
 $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
+$sshcmddrsvm = $sshcmd.' vsadmin@'.$drsvm.' ';
 $sshcmdserver = $sshcmd.' '.$server.' ';
 
 sub createlvmapping {
@@ -181,14 +184,32 @@ if ($out[2]=~/$svm\s+$volume\s+(\S+)\s+(\S+)/) {
 		print "ERROR: volume $volume exists on the SVM with state:$state type:$type\n";
 		exit 1;
 	}
+	print "modifing volume:$volume size:$vol{'initial-size'}g\n";
 	$cmd = "volume modify -volume $volume -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'}  -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
 } else {
-	$cmd = "volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'}  -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
+	print "creating volume:$volume size:$vol{'initial-size'}g\n";
+	$cmd = "volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'} -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
 }
 
 #create/modify the volume 
 @out = `$sshcmdsvm $cmd`;
-print @out;
+$cmd = "volume efficiency on -volume $volume";
+@out = `$sshcmdsvm $cmd`;
+
+if ($drsvm and $draggr and $drsched) {
+	$version = `$sshcmddrsvm version`;
+	if (not $version=~/NetApp/) {
+		print "DR svm $drsvm is not cDOT SVM or couldnot be contacted using ssh public key\n";
+		exit 1;
+	}
+	print "creating snapmirror replication\n";
+	$cmd = "volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'} -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'} -type DP";
+	@out = `$sshcmddrsvm $cmd`;
+	$cmd = "snapmirror create -source-path $svm:$volume -destination-path $drsvm:$volume -type DP -schedule $drsched";
+	@out = `$sshcmddrsvm $cmd`;
+	$cmd = "snapmirror initialize -destination-path $drsvm:$volume";
+	@out = `$sshcmddrsvm $cmd`;
+}
 
 @existingluns = `$sshcmdsvm \"set -units gb;lun show -fields path,size,state,mapped -volume $volume\"`;
 @existinglunmappingss = `$sshcmdsvm lun mapping show -volume $volume -fields path,igroup`;
