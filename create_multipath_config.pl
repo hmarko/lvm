@@ -30,7 +30,27 @@ $sshcmd = 'ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey
 $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
 $sshcmdserver = $sshcmd.' '.$server.' ';
 
-sub createmapping {
+sub createlvmapping {
+	@lvs = `$sshcmdserver lvs -o +devices --units g --separator ^`;
+	foreach my $line (@lvs) {
+		chomp $line;
+		@param = split(/\^/,$line);
+		if ($param[1] ne 'VG' and $param[2] ne 'Attr') {
+			$lv = $param[0];
+			$lv =~ s/\s//g;
+			$vg = $param[1];			
+			$lv{$vg}{$lv}{'copy-percent'} = $param[10];
+			@devices = split(/,/,$param[12]);
+			foreach $device (@devices) {
+				$device =~ s/\(\d+\)$//;
+				$lv{$vg}{$lv}{'devices'}{$device} = 1;
+			}			
+		}
+#		LV^VG^Attr^LSize^Pool^Origin^Data%^Meta%^Move^Log^Cpy%Sync^Convert^Devices
+	}
+}
+
+sub createpvmapping {
 
 	@diskscan = `lvmdiskscan`;
 	foreach my $line (@diskscan) {
@@ -259,11 +279,11 @@ $cmd = "scp $mpfile $server".':/etc/multipath.conf';
 print "\nrescanning new devices\n";
 `$sshcmdserver $rescancmd`;
 #sleep 10;
-print "\ncreating new dmultipath devices\n";
+print "\nconfiguration of dmultipath devices\n";
 `$sshcmdserver multipath -r`;
 
 print "\ncreating PV from new devices\n";
-createmapping();
+createpvmapping();
 foreach $vg (keys %{$vol{'vgs'}}) {
 	foreach $lunpath (keys %{$vol{'vgs'}{$vg}{'created-luns'}}) {
 		$devicealias = $vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'};
@@ -279,10 +299,9 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 		}
 	}
 }
-createmapping();
 
 print "\nextending VG based on new devices\n";
-createmapping();
+createpvmapping();
 foreach $vg (keys %{$vol{'vgs'}}) {
 	foreach $lunpath (keys %{$vol{'vgs'}{$vg}{'created-luns'}}) {
 		$devicealias = $vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'};
@@ -303,7 +322,28 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 		}
 	}
 }
-createmapping();
+createpvmapping();
+
+print "\ncreating lvmirrors\n";
+createlvmapping();
+foreach $vg (keys %{$vol{'vgs'}}) {
+	if (exists $lv{$vg}) {
+		foreach $lvol (keys %{$lv{$vg}}) {
+			$vol{'vgs'}{$vg}{'lv'}{$lvol} = 1;
+			print "$vg $lvol\n";
+		}
+	}
+}
 
 my $pvjson = encode_json \%pv;
-#print " $pvjson\n";
+my $lvjson = encode_json \%lv;
+my $voljson = encode_json \%vol;
+
+open (P,">/tmp/pvjson");
+print P $pvjson;
+
+open (P,">/tmp/lvjson");
+print P $lvjson;
+
+open (P,">/tmp/voljson");
+print P $voljson;
