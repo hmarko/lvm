@@ -405,20 +405,33 @@ while ($continue) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
 				} elsif ($lv{$vg}{$lvol}{'attr'} =~ /m/ and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
-					print "splitting mirror for LV:$vg/$lvol and keeping old LV as:$vg/$lvol$oldlvolsuffix :";
+					print "splitting mirror for LV:$vg/$lvol and keeping backup LV as:$vg/$lvol$oldlvolsuffix :";
 					$lvmcmd = 'lvconvert --splitmirrors 1 --name '.$lvol.$oldlvolsuffix.' '.$vg.'/'.$lvol.' '.$vol{'vgs'}{$vg}{'old-dev-list'};
 					$out = `$sshcmdserver $lvmcmd`;
 					print "$out";
+					print "deactivating of backup LV:$vg/$lvol$oldlvolsuffix\n"; 
+					$lvmcmd = 'lvchange -a n '.$vg.'/'.$lvol.$oldlvolsuffix;
+					$out = `$sshcmdserver $lvmcmd`;
 				}
 			}
 		}
 	}
 	
-	#check if all done
+	#check if all done and split vg
 	$continue = 0;
 	foreach $vg (keys %{$vol{'vgs'}}) {
+		$vgdone = 1;
 		foreach $lvol (keys %{$vol{'vgs'}{$vg}{'lvols'}}) {
-			$continue =1 if not $vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'};
+			if (not $vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'}) {
+				$continue =1;
+				$vgdone = 0;
+			}
+		}
+		if ($vgdone) {
+			$lvmcmd = "vgsplit $vg $vg$oldlvolsuffix $vol{'vgs'}{$vg}{'old-dev-list'}";
+			print "spliting vg:$vg keeping old lvs on vg:$vg$oldlvolsuffix :";
+			$out = `$sshcmdserver $lvmcmd`;
+			print $out;
 		}
 	}
 	
