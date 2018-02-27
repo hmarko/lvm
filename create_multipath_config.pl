@@ -2,6 +2,7 @@
 
 use POSIX;
 use JSON;
+use Data::Dumper;
 
 $server = $ARGV[0];
 $svm = $ARGV[1];
@@ -16,6 +17,7 @@ $deviceprefix = '/dev/mapper/';
 $pvcreateparams = '--dataalignment 4k';
 $rescancmd="iscsiadm -m session --rescan";
 $newdevprefix = 'cdotsan_';
+$oldlvolsuffix = '_old_to_delete_XIV';
 
 $vol{'size'} = '100';
 $vol{'max-autosize'} = '15t';
@@ -24,7 +26,6 @@ $vol{'autosize-shrink-threshold-percent'} =  75;
 $vol{'initial-size-factor'} = 2;
 $vol{'initial-max-autosize-factor'} = 4;
 
-
 $hak = '/root/netapp_linux_unified_host_utilities-7-1.x86_64.rpm';
 
 $sshcmd = 'ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey ';
@@ -32,6 +33,7 @@ $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
 $sshcmdserver = $sshcmd.' '.$server.' ';
 
 sub createlvmapping {
+	%lv = ();
 	@lvs = `$sshcmdserver lvs --all -o +devices --units g --separator ^`;
 	foreach my $line (@lvs) {
 		chomp $line;
@@ -50,16 +52,17 @@ sub createlvmapping {
 				$lv{$vg}{$lv}{'used-devices'} .= "$device ";
 			}			
 		}
-#		LV^VG^Attr^LSize^Pool^Origin^Data%^Meta%^Move^Log^Cpy%Sync^Convert^Devices
 	}
 	@extents = `$sshcmdserver pvdisplay -m`;
 	foreach my $line (@extents) {
 		chomp $line;
 		if ($line =~ /-- Physical volume ---/) {
 			$pv = ''; $vg='';
+			$first = 1;
 		}
 		if ($line =~ /^\s*PV Name\s+$deviceprefix(\S+)\S*$/) {
 			$pv = $1;
+			
 		}
 		if ($line =~ /^\s*VG Name\s+(\S+)\S*$/) {
 			$vg = $1;
@@ -71,10 +74,11 @@ sub createlvmapping {
 		}
 		if ($line =~ /^\s*Logical volume\s+\/dev\/$vg\/(\S+)\s*$/) {
 			$lv = $1;
+
 			if ($lv =~ /_mimage_(\d+)/) {
 				$lv = '['.$lv.']';
 			}
-			if ($peend and $pv and $vg) {
+			if ($peend and $pv and $vg) {		
 				push @{$lv{$vg}{$lv}{'pe-used'}{$pv}}, {'pe-start' => $pestart, 'pe-end' => $peend};
 				$pestart = 0; $peend = 0; $lv = '';
 			}
@@ -356,29 +360,69 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 		}
 	}
 }
-createpvmapping();
 
 print "\ncreating lvmirrors\n";
-createlvmapping();
-foreach $vg (keys %{$vol{'vgs'}}) {
-	if (exists $lv{$vg}) {
-		foreach $lvol (keys %{$lv{$vg}}) {
-			print "AAA $lvol $lv{$vg}{$lvol}{'attr'}\n";
-			if (not $lv{$vg}{$lvol}{'attr'} =~ /m/) {
-				foreach $pe (keys %{$lv{$vg}{$lvol}{'pe-used'}}) {
-					if ($vol{'vgs'}{$vg}{'old-dev-list'} =~ /\s*$deviceprefix$pe\s+/) {
-						$replacementdevice = '';
-						for ($lun=1;$lun <= $vol{'vgs'}{$vg}{'lun-count'};$lun++) {
-							if ($vol{'vgs'}{$vg}{'luns'}[$lun]{'old-device'} eq $pe) {
-								$replacementdevice = $vol{'vgs'}{$vg}{'luns'}[$lun]{'new-device'};
+
+$continue = 1 ;
+while ($continue) {
+	createlvmapping();
+	foreach $vg (keys %{$vol{'vgs'}}) {
+		if (exists $lv{$vg}) {
+			foreach $lvol (keys %{$lv{$vg}}) {
+				if (not $lv{$vg}{$lvol}{'attr'} =~ /m/ and not exists $lv{$vg}{$lvol.$oldlvolsuffix} and not $lvol =~ /$oldlvolsuffix$/ ) {
+					$mirrortopvs = '';
+					foreach $pv (keys %{$lv{$vg}{$lvol}{'pe-used'}}) {
+						if ($vol{'vgs'}{$vg}{'old-dev-list'} =~ /\s*$deviceprefix$pv\s+/) {
+							$replacementdevice = '';
+							for ($lun=1;$lun <= $vol{'vgs'}{$vg}{'lun-count'};$lun++) {
+								if ($vol{'vgs'}{$vg}{'luns'}[$lun]{'old-device'} eq $pv) {
+									$replacementdevice = $vol{'vgs'}{$vg}{'luns'}[$lun]{'new-device'};
+								}
 							}
-						}
-						print "$vg $lvol old:$pe new:$replacementdevice\n";
+							if (not $replacementdevice) {
+								print "ERROR: could not identify new replacment device for PV:$pv\n";
+								exit 1;
+							}
+							foreach $perange (@{$lv{$vg}{$lvol}{'pe-used'}{$pv}}) {
+								$pes = $perange->{'pe-start'};
+								$pee = $perange->{'pe-end'};
+								$mirrortopvs .= $deviceprefix.$replacementdevice.':'.$pes.'-'.$pee.' ';
+							}
+						}	
 					}
+					if ($mirrortopvs) {
+						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
+						print "setting up mirror for LV:$vg/$lvol: \n";
+						$lvmcmd = 'lvconvert -i 10 -m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs;
+						system("$sshcmdserver $lvmcmd");
+						print "$out";
+					} else {
+						print "LV: $vg/$lvol is not located on old devices\n";
+						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
+					}
+					
+				} elsif (exists $lv{$vg}{$lvol.$oldlvolsuffix}) {
+					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
+				} elsif ($lv{$vg}{$lvol}{'attr'} =~ /m/ and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
+					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
+					print "splitting mirror for LV:$vg/$lvol and keeping old LV as:$vg/$lvol$oldlvolsuffix :";
+					$lvmcmd = 'lvconvert --splitmirrors 1 --name '.$lvol.$oldlvolsuffix.' '.$vg.'/'.$lvol.' '.$vol{'vgs'}{$vg}{'old-dev-list'};
+					$out = `$sshcmdserver $lvmcmd`;
+					print "$out";
 				}
 			}
 		}
 	}
+	
+	#check if all done
+	$continue = 0;
+	foreach $vg (keys %{$vol{'vgs'}}) {
+		foreach $lvol (keys %{$vol{'vgs'}{$vg}{'lvols'}}) {
+			$continue =1 if not $vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'};
+		}
+	}
+	
+	print "all done\n" if not $continue;
 }
 
 my $pvjson = encode_json \%pv;
