@@ -59,19 +59,19 @@ sub dumpjson {
 
 sub createlvmapping {
 	%lv = ();
-	@lvs = `$sshcmdserver lvs --all -o +devices --units g --separator ^`;
+	@lvs = `$sshcmdserver lvs --all --units g --separator ^ -o lv_name,vg_name,size,devices,copy_percent,lv_attr`;
 	foreach my $line (@lvs) {
 		chomp $line;
 		@param = split(/\^/,$line);
-		if ($param[1] ne 'VG' and $param[2] ne 'Attr') {
+		if ($param[2] ne 'LSize') {
 			$lv = $param[0];
 			$lv =~ s/\s//g;
 			$vg = $param[1];
-			$lv{$vg}{$lv}{'attr'} = $param[2];
+			$lv{$vg}{$lv}{'attr'} = $param[5];
 			$lv{$vg}{$lv}{'sizeg'} = $param[3];
 			$lv{$vg}{$lv}{'sizeg'} =~ s/g$//;
-			$lv{$vg}{$lv}{'copy-percent'} = $param[10];
-			@devices = split(/,/,$param[12]);
+			$lv{$vg}{$lv}{'copy-percent'} = $param[4];
+			@devices = split(/,/,$param[3]);
 			foreach $device (@devices) {
 				$device =~ s/\(\d+\)$//;
 				$lv{$vg}{$lv}{'used-devices'} .= "$device ";
