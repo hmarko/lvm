@@ -136,7 +136,7 @@ if (not $version=~/NetApp/) {
 }
 
 print "installing $hak on server\n";
-$cmd = "scp $hak $server:$hak";
+$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $hak $server:$hak";
 `$cmd`;
 
 $cmd = "$sshcmdserver rpm -i $hak";
