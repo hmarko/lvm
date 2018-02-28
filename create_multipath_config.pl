@@ -355,7 +355,7 @@ $mpfile = "/tmp/multipath_$server.tmp";
 open (MPCONF,">$mpfile") || die "ERROR cannot open  $mpfile for writing\n";
 print MPCONF "$newfile\n";
 close(MPCONF);
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server".':/etc/multipath.conf';
+$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server:/etc/multipath.conf';
 `$sshcmdserver $cmd`;
 
 print "\nrescanning new devices\n";
