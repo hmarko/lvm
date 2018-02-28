@@ -354,7 +354,6 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 	foreach $lunpath (keys %{$vol{'vgs'}{$vg}{'created-luns'}}) {
 		$devicealias = $vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'};
 		if (not exists $pv{$devicealias}) {
-			print Dumper 
 			print "ERROR: multipath device $deviceprefix$devicealias could not be found\n";
 			exit 1;
 		} elsif (not $pv{$devicealias}{configured}) {
