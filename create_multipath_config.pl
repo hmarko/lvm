@@ -17,7 +17,11 @@ $drsched = $ARGV[8];
 $wwidprefix = '3600a0980';
 $deviceprefix = '/dev/mapper/';
 $pvcreateparams = '--dataalignment 4k';
-$rescancmd="iscsiadm -m session --rescan";
+#$rescancmd1="iscsiadm -m session --rescan";
+$rescancmd1="echo \"- - -\" > /sys/class/scsi_host/host0/scan";
+$rescancmd2="echo \"- - -\" > /sys/class/scsi_host/host1/scan";
+$rescancmd3="echo \"- - -\" > /sys/class/scsi_host/host2/scan";
+$rescancmd4="echo \"- - -\" > /sys/class/scsi_host/host3/scan";
 $newdevprefix = 'cdotsan_';
 $oldlvolsuffix = '_old_to_delete_XIV';
 
@@ -336,7 +340,10 @@ $cmd = "scp $mpfile $server".':/etc/multipath.conf';
 `$sshcmdserver $cmd`;
 
 print "\nrescanning new devices\n";
-`$sshcmdserver $rescancmd`;
+`$sshcmdserver $rescancmd1` if $rescancmd1;
+`$sshcmdserver $rescancmd2` if $rescancmd2;
+`$sshcmdserver $rescancmd3` if $rescancmd3;
+`$sshcmdserver $rescancmd4` if $rescancmd4;
 #sleep 10;
 print "\nconfiguration of dmultipath devices\n";
 `$sshcmdserver multipath -r`;
