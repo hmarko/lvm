@@ -1,0 +1,2380 @@
+<GROUP_NAME value="default">
+	<MASTER_HOST>NoHost</MASTER_HOST>
+	<TARGET_HOST>NoHost</TARGET_HOST>
+	<MASTER_FILESYSTEM>do no mount file systems</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>do no mount file systems</TARGET_FILESYSTEM>
+	### DB ###
+	<DATABASE_NAME_MASTER>NoDb</DATABASE_NAME_MASTER>
+	<TNS_NAME></TNS_NAME>
+	<DB_TYPE></DB_TYPE>
+	<ASM_TNSNAME></ASM_TNSNAME>
+	<ASM_CF_DISK></ASM_CF_DISK>
+	<CP_TARGET_DIR></CP_TARGET_DIR>
+	<UP_TARGET>false</UP_TARGET>
+	### SYSTEM ###
+	<SERVICE_GAURD>no</SERVICE_GAURD>
+	<RH_CLUSTER>no</RH_CLUSTER>
+	<PKG_NAME></PKG_NAME>
+	<PRE_COND_EST></PRE_COND_EST>
+	<POST_COND_EST></POST_COND_EST>
+	<PRE_COND_SPLIT></PRE_COND_SPLIT>
+	<POST_COND_SPLIT></POST_COND_SPLIT>
+	<VG_LIST></VG_LIST>
+	<MAP_FILL>1</MAP_FILL>
+	<OS_VERSION>HP-UX</OS_VERSION>
+	#### STORAGE ####
+	<MSGRP>Clone</MSGRP>
+	### XIV ###
+	<LOCAL_XIV></LOCAL_XIV>
+	<REMOTE_XIV></REMOTE_XIV>
+	<XIV_CG>no</XIV_CG>
+	### SVC ###
+	<LOCAL_SVC></LOCAL_SVC>
+	<SVC_FC_CG>no</SVC_FC_CG>
+	# This is ONLY for XIV CG Snapshot WITH Mirror
+	<XIV_FROM_MIRROR>no</XIV_FROM_MIRROR>
+	<XIV_SRC_CG_NAME></XIV_SRC_CG_NAME>
+	<XIV_DST_SG_NAME></XIV_DST_SG_NAME>
+	### EMC ###
+	<LOCAL_EMC></LOCAL_EMC>
+	<REMOTE_EMC></REMOTE_EMC>
+	<RA_GRP></RA_GRP>
+	<SRDF_ASYNC>no</SRDF_ASYNC>
+	<SRDFS_AD>no</SRDFS_AD>
+	### NETAPP ###
+	<QSM_DEST>no</QSM_DEST>
+	<SERVERS_LIST>none</SERVERS_LIST>
+	<CLUSTER_DOT>no</CLUSTER_DOT>
+	<CLUSTER_POLICY>none</CLUSTER_POLICY>
+	<S_VAULT_DEST>no</S_VAULT_DEST>
+</GROUP_NAME>
+###############################################################################
+# Hestia BCV Groups
+###############################################################################
+<GROUP_NAME value="FF-HESTIA_HESTIA_DIANA">
+	<MASTER_HOST>hestia</MASTER_HOST>
+	<TARGET_HOST>diana</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vglocal/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgbcv_01/</TARGET_FILESYSTEM>
+	<VG_LIST>vglocal:vgbcv_01:0x0a0000</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<OS_VERSION>HP-UX</OS_VERSION>
+</GROUP_NAME>
+###############################################################################
+# Informix BCV Groups
+###############################################################################
+<GROUP_NAME value="IFMX_HESTIA_DIANA">
+	<MASTER_HOST>hestia</MASTER_HOST>
+	<TARGET_HOST>diana</TARGET_HOST>
+	<DATABASE_NAME_MASTER>INFORMIX</DATABASE_NAME_MASTER>
+	<UP_TARGET>false</UP_TARGET>
+	<PRE_COND_EST>/usr/diana/bin/DOWN_HESTIA_INFORMIX_BCV:diana</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/diana/bin/UP_HESTIA_INFORMIX_BCV:diana</POST_COND_SPLIT>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<VG_LIST>vginformix:vgbcv_02:0x0b0000</VG_LIST>
+	<OS_VERSION>HP-UX</OS_VERSION>
+</GROUP_NAME>
+###############################################################################
+# All Shavit Copys Group's
+###############################################################################
+<GROUP_NAME value="PRDOL1_PRDOL1DB_BILLDB1">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/billdb1/bin/ABORT_DB -g PRDOL1_PRDOL1DB_BILLDB1 -d PRDOL1:billdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/billdb1/bin/UP_DB -g PRDOL1_PRDOL1DB_BILLDB1 -d PRDOL1:billdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_RATEDB1">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>ratedb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/ratedb1/bin/ABORT_DB -g PRDOL1_PRDOL1DB_RATEDB1 -d PRDOL1:ratedb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/ratedb1/bin/UP_DB -g PRDOL1_PRDOL1DB_RATEDB1 -d PRDOL1:ratedb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_CVLIN1">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>cvlin1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin1/bin/ABORT_DB -g PRDOL1_PRDOL1DB_CVLIN1 -d PRDOL1:cvlin1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin1/bin/CHECK_BACKUP_READ_ONLY -d PRDOL1 -g PRDOL1_PRDOL1DB_CVLIN1 -h shavdb1:cvlin1</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_AUXDB1">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>auxdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/auxdb1/bin/ABORT_DB -g PRDOL1_PRDOL1DB_AUXDB1 -d PRDOL1:auxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/auxdb1/bin/UP_DB -g PRDOL1_PRDOL1DB_AUXDB1 -d PRDOL1:auxdb1&/usr/auxdb1/bin/send_infor4ncr PRDOL1:auxdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_TRAINDB1">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>traindb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/traindb1/bin/ABORT_DB -g PRDOL1_PRDOL1DB_TRAINDB1 -d PRDOL1:traindb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/traindb1/bin/UP_DB -g PRDOL1_PRDOL1DB_TRAINDB1 -d PRDOL1:traindb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_PETDB6">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>petdb6</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb6/bin/ABORT_DB -g PRDOL1_PRDOL1DB_PETDB6 -d PRDOL1:petdb6</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb6/bin/UP_DB -g PRDOL1_PRDOL1DB_PETDB6 -d PRDOL1:petdb6</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_PETDB7">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>petdb7</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb7/bin/ABORT_DB -g PRDOL1_PRDOL1DB_PETDB7 -d PRDOL1:petdb7</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb7/bin/UP_DB -g PRDOL1_PRDOL1DB_PETDB7 -d PRDOL1:petdb7</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_PETDB4">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>petdb4</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb4/bin/ABORT_DB -g PRDOL1_PRDOL1DB_PETDB4 -d PRDOL1:petdb4</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb4/bin/UP_DB -g PRDOL1_PRDOL1DB_PETDB4 -d PRDOL1:petdb4</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_PETDB11">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>petdb11</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb11/bin/ABORT_DB -g PRDOL1_PRDOL1DB_PETDB11 -d PRDOL1:petdb11</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb11/bin/UP_DB -g PRDOL1_PRDOL1DB_PETDB11 -d PRDOL1:petdb11</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_DEVAUX1">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>devaux1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/devaux1/bin/ABORT_DB -g PRDOL1_PRDOL1DB_DEVAUX1 -d PRDOL1:devaux1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/devaux1/bin/UP_DB -g PRDOL1_PRDOL1DB_DEVAUX1 -d PRDOL1:devaux1</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_DRPSHAVDB1_DRPBILLDB1">
+	<MASTER_HOST>drpshavdb1</MASTER_HOST>
+	<TARGET_HOST>drpbilldb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/drpshavdb1/bin/STOP_RECOVER_PRDOL1:drpshavdb1</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/drpbilldb1/bin/ABORT_DB -g PRDOL1_DRPSHAVDB1_DRPBILLDB1 -d PRDOL1:drpbilldb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/drpshavdb1/bin/START_RECOVER_PRDOL1:drpshavdb1&/usr/drpbilldb1/bin/UP_PRDOL1:drpbilldb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="PRDOL1_PRDOL1DB_CVLIN2">
+	<MASTER_HOST>prdol1db</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdolrl1/|/vgprdolrl2/|/vgprdolrl3/|/vgprdolrl4/|/vgcharge/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDOL1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdol1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb1/prdol1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin2/bin/ABORT_DB -g PRDOL1_PRDOL1DB_CVLIN2 -d PRDOL1:cvlin2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin2/bin/CHECK_BACKUP_READ_ONLY -d PRDOL1 -g PRDOL1_PRDOL1DB_CVLIN2 -h shavdb1:cvlin2</POST_COND_SPLIT>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdolrl1:vgprdolrl1;vgprdolrl2:vgprdolrl2;vgprdolrl3:vgprdolrl3;vgprdolrl4:vgprdolrl4;vgcharge:vgcharge;</VG_LIST>
+</GROUP_NAME>
+###############################################################################
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_CVLIN1">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>cvlin1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin1/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_CVLIN1 -d PRDUSG1:cvlin1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin1/bin/CHECK_BACKUP_READ_ONLY -d PRDUSG1 -g PRDUSG1_PRDUSG1DB_CVLIN1 -h shavdb2:cvlin1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_PETDB6">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>petdb6</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb6/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_PETDB6 -d PRDUSG1:petdb6</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb6/bin/UP_DB -g PRDUSG1_PRDUSG1DB_PETDB6 -d PRDUSG1:petdb6</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_PETDB7">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>petdb7</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb7/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_PETDB7 -d PRDUSG1:petdb7</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb7/bin/UP_DB -g PRDUSG1_PRDUSG1DB_PETDB7 -d PRDUSG1:petdb7</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_PETDB4">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>petdb4</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb4/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_PETDB4 -d PRDUSG1:petdb4</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb4/bin/UP_DB -g PRDUSG1_PRDUSG1DB_PETDB4 -d PRDUSG1:petdb4</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_PETDB11">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>petdb11</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb11/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_PETDB11 -d PRDUSG1:petdb11</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb11/bin/UP_DB -g PRDUSG1_PRDUSG1DB_PETDB11 -d PRDUSG1:petdb11</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_DEVAUX1">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>devaux1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/devaux1/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_DEVAUX1 -d PRDUSG1:devaux1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/devaux1/bin/UP_DB -g PRDUSG1_PRDUSG1DB_DEVAUX1 -d PRDUSG1:devaux1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_AUXDB1">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>auxdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/auxdb1/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_AUXDB1 -d PRDUSG1:auxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/auxdb1/bin/UP_DB -g PRDUSG1_PRDUSG1DB_AUXDB1 -d PRDUSG1:auxdb1&/usr/auxdb1/bin/send_infor4ncr PRDUSG1:auxdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_RATEDB1">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>ratedb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/ratedb1/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_RATEDB1 -d PRDUSG1:ratedb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/ratedb1/bin/UP_DB -g PRDUSG1_PRDUSG1DB_RATEDB1 -d PRDUSG1:ratedb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_BILLDB1">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/billdb1/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_BILLDB1 -d PRDUSG1:billdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/billdb1/bin/UP_DB -g PRDUSG1_PRDUSG1DB_BILLDB1 -d PRDUSG1:billdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_DRPSHAVDB2_DRPBILLDB1">
+	<MASTER_HOST>drpshavdb2</MASTER_HOST>
+	<TARGET_HOST>drpbilldb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/drpshavdb2/bin/STOP_RECOVER_PRDUSG1:drpshavdb2</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/drpbilldb1/bin/ABORT_DB -g PRDUSG1_PRDSHAVDB2_DRPBILLDB1 -d PRDUSG1:drpbilldb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/drpshavdb2/bin/START_RECOVER_PRDUSG1:drpshavdb2&/usr/drpbilldb1/bin/UP_PRDUSG1:drpbilldb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_PRDUSG1DB_CVLIN2">
+	<MASTER_HOST>prdusg1db</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl1/|/vgprdusg1rl2/|/vgprdusg1rl3/|/vgprdusg1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin2/bin/ABORT_DB -g PRDUSG1_PRDUSG1DB_CVLIN2 -d PRDUSG1:cvlin2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin2/bin/CHECK_BACKUP_READ_ONLY -d PRDUSG1 -g PRDUSG1_PRDUSG1DB_CVLIN2 -h shavdb2:cvlin2</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl1:vgprdusg1rl1;vgprdusg1rl2:vgprdusg1rl2;vgprdusg1rl3:vgprdusg1rl3;vgprdusg1rl4:vgprdusg1rl4;</VG_LIST>
+</GROUP_NAME>
+###############################################################################
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_PETDB6">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>petdb6</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb6/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_PETDB6 -d PRDUSG2:petdb6</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb6/bin/UP_DB -g PRDUSG2_PRDUSG2DB_PETDB6 -d PRDUSG2:petdb6</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_PETDB7">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>petdb7</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb7/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_PETDB7 -d PRDUSG2:petdb7</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb7/bin/UP_DB -g PRDUSG2_PRDUSG2DB_PETDB7 -d PRDUSG2:petdb7</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_PETDB4">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>petdb4</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb4/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_PETDB4 -d PRDUSG2:petdb4</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb4/bin/UP_DB -g PRDUSG2_PRDUSG2DB_PETDB4 -d PRDUSG2:petdb4</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_PETDB11">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>petdb11</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb11/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_PETDB11 -d PRDUSG2:petdb11</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb11/bin/UP_DB -g PRDUSG2_PRDUSG2DB_PETDB11 -d PRDUSG2:petdb11</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_DEVAUX1">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>devaux1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/devaux1/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_DEVAUX1 -d PRDUSG2:devaux1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/devaux1/bin/UP_DB -g PRDUSG2_PRDUSG2DB_DEVAUX1 -d PRDUSG2:devaux1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_AUXDB1">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>auxdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/auxdb1/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_AUXDB1 -d PRDUSG2:auxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/auxdb1/bin/UP_DB -g PRDUSG2_PRDUSG2DB_AUXDB1 -d PRDUSG2:auxdb1&/usr/auxdb1/bin/send_infor4ncr PRDUSG2:auxdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_RATEDB1">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>ratedb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/ratedb1/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_RATEDB1 -d PRDUSG2:ratedb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/ratedb1/bin/UP_DB -g PRDUSG2_PRDUSG2DB_RATEDB1 -d PRDUSG2:ratedb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_BILLDB1">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/billdb1/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_BILLDB1 -d PRDUSG2:billdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/billdb1/bin/UP_DB -g PRDUSG2_PRDUSG2DB_BILLDB1 -d PRDUSG2:billdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_CVLIN1">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>cvlin1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin1/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_CVLIN1 -d PRDUSG2:cvlin1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin1/bin/CHECK_BACKUP_READ_ONLY -d PRDUSG2 -g PRDUSG2_PRDUSG2DB_CVLIN1 -h shavdb2:cvlin1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_DRPSHAVDB2_DRPBILLDB1">
+	<MASTER_HOST>drpshavdb2</MASTER_HOST>
+	<TARGET_HOST>drpbilldb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/drpshavdb2/bin/STOP_RECOVER_PRDUSG2:drpshavdb2</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/drpbilldb1/bin/ABORT_DB -g PRDUSG2_DRPSHAVDB2_DRPBILLDB1 -d PRDUSG2:drpbilldb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/drpshavdb2/bin/START_RECOVER_PRDUSG2:drpshavdb2&/usr/drpbilldb1/bin/UP_PRDUSG2:drpbilldb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_PRDUSG2DB_CVLIN2">
+	<MASTER_HOST>prdusg2db</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl1/|/vgprdusg2rl2/|/vgprdusg2rl3/|/vgprdusg2rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG2</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg2db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg2/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin2/bin/ABORT_DB -g PRDUSG2_PRDUSG2DB_CVLIN2 -d PRDUSG2:cvlin2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin2/bin/CHECK_BACKUP_READ_ONLY -d PRDUSG2 -g PRDUSG2_PRDUSG2DB_CVLIN2 -h shavdb2:cvlin2</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl1:vgprdusg2rl1;vgprdusg2rl2:vgprdusg2rl2;vgprdusg2rl3:vgprdusg2rl3;vgprdusg2rl4:vgprdusg2rl4;</VG_LIST>
+</GROUP_NAME>
+###############################################################################
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_DEVAUX1">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>devaux1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/devaux1/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_DEVAUX1 -d PRDUSG3:devaux1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/devaux1/bin/UP_DB -g PRDUSG3_PRDUSG3DB_DEVAUX1 -d PRDUSG3:devaux1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_PETDB6">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>petdb6</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb6/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_PETDB6 -d PRDUSG3:petdb6</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb6/bin/UP_DB -g PRDUSG3_PRDUSG3DB_PETDB6 -d PRDUSG3:petdb6</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_PETDB7">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>petdb7</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb7/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_PETDB7 -d PRDUSG3:petdb7</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb7/bin/UP_DB -g PRDUSG3_PRDUSG3DB_PETDB7 -d PRDUSG3:petdb7</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_PETDB4">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>petdb4</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb4/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_PETDB4 -d PRDUSG3:petdb4</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb4/bin/UP_DB -g PRDUSG3_PRDUSG3DB_PETDB4 -d PRDUSG3:petdb4</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_PETDB11">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>petdb11</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb11/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_PETDB11 -d PRDUSG3:petdb11</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb11/bin/UP_DB -g PRDUSG3_PRDUSG3DB_PETDB11 -d PRDUSG3:petdb11</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_AUXDB1">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>auxdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/auxdb1/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_AUXDB1 -d PRDUSG3:auxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/auxdb1/bin/UP_DB -g PRDUSG3_PRDUSG3DB_AUXDB1 -d PRDUSG3:auxdb1&/usr/auxdb1/bin/send_infor4ncr PRDUSG3:auxdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_RATEDB1">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>ratedb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/ratedb1/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_RATEDB1 -d PRDUSG3:ratedb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/ratedb1/bin/UP_DB -g PRDUSG3_PRDUSG3DB_RATEDB1 -d PRDUSG3:ratedb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_BILLDB1">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/billdb1/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_BILLDB1 -d PRDUSG3:billdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/billdb1/bin/UP_DB -g PRDUSG3_PRDUSG3DB_BILLDB1 -d PRDUSG3:billdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_CVLIN1">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>cvlin1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin1/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_CVLIN1 -d PRDUSG3:cvlin1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin1/bin/CHECK_BACKUP_READ_ONLY -d PRDUSG3 -g PRDUSG3_PRDUSG3DB_CVLIN1 -h shavdb2:cvlin1</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_DRPSHAVDB2_DRPBILLDB1">
+	<MASTER_HOST>drpshavdb2</MASTER_HOST>
+	<TARGET_HOST>drpbilldb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/drpshavdb2/bin/STOP_RECOVER_PRDUSG3:drpshavdb2</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/drpbilldb1/bin/ABORT_DB -g PRDUSG3_DRPSHAVDB2_DRPBILLDB1 -d PRDUSG3:drpbilldb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/drpshavdb2/bin/START_RECOVER_PRDUSG3:drpshavdb2&/usr/drpbilldb1/bin/UP_PRDUSG3:drpbilldb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_PRDUSG3DB_CVLIN2">
+	<MASTER_HOST>prdusg3db</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl1/|/vgprdusg3rl2/|/vgprdusg3rl3/|/vgprdusg3rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDUSG3</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdusg3db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb2/prdusg3/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin2/bin/ABORT_DB -g PRDUSG3_PRDUSG3DB_CVLIN2 -d PRDUSG3:cvlin2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin2/bin/CHECK_BACKUP_READ_ONLY -d PRDUSG3 -g PRDUSG3_PRDUSG3DB_CVLIN2 -h shavdb2:cvlin2</POST_COND_SPLIT>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl1:vgprdusg3rl1;vgprdusg3rl2:vgprdusg3rl2;vgprdusg3rl3:vgprdusg3rl3;vgprdusg3rl4:vgprdusg3rl4;</VG_LIST>
+</GROUP_NAME>
+###############################################################################
+<GROUP_NAME value="PRDMAF_PRDMAFDB_PETDB6">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>petdb6</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb6/bin/ABORT_DB -g PRDMAF_PRDMAFDB_PETDB6 -d PRDMAF:petdb6</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb6/bin/UP_DB -g PRDMAF_PRDMAFDB_PETDB6 -d PRDMAF:petdb6</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDMAF_PRDMAFDB_PETDB7">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>petdb7</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb7/bin/ABORT_DB -g PRDMAF_PRDMAFDB_PETDB7 -d PRDMAF:petdb7</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb7/bin/UP_DB -g PRDMAF_PRDMAFDB_PETDB7 -d PRDMAF:petdb7</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDMAF_PRDMAFDB_PETDB4">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>petdb4</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb4/bin/ABORT_DB -g PRDMAF_PRDMAFDB_PETDB4 -d PRDMAF:petdb4</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb4/bin/UP_DB -g PRDMAF_PRDMAFDB_PETDB4 -d PRDMAF:petdb4</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDMAF_PRDMAFDB_PETDB11">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>petdb11</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb11/bin/ABORT_DB -g PRDMAF_PRDMAFDB_PETDB11 -d PRDMAF:petdb11</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb11/bin/UP_DB -g PRDMAF_PRDMAFDB_PETDB11 -d PRDMAF:petdb11</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDMAF_PRDMAFDB_AUXDB1">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>auxdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/auxdb1/bin/ABORT_DB -g PRDMAF_PRDMAFDB_AUXDB1 -d PRDMAF:auxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/auxdb1/bin/UP_DB -g PRDMAF_PRDMAFDB_AUXDB1 -d PRDMAF:auxdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDMAF_PRDMAFDB_RATEDB1">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>ratedb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/ratedb1/bin/ABORT_DB -g PRDMAF_PRDMAFDB_RATEDB1 -d PRDMAF:ratedb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/ratedb1/bin/UP_DB -g PRDMAF_PRDMAFDB_RATEDB1 -d PRDMAF:ratedb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDMAF_PRDMAFDB_CVLIN1">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>cvlin1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin1/bin/ABORT_DB -g PRDMAF_PRDMAFDB_CVLIN1 -d PRDMAF:cvlin1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin1/bin/CHECK_BACKUP_READ_ONLY -d PRDMAF -g PRDMAF_PRDMAFDB_CVLIN1 -h shavdb3:cvlin1</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDMAF_PRDMAFDB_CVLIN2">
+	<MASTER_HOST>prdmafdb</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdmaf/|/vgprdmafrl1/|/vgprdmafrl2/|/vgprdmafrl3/|/vgprdmafrl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDMAF</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdmafdb</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdmaf/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin2/bin/ABORT_DB -g PRDMAF_PRDMAFDB_CVLIN2 -d PRDMAF:cvlin2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin2/bin/CHECK_BACKUP_READ_ONLY -d PRDMAF -g PRDMAF_PRDMAFDB_CVLIN2 -h shavdb3:cvlin2</POST_COND_SPLIT>
+	<VG_LIST>vgprdmaf:vgprdmaf;vgprdmafrl1:vgprdmafrl1;vgprdmafrl2:vgprdmafrl2;vgprdmafrl3:vgprdmafrl3;vgprdmafrl4:vgprdmafrl4</VG_LIST>
+</GROUP_NAME>
+###############################################################################
+<GROUP_NAME value="PRDICS1_PRDICS1DB_PETDB6">
+	<MASTER_HOST>prdics1db</MASTER_HOST>
+	<TARGET_HOST>petdb6</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDICS1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdics1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdics1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb6/bin/ABORT_DB -g PRDICS1_PRDICS1DB_PETDB6 -d PRDICS1:petdb6</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb6/bin/UP_DB -g PRDICS1_PRDICS1DB_PETDB6 -d PRDICS1:petdb6</POST_COND_SPLIT>
+	<VG_LIST>vgprdics1:vgprdics1;vgprdics1rl1:vgprdics1rl1;vgprdics1rl2:vgprdics1rl2;vgprdics1rl3:vgprdics1rl3;vgprdics1rl4:vgprdics1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDICS1_PRDICS1DB_PETDB7">
+	<MASTER_HOST>prdics1db</MASTER_HOST>
+	<TARGET_HOST>petdb7</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDICS1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdics1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdics1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb7/bin/ABORT_DB -g PRDICS1_PRDICS1DB_PETDB7 -d PRDICS1:petdb7</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb7/bin/UP_DB -g PRDICS1_PRDICS1DB_PETDB7 -d PRDICS1:petdb7</POST_COND_SPLIT>
+	<VG_LIST>vgprdics1:vgprdics1;vgprdics1rl1:vgprdics1rl1;vgprdics1rl2:vgprdics1rl2;vgprdics1rl3:vgprdics1rl3;vgprdics1rl4:vgprdics1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDICS1_PRDICS1DB_PETDB4">
+	<MASTER_HOST>prdics1db</MASTER_HOST>
+	<TARGET_HOST>petdb4</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDICS1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdics1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdics1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb4/bin/ABORT_DB -g PRDICS1_PRDICS1DB_PETDB4 -d PRDICS1:petdb4</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb4/bin/UP_DB -g PRDICS1_PRDICS1DB_PETDB4 -d PRDICS1:petdb4</POST_COND_SPLIT>
+	<VG_LIST>vgprdics1:vgprdics1;vgprdics1rl1:vgprdics1rl1;vgprdics1rl2:vgprdics1rl2;vgprdics1rl3:vgprdics1rl3;vgprdics1rl4:vgprdics1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDICS1_PRDICS1DB_PETDB11">
+	<MASTER_HOST>prdics1db</MASTER_HOST>
+	<TARGET_HOST>petdb11</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDICS1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdics1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdics1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/petdb11/bin/ABORT_DB -g PRDICS1_PRDICS1DB_PETDB11 -d PRDICS1:petdb11</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/petdb11/bin/UP_DB -g PRDICS1_PRDICS1DB_PETDB11 -d PRDICS1:petdb11</POST_COND_SPLIT>
+	<VG_LIST>vgprdics1:vgprdics1;vgprdics1rl1:vgprdics1rl1;vgprdics1rl2:vgprdics1rl2;vgprdics1rl3:vgprdics1rl3;vgprdics1rl4:vgprdics1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDICS1_PRDICS1DB_AUXDB1">
+	<MASTER_HOST>prdics1db</MASTER_HOST>
+	<TARGET_HOST>auxdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDICS1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdics1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdics1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/auxdb1/bin/ABORT_DB -g PRDICS1_PRDICS1DB_AUXDB1 -d PRDICS1:auxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/auxdb1/bin/UP_DB -g PRDICS1_PRDICS1DB_AUXDB1 -d PRDICS1:auxdb1</POST_COND_SPLIT>
+	<VG_LIST>vgprdics1:vgprdics1;vgprdics1rl1:vgprdics1rl1;vgprdics1rl2:vgprdics1rl2;vgprdics1rl3:vgprdics1rl3;vgprdics1rl4:vgprdics1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDICS1_PRDICS1DB_CVLIN1">
+	<MASTER_HOST>prdics1db</MASTER_HOST>
+	<TARGET_HOST>cvlin1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDICS1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdics1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdics1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin1/bin/ABORT_DB -g PRDICS1_PRDICS1DB_CVLIN1 -d PRDICS1:cvlin1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin1/bin/CHECK_BACKUP_READ_ONLY -d PRDICS1 -g PRDICS1_PRDICS1DB_CVLIN1 -h shavdb3:cvlin1</POST_COND_SPLIT>
+	<VG_LIST>vgprdics1:vgprdics1;vgprdics1rl1:vgprdics1rl1;vgprdics1rl2:vgprdics1rl2;vgprdics1rl3:vgprdics1rl3;vgprdics1rl4:vgprdics1rl4;</VG_LIST>
+</GROUP_NAME>
+<GROUP_NAME value="PRDICS1_PRDICS1DB_CVLIN2">
+	<MASTER_HOST>prdics1db</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdics1/|/vgprdics1rl1/|/vgprdics1rl2/|/vgprdics1rl3/|/vgprdics1rl4/</TARGET_FILESYSTEM>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<DATABASE_NAME_MASTER>PRDICS1</DATABASE_NAME_MASTER>
+	<TNS_NAME>prdics1db</TNS_NAME>
+	<CP_TARGET_DIR>/shavdb3/prdics1/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin2/bin/ABORT_DB -g PRDICS1_PRDICS1DB_CVLIN2 -d PRDICS1:cvlin2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin2/bin/CHECK_BACKUP_READ_ONLY -d PRDICS1 -g PRDICS1_PRDICS1DB_CVLIN2 -h shavdb3:cvlin2</POST_COND_SPLIT>
+	<VG_LIST>vgprdics1:vgprdics1;vgprdics1rl1:vgprdics1rl1;vgprdics1rl2:vgprdics1rl2;vgprdics1rl3:vgprdics1rl3;vgprdics1rl4:vgprdics1rl4;</VG_LIST>
+</GROUP_NAME>
+###############################################################################
+# FF Copy on vegas
+<GROUP_NAME value="FF-CUST1_PROD_VEGAS">
+	<MASTER_HOST>cust1</MASTER_HOST>
+	<TARGET_HOST>vegas</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgappc1/|/vgffc1/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgappc1/|/vgffc1/</TARGET_FILESYSTEM>
+	<VG_LIST>vgappc1:vgappc1:0x0b0000;vgffc1:vgffc1:0x0e0000</VG_LIST>
+	<SERVICE_GAURD>yes</SERVICE_GAURD>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+<GROUP_NAME value="FF-USAGE1_PROD_VEGAS">
+	<MASTER_HOST>usage1</MASTER_HOST>
+	<TARGET_HOST>vegas</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgappu1/|/vgffu1/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgappu1/|/vgffu1/</TARGET_FILESYSTEM>
+	<VG_LIST>vgappu1:vgappu1:0x5b0000;vgffu1:vgffu1:0x3c0000</VG_LIST>
+	<SERVICE_GAURD>yes</SERVICE_GAURD>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+<GROUP_NAME value="FF-USAGE2_PROD_VEGAS">
+	<MASTER_HOST>usage2</MASTER_HOST>
+	<TARGET_HOST>vegas</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgappu2/|/vgffu2/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgappu2/|/vgffu2/</TARGET_FILESYSTEM>
+	<VG_LIST>vgappu2:vgappu2:0x5c0000;vgffu2:vgffu2:0x090000</VG_LIST>
+	<SERVICE_GAURD>yes</SERVICE_GAURD>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+<GROUP_NAME value="FF-USAGE3_PROD_VEGAS">
+	<MASTER_HOST>usage3</MASTER_HOST>
+	<TARGET_HOST>vegas</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgappu3/|/vgffu3/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgappu3/|/vgffu3/</TARGET_FILESYSTEM>
+	<VG_LIST>vgappu3:vgappu3:0x750000;vgffu3:vgffu3:0x8c0000</VG_LIST>
+	<SERVICE_GAURD>yes</SERVICE_GAURD>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+###############################################################################
+# FF Copy on cvlin2 - Shavit Linux
+###############################################################################
+<GROUP_NAME value="FF-LCUST1_PROD_CVLIN2">
+	<MASTER_HOST>lcust1</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgffc1/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgffc1/</TARGET_FILESYSTEM>
+	<VG_LIST>vgffc1:vgffc1;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+<GROUP_NAME value="FF-LUSAGE1_PROD_CVLIN2">
+	<MASTER_HOST>lusage1</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgffu1/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgffu1/</TARGET_FILESYSTEM>
+	<VG_LIST>vgffu1:vgffu1;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+<GROUP_NAME value="FF-LUSAGE2_PROD_CVLIN2">
+	<MASTER_HOST>lusage2</MASTER_HOST>
+	<TARGET_HOST>cvlin2</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgffu2/|/vgffu3/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgffu2/|/vgffu3/</TARGET_FILESYSTEM>
+	<VG_LIST>vgffu2:vgffu2;vgffu3:vgffu3;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+###########################################################
+# NPG 
+###############################################################################
+<GROUP_NAME value="NPGPROD_NPGDBPROD_DMZBCK1">
+	<MASTER_HOST>npgdbprod</MASTER_HOST>
+	<TARGET_HOST>dmzbck1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<MASTER_FILESYSTEM>/vgpkg01/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgpkg01/</TARGET_FILESYSTEM>
+	<VG_LIST>vgpkg01:vgpkg01;</VG_LIST>
+	<DATABASE_NAME_MASTER>NPGPROD</DATABASE_NAME_MASTER>
+	<TNS_NAME>NPGPROD</TNS_NAME>
+	<CP_TARGET_DIR>/npgdbprod/npgprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<XIV_CG>yes</XIV_CG>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<PRE_COND_SPLIT>/usr/dmzbck1/bin/lvm_change_lock.sh disable:dmzbck1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/dmzbck1/bin/chown_oracle_npgdb.sh:dmzbck1&/usr/dmzbck1/bin/CHECK_BACKUP_READ_ONLY -d NPGPROD -g NPGPROD_NPGDBPROD_DMZBCK1 -h npgdbprod:dmzbck1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="NPGPROD_NPGDBPROD_NPGQA1">
+	<MASTER_HOST>npgdbprod</MASTER_HOST>
+	<TARGET_HOST>npgqa1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<MASTER_FILESYSTEM>/vgpkg01/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgpkg01/</TARGET_FILESYSTEM>
+	<VG_LIST>vgpkg01:vgpkg01;</VG_LIST>
+	<DATABASE_NAME_MASTER>NPGPROD</DATABASE_NAME_MASTER>
+	<TNS_NAME>NPGPROD</TNS_NAME>
+	<CP_TARGET_DIR>/npgdbprod/npgprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<XIV_CG>yes</XIV_CG>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<PRE_COND_EST>/usr/npgqa1/bin/ABORT_NPGPROD -g NPGPROD_NPGDBPROD_NPGQA1 -d NPGPROD:npgqa1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/npgqa1/bin/UP_DB -g NPGPROD_NPGDBPROD_NPGQA1 -d NPGPROD:npgqa1</POST_COND_SPLIT>
+</GROUP_NAME>
+###########################
+# Golden Gate	          #
+###########################
+<GROUP_NAME value="RTDB_RTPROD_LSN">
+	<MASTER_HOST>rtprod</MASTER_HOST>
+	<TARGET_HOST>lsn</TARGET_HOST>
+	<DATABASE_NAME_MASTER>RTDB</DATABASE_NAME_MASTER>
+	<TNS_NAME>rtprodrtdb</TNS_NAME>
+	<MASTER_FILESYSTEM>/vgrtprod/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgrtprod/</TARGET_FILESYSTEM>
+	<VG_LIST>vgrtprod:vgrtprod;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<XIV_CG>yes</XIV_CG>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<CP_TARGET_DIR>/rtprod/rtdb/archive/SRDF</CP_TARGET_DIR>
+	<OS_VERSION>Linux</OS_VERSION>
+	<POST_COND_SPLIT>/usr/lsn/bin/CHECK_BACKUP_READ_ONLY -d RTDB -g RTDB_RTPROD_LSN -h rtprod:lsn</POST_COND_SPLIT>
+</GROUP_NAME>
+################################
+###### ENGPRD      GROUP #######
+################################
+<GROUP_NAME value="ENGPRODDATA_ENGPRD1_ENGBCK">
+	<MASTER_HOST>engprd1</MASTER_HOST>
+	<TARGET_HOST>engbck</TARGET_HOST>
+	<DB_TYPE>ASM</DB_TYPE>
+	<TNS_NAME>ENGPROD1</TNS_NAME>
+	<ASM_TNSNAME>ENGPRDASM</ASM_TNSNAME>
+	<DATABASE_NAME_MASTER>engprod</DATABASE_NAME_MASTER>
+	<ASM_DATABASE_NAME_MASTER>+ASM1</ASM_DATABASE_NAME_MASTER>
+	<ASM_CF_DISK>+FRADG</ASM_CF_DISK>
+	<UP_TARGET>false</UP_TARGET>
+	<CP_TARGET_DIR>/tmp</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<OS_VERSION>Linux</OS_VERSION>
+	<POST_COND_SPLIT>/usr/engprd1/bin/COPY_CTF:engprd1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="ENGPRODARCH_ENGPRD1_ENGBCK">
+	<MASTER_HOST>engprd1</MASTER_HOST>
+	<TARGET_HOST>engbck</TARGET_HOST>
+	<UP_TARGET>false</UP_TARGET>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<POST_COND_SPLIT>/usr/engbck/bin/UP_+ASM1:engbck&/usr/engbck/bin/CHECK_BACKUP_READ_ONLY:engbck</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+</GROUP_NAME>
+###############################################################################
+# LOGPROD BCV Groups
+###############################################################################
+####################
+#      Webprod     #
+####################
+<GROUP_NAME value="LOGPROD_WEBPROD_DMZBCK1">
+	<MASTER_HOST>webprod</MASTER_HOST>
+	<TARGET_HOST>dmzbck1</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgwebprod/|/logprod_rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgwebprod/|/logprod_rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgwebprod:vgwebprod;logprod_rl:logprod_rl</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<DATABASE_NAME_MASTER>LOGPROD</DATABASE_NAME_MASTER>
+	<TNS_NAME>net2webprodlogprod</TNS_NAME>
+	<CP_TARGET_DIR>/webprod/logprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/dmzbck1/bin/ABORT_LOGPROD:dmzbck1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/dmzbck1/bin/CHECK_BACKUP_READ_ONLY -d LOGPROD -g LOGPROD_WEBPROD_DMZBCK1 -h webprod:dmzbck1</POST_COND_SPLIT>
+	<DATABASE_NAME_MASTER>LOGPROD</DATABASE_NAME_MASTER>
+</GROUP_NAME>
+<GROUP_NAME value="LOGPROD_WEBPROD_WEBDEV">
+	<MASTER_HOST>webprod</MASTER_HOST>
+	<TARGET_HOST>webdev</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgwebprod/|/logprod_rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vglogprodqa1/|/vglogprodqa1_rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgwebprod:vglogprodqa1;logprod_rl:vglogprodqa1_rl</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<DATABASE_NAME_MASTER>LOGPROD</DATABASE_NAME_MASTER>
+	<TNS_NAME>net2webprodlogprod</TNS_NAME>
+	<CP_TARGET_DIR>/webprod/logprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/webdev/bin/ABORT_LOGPROD:webdev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/webdev/bin/UP_LOGPROD_SRDF -d LOGPROD -g LOGPROD_WEBPROD_WEBDEV:webdev</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="LOGPROD_WEBPROD_WEBDEV-LOGDEV">
+	<MASTER_HOST>webprod</MASTER_HOST>
+	<TARGET_HOST>webdev</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgwebprod/|/logprod_rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vglogdev/|/logdev_rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgwebprod:vglogdev;logprod_rl:logdev_rl</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<DATABASE_NAME_MASTER>LOGDEV</DATABASE_NAME_MASTER>
+	<TNS_NAME>net2webprodlogprod</TNS_NAME>
+	<CP_TARGET_DIR>/webprod/logprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/webdev/bin/ABORT_LOGDEV:webdev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/webprod/bin/RENAME_DB.sh -d logdev -h webdev:webprod&/usr/webdev/bin/RENAME_DB.sh -d logdev -g LOGPROD_WEBPROD_WEBDEV-LOGDEV:webdev</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="LOGPROD_WEBPROD_WEBDEV_LOGQA">
+	<MASTER_HOST>webprod</MASTER_HOST>
+	<TARGET_HOST>webdev</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgwebprod/|/logprod_rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vglogqa/|/logqa_rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgwebprod:vglogqa;logprod_rl:logqa_rl</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<DATABASE_NAME_MASTER>LOGQA</DATABASE_NAME_MASTER>
+	<TNS_NAME>net2webprodlogprod</TNS_NAME>
+	<CP_TARGET_DIR>/webprod/logprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/webdev/bin/ABORT_LOGQA:webdev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/webprod/bin/RENAME_DB.sh -d logqa -h webdev:webprod&/usr/webdev/bin/RENAME_DB.sh -d logqa -g LOGPROD_WEBPROD_WEBDEV_LOGQA:webdev</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="LOGPROD_WEBPROD_WEBDEV-LOGTRAIN">
+	<MASTER_HOST>webprod</MASTER_HOST>
+	<TARGET_HOST>webdev</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgwebprod/|/logprod_rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vglogtrain/|/logtrain_rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgwebprod:vglogtrain;logprod_rl:logtrain_rl</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<DATABASE_NAME_MASTER>LOGTRAIN</DATABASE_NAME_MASTER>
+	<TNS_NAME>net2webprodlogprod</TNS_NAME>
+	<CP_TARGET_DIR>/webprod/logprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/webdev/bin/ABORT_LOGTRAIN:webdev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/webprod/bin/RENAME_DB.sh -d logtrain -h webdev:webprod&/usr/webdev/bin/RENAME_DB.sh -d logtrain -g LOGPROD_WEBPROD_WEBDEV-LOGTRAIN:webdev</POST_COND_SPLIT>
+</GROUP_NAME>
+###############################################################################
+# Credit Guard
+###############################################################################
+<GROUP_NAME value="CGDB_CGDBPROD_LSN">
+	<MASTER_HOST>cgdbprod</MASTER_HOST>
+	<TARGET_HOST>lsn</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgcgdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgcgdb/</TARGET_FILESYSTEM>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<VG_LIST>vgcgdb:vgcgdb;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<TNS_NAME>cgdb</TNS_NAME>
+	<DATABASE_NAME_MASTER>CGDB</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/cgdbprod/cgdb/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/lsn/bin/ABORT_DB -g CGDB_CGDBPROD_LSN -d CGDB:lsn</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/lsn/bin/CHECK_BACKUP_READ_ONLY -g CGDB_CGDBPROD_LSN -d CGDB -h cgdbprod:lsn</POST_COND_SPLIT>
+</GROUP_NAME>
+###############################################################################
+# SHAVITLN
+###############################################################################
+<GROUP_NAME value="SHAVITLN_LINPROD_LSN">
+	<MASTER_HOST>shavitlndb</MASTER_HOST>
+	<TARGET_HOST>lsn</TARGET_HOST>
+	<MASTER_FILESYSTEM>/shavitln/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/shavitln/</TARGET_FILESYSTEM>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<VG_LIST>shavitln:shavitln;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<TNS_NAME>net2linprodshavitln</TNS_NAME>
+	<DATABASE_NAME_MASTER>SHAVITLN</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/linprod/shavitln/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<PRE_COND_SPLIT>/usr/lsn/bin/ABORT_SHAVITLN:lsn</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/lsn/bin/CHECK_BACKUP_READ_ONLY -d SHAVITLN -g SHAVITLN_LINPROD_LSN -h linprod:lsn</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="SHAVITLN_LINPROD_LINDEV">
+	<MASTER_HOST>shavitlndb</MASTER_HOST>
+	<TARGET_HOST>lindev</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<MASTER_FILESYSTEM>/shavitln/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/shavitln/</TARGET_FILESYSTEM>
+	<VG_LIST>shavitln:shavitln;</VG_LIST>
+	<TNS_NAME>net2linprodshavitln</TNS_NAME>
+	<DATABASE_NAME_MASTER>SHAVITLN</DATABASE_NAME_MASTER>
+	<OS_VERSION>Linux</OS_VERSION>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<MSGRP>XIV</MSGRP>
+	<CP_TARGET_DIR>/linprod/shavitln/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/lindev/bin/ABORT_DB -g SHAVITLN_LINPROD_LINDEV -d SHAVITLN:lindev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/lindev/bin/UP_DB -g SHAVITLN_LINPROD_LINDEV -d SHAVITLN:lindev</POST_COND_SPLIT>
+</GROUP_NAME>
+###############################################################################
+# MAOF Linux
+###############################################################################
+<GROUP_NAME value="MAOF_MAOFDB_CVLIN1">
+	<MASTER_HOST>maof</MASTER_HOST>
+	<TARGET_HOST>cvlin1</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<PKG_NAME>dbmaof</PKG_NAME>
+	<MASTER_FILESYSTEM>/vgmaofdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmaofdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmaofdb:vgmaofdb;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<TNS_NAME>maofmaof10</TNS_NAME>
+	<DATABASE_NAME_MASTER>MAOF10</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/maof/maof10/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/cvlin1/bin/ABORT_DB -g MAOF_MAOFDB_CVLIN1 -d MAOF10:cvlin1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/cvlin1/bin/CHECK_BACKUP_READ_ONLY -g MAOF_MAOFDB_CVLIN1 -d MAOF10 -h maof:cvlin1</POST_COND_SPLIT>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+<GROUP_NAME value="MAOF_MAOFDB_MAOFDBPET">
+	<MASTER_HOST>maof</MASTER_HOST>
+	<TARGET_HOST>maofdbpet</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<MASTER_FILESYSTEM>/vgmaofdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmaofdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmaofdb:vgmaofdb;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<TNS_NAME>maofmaof10</TNS_NAME>
+	<DATABASE_NAME_MASTER>MAOF10</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/maof/maof10/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/maofdbpet/bin/ABORT_DB -g MAOF_MAOFDB_MAOFDBPET -d MAOF10:maofdbpet</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/maofdbpet/bin/UP_DB -g MAOF_MAOFDB_MAOFDBPET -d MAOF10:maofdbpet</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="MAOF_MAOFDB_MAOFDBPET2">
+	<MASTER_HOST>maof</MASTER_HOST>
+	<TARGET_HOST>maofdbpet2</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<MASTER_FILESYSTEM>/vgmaofdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmaofdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmaofdb:vgmaofdb;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<TNS_NAME>maofmaof10</TNS_NAME>
+	<DATABASE_NAME_MASTER>MAOF10</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/maof/maof10/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/maofdbpet2/bin/ABORT_DB -g MAOF_MAOFDB_MAOFDBPET2 -d MAOF10:maofdbpet2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/maofdbpet2/bin/UP_DB -g MAOF_MAOFDB_MAOFDBPET2 -d MAOF10:maofdbpet2</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="MAOF_CVLIN1_MAOFDBLAB">
+	<MASTER_HOST>cvlin1</MASTER_HOST>
+	<TARGET_HOST>maofdblab1</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>clusvcadm -d maofdblab:maofdblab1</PRE_COND_EST>
+	<POST_COND_SPLIT>clusvcadm -e maofdblab:maofdblab1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="MAOF_MAOFDB_MAOFDBFRZ">
+	<MASTER_HOST>maof</MASTER_HOST>
+	<TARGET_HOST>maofdbfrz</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<MASTER_FILESYSTEM>/vgmaofdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmaofdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmaofdb:vgmaofdb;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<TNS_NAME>maofmaof10</TNS_NAME>
+	<DATABASE_NAME_MASTER>MAOF10</DATABASE_NAME_MASTER>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<CP_TARGET_DIR>/maof/maof10/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/maofdbfrz/bin/ABORT_DB -g MAOF_MAOFDB_MAOFDBFRZ -d MAOF10:maofdbfrz</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/maofdbfrz/bin/UP_DB -g MAOF_MAOFDB_MAOFDBFRZ -d MAOF10:maofdbfrz</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="MAOF_MAOFDB_MAOFDBTRN1">
+	<MASTER_HOST>maof</MASTER_HOST>
+	<TARGET_HOST>maofdbtrn1</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<MASTER_FILESYSTEM>/vgmaofdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmaofdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmaofdb:vgmaofdb;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<TNS_NAME>maofmaof10</TNS_NAME>
+	<DATABASE_NAME_MASTER>MAOF10</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/maof/maof10/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/maofdbtrn1/bin/ABORT_DB -g MAOF_MAOFDB_MAOFDBTRN1 -d MAOF10:maofdbtrn1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/maofdbtrn1/bin/UP_DB -g MAOF_MAOFDB_MAOFDBTRN1 -d MAOF10:maofdbtrn1</POST_COND_SPLIT>
+</GROUP_NAME>
+##############################################################################
+# MIND
+##############################################################################
+<GROUP_NAME value="MINDPROD_MINDG1_MINDREPDB1">
+	<MASTER_HOST>mindg1</MASTER_HOST>
+	<TARGET_HOST>mindrepdb1</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgmindb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmindb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmindb:vgmindb;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<OS_VERSION>Linux</OS_VERSION>
+	<PRE_COND_EST>/usr/mindrepdb1/bin/ABORT_DB -g MINDPROD_MINDG1_MINDREPDB1 -d MINDPROD:mindrepdb1</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/mindg1/bin/STOP_RECOVER_MINDDG:mindg1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/mindg1/bin/START_RECOVER_MINDDG:mindg1&/usr/mindrepdb1/bin/UP_MINDPROD:mindrepdb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="MINDPROD_MINDG1_MINDBQA1">
+	<MASTER_HOST>mindg1</MASTER_HOST>
+	<TARGET_HOST>mindbqa1</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgmindb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmindb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmindb:vgmindb;</VG_LIST>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<OS_VERSION>Linux</OS_VERSION>
+	<PRE_COND_EST>/usr/mindbqa1/bin/ABORT_DB -g MINDPROD_MINDG1_MINDBQA1 -d MINDPROD:mindbqa1</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/mindg1/bin/STOP_RECOVER_MINDDG:mindg1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/mindg1/bin/START_RECOVER_MINDDG:mindg1&/usr/mindbqa1/bin/UP_MINDPROD:mindbqa1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="MINDPROD_MINDB1_DMZBCK1">
+	<MASTER_HOST>mindb1</MASTER_HOST>
+	<TARGET_HOST>dmzbck1</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgmindb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgmindb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgmindb:vgmindb;</VG_LIST>
+	<TNS_NAME>net2mindb1mindprod</TNS_NAME>
+	<DATABASE_NAME_MASTER>MINDPROD</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/mindb1/mindprod/archive/SRDF</CP_TARGET_DIR>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<OS_VERSION>Linux</OS_VERSION>
+	<POST_COND_SPLIT>/usr/dmzbck1/bin/CHECK_BACKUP_READ_ONLY -d MINDPROD -g MINDPROD_MINDB1_DMZBCK1 -h mindb1:dmzbck1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="ESI_ESIDB_LINDEV">
+	<MASTER_HOST>esidb</MASTER_HOST>
+	<TARGET_HOST>lindev</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgesi/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgesi/</TARGET_FILESYSTEM>
+	<VG_LIST>vgesi:vgesi;</VG_LIST>
+	<TNS_NAME>esi_prod</TNS_NAME>
+	<DATABASE_NAME_MASTER>ESI</DATABASE_NAME_MASTER>
+	<CP_TARGET_DIR>/linprod/esi/archive/SRDF</CP_TARGET_DIR>
+	<PRE_COND_EST>/usr/lindev/bin/ABORT_DB -g ESI_ESIDB_LINDEV -d ESI:lindev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/lindev/bin/UP_DB -g ESI_ESIDB_LINDEV -d ESI:lindev</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+</GROUP_NAME>
+<GROUP_NAME value="ARCHMAOF_LINPROD_LINDEV">
+	<MASTER_HOST>archmaofdb</MASTER_HOST>
+	<TARGET_HOST>lindev</TARGET_HOST>
+	<RH_CLUSTER>yes</RH_CLUSTER>
+	<PKG_NAME>archmaofdb</PKG_NAME>
+	<MASTER_FILESYSTEM>/vgarchmaof/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgarchmaof/</TARGET_FILESYSTEM>
+	<VG_LIST>vgarchmaof:vgarchmaof;</VG_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<MSGRP>XIV</MSGRP>
+	<XIV_CG>yes</XIV_CG>
+	<PRE_COND_EST>/usr/lindev/bin/ABORT_ARCHMAOF:lindev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/lindev/bin/UP_ARCHMAOF:lindev</POST_COND_SPLIT>
+</GROUP_NAME>
+###############################################################################
+# SVC
+###############################################################################
+<GROUP_NAME value="PRDOL1_SHAVDG1_BILLDB1">
+	<MASTER_HOST>shavdg1</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdoldb/|/vgprdol1rl/|/vgcharge/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdoldb/|/vgprdol1rl/|/vgcharge/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdoldb:vgprdoldb;vgprdol1rl:vgprdol1rl;vgcharge:vgcharge;</VG_LIST>
+	<MSGRP>SVC</MSGRP>
+	<LOCAL_SVC>svccl</LOCAL_SVC>
+	<SVC_FC_CG>yes</SVC_FC_CG>
+	<PRE_COND_EST>/usr/shavdg1/bin/STOP_RECOVER_PRDOL1:shavdg1</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/billdb1/bin/SHUT_PRDOL1:billdb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/shavdg1/bin/START_RECOVER_PRDOL1:shavdg1&/usr/billdb1/bin/UP_PRDOL1:billdb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG1_SHAVDG1_BILLDB1">
+	<MASTER_HOST>shavdg1</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg1/|/vgprdusg1rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdusg1:vgprdusg1;vgprdusg1rl:vgprdusg1rl;</VG_LIST>
+	<MSGRP>SVC</MSGRP>
+	<LOCAL_SVC>svccl</LOCAL_SVC>
+	<SVC_FC_CG>yes</SVC_FC_CG>
+	<PRE_COND_EST>/usr/shavdg1/bin/STOP_RECOVER_PRDUSG1:shavdg1</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/billdb1/bin/SHUT_PRDUSG1:billdb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/shavdg1/bin/START_RECOVER_PRDUSG1:shavdg1&/usr/billdb1/bin/UP_PRDUSG1:billdb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG2_SHAVDG1_BILLDB1">
+	<MASTER_HOST>shavdg1</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg2/|/vgprdusg2rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdusg2:vgprdusg2;vgprdusg2rl:vgprdusg2rl;</VG_LIST>
+	<MSGRP>SVC</MSGRP>
+	<LOCAL_SVC>svccl</LOCAL_SVC>
+	<SVC_FC_CG>yes</SVC_FC_CG>
+	<PRE_COND_EST>/usr/shavdg1/bin/STOP_RECOVER_PRDUSG2:shavdg1</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/billdb1/bin/SHUT_PRDUSG2:billdb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/shavdg1/bin/START_RECOVER_PRDUSG2:shavdg1&/usr/billdb1/bin/UP_PRDUSG2:billdb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="PRDUSG3_SHAVDG1_BILLDB1">
+	<MASTER_HOST>shavdg1</MASTER_HOST>
+	<TARGET_HOST>billdb1</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MASTER_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgprdusg3/|/vgprdusg3rl/</TARGET_FILESYSTEM>
+	<VG_LIST>vgprdusg3:vgprdusg3;vgprdusg3rl:vgprdusg3rl;</VG_LIST>
+	<MSGRP>SVC</MSGRP>
+	<LOCAL_SVC>svccl</LOCAL_SVC>
+	<SVC_FC_CG>yes</SVC_FC_CG>
+	<PRE_COND_EST>/usr/shavdg1/bin/STOP_RECOVER_PRDUSG3:shavdg1</PRE_COND_EST>
+	<PRE_COND_SPLIT>/usr/billdb1/bin/SHUT_PRDUSG3:billdb1</PRE_COND_SPLIT>
+	<POST_COND_SPLIT>/usr/shavdg1/bin/START_RECOVER_PRDUSG3:shavdg1&/usr/billdb1/bin/UP_PRDUSG3:billdb1</POST_COND_SPLIT>
+</GROUP_NAME>
+###############################################################################
+# INCENT
+###############################################################################
+<GROUP_NAME value="INCENT_INCENTDB_LINDEV">
+	<MASTER_HOST>incentdb</MASTER_HOST>
+	<TARGET_HOST>lindev</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgincentdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgincentdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgincentdb:vgincentdb;</VG_LIST>
+	<TNS_NAME>incent</TNS_NAME>
+	<CP_TARGET_DIR>/linprod2/incent/archive/SRDF</CP_TARGET_DIR>
+	<DATABASE_NAME_MASTER>INCENT</DATABASE_NAME_MASTER>
+	<PRE_COND_EST>/usr/lindev/bin/ABORT_DB -g INCENT_INCENTDB_LINDEV -d INCENT:lindev</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/lindev/bin/UP_DB -g INCENT_INCENTDB_LINDEV -d INCENT:lindev</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+</GROUP_NAME>
+<GROUP_NAME value="INCENT_INCENTDB_AUXDB1">
+	<MASTER_HOST>incentdb</MASTER_HOST>
+	<TARGET_HOST>auxdb1</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgincentdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgincentdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgincentdb:vgincentdb;</VG_LIST>
+	<TNS_NAME>incent</TNS_NAME>
+	<CP_TARGET_DIR>/linprod2/incent/archive/SRDF</CP_TARGET_DIR>
+	<DATABASE_NAME_MASTER>INCENT</DATABASE_NAME_MASTER>
+	<PRE_COND_EST>/usr/auxdb1/bin/ABORT_DB -g INCENT_INCENTDB_AUXDB1 -d INCENT:auxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/auxdb1/bin/UP_DB -g INCENT_INCENTDB_AUXDB1 -d INCENT:auxdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+</GROUP_NAME>
+<GROUP_NAME value="INCENT_INCENTDB_DEVAUX1">
+	<MASTER_HOST>incentdb</MASTER_HOST>
+	<TARGET_HOST>devaux1</TARGET_HOST>
+	<MASTER_FILESYSTEM>/vgincentdb/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vgincentdb/</TARGET_FILESYSTEM>
+	<VG_LIST>vgincentdb:vgincentdb;</VG_LIST>
+	<TNS_NAME>incent</TNS_NAME>
+	<CP_TARGET_DIR>/linprod2/incent/archive/SRDF</CP_TARGET_DIR>
+	<DATABASE_NAME_MASTER>INCENT</DATABASE_NAME_MASTER>
+	<PRE_COND_EST>/usr/devaux1/bin/ABORT_DB -g INCENT_INCENTDB_DEVAUX1 -d INCENT:devaux1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/devaux1/bin/UP_DB -g INCENT_INCENTDB_DEVAUX1 -d INCENT:devaux1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>XIV</MSGRP>
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+</GROUP_NAME>
+###############################################################################
+# MAOF APPL
+###############################################################################
+<GROUP_NAME value="VOL_MAOF_PROD_LAB">
+	<TARGET_HOST>appmaoflab1</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_maof_appl_lab</TARGET_FILESYSTEM>
+	<SERVERS_LIST>appmaoflab1:maofdblab1:maofdblab2:pet1</SERVERS_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<POST_COND_SPLIT>/usr/appmaoflab1/bin/change_out11i.sh:appmaoflab1</POST_COND_SPLIT>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_vol_maof_appl_lab</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_MAOF_PROD_PET">
+	<TARGET_HOST>appmaofpet</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_maof_appl_pet</TARGET_FILESYSTEM>
+	<SERVERS_LIST>maofdbpet:appmaofpet:pet1</SERVERS_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<POST_COND_SPLIT>/usr/appmaofpet/bin/change_out11i.sh:appmaofpet</POST_COND_SPLIT>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_vol_maof_appl_pet</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_MAOF_PROD_PET2">
+	<TARGET_HOST>appmaofpet2</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_maof_appl_pet2</TARGET_FILESYSTEM>
+	<SERVERS_LIST>maofdbpet2:appmaofpet2:pet1</SERVERS_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<POST_COND_SPLIT>/usr/appmaofpet2/bin/change_out11i.sh:appmaofpet2</POST_COND_SPLIT>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_vol_maof_appl_pet2</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_MAOF_PROD_TRN">
+	<TARGET_HOST>appmaoftrn</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_maof_appl_trn</TARGET_FILESYSTEM>
+	<SERVERS_LIST>appmaoftrn:maofdbtrn1:pet1</SERVERS_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<POST_COND_SPLIT>/usr/appmaoftrn/bin/change_out11i.sh:appmaoftrn</POST_COND_SPLIT>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_vol_maof_appl_trn</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_MAOF_PROD_FRZ">
+	<TARGET_HOST>appmaoffrz</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_maof_appl_frz</TARGET_FILESYSTEM>
+	<SERVERS_LIST>appmaoffrz:maofdbfrz:pet1</SERVERS_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<POST_COND_SPLIT>/usr/appmaoffrz/bin/change_out11i.sh:appmaoffrz</POST_COND_SPLIT>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_vol_maof_appl_frz</CLUSTER_POLICY>
+</GROUP_NAME>
+###############################################################################
+# Shavit
+###############################################################################
+<GROUP_NAME value="VOL_SHAVITST_UNASSIGN_DRPBILL">
+	<TARGET_HOST>drpbill</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_shavit_st_</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpbill</SERVERS_LIST>
+	<OS_VERSION>HP-UX</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_shavit_st_drpbill</CLUSTER_POLICY>
+	<S_VAULT_DEST>yes</S_VAULT_DEST>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_LSHAVITST_UNASSIGN_LDRPBILL">
+	<TARGET_HOST>ldrpbill</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_lshavit_st_</TARGET_FILESYSTEM>
+	<SERVERS_LIST>ldrpbill</SERVERS_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_lshavit_st_ldrpbill</CLUSTER_POLICY>
+	<S_VAULT_DEST>yes</S_VAULT_DEST>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_BILL_PROD_ATRAIN">
+	<TARGET_HOST>atrain</TARGET_HOST>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>pn_vol_shavit_bill_trn</CLUSTER_POLICY>
+	<TARGET_FILESYSTEM>/vol_shavit_bill_trn</TARGET_FILESYSTEM>
+	<SERVERS_LIST>atrain</SERVERS_LIST>
+	<OS_VERSION>HP-UX</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_BILLOLD_PROD_ATRAIN">
+	<TARGET_HOST>atrain</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_shavit_billold_trn</TARGET_FILESYSTEM>
+	<SERVERS_LIST>atrain</SERVERS_LIST>
+	<OS_VERSION>HP-UX</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>atrain_policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPETDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpetdb1|vol_prdol1_dg_rl_drpetdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb1/bin/ABORT_PRDOL1:drpetdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb1/bin/UP_PRDOL1:drpetdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPETDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpetdb1|vol_prdics1_dg_rl_drpetdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb1/bin/ABORT_PRDICS1:drpetdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb1/bin/UP_PRDICS1:drpetdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPETDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpetdb1|vol_prdmaf_dg_rl_drpetdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb1/bin/ABORT_PRDMAF:drpetdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb1/bin/UP_PRDMAF:drpetdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPETDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpetdb1|vol_prdusg1_dg_rl_drpetdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb1/bin/ABORT_PRDUSG1:drpetdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb1/bin/UP_PRDUSG1:drpetdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPETDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpetdb1|vol_prdusg2_dg_rl_drpetdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb1/bin/ABORT_PRDUSG2:drpetdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb1/bin/UP_PRDUSG2:drpetdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPETDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpetdb1|vol_prdusg3_dg_rl_drpetdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb1/bin/ABORT_PRDUSG3:drpetdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb1/bin/UP_PRDUSG3:drpetdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPETDB2">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb2</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpetdb2|vol_prdol1_dg_rl_drpetdb2</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb2</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb2/bin/ABORT_PRDOL1:drpetdb2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb2/bin/UP_PRDOL1:drpetdb2</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb2_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPETDB2">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb2</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpetdb2|vol_prdics1_dg_rl_drpetdb2</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb2</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb2/bin/ABORT_PRDICS1:drpetdb2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb2/bin/UP_PRDICS1:drpetdb2</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb2_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPETDB2">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb2</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpetdb2|vol_prdmaf_dg_rl_drpetdb2</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb2</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb2/bin/ABORT_PRDMAF:drpetdb2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb2/bin/UP_PRDMAF:drpetdb2</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb2_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPETDB2">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb2</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpetdb2|vol_prdusg1_dg_rl_drpetdb2</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb2</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb2/bin/ABORT_PRDUSG1:drpetdb2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb2/bin/UP_PRDUSG1:drpetdb2</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb2_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPETDB2">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb2</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpetdb2|vol_prdusg2_dg_rl_drpetdb2</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb2</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb2/bin/ABORT_PRDUSG2:drpetdb2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb2/bin/UP_PRDUSG2:drpetdb2</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb2_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPETDB2">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb2</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpetdb2|vol_prdusg3_dg_rl_drpetdb2</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb2</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb2/bin/ABORT_PRDUSG3:drpetdb2</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb2/bin/UP_PRDUSG3:drpetdb2</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb2_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPETDB3">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb3</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpetdb3|vol_prdol1_dg_rl_drpetdb3</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb3</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb3/bin/ABORT_PRDOL1:drpetdb3</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb3/bin/UP_PRDOL1:drpetdb3</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb3_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPETDB3">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb3</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpetdb3|vol_prdics1_dg_rl_drpetdb3</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb3</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb3/bin/ABORT_PRDICS1:drpetdb3</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb3/bin/UP_PRDICS1:drpetdb3</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb3_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPETDB3">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb3</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpetdb3|vol_prdmaf_dg_rl_drpetdb3</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb3</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb3/bin/ABORT_PRDMAF:drpetdb3</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb3/bin/UP_PRDMAF:drpetdb3</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb3_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPETDB3">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb3</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpetdb3|vol_prdusg1_dg_rl_drpetdb3</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb3</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb3/bin/ABORT_PRDUSG1:drpetdb3</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb3/bin/UP_PRDUSG1:drpetdb3</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb3_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPETDB3">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb3</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpetdb3|vol_prdusg2_dg_rl_drpetdb3</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb3</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb3/bin/ABORT_PRDUSG2:drpetdb3</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb3/bin/UP_PRDUSG2:drpetdb3</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb3_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPETDB3">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb3</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpetdb3|vol_prdusg3_dg_rl_drpetdb3</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb3</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb3/bin/ABORT_PRDUSG3:drpetdb3</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb3/bin/UP_PRDUSG3:drpetdb3</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb3_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPETDB5">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb5</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpetdb5|vol_prdol1_dg_rl_drpetdb5</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb5</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb5/bin/ABORT_PRDOL1:drpetdb5</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb5/bin/UP_PRDOL1:drpetdb5</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb5_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPETDB5">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb5</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpetdb5|vol_prdics1_dg_rl_drpetdb5</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb5</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb5/bin/ABORT_PRDICS1:drpetdb5</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb5/bin/UP_PRDICS1:drpetdb5</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb5_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPETDB5">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb5</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpetdb5|vol_prdmaf_dg_rl_drpetdb5</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb5</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb5/bin/ABORT_PRDMAF:drpetdb5</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb5/bin/UP_PRDMAF:drpetdb5</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb5_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPETDB5">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb5</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpetdb5|vol_prdusg1_dg_rl_drpetdb5</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb5</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb5/bin/ABORT_PRDUSG1:drpetdb5</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb5/bin/UP_PRDUSG1:drpetdb5</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb5_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPETDB5">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb5</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpetdb5|vol_prdusg2_dg_rl_drpetdb5</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb5</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb5/bin/ABORT_PRDUSG2:drpetdb5</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb5/bin/UP_PRDUSG2:drpetdb5</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb5_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPETDB5">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb5</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpetdb5|vol_prdusg3_dg_rl_drpetdb5</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb5</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb5/bin/ABORT_PRDUSG3:drpetdb5</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb5/bin/UP_PRDUSG3:drpetdb5</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb5_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPETDB8">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb8</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpetdb8|vol_prdol1_dg_rl_drpetdb8</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb8</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb8/bin/ABORT_PRDOL1:drpetdb8</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb8/bin/UP_PRDOL1:drpetdb8</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb8_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPETDB8">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb8</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpetdb8|vol_prdics1_dg_rl_drpetdb8</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb8</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb8/bin/ABORT_PRDICS1:drpetdb8</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb8/bin/UP_PRDICS1:drpetdb8</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb8_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPETDB8">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb8</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpetdb8|vol_prdmaf_dg_rl_drpetdb8</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb8</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb8/bin/ABORT_PRDMAF:drpetdb8</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb8/bin/UP_PRDMAF:drpetdb8</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb8_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPETDB8">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb8</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpetdb8|vol_prdusg1_dg_rl_drpetdb8</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb8</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb8/bin/ABORT_PRDUSG1:drpetdb8</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb8/bin/UP_PRDUSG1:drpetdb8</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb8_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPETDB8">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb8</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpetdb8|vol_prdusg2_dg_rl_drpetdb8</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb8</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb8/bin/ABORT_PRDUSG2:drpetdb8</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb8/bin/UP_PRDUSG2:drpetdb8</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb8_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPETDB8">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb8</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpetdb8|vol_prdusg3_dg_rl_drpetdb8</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb8</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb8/bin/ABORT_PRDUSG3:drpetdb8</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb8/bin/UP_PRDUSG3:drpetdb8</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb8_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPETDB9">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb9</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpetdb9|vol_prdol1_dg_rl_drpetdb9</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb9</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb9/bin/ABORT_PRDOL1:drpetdb9</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb9/bin/UP_PRDOL1:drpetdb9</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb9_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPETDB9">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb9</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpetdb9|vol_prdics1_dg_rl_drpetdb9</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb9</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb9/bin/ABORT_PRDICS1:drpetdb9</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb9/bin/UP_PRDICS1:drpetdb9</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb9_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPETDB9">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb9</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpetdb9|vol_prdmaf_dg_rl_drpetdb9</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb9</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb9/bin/ABORT_PRDMAF:drpetdb9</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb9/bin/UP_PRDMAF:drpetdb9</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb9_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPETDB9">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb9</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpetdb9|vol_prdusg1_dg_rl_drpetdb9</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb9</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb9/bin/ABORT_PRDUSG1:drpetdb9</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb9/bin/UP_PRDUSG1:drpetdb9</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb9_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPETDB9">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb9</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpetdb9|vol_prdusg2_dg_rl_drpetdb9</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb9</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb9/bin/ABORT_PRDUSG2:drpetdb9</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb9/bin/UP_PRDUSG2:drpetdb9</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb9_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPETDB9">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb9</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpetdb9|vol_prdusg3_dg_rl_drpetdb9</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb9</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb9/bin/ABORT_PRDUSG3:drpetdb9</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb9/bin/UP_PRDUSG3:drpetdb9</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb9_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPETDB10">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb10</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpetdb10|vol_prdol1_dg_rl_drpetdb10</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb10</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb10/bin/ABORT_PRDOL1:drpetdb10</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpetdb10/bin/UP_PRDOL1:drpetdb10</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb10_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPETDB10">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb10</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpetdb10|vol_prdics1_dg_rl_drpetdb10</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb10</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb10/bin/ABORT_PRDICS1:drpetdb10</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpetdb10/bin/UP_PRDICS1:drpetdb10</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb10_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPETDB10">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb10</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpetdb10|vol_prdmaf_dg_rl_drpetdb10</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb10</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb10/bin/ABORT_PRDMAF:drpetdb10</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpetdb10/bin/UP_PRDMAF:drpetdb10</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb10_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPETDB10">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb10</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpetdb10|vol_prdusg1_dg_rl_drpetdb10</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb10</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb10/bin/ABORT_PRDUSG1:drpetdb10</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpetdb10/bin/UP_PRDUSG1:drpetdb10</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb10_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPETDB10">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb10</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpetdb10|vol_prdusg2_dg_rl_drpetdb10</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb10</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb10/bin/ABORT_PRDUSG2:drpetdb10</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drpetdb10/bin/UP_PRDUSG2:drpetdb10</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb10_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPETDB10">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpetdb10</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpetdb10|vol_prdusg3_dg_rl_drpetdb10</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpetdb10</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb10/bin/ABORT_PRDUSG3:drpetdb10</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drpetdb10/bin/UP_PRDUSG3:drpetdb10</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpetdb10_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPREPDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drprepdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drprepdb1|vol_prdol1_dg_rl_drprepdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drprepdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drprepdb1/bin/ABORT_PRDOL1:drprepdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drprepdb1/bin/UP_PRDOL1:drprepdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drprepdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPREPDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drprepdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drprepdb1|vol_prdmaf_dg_rl_drprepdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drprepdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drprepdb1/bin/ABORT_PRDMAF:drprepdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drprepdb1/bin/UP_PRDMAF:drprepdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drprepdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPREPDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drprepdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drprepdb1|vol_prdusg1_dg_rl_drprepdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drprepdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drprepdb1/bin/ABORT_PRDUSG1:drprepdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drprepdb1/bin/UP_PRDUSG1:drprepdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drprepdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPREPDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drprepdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drprepdb1|vol_prdusg2_dg_rl_drprepdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drprepdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG2:drpshavdg1&/usr/drprepdb1/bin/ABORT_PRDUSG2:drprepdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG2:drpshavdg1&/usr/drprepdb1/bin/UP_PRDUSG2:drprepdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drprepdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPREPDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drprepdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drprepdb1|vol_prdusg3_dg_rl_drprepdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drprepdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG3:drpshavdg1&/usr/drprepdb1/bin/ABORT_PRDUSG3:drprepdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG3:drpshavdg1&/usr/drprepdb1/bin/UP_PRDUSG3:drprepdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drprepdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDOL1_DRPSHAVDG1_DRPAUXDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpauxdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdol1_drpauxdb1|vol_prdol1_dg_rl_drpauxdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpauxdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDOL1:drpshavdg1&/usr/drpauxdb1/bin/ABORT_PRDOL1:drpauxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDOL1:drpshavdg1&/usr/drpauxdb1/bin/UP_PRDOL1:drpauxdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpauxdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDMAF_DRPSHAVDG1_DRPAUXDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpauxdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdmaf_drpauxdb1|vol_prdmaf_dg_rl_drpauxdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpauxdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDMAF:drpshavdg1&/usr/drpauxdb1/bin/ABORT_PRDMAF:drpauxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDMAF:drpshavdg1&/usr/drpauxdb1/bin/UP_PRDMAF:drpauxdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpauxdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG1_DRPSHAVDG1_DRPAUXDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpauxdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg1_drpauxdb1|vol_prdusg1_dg_rl_drpauxdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpauxdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpauxdb1/bin/ABORT_PRDUSG1:drpauxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpauxdb1/bin/UP_PRDUSG1:drpauxdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpauxdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG2_DRPSHAVDG1_DRPAUXDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpauxdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg2_drpauxdb1|vol_prdusg2_dg_rl_drpauxdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpauxdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpauxdb1/bin/ABORT_PRDUSG2:drpauxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpauxdb1/bin/UP_PRDUSG2:drpauxdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpauxdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDUSG3_DRPSHAVDG1_DRPAUXDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpauxdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdusg3_drpauxdb1|vol_prdusg3_dg_rl_drpauxdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpauxdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDUSG1:drpshavdg1&/usr/drpauxdb1/bin/ABORT_PRDUSG3:drpauxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDUSG1:drpshavdg1&/usr/drpauxdb1/bin/UP_PRDUSG3:drpauxdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpauxdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+<GROUP_NAME value="VOL_PRDICS1_DRPSHAVDG1_DRPAUXDB1">
+	<MASTER_HOST>drpshavdg1</MASTER_HOST>
+	<TARGET_HOST>drpauxdb1</TARGET_HOST>
+	<TARGET_FILESYSTEM>vol_dg_prdics1_drpauxdb1|vol_prdics1_dg_rl_drpauxdb1</TARGET_FILESYSTEM>
+	<SERVERS_LIST>drpauxdb1</SERVERS_LIST>
+	<PRE_COND_EST>/usr/drpshavdg1/bin/STOP_RECOVER_PRDICS1:drpshavdg1&/usr/drpauxdb1/bin/ABORT_PRDICS1:drpauxdb1</PRE_COND_EST>
+	<POST_COND_SPLIT>/usr/drpshavdg1/bin/START_RECOVER_PRDICS1:drpshavdg1&/usr/drpauxdb1/bin/UP_PRDICS1:drpauxdb1</POST_COND_SPLIT>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>drpauxdb1_Policy</CLUSTER_POLICY>
+</GROUP_NAME>
+##########
+# IXOS   #
+##########
+<GROUP_NAME value="IXOS_IXOSAS1-PVW_MEDIA8">
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<MSGRP>XIV</MSGRP>
+	<XIV_CG>yes</XIV_CG>
+</GROUP_NAME>
+# GENERAL
+<GROUP_NAME value="VOL_EAIARC_PROD_QA">
+	<TARGET_HOST>eaiqa1</TARGET_HOST>
+	<TARGET_FILESYSTEM>/vol_eai_archion_qa</TARGET_FILESYSTEM>
+	<SERVERS_LIST>eaiqa1:eaiqa2:emsqa1:emsqa2:ftparch1:ftparch2</SERVERS_LIST>
+	<OS_VERSION>Linux</OS_VERSION>
+	<MSGRP>Netapp</MSGRP>
+	<CLUSTER_DOT>yes</CLUSTER_DOT>
+	<CLUSTER_POLICY>vs-ver-arc1_vol_eai_archion_qa</CLUSTER_POLICY>
+</GROUP_NAME>
