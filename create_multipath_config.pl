@@ -416,7 +416,7 @@ while ($continue) {
 	foreach $vg (keys %{$vol{'vgs'}}) {
 		if (exists $lv{$vg}) {
 			foreach $lvol (keys %{$lv{$vg}}) {
-				if (not $lv{$vg}{$lvol}{'attr'} =~ /m/ and not exists $lv{$vg}{$lvol.$oldlvolsuffix} and not $lvol =~ /$oldlvolsuffix$/ ) {
+				if (not $lv{$vg}{$lvol}{'attr'} =~ /m/ and not exists $lv{$vg}{$lvol.$oldlvolsuffix} and not $lvol =~ /$oldlvolsuffix$/ and not $lvol =~/\[/) {
 					$mirrortopvs = '';
 					foreach $pv (keys %{$lv{$vg}{$lvol}{'pe-used'}}) {
 						if ($vol{'vgs'}{$vg}{'old-dev-list'} =~ /\s*$deviceprefix$pv\s+/) {
