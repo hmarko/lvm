@@ -46,12 +46,15 @@ sub dumpjson {
 
 	open (P,">/tmp/pvjson");
 	print P $pvjson;
+	close (P);
 
 	open (P,">/tmp/lvjson");
 	print P $lvjson;
+	close (P);
 
 	open (P,">/tmp/voljson");
 	print P $voljson;
+	close (P);
 }
 
 sub createlvmapping {
@@ -110,7 +113,7 @@ sub createlvmapping {
 
 sub createpvmapping {
 
-	@diskscan = `lvmdiskscan`;
+	@diskscan = `$sshcmdserver lvmdiskscan`;
 	foreach my $line (@diskscan) {
 		chomp $line;
 		if ($line=~/$deviceprefix(\S+).+\[\s+([0-9]*\.[0-9]+|[0-9]+)\s+(\S+)\]\s+(LVM physical volume)/) {
@@ -125,7 +128,7 @@ sub createpvmapping {
 		}
 	}
 
-	@diskscan = `pvs --units m`;
+	@diskscan = `$sshcmdserver pvs --units m`;
 	foreach my $line (@diskscan) {
 		chomp $line;
 		if ($line=~/$deviceprefix(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)/) {
