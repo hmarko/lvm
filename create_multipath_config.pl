@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use POSIX;
-use JSON;
+#use JSON;
 use Data::Dumper;
 
 $server = $ARGV[0];
@@ -466,15 +466,15 @@ while ($continue) {
 	print "all done\n" if not $continue;
 }
 
-my $pvjson = encode_json \%pv;
-my $lvjson = encode_json \%lv;
-my $voljson = encode_json \%vol;
+#my $pvjson = encode_json \%pv;
+#my $lvjson = encode_json \%lv;
+#my $voljson = encode_json \%vol;
 
-open (P,">/tmp/pvjson");
-print P $pvjson;
+#open (P,">/tmp/pvjson");
+#print P $pvjson;
 
-open (P,">/tmp/lvjson");
-print P $lvjson;
+#open (P,">/tmp/lvjson");
+#print P $lvjson;
 
-open (P,">/tmp/voljson");
-print P $voljson;
+#open (P,">/tmp/voljson");
+#print P $voljson;
