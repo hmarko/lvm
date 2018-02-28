@@ -39,6 +39,21 @@ $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
 $sshcmddrsvm = $sshcmd.' vsadmin@'.$drsvm.' ';
 $sshcmdserver = $sshcmd.' '.$server.' ';
 
+sub dumpjson {
+	my $pvjson = encode_json \%pv;
+	my $lvjson = encode_json \%lv;
+	my $voljson = encode_json \%vol;
+
+	open (P,">/tmp/pvjson");
+	print P $pvjson;
+
+	open (P,">/tmp/lvjson");
+	print P $lvjson;
+
+	open (P,">/tmp/voljson");
+	print P $voljson;
+}
+
 sub createlvmapping {
 	%lv = ();
 	@lvs = `$sshcmdserver lvs --all -o +devices --units g --separator ^`;
@@ -121,6 +136,7 @@ sub createpvmapping {
 			$pv{$1}{vgfreequatifier} = $8;
 		}
 	}
+	dumpjson();
 }
 
 $version = `$sshcmdserver uname -a`;
