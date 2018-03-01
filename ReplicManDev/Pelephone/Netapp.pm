@@ -33,18 +33,22 @@ sub getVolCommentCOT($$) {
 	RunProgramQuiet($main::RunnigHost, "$cmd"); 
 	my @Text = GetCommandResult();
 	
-	my $comment = pop @Text; chomp $comment ;
-	$comment =~ /\s*(\S+)\s+($volume)\s+(.+)/;
-	$commnet = $3;
+	my $comment = pop @Text; 
+	chomp $comment;
+	$comment =~ /\s*(\S+)\s+($volume)\s+(.+)/m;
+	$comment = $3;
 	
-	return $commnet ;
+	return $comment ;
 }
 
-sub mapLunsCOT($$) {
+sub mapLunsCOT($$$$) {
 	my $netapp = shift ;		chomp $netapp ;
-	my $path = '/vol/'.shift ;		chomp $path ;
-	my $cmd = "ssh vsadmin\@$netapp lun show -fields path | grep \"$path\"" ;
-	#print "$cmd\n";
+	my $volume = shift ;		chomp $volume ;
+	my $qtree = shift ;		chomp $qtree ;
+	my $pathsearch = shift ; chomp $pathsearch ;
+	
+	my $cmd = "ssh vsadmin\@$netapp lun show -volume $volume -qtree \"$qtree\" -path \"$pathsearch\" -fields path | grep \"$netapp\"| grep \"$volume\"" ;
+	print "$cmd\n";
 	RunProgramQuiet($main::RunnigHost, "$cmd"); 
 	my @Text = GetCommandResult();	
 	return @Text;

@@ -891,13 +891,38 @@ sub CheckGroupStatus() {
 	}
 	# NetappSAN
 	if ($GroupParams{"MSGRP"} eq "NetappSAN" ) {
-		Info ("Netapp Configuration");
-		Info ("Going to FlexClone the following Volumes:");
-		# Print the volumes
+		Info ("NetappSAN Configuration");
 		for (my $index = 0; $index <= $#netapps; $index++) {
-			Info ("$netapps[$index]:$src_vols[$index] -> $tgt_vols[$index]");
-			if (isVolExistsCOT($netapps[$index],$src_vols[$index])) {
-				Exit ("Error: The volume does NOT exists on the CDOT - i have to exit",1);		
+			#check with method been used for cloning, file-clone is being used only when src and dst are equal (SVM and Vol)
+			$use_clone_type = 'flex-clone';
+			if ($netapps[$index] eq $netappd[$index] and $src_vols[$index] eq $tgt_vols[$index]) {
+				$use_clone_type = 'file-clone';
+			}		
+			
+			if ($use_clone_type eq 'file-clone') {
+				if ( $src_path[$index] eq $tgt_path[$index]) {
+					Exit ("ERROR: when file-clone is used diffrent path should be provided for the destination",1);
+				}
+				
+				$sourcepath =''; $sourcepath = $src_path[$index] if $src_path[$index];
+				@LUNs = mapLunsCOT($netapps[$index],$src_vols[$index],$sourcepath,'*');
+				if ($#LUNs lt 0) {
+					Exit ("ERROR: could not find LUNs on source path: $netapps[$index]:/vol/$src_vols[$index]/$src_path[$index]",1);
+				} else {
+					Info("List of LUNs on source path $netapps[$index]:/vol/$src_vols[$index]/$src_path[$index]");
+					foreach $lun (@LUNs) {
+						Info($lun);
+					}
+				}
+			}
+			if ($use_clone_type eq 'flex-clone') {
+				Info ("Going to FlexClone the following Volumes:");
+				# Print the volumes
+				
+					Info ("$netapps[$index]:$src_vols[$index] -> $netappd[$index]:$tgt_vols[$index]");
+					if (isVolExistsCOT($netapps[$index],$src_vols[$index])) {
+						Exit ("Error: The volume does NOT exists on the CDOT - i have to exit",1);		
+					}
 			}
 		}
 	}	
@@ -1130,7 +1155,7 @@ sub DoTheEstablish() {
 			
 			#file clone been used to create the clone 
 			if ($use_clone_type eq 'file-clone') {
-				@LUNs = mapLunsCOT($netappd[$index],$tgt_vols[$index].'/'.$tgt_path[$index].'/ReplicManClone_');
+				@LUNs = mapLunsCOT($netappd[$index],$tgt_vols[$index],$tgt_path[$index],'*/ReplicManClone_*');
 
 				if ($#LUNs lt 0) {
 					Info ("There are no LUN clones starting with ".$netappd[$index].":/vol/".$tgt_vols[$index]."/".$tgt_path[$index].'/ReplicManClone_');
@@ -1153,10 +1178,12 @@ sub DoTheEstablish() {
 				Info ("Checking if Target Volume \"$tgt_vols[$index]\" exists on \"$netappd[$index]\"");
 				if (isVolExistsCOT($netappd[$index], $tgt_vols[$index]) eq 0 ) {
 					#only destroy volumes with comment "Created by ReplicMan and can be destroyed by it"
-					Info ("Checking if Target Volume \"$tgt_vols[$index]\" contains commnet:\"Created by ReplicMan and can be destroyed by it\"");
-					if (getVolCommentCOT($netappd[$index], $tgt_vols[$index] ne "Created by ReplicMan and can be destroyed by it") {
-						Exit ("ERROR: cannot destroy flex-clone that was not created by ReplicMan (commnet was not found or diffrent)",1);
+					Info ("Checking if Target Volume \"$tgt_vols[$index]\" contains comment:\"Created by ReplicMan and can be destroyed by it\"");
+					$comment = getVolCommentCOT($netappd[$index], $tgt_vols[$index]);
+					if (not $comment =~/Created by ReplicMan and can be destroyed by it/) {
+						Exit ("ERROR: cannot destroy flex-clone that was not created by ReplicMan (comment was not found or diffrent)",1);
 					}
+					Info ("Volume comment validated");
 					# Take volume offline
 					Info ("Going to take offline previous FlexClone \"$netappd[$index]:$tgt_vols[$index]\"");
 					if ( offlineVolCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
