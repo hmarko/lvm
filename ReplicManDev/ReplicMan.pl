@@ -4,6 +4,7 @@ use English '-no_match_vars';
 use Getopt::Std ;
 use Sys::Hostname;
 use File::Basename;
+use Data::Dumper;
 
 use Pelephone::User ;
 use Pelephone::Logger ;
@@ -318,7 +319,7 @@ sub CreateGlobalParameterse() {
 #-----------------------------------------------------------------------------#
 sub CreateNetappMap () {
 	# Netapp - build 3 arrays of the netapp, source vol and target vol
-	if ( $GroupParams{"MSGRP"} =~ /Netapp/ ) {
+	if ( $GroupParams{"MSGRP"} eq "Netapp" ) {
 		my $line;
 		my $index=0;
 		
@@ -339,6 +340,32 @@ sub CreateNetappMap () {
 		
 		close GrpFile;
 	}
+	
+	# Netapp - build 3 arrays of the netapp, source vol and target vol
+	if ( $GroupParams{"MSGRP"} eq "NetappSAN" ) {
+		my $line;
+		my $index=0;
+		
+		# Open group file for netapp:volume list
+		open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
+		
+		# Fill the 4 arrays with the netapp, vfiler, source vol, and dest vol
+		foreach $line (<GrpFile>) {
+			chomp $line;
+			if ( $line !~ /^#/ ) {
+				$netapps[$index] = (split (':', $line))[0];
+				$netappd[$index] = (split (':', $line))[1];
+				$src_vols[$index] = (split('/',(split (':', $line))[2]))[0];
+				$src_path[$index] = (split('/',(split (':', $line))[2]))[1];
+				$tgt_vols[$index] = (split('/',(split (':', $line))[3]))[0];
+				$tgt_path[$index] = (split('/',(split (':', $line))[3]))[1];
+				
+				$index += 1;
+			}
+		}
+		
+		close GrpFile;
+	}	
 }
 
 #-----------------------------------------------------------------------------#
@@ -441,7 +468,7 @@ sub GettingMP_List($$) {
 	my $FS = shift ;		chomp $FS ; 
 	Info ("Getting list of FileSystem...") ;
 	my $Func = BuildFunc("GetMPList") ;
-	my %MP = &$Func ($Host, $FS); # $FS is acctually the VG name
+	my %MP = &$Func ($Host, $FS); # $FS is actually the VG name
 	Info ("Getting list of FileSystem -  $OK") ;
 	return %MP ;
 }
@@ -1085,12 +1112,25 @@ sub DoTheEstablish() {
 	}
 
 	# NetApp SAN - Step 30
+	
 	if ( $GroupParams{"MSGRP"} eq "NetappSAN" ) {
 		# Run for every volume
-		print $GroupParams{"LUN_CLONE"};
-		#haim marko
-		exit;
 		for (my $index = 0; $index <= $#netapps; $index++) {
+		
+			Debug("NetApp SAN data parsed: S:$netapps[$index] D:$netappd[$index] S:$src_vols[$index] P:$src_path[$index] T:$tgt_vols[$index] P:$tgt_path[$index]");
+			#check with method been used for cloning, file-clone is being used only when src and dst are equal (SVM and Vol)
+			$use_clone_type = 'flex-clone';
+			if ($netapps[$index] eq $netappd[$index] and $src_vols[$index] eq $tgt_vols[$index]) {
+				$use_clone_type = 'file-clone';
+				if ( $src_path[$index] eq $tgt_path[$index]) {
+					Exit ("ERROR: when file-clone is used diffrent path should be provided for the destination",1);
+				}
+			}
+			
+			if ($use_clone_type) {
+			}
+			
+			exit;
 			# Check if FlexVol (dest volume) exists - if so, delete it
 			Info ("Checking if Target Volume \"$tgt_vols[$index]\" exists on \"$netapps[$index]\"");
 			if (isVolExistsCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
@@ -2421,17 +2461,19 @@ sub VGChangeAfterUmount() {
 	}
 	Debug ("VGChangeAfterUmount", "The target vg's are : @TargetVGs") ;
 	Info ("Getting Target VG List - Done.") ;
-
-	# Disable cluster attribute on Linux
-	if ($GroupParams{"OS_VERSION"} eq "Linux") {
-		Info ("Running : vgchange -c n $vg --config 'global {locking_type = 0}'") ;
-		my $mcmd = "/usr/sbin/vgchange -c n $vg --config 'global {locking_type = 0}'" ;
-		my $ExitCode = ReTry ($GroupParams{"TARGET_HOST"}, $mcmd) ;
-		if ($ExitCode ne 0 && $ExitCode ne 5) {
-			Debug("VGChangeAfterUmount","Error: Cannot vgchange $vg on $GroupParams{\"TARGET_HOST\"}. Command: $mcmd");
-			Exit ("Error: Cannot vgchange $vg on $GroupParams{\"TARGET_HOST\"}. Command: $mcmd", 1) ;
+	
+	foreach my $vg (@TargetVGs) {
+		# Disable cluster attribute on Linux
+		if ($GroupParams{"OS_VERSION"} eq "Linux") {
+			Info ("Running : vgchange -c n $vg --config 'global {locking_type = 0}'") ;
+			my $mcmd = "/usr/sbin/vgchange -c n $vg --config 'global {locking_type = 0}'" ;
+			my $ExitCode = ReTry ($GroupParams{"TARGET_HOST"}, $mcmd) ;
+			if ($ExitCode ne 0 && $ExitCode ne 5) {
+				Debug("VGChangeAfterUmount","Error: Cannot vgchange $vg on $GroupParams{\"TARGET_HOST\"}. Command: $mcmd");
+				Exit ("Error: Cannot vgchange $vg on $GroupParams{\"TARGET_HOST\"}. Command: $mcmd", 1) ;
+			}
+			Info ("Disable Cluster Attribute - $OK") ;
 		}
-		Info ("Disable Cluster Attribute - $OK") ;
 	}
 
 	foreach my $vg (@TargetVGs) {
@@ -3246,13 +3288,7 @@ elsif ($GroupParams{"MSGRP"} eq "NetappSAN" ) {
 	AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
 	AddStep("06", "CheckRunningSyncs", "Check for running syncs from the same source") ; 
 	AddStep("10", "EstPreCommand", "Pre Establish Command") ;
-	
-	
-	# If this is a Remote volume - Snapmirror Volume involved
-	if (lc $GroupParams{"NETAPP_CLONE_FROM_MIRROR"} eq "yes") {
-		AddStep("30", "DoTheEstablish", "Delete Target Volume") ;
-	}
-	
+	AddStep("30", "DoTheEstablish", "Delete Target LUNs") ;
 	AddStep("40", "EstPostCommand", "Post Establish Command") ;	
 	# Split Process
 	AddStep("50", "SplitPreCommand", "Pre Split Command") ;

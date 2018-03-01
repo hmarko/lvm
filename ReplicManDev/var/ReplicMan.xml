@@ -49,8 +49,6 @@
 	<CLUSTER_POLICY>none</CLUSTER_POLICY>
 	<S_VAULT_DEST>no</S_VAULT_DEST>
 	### NETAPP-SAN ###
-	<LUN_CLONE>yes</LUN_CLONE>
-	<NETAPP_CLONE_FROM_MIRROR>no</NETAPP_CLONE_FROM_MIRROR>
 </GROUP_NAME>
 ###############################################################################
 # All Shavit Copys Group's
@@ -59,11 +57,10 @@
 	<MASTER_HOST>RHEL1</MASTER_HOST>
 	<TARGET_HOST>localhost</TARGET_HOST>
 	<OS_VERSION>Linux</OS_VERSION>
-	<MASTER_FILESYSTEM>/mnt/lv1/|/mnt/lv2/|/mnt/lv3/|/mnt/lv4/|/mnt/lv5/</MASTER_FILESYSTEM>
-	<TARGET_FILESYSTEM>/mnt/lv1/|/mnt/lv2/|/mnt/lv3/|/mnt/lv4/|/mnt/lv5/</TARGET_FILESYSTEM>
-	<VG_LIST>vg1;vg2;</VG_LIST>
+	<MASTER_FILESYSTEM>/vg1/|/vg2/</MASTER_FILESYSTEM>
+	<TARGET_FILESYSTEM>/vg1/|/vg2/</TARGET_FILESYSTEM>
+	<VG_LIST>vg1:vg1;vg2:vg2</VG_LIST>
 	<MSGRP>NetappSAN</MSGRP>
-	<NETAPP_CLONE_FROM_MIRROR>yes</NETAPP_CLONE_FROM_MIRROR>
 #	<PRE_COND_SPLIT>/usr/drpauxdb1/bin/ABORT_DB -g PRDOL1_DRPSHAVDB1_DRPAUXDB1 -d PRDOL1:drpauxdb1</PRE_COND_SPLIT>
 #	<PRE_COND_EST>/rhcluster/lib//STOP_RECOVER_PRDOL1:drpprdol1db</PRE_COND_EST>
 #	<POST_COND_SPLIT>/rhcluster/lib/START_RECOVER_PRDOL1:drpprdol1db&/usr/drpauxdb1/bin/UP_PRDOL1:drpauxdb1&/usr/drpauxdb1/bin/send_infor4ncr PRDOL1:drpauxdb1</POST_COND_SPLIT>

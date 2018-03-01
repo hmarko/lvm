@@ -385,7 +385,7 @@ sub GetOSVer() {
 sub UMount($$) {
 	my $host = shift ;		chomp $host ;
 	my $mp = shift ;		chomp $mp ;
-
+		
 	my $mcmd = "/usr/sbin/umount $mp" ;
 	my $ExitCode = ReTry ($host, $mcmd) ;
 	return $ExitCode ;
@@ -431,7 +431,6 @@ sub ForceUMount($$) {
 	my $host = shift ;		chomp $host ;
 	my $mp = shift ;		chomp $mp ;
 	my $mcmd ="";
-
 	my $ExitCode = UMount ("$host", "$mp") ;
 	if ($ExitCode) {
 		my $retry = $RunRetry ;
