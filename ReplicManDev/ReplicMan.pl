@@ -904,8 +904,9 @@ sub CheckGroupStatus() {
 					Exit ("ERROR: when file-clone is used diffrent path should be provided for the destination",1);
 				}
 				
-				$sourcepath =''; $sourcepath = $src_path[$index] if $src_path[$index];
-				@LUNs = mapLunsCOT($netapps[$index],$src_vols[$index],$sourcepath,'*');
+				$qtree = ''; $qtree = $src_path[$index] if $src_path[$index];
+				
+				@LUNs = getLunsCOT($netapps[$index],$src_vols[$index],$qtree,'');
 				if ($#LUNs lt 0) {
 					Exit ("ERROR: could not find LUNs on source path: $netapps[$index]:/vol/$src_vols[$index]/$src_path[$index]",1);
 				} else {
@@ -1155,18 +1156,17 @@ sub DoTheEstablish() {
 			
 			#file clone been used to create the clone 
 			if ($use_clone_type eq 'file-clone') {
-				@LUNs = mapLunsCOT($netappd[$index],$tgt_vols[$index],$tgt_path[$index],'*/ReplicManClone_*');
+				@LUNs = getLunsCOT($netappd[$index],$tgt_vols[$index],$tgt_path[$index],'ReplicManClone_');
 
 				if ($#LUNs lt 0) {
 					Info ("There are no LUN clones starting with ".$netappd[$index].":/vol/".$tgt_vols[$index]."/".$tgt_path[$index].'/ReplicManClone_');
 				} else {
 					foreach $lun (@LUNs) {
-						($svm,$path) = split(/\s+/,$lun);
-						Info ("Going to destroy LUN \"$netappd[$index]:$path\"");
-						if ( deleteLunCOT($netappd[$index], $path) eq 0 ) {
+						Info ("Going to destroy LUN \"$netappd[$index]:$lun\"");
+						if ( deleteLunCOT($netappd[$index], $lun) eq 0 ) {
 							Info ("LUN destroyed successfully");
 						} else {
-							Exit ("ERROR: cannot destroy LUN:\"$netappd[$index]:$path\"",1);
+							Exit ("ERROR: cannot destroy LUN:\"$netappd[$index]:$lun\"",1);
 						}
 					}
 				}
@@ -1596,8 +1596,143 @@ sub DoTheSplit() {
 		}
 	}
 	
+
+	# NetappSAN
+	if ( $GroupParams{"MSGRP"} eq "NetappSAN" ) {
+		# Run for every volume
+		for (my $index = 0; $index <= $#netapps; $index++) {
+			# Define a snapshot for the netapp group
+			my $Uniq_Snapshot="ReplicMan_" . $GroupParams{"TARGET_HOST"};  chomp $Uniq_Snapshot;
+			
+			# Confirm that the snapshot doesnt exists
+			if (isSnapExistsCOT($netapps[$index], $src_vols[$index],$Uniq_Snapshot) eq 0 ) {
+				Exit ("ERROR: The Snapshot $Uniq_Snapshot still exists in $netapps[$index]:$src_vols[$index] ! Please go back to Step 30 !",1);
+			} else {
+				Info ("Going to create a snapshot named \"$Uniq_Snapshot\" on \"$src_vols[$index]\" - Netapp \"$netapps[$index]\"");
+				if ( createNetappSnapCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
+					Info ("Snapshot Creation $OK");
+				}
+				else {
+					Exit ("ERROR: Could NOT create the Snapshot \"$Uniq_Snapshot\" on \"$tgt_vols[$index]\" - Please try to Re-Run this step",1);
+				}				
+			}
+						
+			#check which method need to be used used for cloning, file-clone is being used only when src and dst are equal (SVM and Vol)
+			$use_clone_type = 'flex-clone';
+			if ($netapps[$index] eq $netappd[$index] and $src_vols[$index] eq $tgt_vols[$index]) {
+				$use_clone_type = 'file-clone';
+				if ( $src_path[$index] eq $tgt_path[$index]) {
+					Exit ("ERROR: when file-clone is used diffrent path should be provided for the destination",1);
+				}
+			}
+
+			#file clone need to be used used to create the clone 
+			if ($use_clone_type eq 'file-clone') {
+				#confirm that there are no cloned luns
+				@LUNs = getLunsCOT($netappd[$index],$tgt_vols[$index],$tgt_path[$index],'ReplicManClone_');
+
+				if ($#LUNs ge 0) {
+					Exit ("ERROR: There are still LUN clones starting with ".$netappd[$index].":/vol/".$tgt_vols[$index]."/".$tgt_path[$index].'/ReplicManClone_ ! Go back to step 30!',1);
+				} 	
+
+				#confirm that there are source luns
+				@LUNs = getLunsCOT($netapps[$index],$src_vols[$index],$src_path[$index],'');
+				if ($#LUNs ge 0) {
+					foreach $lun (@LUNs) {
+						#create the lun file-clones
+						$lun =~ /(.+)\/(\w+)$/;
+						$lunclone = '/vol/'.$tgt_vols[$index].'/'.$tgt_path[$index].'/ReplicManClone_'.$2;
+						
+						Info ("Going to create a lun file-clone named \"$lunclone\" from lun \"$lun\" based on snap: \"$Uniq_Snapshot\" - Netapp \"$netappd[$index]\"");
+						if ( createNetappLunCloneCOT($netappd[$index], $lun, $lunclone, $Uniq_Snapshot) eq 0 ) {
+							Info ("Lun file-clone created - $OK");
+						}
+						else {
+							Exit ("ERROR: Could NOT create the lun file-clone - Please try to Re-Run this step",1);
+						}
+
+						Info ("Going to map lun \"$lunclone\" to host \"".$GroupParams{"TARGET_HOST"}."\"");
+						if ( mapNetappLunCOT($netappd[$index],$lunclone, $GroupParams{"TARGET_HOST"}) eq 0 ) {
+							Info ("Lun mapped - $OK");
+						}
+						else {
+							Exit ("ERROR: Could NOT map the lun - Please try to Re-Run this step",1);
+						}
+						
+					}
+				} else {
+					Exit ("ERROR: No LUNs on ".$netapps[$index].":/vol/".$src_vols[$index]."/".$src_path[$index].' check your config !',1);
+				}
+			}
+			
+			
+			exit ;
+			# Confirm that the flexclone doesnt exists
+			if ( isVolExistsCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
+				Exit ("ERROR: The Volume $netapps[$index]:$tgt_vols[$index] still exists ! Please go back to Step 30 !",1);
+			}
+
+		
+			# Confirm that the source volume exists
+			Info ("Checking if the Source volume \"$src_vols[$index]\" exists on \"$netapps[$index]\"");
+			if ( isVolExistsCOT($netapps[$index], $src_vols[$index]) eq 0 ) {
+				Info ("Source volume \"$src_vols[$index]\" exists on \"$netapps[$index]\" $OK");
+				
+				# Check if this group is a SnapVault Destination Group
+				if ($GroupParams{"S_VAULT_DEST"} eq "yes" ) {
+					Info ("-SnapVault Config-");
+					# Check what is the latest snapshot - with a snapmirror label
+					Info("Getting the latest snapshot of volume \"$src_vols[$index]\" on \"$netapps[$index]\"");
+					my $SV_Snapshot = getNetappLastSnapCOT($netapps[$index], $src_vols[$index], "ReplMan");
+					if ($SV_Snapshot !~ /^[A-Z]/ && $SV_Snapshot !~ /^[a-z]/) {
+						Exit ("ERROR: Could NOT get the latest snapshot of \"$tgt_vols[$index]\" - Please try to Re-Run this step",1);
+					}
+					Info("The latest snapshto name is \"$SV_Snapshot\"");
+					
+					# Create FlexClone
+					Info ("Going to create a FlexClone named \"$tgt_vols[$index]\" from snapshot \"$SV_Snapshot\" from Volume \"$src_vols[$index]\" - Netapp \"$netapps[$index]\"");
+					if ( createFlexCloneCOT($netapps[$index], $src_vols[$index], $tgt_vols[$index], $SV_Snapshot) eq 0 ) {
+						Info ("FlexClone Creation $OK");
+					}
+					else {
+						Exit ("ERROR: Could NOT create the FlexClone \"$tgt_vols[$index]\" - Please try to Re-Run this step",1);
+					}
+				}
+				else { # Regular Group - Not a SnapVault destination
+					Info ("Going to create a snapshot named \"$Uniq_Snapshot\" on \"$src_vols[$index]\" - Netapp \"$netapps[$index]\"");
+					if ( createNetappSnapCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
+						Info ("Snapshot Creation $OK");
+					}
+					else {
+						Exit ("ERROR: Could NOT create the Snapshot \"$Uniq_Snapshot\" on \"$tgt_vols[$index]\" - Please try to Re-Run this step",1);
+					}
+					
+					# Create FlexClone
+					Info ("Going to create a FlexClone named \"$tgt_vols[$index]\" from snapshot \"$Uniq_Snapshot\" from Volume \"$src_vols[$index]\" - Netapp \"$netapps[$index]\"");
+					if ( createFlexCloneCOT($netapps[$index], $src_vols[$index], $tgt_vols[$index], $Uniq_Snapshot) eq 0 ) {
+						Info ("FlexClone Creation $OK");
+					}
+					else {
+						Exit ("ERROR: Could NOT create the FlexClone \"$tgt_vols[$index]\" - Please try to Re-Run this step",1);
+					}
+				}
+				
+				# Assign volume to a export Policy
+				Info ("Going to modify Volume \"$tgt_vols[$index]\" Policy to \"$GroupParams{\"CLUSTER_POLICY\"}\"");
+				if ( exportNetappVolCOT($netapps[$index], $tgt_vols[$index], $GroupParams{"CLUSTER_POLICY"}) eq 0 ) {
+					Info ("Volume modify - Assign to export policy $OK");
+				}
+				else {
+					Exit ("ERROR: Could NOT modify volume export policy - Please try to Re-Run this step",1);
+				}
+				
+				# DELETE ALL NON USED SNAPSHOTS	
+			}
+		}
+	}
+	
 	# Netapp
-	if ( $GroupParams{"MSGRP"} =~ /Netapp/ ) {
+	if ( $GroupParams{"MSGRP"} eq "Netapp" ) {
 		
 		# Run for every volume
 		for (my $index = 0; $index <= $#netapps; $index++) {

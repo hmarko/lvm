@@ -15,7 +15,7 @@ BEGIN {
 	$VERSION     = 1.00;
 
 	@ISA         = qw(Exporter);
-	@EXPORT      = qw(&getVolCommentCOT &deleteLunCOT &mapLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
+	@EXPORT      = qw(&mapNetappLunCOT &createNetappLunCloneCOT &getVolCommentCOT &deleteLunCOT &getLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
 						&exportNetappVol &addVol2Vfiler &checkSmIdle &updateSM &isVolExistsCOT &deleteVolCOT &createNetappSnapCOT &createFlexCloneCOT &exportNetappVolCOT &getNetappLastSnapCOT);
 	%EXPORT_TAGS = ( );     # eg: TAG => [ qw!name1 name2! ],
 
@@ -24,6 +24,56 @@ BEGIN {
 our @EXPORT_OK;
 
 END { }       # module clean-up code here (global destructor)
+
+sub mapNetappLunCOT($$$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $lun = shift ;	chomp $lun ;
+	my $igroup = shift ;			chomp $igroup ;
+	
+	my $cmd = "ssh vsadmin\@$netapp lun map -path $lun -igroup $igroup" ;
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	$cmd = "ssh vsadmin\@$netapp lun mapping show -path $lun -fields igroup | grep \"$lun\"";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	return $ExitCode;
+}
+
+sub deleteLunCOT($$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $path = shift ;		chomp $path ;
+	
+	my $cmd = "ssh vsadmin\@$netapp \"set -conf off; lun delete -path $path\"" ;
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	# I have to check wheter the lun is really deleted
+	$cmd = "ssh vsadmin\@$netapp lun show -fields path | grep \"$path\"";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	if ( $ExitCode eq 1 ) { # lun does not exists -> DELETED
+		return 0;
+	}
+	else { # lun exists (grep returned 0) -> Deletion FAILED
+		return 1;
+	}
+}
+
+sub createNetappLunCloneCOT($$$$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $srclun = shift ;	chomp $srclun ;
+	my $lunclone = shift ;			chomp $lunclone ;
+	my $snap = shift ;			chomp $snap;
+	
+	my $cmd = "ssh vsadmin\@$netapp file clone create -source-path $srclun -destination-path $lunclone -snapshot-name $snap" ;
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	$cmd = "ssh vsadmin\@$netapp lun show -fields path | grep \"$lunclone\"";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	return $ExitCode;
+}
 
 sub getVolCommentCOT($$) {
 	my $netapp = shift ;		chomp $netapp ;
@@ -41,38 +91,28 @@ sub getVolCommentCOT($$) {
 	return $comment ;
 }
 
-sub mapLunsCOT($$$$) {
+sub getLunsCOT($$$$) {
 	my $netapp = shift ;		chomp $netapp ;
 	my $volume = shift ;		chomp $volume ;
-	my $qtree = shift ;		chomp $qtree ;
-	my $pathsearch = shift ; chomp $pathsearch ;
+	my $qtree  = shift ; 	$qtree='' if not $qtree;	chomp $qtree ;
+	my $search  = shift ; 	chomp $search ;
 	
-	my $cmd = "ssh vsadmin\@$netapp lun show -volume $volume -qtree \"$qtree\" -path \"$pathsearch\" -fields path | grep \"$netapp\"| grep \"$volume\"" ;
-	print "$cmd\n";
+	my $cmd;
+	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | awk '{print ".'$2'."}'" if not $search;
+	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | grep \"$search\" | awk '{print".' $2'."}'" if $search;
+	#print "$cmd\n";
+	
 	RunProgramQuiet($main::RunnigHost, "$cmd"); 
-	my @Text = GetCommandResult();	
-	return @Text;
-}
-
-sub deleteLunCOT($$) {
-	my $netapp = shift ;		chomp $netapp ;
-	my $path = shift ;		chomp $path ;
+	my @Text = GetCommandResult();
 	
-	my $cmd = "ssh vsadmin\@$netapp \"set -conf off; lun delete -path $path\"" ;
-	Info ("Running \"$cmd\" command \n");
-	my $ExitCode = RunProgram($main::RunnigHost, "$cmd") ;
-	
-	# I have to check wheter the lun is really deleted
-	$cmd = "ssh vsadmin\@$netapp lun show -fields path | grep \"$path\"";
-	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
-	if ( $ExitCode eq 1 ) { # lun does not exists -> DELETED
-		return 0;
+	my @LUNs = ();
+	foreach my $lun (@Text) {
+		chomp $lun;
+		push @LUNs,$lun if $qtree and $lun =~ /\/vol\/$volume\/$qtree\/\w+$/;
+		push @LUNs,$lun if not $qtree and $lun =~ /\/vol\/$volume\/\w+$/;
 	}
-	else { # lun exists (grep returned 0) -> Deletion FAILED
-		return 1;
-	}
+	return @LUNs;
 }
-
 
 sub isVolExists($$) {
 	my $netapp = shift ;		chomp $netapp ;
