@@ -1,0 +1,2392 @@
+
+[28/02/2018 20:40:11] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:40:11] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:40:11] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:40:11] : computer: RHEL1 process: 4558 tty: /dev/pts/0
+[28/02/2018 20:40:11] : ----------------- environment variables ----------------
+[28/02/2018 20:40:11] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:40:11] : CVS_RSH=ssh
+[28/02/2018 20:40:11] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:40:11] : HISTCONTROL=ignoredups
+[28/02/2018 20:40:11] : HISTSIZE=1000
+[28/02/2018 20:40:11] : HOME=/root
+[28/02/2018 20:40:11] : HOSTNAME=RHEL1
+[28/02/2018 20:40:11] : LANG=en_US.UTF-8
+[28/02/2018 20:40:11] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:40:11] : LOADEDMODULES=
+[28/02/2018 20:40:11] : LOGNAME=root
+[28/02/2018 20:40:11] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:40:11] : MAIL=/var/spool/mail/root
+[28/02/2018 20:40:11] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:40:11] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:40:11] : OLDPWD=/usr/RHEL1/ReplicMan/var
+[28/02/2018 20:40:11] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:40:11] : PWD=/usr/RHEL1/ReplicMan
+[28/02/2018 20:40:11] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:40:11] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:40:11] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:40:11] : SHELL=/bin/bash
+[28/02/2018 20:40:11] : SHLVL=1
+[28/02/2018 20:40:11] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:40:11] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:40:11] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:40:11] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:40:11] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:40:11] : SYMCLI_MODE=V72
+[28/02/2018 20:40:11] : TERM=xterm
+[28/02/2018 20:40:11] : USER=root
+[28/02/2018 20:40:11] : _=./ReplicMan.pl
+[28/02/2018 20:40:11] : ----------------- environment variables ----------------
+[28/02/2018 20:40:11] : ReplicMan STARTED
+[28/02/2018 20:40:11] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:40:11] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+[28/02/2018 20:40:11] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:40:11] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:40:11] : Step 05 CheckGroupStatus END
+[28/02/2018 20:40:11] : -------------------------------------------------------
+
+[28/02/2018 20:40:11] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:40:11] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:40:11] : Checking for other running syncs ...
+[28/02/2018 20:40:11] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:40:11] : -------------------------------------------------------
+
+[28/02/2018 20:40:11] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:40:11] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:40:11] : Running PreEstablish Command
+[28/02/2018 20:40:11] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:40:11] : Step 10 EstPreCommand END
+[28/02/2018 20:40:11] : -------------------------------------------------------
+
+[28/02/2018 20:40:11] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:40:11] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:40:11] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:40:11] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:40:11] : -------------------------------------------------------
+
+[28/02/2018 20:40:11] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:40:11] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:40:11] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:40:11] : Getting list of FileSystem...
+[28/02/2018 20:40:11] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:40:11] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:40:11] : Step 20 UmountTargetFS END
+[28/02/2018 20:40:11] : -------------------------------------------------------
+
+[28/02/2018 20:40:11] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:40:11] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:40:11] : Getting Target VG List
+[28/02/2018 20:40:11] : Getting Target VG List - Done.
+[28/02/2018 20:40:11] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:40:12] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+[28/02/2018 20:40:32] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:40:32] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:40:32] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:40:32] : computer: RHEL1 process: 4789 tty: /dev/pts/0
+[28/02/2018 20:40:32] : ----------------- environment variables ----------------
+[28/02/2018 20:40:32] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:40:32] : CVS_RSH=ssh
+[28/02/2018 20:40:32] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:40:32] : HISTCONTROL=ignoredups
+[28/02/2018 20:40:32] : HISTSIZE=1000
+[28/02/2018 20:40:32] : HOME=/root
+[28/02/2018 20:40:32] : HOSTNAME=RHEL1
+[28/02/2018 20:40:32] : LANG=en_US.UTF-8
+[28/02/2018 20:40:32] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:40:32] : LOADEDMODULES=
+[28/02/2018 20:40:32] : LOGNAME=root
+[28/02/2018 20:40:32] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:40:32] : MAIL=/var/spool/mail/root
+[28/02/2018 20:40:32] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:40:32] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:40:32] : OLDPWD=/usr/RHEL1/ReplicMan/var
+[28/02/2018 20:40:32] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:40:32] : PWD=/usr/RHEL1/ReplicMan
+[28/02/2018 20:40:32] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:40:32] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:40:32] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:40:32] : SHELL=/bin/bash
+[28/02/2018 20:40:32] : SHLVL=1
+[28/02/2018 20:40:32] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:40:32] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:40:32] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:40:32] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:40:32] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:40:32] : SYMCLI_MODE=V72
+[28/02/2018 20:40:32] : TERM=xterm
+[28/02/2018 20:40:32] : USER=root
+[28/02/2018 20:40:32] : _=./ReplicMan.pl
+[28/02/2018 20:40:32] : ----------------- environment variables ----------------
+[28/02/2018 20:40:32] : ReplicMan STARTED
+[28/02/2018 20:40:32] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:40:32] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+[28/02/2018 20:40:32] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:40:32] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:40:32] : Step 05 CheckGroupStatus END
+[28/02/2018 20:40:32] : -------------------------------------------------------
+
+[28/02/2018 20:40:32] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:40:32] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:40:32] : Checking for other running syncs ...
+[28/02/2018 20:40:32] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:40:32] : -------------------------------------------------------
+
+[28/02/2018 20:40:32] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:40:32] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:40:32] : Running PreEstablish Command
+[28/02/2018 20:40:32] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:40:32] : Step 10 EstPreCommand END
+[28/02/2018 20:40:32] : -------------------------------------------------------
+
+[28/02/2018 20:40:32] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:40:32] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:40:32] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:40:32] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:40:32] : -------------------------------------------------------
+
+[28/02/2018 20:40:32] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:40:32] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:40:32] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:40:32] : Getting list of FileSystem...
+[28/02/2018 20:40:32] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:40:32] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:40:32] : Step 20 UmountTargetFS END
+[28/02/2018 20:40:32] : -------------------------------------------------------
+
+[28/02/2018 20:40:32] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:40:32] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:40:32] : Getting Target VG List
+[28/02/2018 20:40:32] : Getting Target VG List - Done.
+[28/02/2018 20:40:32] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:40:33] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+[28/02/2018 20:42:00] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:42:00] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:42:00] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:42:00] : computer: RHEL1 process: 5251 tty: /dev/pts/0
+[28/02/2018 20:42:00] : ----------------- environment variables ----------------
+[28/02/2018 20:42:00] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:42:00] : CVS_RSH=ssh
+[28/02/2018 20:42:00] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:42:00] : HISTCONTROL=ignoredups
+[28/02/2018 20:42:00] : HISTSIZE=1000
+[28/02/2018 20:42:00] : HOME=/root
+[28/02/2018 20:42:00] : HOSTNAME=RHEL1
+[28/02/2018 20:42:00] : LANG=en_US.UTF-8
+[28/02/2018 20:42:00] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:42:00] : LOADEDMODULES=
+[28/02/2018 20:42:00] : LOGNAME=root
+[28/02/2018 20:42:00] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:42:00] : MAIL=/var/spool/mail/root
+[28/02/2018 20:42:00] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:42:00] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:42:00] : OLDPWD=/usr/RHEL1/ReplicMan/var
+[28/02/2018 20:42:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:42:00] : PWD=/usr/RHEL1/ReplicMan
+[28/02/2018 20:42:00] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:42:00] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:42:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:42:00] : SHELL=/bin/bash
+[28/02/2018 20:42:00] : SHLVL=1
+[28/02/2018 20:42:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:42:00] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:42:00] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:42:00] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:42:00] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:42:00] : SYMCLI_MODE=V72
+[28/02/2018 20:42:00] : TERM=xterm
+[28/02/2018 20:42:00] : USER=root
+[28/02/2018 20:42:00] : _=./ReplicMan.pl
+[28/02/2018 20:42:00] : ----------------- environment variables ----------------
+[28/02/2018 20:42:00] : ReplicMan STARTED
+[28/02/2018 20:42:00] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:42:00] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+[28/02/2018 20:42:00] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:42:00] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:42:00] : Step 05 CheckGroupStatus END
+[28/02/2018 20:42:00] : -------------------------------------------------------
+
+[28/02/2018 20:42:00] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:42:00] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:42:00] : Checking for other running syncs ...
+[28/02/2018 20:42:00] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:42:00] : -------------------------------------------------------
+
+[28/02/2018 20:42:00] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:42:00] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:42:00] : Running PreEstablish Command
+[28/02/2018 20:42:00] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:42:00] : Step 10 EstPreCommand END
+[28/02/2018 20:42:00] : -------------------------------------------------------
+
+[28/02/2018 20:42:00] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:42:00] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:42:00] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:42:00] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:42:00] : -------------------------------------------------------
+
+[28/02/2018 20:42:00] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:42:00] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:42:00] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:42:00] : Getting list of FileSystem...
+[28/02/2018 20:42:00] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:42:00] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:42:00] : Step 20 UmountTargetFS END
+[28/02/2018 20:42:00] : -------------------------------------------------------
+
+[28/02/2018 20:42:00] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:42:00] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:42:00] : Getting Target VG List
+[28/02/2018 20:42:00] : Getting Target VG List - Done.
+[28/02/2018 20:42:00] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:42:00] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+[28/02/2018 20:43:15] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:43:15] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:43:15] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:43:15] : computer: RHEL1 process: 5668 tty: /dev/pts/0
+[28/02/2018 20:43:15] : ----------------- environment variables ----------------
+[28/02/2018 20:43:15] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:43:15] : CVS_RSH=ssh
+[28/02/2018 20:43:15] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:43:15] : HISTCONTROL=ignoredups
+[28/02/2018 20:43:15] : HISTSIZE=1000
+[28/02/2018 20:43:15] : HOME=/root
+[28/02/2018 20:43:15] : HOSTNAME=RHEL1
+[28/02/2018 20:43:15] : LANG=en_US.UTF-8
+[28/02/2018 20:43:15] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:43:15] : LOADEDMODULES=
+[28/02/2018 20:43:15] : LOGNAME=root
+[28/02/2018 20:43:15] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:43:15] : MAIL=/var/spool/mail/root
+[28/02/2018 20:43:15] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:43:15] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:43:15] : OLDPWD=/usr/RHEL1/ReplicMan/var
+[28/02/2018 20:43:15] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:43:15] : PWD=/usr/RHEL1/ReplicMan
+[28/02/2018 20:43:15] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:43:15] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:43:15] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:43:15] : SHELL=/bin/bash
+[28/02/2018 20:43:15] : SHLVL=1
+[28/02/2018 20:43:15] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:43:15] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:43:15] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:43:15] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:43:15] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:43:15] : SYMCLI_MODE=V72
+[28/02/2018 20:43:15] : TERM=xterm
+[28/02/2018 20:43:15] : USER=root
+[28/02/2018 20:43:15] : _=./ReplicMan.pl
+[28/02/2018 20:43:15] : ----------------- environment variables ----------------
+[28/02/2018 20:43:15] : ReplicMan STARTED
+[28/02/2018 20:43:15] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:43:15] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+[28/02/2018 20:43:15] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:43:15] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:43:15] : Step 05 CheckGroupStatus END
+[28/02/2018 20:43:15] : -------------------------------------------------------
+
+[28/02/2018 20:43:15] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:43:15] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:43:15] : Checking for other running syncs ...
+[28/02/2018 20:43:15] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:43:15] : -------------------------------------------------------
+
+[28/02/2018 20:43:15] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:43:15] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:43:15] : Running PreEstablish Command
+[28/02/2018 20:43:15] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:43:15] : Step 10 EstPreCommand END
+[28/02/2018 20:43:15] : -------------------------------------------------------
+
+[28/02/2018 20:43:15] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:43:15] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:43:15] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:43:15] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:43:15] : -------------------------------------------------------
+
+[28/02/2018 20:43:15] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:43:15] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:43:15] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:43:15] : Getting list of FileSystem...
+[28/02/2018 20:43:15] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:43:15] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:43:15] : Step 20 UmountTargetFS END
+[28/02/2018 20:43:15] : -------------------------------------------------------
+
+[28/02/2018 20:43:15] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:43:15] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:43:15] : Getting Target VG List
+[28/02/2018 20:43:15] : Getting Target VG List - Done.
+[28/02/2018 20:43:15] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:43:16] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:51:17] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:51:17] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:51:17] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:51:17] : computer: RHEL1 process: 7507 tty: /dev/pts/0
+[28/02/2018 20:51:17] : ----------------- environment variables ----------------
+[28/02/2018 20:51:17] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:51:17] : CVS_RSH=ssh
+[28/02/2018 20:51:17] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:51:17] : HISTCONTROL=ignoredups
+[28/02/2018 20:51:17] : HISTSIZE=1000
+[28/02/2018 20:51:17] : HOME=/root
+[28/02/2018 20:51:17] : HOSTNAME=RHEL1
+[28/02/2018 20:51:17] : LANG=en_US.UTF-8
+[28/02/2018 20:51:17] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:51:17] : LOADEDMODULES=
+[28/02/2018 20:51:17] : LOGNAME=root
+[28/02/2018 20:51:17] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:51:17] : MAIL=/var/spool/mail/root
+[28/02/2018 20:51:17] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:51:17] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:51:17] : OLDPWD=/root/lvm
+[28/02/2018 20:51:17] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:51:17] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:51:17] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:51:17] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:51:17] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:51:17] : SHELL=/bin/bash
+[28/02/2018 20:51:17] : SHLVL=1
+[28/02/2018 20:51:17] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:51:17] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:51:17] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:51:17] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:51:17] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:51:17] : SYMCLI_MODE=V72
+[28/02/2018 20:51:17] : TERM=xterm
+[28/02/2018 20:51:17] : USER=root
+[28/02/2018 20:51:17] : _=./ReplicMan.pl
+[28/02/2018 20:51:17] : ----------------- environment variables ----------------
+[28/02/2018 20:51:17] : ReplicMan STARTED
+[28/02/2018 20:51:17] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:51:17] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:51:17] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:51:17] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:51:17] : Step 05 CheckGroupStatus END
+[28/02/2018 20:51:17] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:51:17] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:51:17] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:51:17] : Checking for other running syncs ...
+[28/02/2018 20:51:17] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:51:17] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:51:17] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:51:17] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:51:17] : Running PreEstablish Command
+[28/02/2018 20:51:17] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:51:17] : Step 10 EstPreCommand END
+[28/02/2018 20:51:17] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:51:17] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:51:17] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:51:17] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:51:17] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:51:17] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:51:17] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:51:17] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:51:17] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:51:17] : Getting list of FileSystem...
+[28/02/2018 20:51:17] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:51:17] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:51:17] : Step 20 UmountTargetFS END
+[28/02/2018 20:51:17] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:51:17] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:51:17] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:51:17] : Getting Target VG List
+[28/02/2018 20:51:17] : Getting Target VG List - Done.
+[28/02/2018 20:51:17] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:51:18] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:53:12] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:53:12] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:53:12] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:53:12] : computer: RHEL1 process: 8070 tty: /dev/pts/0
+[28/02/2018 20:53:12] : ----------------- environment variables ----------------
+[28/02/2018 20:53:12] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:53:12] : CVS_RSH=ssh
+[28/02/2018 20:53:12] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:53:12] : HISTCONTROL=ignoredups
+[28/02/2018 20:53:12] : HISTSIZE=1000
+[28/02/2018 20:53:12] : HOME=/root
+[28/02/2018 20:53:12] : HOSTNAME=RHEL1
+[28/02/2018 20:53:12] : LANG=en_US.UTF-8
+[28/02/2018 20:53:12] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:53:12] : LOADEDMODULES=
+[28/02/2018 20:53:12] : LOGNAME=root
+[28/02/2018 20:53:12] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:53:12] : MAIL=/var/spool/mail/root
+[28/02/2018 20:53:12] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:53:12] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:53:12] : OLDPWD=/root/lvm
+[28/02/2018 20:53:12] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:53:12] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:53:12] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:53:12] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:53:12] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:53:12] : SHELL=/bin/bash
+[28/02/2018 20:53:12] : SHLVL=1
+[28/02/2018 20:53:12] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:53:12] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:53:12] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:53:12] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:53:12] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:53:12] : SYMCLI_MODE=V72
+[28/02/2018 20:53:12] : TERM=xterm
+[28/02/2018 20:53:12] : USER=root
+[28/02/2018 20:53:12] : _=./ReplicMan.pl
+[28/02/2018 20:53:12] : ----------------- environment variables ----------------
+[28/02/2018 20:53:12] : ReplicMan STARTED
+[28/02/2018 20:53:12] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:53:12] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:53:12] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:53:12] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:53:12] : Step 05 CheckGroupStatus END
+[28/02/2018 20:53:12] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:53:12] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:53:12] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:53:12] : Checking for other running syncs ...
+[28/02/2018 20:53:12] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:53:12] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:53:12] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:53:12] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:53:12] : Running PreEstablish Command
+[28/02/2018 20:53:12] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:53:12] : Step 10 EstPreCommand END
+[28/02/2018 20:53:12] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:53:12] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:53:12] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:53:12] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:53:12] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:53:12] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:53:12] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:53:12] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:53:12] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:53:12] : Getting list of FileSystem...
+[28/02/2018 20:53:12] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:53:12] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:53:12] : Step 20 UmountTargetFS END
+[28/02/2018 20:53:12] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:53:12] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:53:12] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:53:12] : Getting Target VG List
+[28/02/2018 20:53:12] : Getting Target VG List - Done.
+[28/02/2018 20:53:12] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:53:12] : RunProgram------ /tmp/TTT_8070.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:53:13] : RunProgram------ /tmp/TTT_8070.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:53:13] : RunProgram------ /tmp/TTT_8070.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:53:13] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:53:45] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:53:45] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:53:45] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:53:45] : computer: RHEL1 process: 8334 tty: /dev/pts/0
+[28/02/2018 20:53:45] : ----------------- environment variables ----------------
+[28/02/2018 20:53:45] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:53:45] : CVS_RSH=ssh
+[28/02/2018 20:53:45] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:53:45] : HISTCONTROL=ignoredups
+[28/02/2018 20:53:45] : HISTSIZE=1000
+[28/02/2018 20:53:45] : HOME=/root
+[28/02/2018 20:53:45] : HOSTNAME=RHEL1
+[28/02/2018 20:53:45] : LANG=en_US.UTF-8
+[28/02/2018 20:53:45] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:53:45] : LOADEDMODULES=
+[28/02/2018 20:53:45] : LOGNAME=root
+[28/02/2018 20:53:45] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:53:45] : MAIL=/var/spool/mail/root
+[28/02/2018 20:53:45] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:53:45] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:53:45] : OLDPWD=/root/lvm
+[28/02/2018 20:53:45] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:53:45] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:53:45] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:53:45] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:53:45] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:53:45] : SHELL=/bin/bash
+[28/02/2018 20:53:45] : SHLVL=1
+[28/02/2018 20:53:45] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:53:45] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:53:45] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:53:45] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:53:45] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:53:45] : SYMCLI_MODE=V72
+[28/02/2018 20:53:45] : TERM=xterm
+[28/02/2018 20:53:45] : USER=root
+[28/02/2018 20:53:45] : _=./ReplicMan.pl
+[28/02/2018 20:53:45] : ----------------- environment variables ----------------
+[28/02/2018 20:53:45] : ReplicMan STARTED
+[28/02/2018 20:53:45] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:53:45] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:53:45] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:53:45] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:53:45] : Step 05 CheckGroupStatus END
+[28/02/2018 20:53:45] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:53:45] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:53:45] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:53:45] : Checking for other running syncs ...
+[28/02/2018 20:53:45] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:53:45] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:53:45] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:53:45] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:53:45] : Running PreEstablish Command
+[28/02/2018 20:53:45] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:53:45] : Step 10 EstPreCommand END
+[28/02/2018 20:53:45] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:53:45] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:53:45] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:53:45] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:53:45] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:53:45] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:53:45] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:53:45] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:53:45] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:53:45] : Getting list of FileSystem...
+[28/02/2018 20:53:45] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:53:45] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:53:45] : Step 20 UmountTargetFS END
+[28/02/2018 20:53:45] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:53:45] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:53:45] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:53:45] : Getting Target VG List
+[28/02/2018 20:53:45] : Getting Target VG List - Done.
+[28/02/2018 20:53:45] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:53:46] : RunProgram------ /tmp/TTT_8334.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:53:46] : RunProgram------ /tmp/TTT_8334.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:53:46] : RunProgram------ /tmp/TTT_8334.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:53:46] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:56:32] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:56:32] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:56:32] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:56:32] : computer: RHEL1 process: 9079 tty: /dev/pts/0
+[28/02/2018 20:56:32] : ----------------- environment variables ----------------
+[28/02/2018 20:56:32] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:56:32] : CVS_RSH=ssh
+[28/02/2018 20:56:32] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:56:32] : HISTCONTROL=ignoredups
+[28/02/2018 20:56:32] : HISTSIZE=1000
+[28/02/2018 20:56:32] : HOME=/root
+[28/02/2018 20:56:32] : HOSTNAME=RHEL1
+[28/02/2018 20:56:32] : LANG=en_US.UTF-8
+[28/02/2018 20:56:32] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:56:32] : LOADEDMODULES=
+[28/02/2018 20:56:32] : LOGNAME=root
+[28/02/2018 20:56:32] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:56:32] : MAIL=/var/spool/mail/root
+[28/02/2018 20:56:32] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:56:32] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:56:32] : OLDPWD=/root/lvm
+[28/02/2018 20:56:32] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:56:32] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:56:32] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:56:32] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:56:32] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:56:32] : SHELL=/bin/bash
+[28/02/2018 20:56:32] : SHLVL=1
+[28/02/2018 20:56:32] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:56:32] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:56:32] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:56:32] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:56:32] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:56:32] : SYMCLI_MODE=V72
+[28/02/2018 20:56:32] : TERM=xterm
+[28/02/2018 20:56:32] : USER=root
+[28/02/2018 20:56:32] : _=./ReplicMan.pl
+[28/02/2018 20:56:32] : ----------------- environment variables ----------------
+[28/02/2018 20:56:32] : ReplicMan STARTED
+[28/02/2018 20:56:32] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:56:32] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:56:32] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:56:32] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:56:32] : Step 05 CheckGroupStatus END
+[28/02/2018 20:56:32] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:56:32] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:56:32] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:56:32] : Checking for other running syncs ...
+[28/02/2018 20:56:32] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:56:32] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:32] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:56:32] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:56:32] : Running PreEstablish Command
+[28/02/2018 20:56:32] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:56:32] : Step 10 EstPreCommand END
+[28/02/2018 20:56:32] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:32] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:56:32] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:56:32] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:56:32] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:56:32] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:32] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:56:32] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:56:32] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:56:32] : Getting list of FileSystem...
+[28/02/2018 20:56:32] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:56:32] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:56:32] : Step 20 UmountTargetFS END
+[28/02/2018 20:56:32] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:32] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:56:32] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:56:32] : Getting Target VG List
+[28/02/2018 20:56:32] : Getting Target VG List - Done.
+[28/02/2018 20:56:32] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:56:32] : RunProgram------ /tmp/TTT_9079.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:32] : RunProgram------ /tmp/TTT_9079.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:33] : RunProgram------ /tmp/TTT_9079.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:33] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:56:42] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:56:42] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:56:42] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:56:42] : computer: RHEL1 process: 9282 tty: /dev/pts/0
+[28/02/2018 20:56:42] : ----------------- environment variables ----------------
+[28/02/2018 20:56:42] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:56:42] : CVS_RSH=ssh
+[28/02/2018 20:56:42] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:56:42] : HISTCONTROL=ignoredups
+[28/02/2018 20:56:42] : HISTSIZE=1000
+[28/02/2018 20:56:42] : HOME=/root
+[28/02/2018 20:56:42] : HOSTNAME=RHEL1
+[28/02/2018 20:56:42] : LANG=en_US.UTF-8
+[28/02/2018 20:56:42] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:56:42] : LOADEDMODULES=
+[28/02/2018 20:56:42] : LOGNAME=root
+[28/02/2018 20:56:42] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:56:42] : MAIL=/var/spool/mail/root
+[28/02/2018 20:56:42] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:56:42] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:56:42] : OLDPWD=/root/lvm
+[28/02/2018 20:56:42] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:56:42] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:56:42] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:56:42] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:56:42] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:56:42] : SHELL=/bin/bash
+[28/02/2018 20:56:42] : SHLVL=1
+[28/02/2018 20:56:42] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:56:42] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:56:42] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:56:42] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:56:42] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:56:42] : SYMCLI_MODE=V72
+[28/02/2018 20:56:42] : TERM=xterm
+[28/02/2018 20:56:42] : USER=root
+[28/02/2018 20:56:42] : _=./ReplicMan.pl
+[28/02/2018 20:56:42] : ----------------- environment variables ----------------
+[28/02/2018 20:56:42] : ReplicMan STARTED
+[28/02/2018 20:56:42] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:56:42] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:56:42] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:56:42] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:56:42] : Step 05 CheckGroupStatus END
+[28/02/2018 20:56:42] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:56:42] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:56:42] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:56:42] : Checking for other running syncs ...
+[28/02/2018 20:56:42] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:56:42] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:42] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:56:42] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:56:42] : Running PreEstablish Command
+[28/02/2018 20:56:42] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:56:42] : Step 10 EstPreCommand END
+[28/02/2018 20:56:42] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:42] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:56:42] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:56:42] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:56:42] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:56:42] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:42] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:56:42] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:56:42] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:56:42] : Getting list of FileSystem...
+[28/02/2018 20:56:42] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:56:42] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:56:42] : Step 20 UmountTargetFS END
+[28/02/2018 20:56:42] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:42] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:56:42] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:56:42] : Getting Target VG List
+[28/02/2018 20:56:42] : Getting Target VG List - Done.
+[28/02/2018 20:56:42] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:56:43] : RunProgram------ /tmp/TTT_9282.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:43] : RunProgram------ /tmp/TTT_9282.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:43] : RunProgram------ /tmp/TTT_9282.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:43] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:56:48] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:56:48] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:56:48] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:56:48] : computer: RHEL1 process: 9453 tty: /dev/pts/0
+[28/02/2018 20:56:48] : ----------------- environment variables ----------------
+[28/02/2018 20:56:48] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:56:48] : CVS_RSH=ssh
+[28/02/2018 20:56:48] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:56:48] : HISTCONTROL=ignoredups
+[28/02/2018 20:56:48] : HISTSIZE=1000
+[28/02/2018 20:56:48] : HOME=/root
+[28/02/2018 20:56:48] : HOSTNAME=RHEL1
+[28/02/2018 20:56:48] : LANG=en_US.UTF-8
+[28/02/2018 20:56:48] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:56:48] : LOADEDMODULES=
+[28/02/2018 20:56:48] : LOGNAME=root
+[28/02/2018 20:56:48] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:56:48] : MAIL=/var/spool/mail/root
+[28/02/2018 20:56:48] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:56:48] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:56:48] : OLDPWD=/root/lvm
+[28/02/2018 20:56:48] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:56:48] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:56:48] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:56:48] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:56:48] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:56:48] : SHELL=/bin/bash
+[28/02/2018 20:56:48] : SHLVL=1
+[28/02/2018 20:56:48] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:56:48] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:56:48] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:56:48] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:56:48] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:56:48] : SYMCLI_MODE=V72
+[28/02/2018 20:56:48] : TERM=xterm
+[28/02/2018 20:56:48] : USER=root
+[28/02/2018 20:56:48] : _=./ReplicMan.pl
+[28/02/2018 20:56:48] : ----------------- environment variables ----------------
+[28/02/2018 20:56:48] : ReplicMan STARTED
+[28/02/2018 20:56:48] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:56:48] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:56:48] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:56:48] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:56:48] : Step 05 CheckGroupStatus END
+[28/02/2018 20:56:48] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:56:48] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:56:48] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:56:48] : Checking for other running syncs ...
+[28/02/2018 20:56:48] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:56:48] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:48] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:56:48] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:56:48] : Running PreEstablish Command
+[28/02/2018 20:56:48] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:56:48] : Step 10 EstPreCommand END
+[28/02/2018 20:56:48] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:48] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:56:48] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:56:48] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:56:48] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:56:48] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:48] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:56:48] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:56:48] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:56:48] : Getting list of FileSystem...
+[28/02/2018 20:56:48] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:56:48] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:56:48] : Step 20 UmountTargetFS END
+[28/02/2018 20:56:48] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:48] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:56:48] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:56:48] : Getting Target VG List
+[28/02/2018 20:56:48] : Getting Target VG List - Done.
+[28/02/2018 20:56:48] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:56:48] : RunProgram------ /tmp/TTT_9453.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:48] : RunProgram------ /tmp/TTT_9453.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:49] : RunProgram------ /tmp/TTT_9453.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:49] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:56:52] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:56:53] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:56:53] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:56:53] : computer: RHEL1 process: 9643 tty: /dev/pts/0
+[28/02/2018 20:56:53] : ----------------- environment variables ----------------
+[28/02/2018 20:56:53] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:56:53] : CVS_RSH=ssh
+[28/02/2018 20:56:53] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:56:53] : HISTCONTROL=ignoredups
+[28/02/2018 20:56:53] : HISTSIZE=1000
+[28/02/2018 20:56:53] : HOME=/root
+[28/02/2018 20:56:53] : HOSTNAME=RHEL1
+[28/02/2018 20:56:53] : LANG=en_US.UTF-8
+[28/02/2018 20:56:53] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:56:53] : LOADEDMODULES=
+[28/02/2018 20:56:53] : LOGNAME=root
+[28/02/2018 20:56:53] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:56:53] : MAIL=/var/spool/mail/root
+[28/02/2018 20:56:53] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:56:53] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:56:53] : OLDPWD=/root/lvm
+[28/02/2018 20:56:53] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:56:53] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:56:53] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:56:53] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:56:53] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:56:53] : SHELL=/bin/bash
+[28/02/2018 20:56:53] : SHLVL=1
+[28/02/2018 20:56:53] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:56:53] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:56:53] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:56:53] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:56:53] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:56:53] : SYMCLI_MODE=V72
+[28/02/2018 20:56:53] : TERM=xterm
+[28/02/2018 20:56:53] : USER=root
+[28/02/2018 20:56:53] : _=./ReplicMan.pl
+[28/02/2018 20:56:53] : ----------------- environment variables ----------------
+[28/02/2018 20:56:53] : ReplicMan STARTED
+[28/02/2018 20:56:53] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:56:53] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:56:53] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:56:53] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:56:53] : Step 05 CheckGroupStatus END
+[28/02/2018 20:56:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:56:53] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:56:53] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:56:53] : Checking for other running syncs ...
+[28/02/2018 20:56:53] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:56:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:53] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:56:53] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:56:53] : Running PreEstablish Command
+[28/02/2018 20:56:53] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:56:53] : Step 10 EstPreCommand END
+[28/02/2018 20:56:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:53] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:56:53] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:56:53] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:56:53] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:56:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:53] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:56:53] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:56:53] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:56:53] : Getting list of FileSystem...
+[28/02/2018 20:56:53] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:56:53] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:56:53] : Step 20 UmountTargetFS END
+[28/02/2018 20:56:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:53] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:56:53] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:56:53] : Getting Target VG List
+[28/02/2018 20:56:53] : Getting Target VG List - Done.
+[28/02/2018 20:56:53] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:56:53] : RunProgram------ /tmp/TTT_9643.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:53] : RunProgram------ /tmp/TTT_9643.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:53] : RunProgram------ /tmp/TTT_9643.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:53] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:56:57] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:56:57] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:56:57] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:56:57] : computer: RHEL1 process: 9819 tty: /dev/pts/0
+[28/02/2018 20:56:57] : ----------------- environment variables ----------------
+[28/02/2018 20:56:57] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:56:57] : CVS_RSH=ssh
+[28/02/2018 20:56:57] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:56:57] : HISTCONTROL=ignoredups
+[28/02/2018 20:56:57] : HISTSIZE=1000
+[28/02/2018 20:56:57] : HOME=/root
+[28/02/2018 20:56:57] : HOSTNAME=RHEL1
+[28/02/2018 20:56:57] : LANG=en_US.UTF-8
+[28/02/2018 20:56:57] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:56:57] : LOADEDMODULES=
+[28/02/2018 20:56:57] : LOGNAME=root
+[28/02/2018 20:56:57] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:56:57] : MAIL=/var/spool/mail/root
+[28/02/2018 20:56:57] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:56:57] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:56:57] : OLDPWD=/root/lvm
+[28/02/2018 20:56:57] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:56:57] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:56:57] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:56:57] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:56:57] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:56:57] : SHELL=/bin/bash
+[28/02/2018 20:56:57] : SHLVL=1
+[28/02/2018 20:56:57] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:56:57] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:56:57] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:56:57] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:56:57] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:56:57] : SYMCLI_MODE=V72
+[28/02/2018 20:56:57] : TERM=xterm
+[28/02/2018 20:56:57] : USER=root
+[28/02/2018 20:56:57] : _=./ReplicMan.pl
+[28/02/2018 20:56:57] : ----------------- environment variables ----------------
+[28/02/2018 20:56:57] : ReplicMan STARTED
+[28/02/2018 20:56:57] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:56:57] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:56:57] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:56:57] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:56:57] : Step 05 CheckGroupStatus END
+[28/02/2018 20:56:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:56:57] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:56:57] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:56:57] : Checking for other running syncs ...
+[28/02/2018 20:56:57] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:56:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:57] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:56:57] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:56:57] : Running PreEstablish Command
+[28/02/2018 20:56:57] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:56:57] : Step 10 EstPreCommand END
+[28/02/2018 20:56:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:57] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:56:57] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:56:57] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:56:57] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:56:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:56:57] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:56:57] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:56:57] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:56:57] : Getting list of FileSystem...
+[28/02/2018 20:56:57] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:56:57] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:56:57] : Step 20 UmountTargetFS END
+[28/02/2018 20:56:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:56:57] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:56:57] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:56:57] : Getting Target VG List
+[28/02/2018 20:56:57] : Getting Target VG List - Done.
+[28/02/2018 20:56:57] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:56:57] : RunProgram------ /tmp/TTT_9819.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:58] : RunProgram------ /tmp/TTT_9819.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:58] : RunProgram------ /tmp/TTT_9819.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:56:58] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 20:58:06] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 20:58:06] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 20:58:06] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 20:58:06] : computer: RHEL1 process: 10208 tty: /dev/pts/0
+[28/02/2018 20:58:06] : ----------------- environment variables ----------------
+[28/02/2018 20:58:06] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 20:58:06] : CVS_RSH=ssh
+[28/02/2018 20:58:06] : G_BROKEN_FILENAMES=1
+[28/02/2018 20:58:06] : HISTCONTROL=ignoredups
+[28/02/2018 20:58:06] : HISTSIZE=1000
+[28/02/2018 20:58:06] : HOME=/root
+[28/02/2018 20:58:06] : HOSTNAME=RHEL1
+[28/02/2018 20:58:06] : LANG=en_US.UTF-8
+[28/02/2018 20:58:06] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 20:58:06] : LOADEDMODULES=
+[28/02/2018 20:58:06] : LOGNAME=root
+[28/02/2018 20:58:06] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 20:58:06] : MAIL=/var/spool/mail/root
+[28/02/2018 20:58:06] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 20:58:06] : MODULESHOME=/usr/share/Modules
+[28/02/2018 20:58:06] : OLDPWD=/root/lvm
+[28/02/2018 20:58:06] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 20:58:06] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 20:58:06] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 20:58:06] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 20:58:06] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 20:58:06] : SHELL=/bin/bash
+[28/02/2018 20:58:06] : SHLVL=1
+[28/02/2018 20:58:06] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 20:58:06] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 20:58:06] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 20:58:06] : SSH_TTY=/dev/pts/0
+[28/02/2018 20:58:06] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 20:58:06] : SYMCLI_MODE=V72
+[28/02/2018 20:58:06] : TERM=xterm
+[28/02/2018 20:58:06] : USER=root
+[28/02/2018 20:58:06] : _=./ReplicMan.pl
+[28/02/2018 20:58:06] : ----------------- environment variables ----------------
+[28/02/2018 20:58:06] : ReplicMan STARTED
+[28/02/2018 20:58:06] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 20:58:06] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 20:58:06] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 20:58:06] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 20:58:06] : Step 05 CheckGroupStatus END
+[28/02/2018 20:58:06] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 20:58:06] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 20:58:06] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 20:58:06] : Checking for other running syncs ...
+[28/02/2018 20:58:06] : Step 06 CheckRunningSyncs END
+[28/02/2018 20:58:06] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:58:06] : DESCRIPTION: Pre Establish Command
+[28/02/2018 20:58:06] : Step 10 EstPreCommand BEGIN
+[28/02/2018 20:58:06] : Running PreEstablish Command
+[28/02/2018 20:58:06] : Running PreEstablish Command Finished O.K.
+[28/02/2018 20:58:06] : Step 10 EstPreCommand END
+[28/02/2018 20:58:06] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:58:06] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 20:58:06] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 20:58:06] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 20:58:06] : Step 15 ShutDownTargetDB END
+[28/02/2018 20:58:06] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 20:58:06] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 20:58:06] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 20:58:06] : Un-mounting FileSystems on Host localhost
+[28/02/2018 20:58:06] : Getting list of FileSystem...
+[28/02/2018 20:58:06] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 20:58:06] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 20:58:06] : Step 20 UmountTargetFS END
+[28/02/2018 20:58:06] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 20:58:06] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 20:58:06] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 20:58:06] : Getting Target VG List
+[28/02/2018 20:58:06] : Getting Target VG List - Done.
+[28/02/2018 20:58:06] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 20:58:06] : RunProgram------ /tmp/TTT_10208.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:58:06] : RunProgram------ /tmp/TTT_10208.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:58:07] : RunProgram------ /tmp/TTT_10208.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 20:58:07] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 21:04:33] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 21:04:33] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 21:04:33] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 21:04:33] : computer: RHEL1 process: 11736 tty: /dev/pts/0
+[28/02/2018 21:04:33] : ----------------- environment variables ----------------
+[28/02/2018 21:04:33] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 21:04:33] : CVS_RSH=ssh
+[28/02/2018 21:04:33] : G_BROKEN_FILENAMES=1
+[28/02/2018 21:04:33] : HISTCONTROL=ignoredups
+[28/02/2018 21:04:33] : HISTSIZE=1000
+[28/02/2018 21:04:33] : HOME=/root
+[28/02/2018 21:04:33] : HOSTNAME=RHEL1
+[28/02/2018 21:04:33] : LANG=en_US.UTF-8
+[28/02/2018 21:04:33] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 21:04:33] : LOADEDMODULES=
+[28/02/2018 21:04:33] : LOGNAME=root
+[28/02/2018 21:04:33] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 21:04:33] : MAIL=/var/spool/mail/root
+[28/02/2018 21:04:33] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 21:04:33] : MODULESHOME=/usr/share/Modules
+[28/02/2018 21:04:33] : OLDPWD=/root/lvm
+[28/02/2018 21:04:33] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 21:04:33] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 21:04:33] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 21:04:33] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 21:04:33] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 21:04:33] : SHELL=/bin/bash
+[28/02/2018 21:04:33] : SHLVL=1
+[28/02/2018 21:04:33] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 21:04:33] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 21:04:33] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 21:04:33] : SSH_TTY=/dev/pts/0
+[28/02/2018 21:04:33] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 21:04:33] : SYMCLI_MODE=V72
+[28/02/2018 21:04:33] : TERM=xterm
+[28/02/2018 21:04:33] : USER=root
+[28/02/2018 21:04:33] : _=./ReplicMan.pl
+[28/02/2018 21:04:33] : ----------------- environment variables ----------------
+[28/02/2018 21:04:33] : ReplicMan STARTED
+[28/02/2018 21:04:33] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 21:04:33] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 21:04:33] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 21:04:33] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 21:04:33] : Step 05 CheckGroupStatus END
+[28/02/2018 21:04:33] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 21:04:33] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 21:04:33] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 21:04:33] : Checking for other running syncs ...
+[28/02/2018 21:04:33] : Step 06 CheckRunningSyncs END
+[28/02/2018 21:04:33] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:04:33] : DESCRIPTION: Pre Establish Command
+[28/02/2018 21:04:33] : Step 10 EstPreCommand BEGIN
+[28/02/2018 21:04:33] : Running PreEstablish Command
+[28/02/2018 21:04:33] : Running PreEstablish Command Finished O.K.
+[28/02/2018 21:04:33] : Step 10 EstPreCommand END
+[28/02/2018 21:04:33] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:04:33] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 21:04:33] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 21:04:33] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 21:04:33] : Step 15 ShutDownTargetDB END
+[28/02/2018 21:04:33] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:04:33] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 21:04:33] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 21:04:33] : Un-mounting FileSystems on Host localhost
+[28/02/2018 21:04:33] : Getting list of FileSystem...
+[28/02/2018 21:04:33] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 21:04:33] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 21:04:33] : Step 20 UmountTargetFS END
+[28/02/2018 21:04:33] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:04:33] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 21:04:33] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 21:04:33] : Getting Target VG List
+[28/02/2018 21:04:33] : Getting Target VG List - Done.
+[28/02/2018 21:04:33] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 21:04:34] : RunProgram------ /tmp/TTT_11736.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:04:34] : RunProgram------ /tmp/TTT_11736.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:04:34] : RunProgram------ /tmp/TTT_11736.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:04:34] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 21:05:51] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 21:05:51] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 21:05:51] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 21:05:51] : computer: RHEL1 process: 12163 tty: /dev/pts/0
+[28/02/2018 21:05:51] : ----------------- environment variables ----------------
+[28/02/2018 21:05:51] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 21:05:51] : CVS_RSH=ssh
+[28/02/2018 21:05:51] : G_BROKEN_FILENAMES=1
+[28/02/2018 21:05:51] : HISTCONTROL=ignoredups
+[28/02/2018 21:05:51] : HISTSIZE=1000
+[28/02/2018 21:05:51] : HOME=/root
+[28/02/2018 21:05:51] : HOSTNAME=RHEL1
+[28/02/2018 21:05:51] : LANG=en_US.UTF-8
+[28/02/2018 21:05:51] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 21:05:51] : LOADEDMODULES=
+[28/02/2018 21:05:51] : LOGNAME=root
+[28/02/2018 21:05:51] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 21:05:51] : MAIL=/var/spool/mail/root
+[28/02/2018 21:05:51] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 21:05:51] : MODULESHOME=/usr/share/Modules
+[28/02/2018 21:05:51] : OLDPWD=/root/lvm
+[28/02/2018 21:05:51] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 21:05:51] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 21:05:51] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 21:05:51] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 21:05:51] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 21:05:51] : SHELL=/bin/bash
+[28/02/2018 21:05:51] : SHLVL=1
+[28/02/2018 21:05:51] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 21:05:51] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 21:05:51] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 21:05:51] : SSH_TTY=/dev/pts/0
+[28/02/2018 21:05:51] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 21:05:51] : SYMCLI_MODE=V72
+[28/02/2018 21:05:51] : TERM=xterm
+[28/02/2018 21:05:51] : USER=root
+[28/02/2018 21:05:51] : _=./ReplicMan.pl
+[28/02/2018 21:05:51] : ----------------- environment variables ----------------
+[28/02/2018 21:05:51] : ReplicMan STARTED
+[28/02/2018 21:05:51] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 21:05:51] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 21:05:51] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 21:05:51] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 21:05:51] : Netapp Configuration
+[28/02/2018 21:05:51] : Going to FlexClone the following Volumes:
+[28/02/2018 21:05:51] : svm_linux:RHEL1_koko -> RHEL1_koko
+[28/02/2018 21:05:51] : Step 05 CheckGroupStatus END
+[28/02/2018 21:05:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 21:05:51] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 21:05:51] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 21:05:51] : Checking for other running syncs ...
+[28/02/2018 21:05:51] : Step 06 CheckRunningSyncs END
+[28/02/2018 21:05:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:05:51] : DESCRIPTION: Pre Establish Command
+[28/02/2018 21:05:51] : Step 10 EstPreCommand BEGIN
+[28/02/2018 21:05:51] : Running PreEstablish Command
+[28/02/2018 21:05:51] : Running PreEstablish Command Finished O.K.
+[28/02/2018 21:05:51] : Step 10 EstPreCommand END
+[28/02/2018 21:05:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:05:51] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 21:05:51] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 21:05:51] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 21:05:51] : Step 15 ShutDownTargetDB END
+[28/02/2018 21:05:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:05:51] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 21:05:51] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 21:05:51] : Un-mounting FileSystems on Host localhost
+[28/02/2018 21:05:51] : Getting list of FileSystem...
+[28/02/2018 21:05:51] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 21:05:51] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 21:05:51] : Step 20 UmountTargetFS END
+[28/02/2018 21:05:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:05:51] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 21:05:51] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 21:05:51] : Getting Target VG List
+[28/02/2018 21:05:51] : Getting Target VG List - Done.
+[28/02/2018 21:05:51] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 21:05:51] : RunProgram------ /tmp/TTT_12163.1[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:05:51] : RunProgram------ /tmp/TTT_12163.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:05:51] : RunProgram------ /tmp/TTT_12163.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:05:51] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 21:14:05] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 21:14:05] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 21:14:05] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 21:14:05] : computer: RHEL1 process: 14033 tty: /dev/pts/0
+[28/02/2018 21:14:05] : ----------------- environment variables ----------------
+[28/02/2018 21:14:05] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 21:14:05] : CVS_RSH=ssh
+[28/02/2018 21:14:05] : G_BROKEN_FILENAMES=1
+[28/02/2018 21:14:05] : HISTCONTROL=ignoredups
+[28/02/2018 21:14:05] : HISTSIZE=1000
+[28/02/2018 21:14:05] : HOME=/root
+[28/02/2018 21:14:05] : HOSTNAME=RHEL1
+[28/02/2018 21:14:05] : LANG=en_US.UTF-8
+[28/02/2018 21:14:05] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 21:14:05] : LOADEDMODULES=
+[28/02/2018 21:14:05] : LOGNAME=root
+[28/02/2018 21:14:05] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 21:14:05] : MAIL=/var/spool/mail/root
+[28/02/2018 21:14:05] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 21:14:05] : MODULESHOME=/usr/share/Modules
+[28/02/2018 21:14:05] : OLDPWD=/root/lvm
+[28/02/2018 21:14:05] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 21:14:05] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 21:14:05] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 21:14:05] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 21:14:05] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 21:14:05] : SHELL=/bin/bash
+[28/02/2018 21:14:05] : SHLVL=1
+[28/02/2018 21:14:05] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 21:14:05] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 21:14:05] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 21:14:05] : SSH_TTY=/dev/pts/0
+[28/02/2018 21:14:05] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 21:14:05] : SYMCLI_MODE=V72
+[28/02/2018 21:14:05] : TERM=xterm
+[28/02/2018 21:14:05] : USER=root
+[28/02/2018 21:14:05] : _=./ReplicMan.pl
+[28/02/2018 21:14:05] : ----------------- environment variables ----------------
+[28/02/2018 21:14:05] : ReplicMan STARTED
+[28/02/2018 21:14:05] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 21:14:05] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 21:14:05] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 21:14:05] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 21:14:05] : Netapp Configuration
+[28/02/2018 21:14:05] : Going to FlexClone the following Volumes:
+[28/02/2018 21:14:05] : svm_linux:RHEL1_koko1 -> RHEL1_koko
+[28/02/2018 21:14:06] : Error: The volume does NOT exists on the CDOT - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 21:14:38] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 21:14:38] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 21:14:38] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 21:14:38] : computer: RHEL1 process: 14171 tty: /dev/pts/0
+[28/02/2018 21:14:38] : ----------------- environment variables ----------------
+[28/02/2018 21:14:38] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 21:14:38] : CVS_RSH=ssh
+[28/02/2018 21:14:38] : G_BROKEN_FILENAMES=1
+[28/02/2018 21:14:38] : HISTCONTROL=ignoredups
+[28/02/2018 21:14:38] : HISTSIZE=1000
+[28/02/2018 21:14:38] : HOME=/root
+[28/02/2018 21:14:38] : HOSTNAME=RHEL1
+[28/02/2018 21:14:38] : LANG=en_US.UTF-8
+[28/02/2018 21:14:38] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 21:14:38] : LOADEDMODULES=
+[28/02/2018 21:14:38] : LOGNAME=root
+[28/02/2018 21:14:38] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 21:14:38] : MAIL=/var/spool/mail/root
+[28/02/2018 21:14:38] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 21:14:38] : MODULESHOME=/usr/share/Modules
+[28/02/2018 21:14:38] : OLDPWD=/root/lvm
+[28/02/2018 21:14:38] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 21:14:38] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 21:14:38] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 21:14:38] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 21:14:38] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 21:14:38] : SHELL=/bin/bash
+[28/02/2018 21:14:38] : SHLVL=1
+[28/02/2018 21:14:38] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 21:14:38] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 21:14:38] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 21:14:38] : SSH_TTY=/dev/pts/0
+[28/02/2018 21:14:38] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 21:14:38] : SYMCLI_MODE=V72
+[28/02/2018 21:14:38] : TERM=xterm
+[28/02/2018 21:14:38] : USER=root
+[28/02/2018 21:14:38] : _=./ReplicMan.pl
+[28/02/2018 21:14:38] : ----------------- environment variables ----------------
+[28/02/2018 21:14:38] : ReplicMan STARTED
+[28/02/2018 21:14:38] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 21:14:38] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 21:14:38] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 21:14:38] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 21:14:38] : Netapp Configuration
+[28/02/2018 21:14:38] : Going to FlexClone the following Volumes:
+[28/02/2018 21:14:38] : svm_linux:RHEL1_koko1 -> RHEL1_koko
+[28/02/2018 21:14:39] : Error: The volume does NOT exists on the CDOT - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 21:14:56] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 21:14:56] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 21:14:56] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 21:14:56] : computer: RHEL1 process: 14260 tty: /dev/pts/0
+[28/02/2018 21:14:56] : ----------------- environment variables ----------------
+[28/02/2018 21:14:56] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 21:14:56] : CVS_RSH=ssh
+[28/02/2018 21:14:56] : G_BROKEN_FILENAMES=1
+[28/02/2018 21:14:56] : HISTCONTROL=ignoredups
+[28/02/2018 21:14:56] : HISTSIZE=1000
+[28/02/2018 21:14:56] : HOME=/root
+[28/02/2018 21:14:56] : HOSTNAME=RHEL1
+[28/02/2018 21:14:56] : LANG=en_US.UTF-8
+[28/02/2018 21:14:56] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 21:14:56] : LOADEDMODULES=
+[28/02/2018 21:14:56] : LOGNAME=root
+[28/02/2018 21:14:56] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 21:14:56] : MAIL=/var/spool/mail/root
+[28/02/2018 21:14:56] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 21:14:56] : MODULESHOME=/usr/share/Modules
+[28/02/2018 21:14:56] : OLDPWD=/root/lvm
+[28/02/2018 21:14:56] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 21:14:56] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 21:14:56] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 21:14:56] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 21:14:56] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 21:14:56] : SHELL=/bin/bash
+[28/02/2018 21:14:56] : SHLVL=1
+[28/02/2018 21:14:56] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 21:14:56] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 21:14:56] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 21:14:56] : SSH_TTY=/dev/pts/0
+[28/02/2018 21:14:56] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 21:14:56] : SYMCLI_MODE=V72
+[28/02/2018 21:14:56] : TERM=xterm
+[28/02/2018 21:14:56] : USER=root
+[28/02/2018 21:14:56] : _=./ReplicMan.pl
+[28/02/2018 21:14:56] : ----------------- environment variables ----------------
+[28/02/2018 21:14:56] : ReplicMan STARTED
+[28/02/2018 21:14:56] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 21:14:56] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 21:14:56] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 21:14:56] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 21:14:56] : Netapp Configuration
+[28/02/2018 21:14:56] : Going to FlexClone the following Volumes:
+[28/02/2018 21:14:56] : svm_linux:RHEL1_koko -> RHEL1_koko
+[28/02/2018 21:14:57] : Step 05 CheckGroupStatus END
+[28/02/2018 21:14:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 21:14:57] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 21:14:57] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 21:14:57] : Checking for other running syncs ...
+[28/02/2018 21:14:57] : Step 06 CheckRunningSyncs END
+[28/02/2018 21:14:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:14:57] : DESCRIPTION: Pre Establish Command
+[28/02/2018 21:14:57] : Step 10 EstPreCommand BEGIN
+[28/02/2018 21:14:57] : Running PreEstablish Command
+[28/02/2018 21:14:57] : Running PreEstablish Command Finished O.K.
+[28/02/2018 21:14:57] : Step 10 EstPreCommand END
+[28/02/2018 21:14:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:14:57] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 21:14:57] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 21:14:57] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 21:14:57] : Step 15 ShutDownTargetDB END
+[28/02/2018 21:14:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:14:57] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 21:14:57] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 21:14:57] : Un-mounting FileSystems on Host localhost
+[28/02/2018 21:14:57] : Getting list of FileSystem...
+[28/02/2018 21:14:57] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 21:14:57] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 21:14:57] : Step 20 UmountTargetFS END
+[28/02/2018 21:14:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:14:57] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 21:14:57] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 21:14:57] : Getting Target VG List
+[28/02/2018 21:14:57] : Getting Target VG List - Done.
+[28/02/2018 21:14:57] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 21:14:57] : RunProgram------ /tmp/TTT_14260.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:14:57] : RunProgram------ /tmp/TTT_14260.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:14:57] : RunProgram------ /tmp/TTT_14260.4[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:14:57] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[28/02/2018 21:24:28] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[28/02/2018 21:24:28] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[28/02/2018 21:24:28] : START: ./ReplicMan.pl -g CDOT_TEST
+[28/02/2018 21:24:28] : computer: RHEL1 process: 16397 tty: /dev/pts/0
+[28/02/2018 21:24:28] : ----------------- environment variables ----------------
+[28/02/2018 21:24:28] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[28/02/2018 21:24:28] : CVS_RSH=ssh
+[28/02/2018 21:24:28] : G_BROKEN_FILENAMES=1
+[28/02/2018 21:24:28] : HISTCONTROL=ignoredups
+[28/02/2018 21:24:28] : HISTSIZE=1000
+[28/02/2018 21:24:28] : HOME=/root
+[28/02/2018 21:24:28] : HOSTNAME=RHEL1
+[28/02/2018 21:24:28] : LANG=en_US.UTF-8
+[28/02/2018 21:24:28] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[28/02/2018 21:24:28] : LOADEDMODULES=
+[28/02/2018 21:24:28] : LOGNAME=root
+[28/02/2018 21:24:28] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[28/02/2018 21:24:28] : MAIL=/var/spool/mail/root
+[28/02/2018 21:24:28] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[28/02/2018 21:24:28] : MODULESHOME=/usr/share/Modules
+[28/02/2018 21:24:28] : OLDPWD=/root/lvm
+[28/02/2018 21:24:28] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[28/02/2018 21:24:28] : PWD=/root/lvm/ReplicManDev
+[28/02/2018 21:24:28] : QTDIR=/usr/lib64/qt-3.3
+[28/02/2018 21:24:28] : QTINC=/usr/lib64/qt-3.3/include
+[28/02/2018 21:24:28] : QTLIB=/usr/lib64/qt-3.3/lib
+[28/02/2018 21:24:28] : SHELL=/bin/bash
+[28/02/2018 21:24:28] : SHLVL=1
+[28/02/2018 21:24:28] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[28/02/2018 21:24:28] : SSH_CLIENT=192.168.0.5 58954 22
+[28/02/2018 21:24:28] : SSH_CONNECTION=192.168.0.5 58954 192.168.0.61 22
+[28/02/2018 21:24:28] : SSH_TTY=/dev/pts/0
+[28/02/2018 21:24:28] : SYMCLI_CTL_ACCESS=PARALLEL
+[28/02/2018 21:24:28] : SYMCLI_MODE=V72
+[28/02/2018 21:24:28] : TERM=xterm
+[28/02/2018 21:24:28] : USER=root
+[28/02/2018 21:24:28] : _=./ReplicMan.pl
+[28/02/2018 21:24:28] : ----------------- environment variables ----------------
+[28/02/2018 21:24:28] : ReplicMan STARTED
+[28/02/2018 21:24:28] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180228.CDOT_TEST.log
+[28/02/2018 21:24:28] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180228 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[28/02/2018 21:24:28] : DESCRIPTION: Check the group status Before the Establish
+[28/02/2018 21:24:28] : Step 05 CheckGroupStatus BEGIN
+[28/02/2018 21:24:28] : Netapp Configuration
+[28/02/2018 21:24:28] : Going to FlexClone the following Volumes:
+[28/02/2018 21:24:28] : svm_linux:RHEL1_koko -> RHEL1_koko
+[28/02/2018 21:24:29] : Step 05 CheckGroupStatus END
+[28/02/2018 21:24:29] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[28/02/2018 21:24:29] : DESCRIPTION: Check for running syncs from the same source
+[28/02/2018 21:24:29] : Step 06 CheckRunningSyncs BEGIN
+[28/02/2018 21:24:29] : Checking for other running syncs ...
+[28/02/2018 21:24:29] : Step 06 CheckRunningSyncs END
+[28/02/2018 21:24:29] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:24:29] : DESCRIPTION: Pre Establish Command
+[28/02/2018 21:24:29] : Step 10 EstPreCommand BEGIN
+[28/02/2018 21:24:29] : Running PreEstablish Command
+[28/02/2018 21:24:29] : Running PreEstablish Command Finished O.K.
+[28/02/2018 21:24:29] : Step 10 EstPreCommand END
+[28/02/2018 21:24:29] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:24:29] : DESCRIPTION: ShutDown DataBase on the target host
+[28/02/2018 21:24:29] : Step 15 ShutDownTargetDB BEGIN
+[28/02/2018 21:24:29] : No Need to shutdown DB - TARGET have No DB !!!
+[28/02/2018 21:24:29] : Step 15 ShutDownTargetDB END
+[28/02/2018 21:24:29] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[28/02/2018 21:24:29] : DESCRIPTION: Umount FileSystems on the target host
+[28/02/2018 21:24:29] : Step 20 UmountTargetFS BEGIN
+[28/02/2018 21:24:29] : Un-mounting FileSystems on Host localhost
+[28/02/2018 21:24:29] : Getting list of FileSystem...
+[28/02/2018 21:24:29] : Getting list of FileSystem -  Finished O.K.
+[28/02/2018 21:24:29] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[28/02/2018 21:24:29] : Step 20 UmountTargetFS END
+[28/02/2018 21:24:29] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[28/02/2018 21:24:29] : DESCRIPTION: VgChange after umount on the target
+[28/02/2018 21:24:29] : Step 25 VGChangeAfterUmount BEGIN
+[28/02/2018 21:24:29] : Getting Target VG List
+[28/02/2018 21:24:29] : Getting Target VG List - Done.
+[28/02/2018 21:24:29] : Running : vgchange -c n  --config 'global {locking_type = 0}'
+[28/02/2018 21:24:29] : RunProgram------ /tmp/TTT_16397.2[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:24:29] : RunProgram------ /tmp/TTT_16397.3[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:24:29] : RunProgram------ /tmp/TTT_16397.4[1]: /usr/sbin/vgchange: not found [No such file or directory]
+[28/02/2018 21:24:29] : Error: Cannot vgchange  on localhost. Command: /usr/sbin/vgchange -c n  --config 'global {locking_type = 0}'

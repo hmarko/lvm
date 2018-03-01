@@ -23,6 +23,8 @@ $| = 1 ;
 %GParam = () ;
 $OK = "Finished O.K." ;
 
+our $runserver = `hostname`;
+
 #-----------------------------------------------------------------------------#
 # Open-View Message To The ITO !                                              #
 #-----------------------------------------------------------------------------#
@@ -124,6 +126,8 @@ sub ReadParamFile() {
 		$CMD = $GParam{"CLIDIR"} ."/symsnap" ;
 	}elsif ($Param{"MSGRP"} eq "Netapp") {
 		$CMD = "Netapp";
+	}elsif ($Param{"MSGRP"} eq "NetappSAN") {
+		$CMD = "NetappSAN";		
 	}elsif ($Param{"MSGRP"} eq "XIV") {
 		$CMD = "XIV";
 	}elsif ($Param{"MSGRP"} eq "SVC") {
@@ -857,8 +861,19 @@ sub CheckGroupStatus() {
 		for (my $index = 0; $index <= $#netapps; $index++) {
 			Info ("$netapps[$index]:$src_vols[$index] -> $tgt_vols[$index]");
 		}
-		
 	}
+	# NetappSAN
+	if ($GroupParams{"MSGRP"} eq "NetappSAN" ) {
+		Info ("Netapp Configuration");
+		Info ("Going to FlexClone the following Volumes:");
+		# Print the volumes
+		for (my $index = 0; $index <= $#netapps; $index++) {
+			Info ("$netapps[$index]:$src_vols[$index] -> $tgt_vols[$index]");
+			if (isVolExistsCOT($netapps[$index],$src_vols[$index])) {
+				Exit ("Error: The volume does NOT exists on the CDOT - i have to exit",1);		
+			}
+		}
+	}	
 	# EMC Snap
 	if ($GroupParams{"MSGRP"} eq "SYMSNAP" ) {
 		Info ("Getting Group Status") ;
@@ -1006,7 +1021,7 @@ sub DoTheEstablish() {
 		Info ("You Can Run The Command  ( $CommandPrefix query ) To See the Establish Progress\n") ;
 	}
 	# NetApp - Step 30
-	if ( $GroupParams{"MSGRP"} =~ /Netapp/ ) {
+	if ( $GroupParams{"MSGRP"} eq "Netapp" ) {
 		# Run for every volume
 		for (my $index = 0; $index <= $#netapps; $index++) {
 			# Check if FlexVol (dest volume) exists - if so, delete it
@@ -1068,6 +1083,57 @@ sub DoTheEstablish() {
 			}
 		}
 	}
+
+	# NetApp SAN - Step 30
+	if ( $GroupParams{"MSGRP"} eq "NetappSAN" ) {
+		# Run for every volume
+		print $GroupParams{"LUN_CLONE"};
+		#haim marko
+		exit;
+		for (my $index = 0; $index <= $#netapps; $index++) {
+			# Check if FlexVol (dest volume) exists - if so, delete it
+			Info ("Checking if Target Volume \"$tgt_vols[$index]\" exists on \"$netapps[$index]\"");
+			if (isVolExistsCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
+				# Take volume offline
+				Info ("Going to take offline previous FlexClone \"$netapps[$index]:$tgt_vols[$index]\"");
+				if ( offlineVolCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
+					Info ("Volume taken offline successfully");
+				}
+				else {
+					Exit ("ERROR: Cannot offline volume - I have to EXIT",1);
+				}
+				
+				# Delete the Flexclone
+				Info ("Going to delete previous FlexClone \"$netapps[$index]:$tgt_vols[$index]\"");
+				if ( deleteVolCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
+					Info ("FlexClone deleted successfully");
+				}
+				else {
+					Exit ("ERROR: Cannot Destroy volume - I have to EXIT",1);
+				}
+			}
+			else {
+				Info ("Volume \"$tgt_vols[$index]\" does NOT exists on \"$netapps[$index]\" Moving on");
+			}
+			
+			# Check if the snapshot that the FlexClone is based upon exists - if so, delete it
+			# Define a snapshot for the netapp group
+			my $Uniq_Snapshot="ReplicMan_" . $GroupParams{"TARGET_HOST"};  chomp $Uniq_Snapshot;
+			Info("Going to check if snapshot $Uniq_Snapshot exists on $netapps[$index] $src_vols[$index]");
+			if (isSnapExistsCOT($netapps[$index], $src_vols[$index],$Uniq_Snapshot) eq 0 ) {
+				# Delete the snapshot
+				Info("Going to delete snapshot $Uniq_Snapshot from $netapps[$index]\:$src_vols[$index]");
+				if (deleteSnapCOT($netapps[$index], $src_vols[$index],$Uniq_Snapshot) eq 0 ) {
+					Info("The snapshot $Uniq_Snapshot in $netapps[$index]\:$src_vols[$index] was Deleted");
+				}
+				else {
+					Exit("ERROR: Cannot delete snapshot - I have to EXIT",1);
+				}
+			}
+		}
+	}
+
+
 	
 	# XIV - Step 30
 	if ($GroupParams{"MSGRP"} eq "XIV" ) {
@@ -1328,7 +1394,7 @@ sub PrepForHotSplit() {
 	my $tns=$GroupParams{"TNS_NAME"};
 	Info ("Running /pub_tools/shells/check_hot_backup.sh $tns & ");
 	my $mcmd="/pub_tools/shells/check_hot_backup.sh $tns &";
-	RunProgram("sparta", $mcmd);
+	RunProgram($runserver, $mcmd);
 
 	# Sync All Data From The Memory To The Disks !
 	if ($GroupParams{"DB_TYPE"} ne "ASM") {
@@ -2972,7 +3038,7 @@ trap_signals() ;
 
 # Check if the user is root
 MustRunAs("root") ;
-MustRunOn("sparta") ;
+MustRunOn($runserver) ;
 
 #-----------------------------------------------------------------------------#
 # Global Parameters															  #
@@ -3149,7 +3215,7 @@ if ($GroupParams{"MASTER_HOST"} ne "NoHost" && $GroupParams{"DATABASE_NAME_MASTE
 
 # Storage related Steps
 # Netapp Storage
-if ($GroupParams{"MSGRP"} =~ /Netapp/ ) {
+if ($GroupParams{"MSGRP"} eq "Netapp" ) {
 	# This section is NEEDED for Maof DEV Appl !
 	if (($GROUP_NAME eq "VOL_MAOF_UNASSIGN_JDEV") ||  ($GROUP_NAME eq "VOL_MAOF_JDEV_JDEV2") || ($GROUP_NAME eq "VOL_MAOF_JDEV_JDEVR12")) {
 		#Update $GroupParams{TARGET_FILESYSTEM} in Group file content
@@ -3170,6 +3236,25 @@ if ($GroupParams{"MSGRP"} =~ /Netapp/ ) {
 	AddStep("40", "EstPostCommand", "Post Establish Command") ;
 	
 	# Split Proccess
+	AddStep("50", "SplitPreCommand", "Pre Split Command") ;
+	AddStep("60", "DoTheSplit", "Split The Group") ;
+	AddStep("85", "SplitPostCommand", "Post Split Command") ;	
+}
+elsif ($GroupParams{"MSGRP"} eq "NetappSAN" ) {
+
+	# Establish Proccess
+	AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
+	AddStep("06", "CheckRunningSyncs", "Check for running syncs from the same source") ; 
+	AddStep("10", "EstPreCommand", "Pre Establish Command") ;
+	
+	
+	# If this is a Remote volume - Snapmirror Volume involved
+	if (lc $GroupParams{"NETAPP_CLONE_FROM_MIRROR"} eq "yes") {
+		AddStep("30", "DoTheEstablish", "Delete Target Volume") ;
+	}
+	
+	AddStep("40", "EstPostCommand", "Post Establish Command") ;	
+	# Split Process
 	AddStep("50", "SplitPreCommand", "Pre Split Command") ;
 	AddStep("60", "DoTheSplit", "Split The Group") ;
 	AddStep("85", "SplitPostCommand", "Post Split Command") ;
