@@ -15,7 +15,7 @@ BEGIN {
 	$VERSION     = 1.00;
 
 	@ISA         = qw(Exporter);
-	@EXPORT      = qw(&isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
+	@EXPORT      = qw(&getVolCommentCOT &deleteLunCOT &mapLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
 						&exportNetappVol &addVol2Vfiler &checkSmIdle &updateSM &isVolExistsCOT &deleteVolCOT &createNetappSnapCOT &createFlexCloneCOT &exportNetappVolCOT &getNetappLastSnapCOT);
 	%EXPORT_TAGS = ( );     # eg: TAG => [ qw!name1 name2! ],
 
@@ -24,6 +24,51 @@ BEGIN {
 our @EXPORT_OK;
 
 END { }       # module clean-up code here (global destructor)
+
+sub getVolCommentCOT($$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $volume = shift ;	chomp $volume ;	
+	my $cmd = "ssh vsadmin\@$netapp volume show -volume $volume -fields comment | grep \" $volume \"" ;
+	
+	RunProgramQuiet($main::RunnigHost, "$cmd"); 
+	my @Text = GetCommandResult();
+	
+	my $comment = pop @Text; chomp $comment ;
+	$comment =~ /\s*(\S+)\s+($volume)\s+(.+)/;
+	$commnet = $3;
+	
+	return $commnet ;
+}
+
+sub mapLunsCOT($$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $path = '/vol/'.shift ;		chomp $path ;
+	my $cmd = "ssh vsadmin\@$netapp lun show -fields path | grep \"$path\"" ;
+	#print "$cmd\n";
+	RunProgramQuiet($main::RunnigHost, "$cmd"); 
+	my @Text = GetCommandResult();	
+	return @Text;
+}
+
+sub deleteLunCOT($$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $path = shift ;		chomp $path ;
+	
+	my $cmd = "ssh vsadmin\@$netapp \"set -conf off; lun delete -path $path\"" ;
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgram($main::RunnigHost, "$cmd") ;
+	
+	# I have to check wheter the lun is really deleted
+	$cmd = "ssh vsadmin\@$netapp lun show -fields path | grep \"$path\"";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	if ( $ExitCode eq 1 ) { # lun does not exists -> DELETED
+		return 0;
+	}
+	else { # lun exists (grep returned 0) -> Deletion FAILED
+		return 1;
+	}
+}
+
 
 sub isVolExists($$) {
 	my $netapp = shift ;		chomp $netapp ;

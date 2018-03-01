@@ -341,7 +341,7 @@ sub CreateNetappMap () {
 		close GrpFile;
 	}
 	
-	# Netapp - build 3 arrays of the netapp, source vol and target vol
+	# NetappSAN - build 6 arrays of the netapp to support lun paths
 	if ( $GroupParams{"MSGRP"} eq "NetappSAN" ) {
 		my $line;
 		my $index=0;
@@ -1117,7 +1117,7 @@ sub DoTheEstablish() {
 		# Run for every volume
 		for (my $index = 0; $index <= $#netapps; $index++) {
 		
-			Debug("NetApp SAN data parsed: S:$netapps[$index] D:$netappd[$index] S:$src_vols[$index] P:$src_path[$index] T:$tgt_vols[$index] P:$tgt_path[$index]");
+			Debug("DoTheEstablish","NetApp SAN data parsed: S:$netapps[$index] D:$netappd[$index] S:$src_vols[$index] P:$src_path[$index] T:$tgt_vols[$index] P:$tgt_path[$index]");
 			#check with method been used for cloning, file-clone is being used only when src and dst are equal (SVM and Vol)
 			$use_clone_type = 'flex-clone';
 			if ($netapps[$index] eq $netappd[$index] and $src_vols[$index] eq $tgt_vols[$index]) {
@@ -1126,37 +1126,62 @@ sub DoTheEstablish() {
 					Exit ("ERROR: when file-clone is used diffrent path should be provided for the destination",1);
 				}
 			}
+
 			
-			if ($use_clone_type) {
+			#file clone been used to create the clone 
+			if ($use_clone_type eq 'file-clone') {
+				@LUNs = mapLunsCOT($netappd[$index],$tgt_vols[$index].'/'.$tgt_path[$index].'/ReplicManClone_');
+
+				if ($#LUNs lt 0) {
+					Info ("There are no LUN clones starting with ".$netappd[$index].":/vol/".$tgt_vols[$index]."/".$tgt_path[$index].'/ReplicManClone_');
+				} else {
+					foreach $lun (@LUNs) {
+						($svm,$path) = split(/\s+/,$lun);
+						Info ("Going to destroy LUN \"$netappd[$index]:$path\"");
+						if ( deleteLunCOT($netappd[$index], $path) eq 0 ) {
+							Info ("LUN destroyed successfully");
+						} else {
+							Exit ("ERROR: cannot destroy LUN:\"$netappd[$index]:$path\"",1);
+						}
+					}
+				}
 			}
 			
-			exit;
-			# Check if FlexVol (dest volume) exists - if so, delete it
-			Info ("Checking if Target Volume \"$tgt_vols[$index]\" exists on \"$netapps[$index]\"");
-			if (isVolExistsCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
-				# Take volume offline
-				Info ("Going to take offline previous FlexClone \"$netapps[$index]:$tgt_vols[$index]\"");
-				if ( offlineVolCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
-					Info ("Volume taken offline successfully");
+			#flex clone is used to create the clone 
+			if ($use_clone_type eq 'flex-clone') {
+				# Check if FlexVol (dest volume) exists - if so, delete it
+				Info ("Checking if Target Volume \"$tgt_vols[$index]\" exists on \"$netappd[$index]\"");
+				if (isVolExistsCOT($netappd[$index], $tgt_vols[$index]) eq 0 ) {
+					#only destroy volumes with comment "Created by ReplicMan and can be destroyed by it"
+					Info ("Checking if Target Volume \"$tgt_vols[$index]\" contains commnet:\"Created by ReplicMan and can be destroyed by it\"");
+					if (getVolCommentCOT($netappd[$index], $tgt_vols[$index] ne "Created by ReplicMan and can be destroyed by it") {
+						Exit ("ERROR: cannot destroy flex-clone that was not created by ReplicMan (commnet was not found or diffrent)",1);
+					}
+					# Take volume offline
+					Info ("Going to take offline previous FlexClone \"$netappd[$index]:$tgt_vols[$index]\"");
+					if ( offlineVolCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
+						Info ("Volume taken offline successfully");
+					}
+					else {
+						Exit ("ERROR: Cannot offline volume - I have to EXIT",1);
+					}
+					
+					# Delete the Flexclone
+					Info ("Going to delete previous FlexClone \"$netappd[$index]:$tgt_vols[$index]\"");
+					if ( deleteVolCOT($netappd[$index], $tgt_vols[$index]) eq 0 ) {
+						Info ("FlexClone deleted successfully");
+					}
+					else {
+						Exit ("ERROR: Cannot Destroy volume - I have to EXIT",1);
+					}
 				}
 				else {
-					Exit ("ERROR: Cannot offline volume - I have to EXIT",1);
+					Info ("Volume \"$tgt_vols[$index]\" does NOT exists on \"$netapps[$index]\" Moving on");
 				}
-				
-				# Delete the Flexclone
-				Info ("Going to delete previous FlexClone \"$netapps[$index]:$tgt_vols[$index]\"");
-				if ( deleteVolCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
-					Info ("FlexClone deleted successfully");
-				}
-				else {
-					Exit ("ERROR: Cannot Destroy volume - I have to EXIT",1);
-				}
-			}
-			else {
-				Info ("Volume \"$tgt_vols[$index]\" does NOT exists on \"$netapps[$index]\" Moving on");
 			}
 			
-			# Check if the snapshot that the FlexClone is based upon exists - if so, delete it
+			
+			# Check if the snapshot that the Clone is based upon exists - if so, delete it
 			# Define a snapshot for the netapp group
 			my $Uniq_Snapshot="ReplicMan_" . $GroupParams{"TARGET_HOST"};  chomp $Uniq_Snapshot;
 			Info("Going to check if snapshot $Uniq_Snapshot exists on $netapps[$index] $src_vols[$index]");

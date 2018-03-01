@@ -208,7 +208,7 @@ if ($out[2]=~/$svm\s+$volume\s+(\S+)\s+(\S+)/) {
 		exit 1;
 	}
 	print "modifing volume:$volume size:$vol{'initial-size'}g\n";
-	$cmd = "volume modify -volume $volume -size +".$vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'}  -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
+	$cmd = "volume modify -volume $volume -size +".$vol{'initial-size'}."g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'}  -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
 } else {
 	print "creating volume:$volume size:$vol{'initial-size'}g\n";
 	$cmd = "volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'} -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
