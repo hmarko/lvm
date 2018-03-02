@@ -15,7 +15,7 @@ BEGIN {
 	$VERSION     = 1.00;
 
 	@ISA         = qw(Exporter);
-	@EXPORT      = qw(&mapNetappLunCOT &createNetappLunCloneCOT &getVolCommentCOT &deleteLunCOT &getLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
+	@EXPORT      = qw(&snapmirrorUpdateDOT &createFlexCloneNoJunctionCOT &isVolSnapmirrorExistsCOT &createNetappQtreeCOT &mapNetappLunCOT &createNetappLunCloneCOT &getVolCommentCOT &deleteLunCOT &getLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
 						&exportNetappVol &addVol2Vfiler &checkSmIdle &updateSM &isVolExistsCOT &deleteVolCOT &createNetappSnapCOT &createFlexCloneCOT &exportNetappVolCOT &getNetappLastSnapCOT);
 	%EXPORT_TAGS = ( );     # eg: TAG => [ qw!name1 name2! ],
 
@@ -24,6 +24,91 @@ BEGIN {
 our @EXPORT_OK;
 
 END { }       # module clean-up code here (global destructor)
+
+sub snapmirrorUpdateDOT($$$$) {
+	my $srcsvm = shift ;		chomp $srcsvm ;
+	my $srcvol = shift ;		chomp $srcvol ;
+	my $dstsvm = shift ;		chomp $dstsvm ;
+	my $dstvol = shift ;		chomp $dstvol ;
+	
+	my $continue = 1;
+	my $counter = 1;
+	while ($continue and $counter < 150) {
+		my $cmd = "ssh vsadmin\@$dstsvm snapmirror show -source-vserver $srcsvm -source-volume $srcvol -destination-vserver $dstsvm -destination-volume $dstvol -fields status | grep $srcvol | grep $dstvol | awk '{print \$3}'" ;
+		#Info ("Running \"$cmd\" command \n");
+		my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+		my @Text = GetCommandResult();
+		my $state = $Text[0];
+		Info("Snapmirror status is:\"$state\" - $counter");
+		if ($state =~ /Idle/) {
+			$continue = 0;
+		} else {
+			Info("Waiting 10sec to next check");
+			sleep 10;
+			$counter ++;
+			if ($counter >= 150) {
+				return 1;
+			}
+		}
+	}
+	
+	Info("Starting snapmirror update");
+	my $cmd = "ssh vsadmin\@$dstsvm snapmirror update -source-vserver $srcsvm -source-volume $srcvol -destination-vserver $dstsvm -destination-volume $dstvol" ;
+	#Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	$continue = 1;
+	$counter = 1;
+	while ($continue and $counter < 150) {
+		my $cmd = "ssh vsadmin\@$dstsvm snapmirror show -source-vserver $srcsvm -source-volume $srcvol -destination-vserver $dstsvm -destination-volume $dstvol -fields status | grep $srcvol | grep $dstvol | awk '{print \$3}'" ;
+		#Info ("Running \"$cmd\" command \n");
+		my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+		my @Text = GetCommandResult();
+		my $state = $Text[0];
+		Info("Snapmirror status is:\"$state\" - $counter");
+		if ($state =~ /Idle/) {
+			$continue = 0;
+		} else {
+			Info("Waiting 10sec to next check");
+			sleep 10;
+			$counter ++;
+			if ($counter >= 150) {
+				return 1;
+			}
+		}
+	}	
+	
+	return 0;
+}
+
+sub isVolSnapmirrorExistsCOT($$$$) {
+	my $srcsvm = shift ;		chomp $srcsvm ;
+	my $srcvol = shift ;		chomp $srcvol ;
+	my $dstsvm = shift ;		chomp $dstsvm ;
+	my $dstvol = shift ;		chomp $dstvol ;
+	
+	my $cmd = "ssh vsadmin\@$dstsvm snapmirror show -source-vserver $srcsvm -source-volume $srcvol -destination-vserver $dstsvm -destination-volume $dstvol -fields state | grep $srcvol | grep $dstvol | awk '{print \$3}' | grep -i Snapmirrored" ;
+	#Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	return $ExitCode;
+}
+
+
+sub createNetappQtreeCOT($$$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $volume = shift ;		chomp $volume ;
+	my $qtree = shift ;		chomp $qtree ;
+	
+	my $cmd = "ssh vsadmin\@$netapp qtree create -volume $volume -qtree $qtree" ;
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	# I have to check wheter the qtree exists
+	$cmd = "ssh vsadmin\@$netapp qtree show -volume $volume -qtree $qtree -fields qtree | grep \"$volume\" | grep \"$qtree\"";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	return $ExitCode;
+}
 
 sub mapNetappLunCOT($$$) {
 	my $netapp = shift ;		chomp $netapp ;
@@ -207,7 +292,7 @@ sub deleteSnapCOT($$$) {
 	my $snap = shift ;			chomp $snap	 ;
 	my $cmd = "ssh vsadmin\@$netapp \"set -conf off; snap delete -volume $volume -snapshot $snap -foreground true\"" ;
 	Info ("Running \"$cmd\" command \n");
-	my $ExitCode = RunProgram($main::RunnigHost, "$cmd") ;
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
 	
 	# I have to check wheter the Snapshot is really deleted
 	$cmd = "ssh vsadmin\@$netapp snap show $volume -fields volume,snapshot | grep -w $snap";
@@ -268,7 +353,7 @@ sub createNetappSnapCOT($$$) {
 	Info ("Running \"$cmd\" command \n");
 	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
 	
-	# I have to check wheter the FlexClone created
+	# I have to check wheter the snapshot created
 	sleep 2;
 	$cmd = "ssh vsadmin\@$netapp snap show -volume $src_volume | grep -w $snap";
 	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
@@ -303,6 +388,22 @@ sub createFlexClone($$$) {
 	} else {# The Flex Clone worked at the first time.
 		return $ExitCode;
 	}
+	
+	return $ExitCode;
+}
+
+sub createFlexCloneNoJunctionCOT($$$$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $src_volume = shift ;	chomp $src_volume ;
+	my $tgt_volume = shift ; 	chomp $tgt_volume ;	
+	my $snap = shift ;			chomp $snap ;
+	my $cmd = "ssh vsadmin\@$netapp volume clone create -flexclone $tgt_volume -parent-volume $src_volume -s none -parent-snapshot $snap -foreground true";
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgram($main::RunnigHost, "$cmd") ;
+	
+	# I have to check wheter the FlexClone created
+	$cmd = "ssh vsadmin\@$netapp vol show -fields volume | grep -w $tgt_volume";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
 	
 	return $ExitCode;
 }

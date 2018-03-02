@@ -349,7 +349,9 @@ sub CreateNetappMap () {
 		# Open group file for netapp:volume list
 		open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
 		
-		# Fill the 4 arrays with the netapp, vfiler, source vol, and dest vol
+		# Fill the 6 arrays with the following params:
+		#when file-clone - srcsvm:dstsvm:srcvol[/srcqtree],dstvol->dstqtree  (src and dst svm and qtree should be equal)
+		#when flex-clone - srcsvm:dstsvm:srcvol[/srcqtree],dstvol->dstflexclone  (need to have snapmirro from src to dst)
 		foreach $line (<GrpFile>) {
 			chomp $line;
 			if ( $line !~ /^#/ ) {
@@ -357,8 +359,8 @@ sub CreateNetappMap () {
 				$netappd[$index] = (split (':', $line))[1];
 				$src_vols[$index] = (split('/',(split (':', $line))[2]))[0];
 				$src_path[$index] = (split('/',(split (':', $line))[2]))[1];
-				$tgt_vols[$index] = (split('/',(split (':', $line))[3]))[0];
-				$tgt_path[$index] = (split('/',(split (':', $line))[3]))[1];
+				$tgt_vols[$index] = (split('->',(split (':', $line))[3]))[0];
+				$tgt_path[$index] = (split('->',(split (':', $line))[3]))[1];
 				
 				$index += 1;
 			}
@@ -917,13 +919,14 @@ sub CheckGroupStatus() {
 				}
 			}
 			if ($use_clone_type eq 'flex-clone') {
-				Info ("Going to FlexClone the following Volumes:");
-				# Print the volumes
+				Info ("Validating that src:\"$netapps[$index]:$src_vols[$index]\" is replicated to dst:\"$netappd[$index]:$tgt_vols[$index]\"");
+				if (isVolSnapmirrorExistsCOT($netapps[$index],$src_vols[$index],$netappd[$index],$tgt_vols[$index])) {
+					Exit ("ERROR: Snapmirror relation couldnot be found or it is not initialized",1);
+				} else {
+					Info ("Snapmirror relationship found - $OK");
+				}
 				
-					Info ("$netapps[$index]:$src_vols[$index] -> $netappd[$index]:$tgt_vols[$index]");
-					if (isVolExistsCOT($netapps[$index],$src_vols[$index])) {
-						Exit ("Error: The volume does NOT exists on the CDOT - i have to exit",1);		
-					}
+				Info ("Flex Clone name will be \"ReplicMan_$tgt_path[$index]\" - prefix been added for protection");
 			}
 		}
 	}	
@@ -1174,19 +1177,19 @@ sub DoTheEstablish() {
 			
 			#flex clone is used to create the clone 
 			if ($use_clone_type eq 'flex-clone') {
-				# Check if FlexVol (dest volume) exists - if so, delete it
-				Info ("Checking if Target Volume \"$tgt_vols[$index]\" exists on \"$netappd[$index]\"");
-				if (isVolExistsCOT($netappd[$index], $tgt_vols[$index]) eq 0 ) {
+				# Check if FlexVol exists - if so, delete it
+				Info ("Checking if Target Flex Clone Volume \"ReplicManClone_$tgt_path[$index]\" exists on \"$netappd[$index]\"");
+				if (isVolExistsCOT($netappd[$index], "ReplicManClone_".$tgt_path[$index]) eq 0 ) {
 					#only destroy volumes with comment "Created by ReplicMan and can be destroyed by it"
-					Info ("Checking if Target Volume \"$tgt_vols[$index]\" contains comment:\"Created by ReplicMan and can be destroyed by it\"");
-					$comment = getVolCommentCOT($netappd[$index], $tgt_vols[$index]);
-					if (not $comment =~/Created by ReplicMan and can be destroyed by it/) {
-						Exit ("ERROR: cannot destroy flex-clone that was not created by ReplicMan (comment was not found or diffrent)",1);
-					}
-					Info ("Volume comment validated");
+					#Info ("Checking if Target Volume \"$tgt_vols[$index]\" contains comment:\"Created by ReplicMan and can be destroyed by it\"");
+					#$comment = getVolCommentCOT($netappd[$index], $tgt_vols[$index]);
+					#if (not $comment =~/Created by ReplicMan and can be destroyed by it/) {
+					#	Exit ("ERROR: cannot destroy flex-clone that was not created by ReplicMan (comment was not found or diffrent)",1);
+					#}
+					#Info ("Volume comment validated");
 					# Take volume offline
-					Info ("Going to take offline previous FlexClone \"$netappd[$index]:$tgt_vols[$index]\"");
-					if ( offlineVolCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
+					Info ("Going to take offline previous FlexClone \"$netappd[$index]:ReplicManClone_$tgt_path[$index]\"");
+					if ( offlineVolCOT($netapps[$index], 'ReplicManClone_'.$tgt_path[$index]) eq 0 ) {
 						Info ("Volume taken offline successfully");
 					}
 					else {
@@ -1194,8 +1197,8 @@ sub DoTheEstablish() {
 					}
 					
 					# Delete the Flexclone
-					Info ("Going to delete previous FlexClone \"$netappd[$index]:$tgt_vols[$index]\"");
-					if ( deleteVolCOT($netappd[$index], $tgt_vols[$index]) eq 0 ) {
+					Info ("Going to delete previous FlexClone \"$netappd[$index]:ReplicManClone_$tgt_path[$index]\"");
+					if ( deleteVolCOT($netappd[$index], 'ReplicManClone_'.$tgt_path[$index]) eq 0 ) {
 						Info ("FlexClone deleted successfully");
 					}
 					else {
@@ -1638,6 +1641,13 @@ sub DoTheSplit() {
 				#confirm that there are source luns
 				@LUNs = getLunsCOT($netapps[$index],$src_vols[$index],$src_path[$index],'');
 				if ($#LUNs ge 0) {
+					#creating qtree 
+					Info ("Going to create a qtee  named \"$tgt_path[$index]\" on volume \"$tgt_vols[$index]\" - Netapp \"$netappd[$index]\"");					
+					if (createNetappQtreeCOT($netappd[$index],$tgt_vols[$index],$tgt_path[$index])) {
+						Exit ("ERROR: cannot create qtree",1);
+					} else {
+						Info ("Qtree created - $OK");
+					}
 					foreach $lun (@LUNs) {
 						#create the lun file-clones
 						$lun =~ /(.+)\/(\w+)$/;
@@ -1666,18 +1676,22 @@ sub DoTheSplit() {
 			}
 
 			#flex-clone need to be used used to create the clone 
-			if ($use_clone_type eq 'file-clone') {			
+			if ($use_clone_type eq 'flex-clone') {			
 				# Confirm that the flexclone doesnt exists
-				if ( isVolExistsCOT($netapps[$index], $tgt_vols[$index]) eq 0 ) {
-					Exit ("ERROR: The Volume $netapps[$index]:$tgt_vols[$index] still exists ! Please go back to Step 30 !",1);
+				if ( isVolExistsCOT($netappd[$index], 'ReplicManClone_'.$tgt_path[$index]) eq 0 ) {
+					Exit ("ERROR: The Volume \"$netappd[$index]:ReplicManClone_$tgt_path[$index]\" still exists ! Please go back to Step 30 !",1);
 				}
-
-			
-				# Confirm that the source volume exists
-				Info ("Checking if the Source volume \"$src_vols[$index]\" exists on \"$netapps[$index]\"");
-				if ( isVolExistsCOT($netapps[$index], $src_vols[$index]) eq 0 ) {
-					Info ("Source volume \"$src_vols[$index]\" exists on \"$netapps[$index]\" $OK");
-					
+				
+				
+				Info("Starting Snapmirror update from src:\"$netapps[$index]:$src_vols[$index]\" to dst:\"$netappd[$index]:$tgt_vols[$index]\"");
+				if (not snapmirrorUpdateDOT($netapps[$index],$src_vols[$index],$netappd[$index],$tgt_vols[$index])){
+					Info("Snapmirror update - $OK ");
+				} else {
+					Exit ("ERROR: Snapmirror update failed",1);
+				}
+				
+				if (createFlexCloneNoJunctionCOT($netappd[$index],$tgt_vols[$index],'ReplicManClone_'.$tgt_path[$index],$Uniq_Snapshot)) {
+					Exit ("ERROR: Could not create FlexClone:\"$netappd[$index]:ReplicManClone_$tgt_path[$index]\"! Please go back to Step 30 !",1);
 				}
 			}
 		}
