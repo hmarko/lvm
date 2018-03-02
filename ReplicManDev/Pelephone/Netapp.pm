@@ -44,7 +44,7 @@ sub deleteLunCOT($$) {
 	my $netapp = shift ;		chomp $netapp ;
 	my $path = shift ;		chomp $path ;
 	
-	my $cmd = "ssh vsadmin\@$netapp \"set -conf off; lun delete -path $path\"" ;
+	my $cmd = "ssh vsadmin\@$netapp \"set -conf off; lun delete -path $path -force true\"" ;
 	Info ("Running \"$cmd\" command \n");
 	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
 	
