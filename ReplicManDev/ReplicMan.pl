@@ -1218,7 +1218,7 @@ sub DoTheEstablish() {
 			if (isSnapExistsCOT($netapps[$index], $src_vols[$index],$Uniq_Snapshot) eq 0 ) {
 				# Delete the snapshot
 				Info("Going to delete snapshot $Uniq_Snapshot from $netapps[$index]\:$src_vols[$index]");
-				if (deleteSnapCOT($netapps[$index], $src_vols[$index],$Uniq_Snapshot) eq 0 ) {
+				if (deleteSnapIgnoreOwnertsCOT($netapps[$index], $src_vols[$index],$Uniq_Snapshot) eq 0 ) {
 					Info("The snapshot $Uniq_Snapshot in $netapps[$index]\:$src_vols[$index] was Deleted");
 				}
 				else {
@@ -1693,6 +1693,25 @@ sub DoTheSplit() {
 				if (createFlexCloneNoJunctionCOT($netappd[$index],$tgt_vols[$index],'ReplicManClone_'.$tgt_path[$index],$Uniq_Snapshot)) {
 					Exit ("ERROR: Could not create FlexClone:\"$netappd[$index]:ReplicManClone_$tgt_path[$index]\"! Please go back to Step 30 !",1);
 				}
+
+				#mapping the luns
+				@LUNs = getLunsCOT($netapps[$index],$src_vols[$index],$src_path[$index],'');
+				if ($#LUNs ge 0) {
+					foreach $lun (@LUNs) {
+						#create the lun file-clones
+						$lun =~ /(.+)\/(\w+)$/;
+						$lunclone = '/vol/ReplicManClone_'.$tgt_path[$index].'/'.$src_path[$index].'/'.$2 if $src_path[$index];
+						$lunclone = '/vol/ReplicManClone_'.$tgt_path[$index].'/'.$2 if not $src_path[$index];
+						Info ("Going to map lun \"$lunclone\" to host \"".$GroupParams{"TARGET_HOST"}."\"");
+						if ( mapNetappLunCOT($netappd[$index],$lunclone, $GroupParams{"TARGET_HOST"}) eq 0 ) {
+							Info ("Lun mapped - $OK");
+						}
+						else {
+							Exit ("ERROR: Could NOT map the lun - Please try to Re-Run this step",1);
+						}						
+					}
+				}
+				
 			}
 		}
 	}

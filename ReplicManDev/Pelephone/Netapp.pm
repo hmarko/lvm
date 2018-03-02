@@ -15,7 +15,7 @@ BEGIN {
 	$VERSION     = 1.00;
 
 	@ISA         = qw(Exporter);
-	@EXPORT      = qw(&snapmirrorUpdateDOT &createFlexCloneNoJunctionCOT &isVolSnapmirrorExistsCOT &createNetappQtreeCOT &mapNetappLunCOT &createNetappLunCloneCOT &getVolCommentCOT &deleteLunCOT &getLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
+	@EXPORT      = qw(&deleteSnapIgnoreOwnertsCOT &snapmirrorUpdateDOT &createFlexCloneNoJunctionCOT &isVolSnapmirrorExistsCOT &createNetappQtreeCOT &mapNetappLunCOT &createNetappLunCloneCOT &getVolCommentCOT &deleteLunCOT &getLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
 						&exportNetappVol &addVol2Vfiler &checkSmIdle &updateSM &isVolExistsCOT &deleteVolCOT &createNetappSnapCOT &createFlexCloneCOT &exportNetappVolCOT &getNetappLastSnapCOT);
 	%EXPORT_TAGS = ( );     # eg: TAG => [ qw!name1 name2! ],
 
@@ -282,6 +282,25 @@ sub deleteVolCOT($$) {
 		return 0;
 	}
 	else { # Volume exists (grep returned 0) -> Deletion FAILED
+		return 1;
+	}
+}
+
+sub deleteSnapIgnoreOwnertsCOT($$$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $volume = shift ;		chomp $volume ;
+	my $snap = shift ;			chomp $snap	 ;
+	my $cmd = "ssh vsadmin\@$netapp \"set -conf off;set -privilege diagnostic; snap delete -volume $volume -snapshot $snap -ignore-owners true\"" ;
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	# I have to check wheter the Snapshot is really deleted
+	$cmd = "ssh vsadmin\@$netapp snap show $volume -fields volume,snapshot | grep -w $snap";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	if ( $ExitCode eq 1 ) { # Snapshot does not exists -> DELETED
+		return 0;
+	}
+	else { # Snapshot exists (grep returned 0) -> Deletion FAILED
 		return 1;
 	}
 }
