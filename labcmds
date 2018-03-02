@@ -1,0 +1,38 @@
+
+ssh vsadmin@svm_linux vol create -volume XIV -space-guarantee none -aggregate aggr3 -size 100g -state online -percent-snapshot-space 0
+ssh vsadmin@svm_linux vol efficiency on -volume XIV
+ssh vsadmin@svm_linux vol efficiency modify -volume XIV -inline-compression true -compression true -policy default
+ssh vsadmin@svm_linux lun create -path /vol/XIV/vg1-1 -ostype linux -size 100g -space-reserve disabled
+ssh vsadmin@svm_linux lun create -path /vol/XIV/vg1-2 -ostype linux -size 100g -space-reserve disabled
+ssh vsadmin@svm_linux lun create -path /vol/XIV/vg1-3 -ostype linux -size 100g -space-reserve disabled
+ssh vsadmin@svm_linux lun create -path /vol/XIV/vg2-1 -ostype linux -size 80g -space-reserve disabled
+ssh vsadmin@svm_linux lun create -path /vol/XIV/vg2-2 -ostype linux -size 80g -space-reserve disabled
+
+ssh vsadmin@svm_linux lun map -path /vol/XIV/vg1-1 -igroup RHEL1
+ssh vsadmin@svm_linux lun map -path /vol/XIV/vg1-2 -igroup RHEL1
+ssh vsadmin@svm_linux lun map -path /vol/XIV/vg1-3 -igroup RHEL1
+ssh vsadmin@svm_linux lun map -path /vol/XIV/vg2-1 -igroup RHEL1
+ssh vsadmin@svm_linux lun map -path /vol/XIV/vg2-2 -igroup RHEL1
+
+iscsiadm -m session --rescan
+
+pvcreate /dev/mapper/mpathc
+pvcreate /dev/mapper/mpathe
+pvcreate /dev/mapper/mpathd
+
+pvcreate /dev/mapper/mpathf
+pvcreate /dev/mapper/mpathg
+
+pvcreate /dev/mapper/mpathd /dev/mapper/mpathc /dev/mapper/mpathe
+
+lvcreate -I1024 -i3 -L 600m -n lv1 vg1
+lvcreate -I1024 -i3 -L 600m -n lv2 vg1
+lvcreate -I1024 -i3 -L 600m -n lv3 vg1
+lvcreate -I1024 -i2 -L 600m -n lv1 vg2
+lvcreate -I1024 -i2 -L 600m -n lv2 vg2
+
+mkfs -t ext4 /dev/vg1/lv1
+mkfs -t ext4 /dev/vg1/lv2
+mkfs -t ext4 /dev/vg1/lv3
+mkfs -t ext4 /dev/vg2/lv1
+mkfs -t ext4 /dev/vg2/lv2
