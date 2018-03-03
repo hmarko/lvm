@@ -1716,7 +1716,7 @@ sub DoTheSplit() {
 		}
 	}
 	
-	# Netapp
+	# Netapp NAS
 	if ( $GroupParams{"MSGRP"} eq "Netapp" ) {
 		
 		# Run for every volume
@@ -2536,6 +2536,7 @@ sub VGChangeAfterUmountM() {
 	Info ("Getting Master VG List - Done.") ;
 
 	foreach my $vg (@MasterVGs) {
+		#added by Haim 	
 		Info ("Running : vgchange -a n $vg") ;
 		my $mcmd = "/usr/sbin/vgchange -a n $vg" ;
 		my $ExitCode = ReTry ($GroupParams{"MASTER_HOST"}, $mcmd) ;
@@ -2544,6 +2545,7 @@ sub VGChangeAfterUmountM() {
 			Exit ("Error: Cannot vgchange $vg with $mcmd on $GroupParams{\"MASTER_HOST\"}", 1) ;
 		}
 		Info ("vgchange -a n $vg - $OK") ;
+		#added by Haim 
 	}
 }
 sub VGChangeBeforMountM() {
@@ -2654,7 +2656,7 @@ sub VGChangeAfterUmount() {
 		my $ExitCode = ReTry ($GroupParams{"TARGET_HOST"}, $mcmd) ;
 		if ($ExitCode ne 0) {
 			Debug("VGChangeAfterUmount","Error: Cannot vgchange $vg on $GroupParams{\"TARGET_HOST\"}");
-			Exit ("Error: Can not vgchange $vg on $GroupParams{\"TARGET_HOST\"}", 1) ;
+			#Exit ("Error: Can not vgchange $vg on $GroupParams{\"TARGET_HOST\"}", 1) ;
 		}
 		Info ("vgchange -a n $vg - $OK") ;
 	}
@@ -2665,6 +2667,10 @@ sub VGChangeAfterUmount() {
 sub VGChangeBeforMmount() {
 	# Build target VG List
 	# VGIM = 1 -> vgimport
+	ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -b /tmp/bindings.$$');
+	ReTry ($GroupParams{"TARGET_HOST"}, 'iscsiadm -m session --rescan');
+	ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -b /tmp/bindings.$$');
+	sleep 5;
 	Info ("Checking if I need to vgchangeid or vgimport (VGIM = $VGIM)");
 	if ($VGIM && $GroupParams{OS_VERSION} ne "Linux") {
 		if ($GroupParams{"MAP_FILL"} eq "1" ) {

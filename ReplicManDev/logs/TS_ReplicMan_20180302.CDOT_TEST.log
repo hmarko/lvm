@@ -5051,3 +5051,203 @@
 [02/03/2018 22:08:05] : Waiting 10sec to next check
 [02/03/2018 22:08:16] : Snapmirror status is:"Transferring" - 2
 [02/03/2018 22:08:16] : Waiting 10sec to next check
+[02/03/2018 22:08:27] : Snapmirror status is:"Transferring" - 3
+[02/03/2018 22:08:27] : Waiting 10sec to next check
+[02/03/2018 22:08:38] : Snapmirror status is:"Transferring" - 4
+[02/03/2018 22:08:38] : Waiting 10sec to next check
+[02/03/2018 22:08:49] : Snapmirror status is:"Transferring" - 5
+[02/03/2018 22:08:49] : Waiting 10sec to next check
+[02/03/2018 22:08:59] : Snapmirror status is:"Transferring" - 6
+[02/03/2018 22:08:59] : Waiting 10sec to next check
+[02/03/2018 22:09:10] : Snapmirror status is:"Transferring" - 7
+[02/03/2018 22:09:10] : Waiting 10sec to next check
+[02/03/2018 22:09:21] : Snapmirror status is:"Transferring" - 8
+[02/03/2018 22:09:21] : Waiting 10sec to next check
+[02/03/2018 22:09:32] : Snapmirror status is:"Transferring" - 9
+[02/03/2018 22:09:32] : Waiting 10sec to next check
+[02/03/2018 22:09:43] : Snapmirror status is:"Transferring" - 10
+[02/03/2018 22:09:43] : Waiting 10sec to next check
+[02/03/2018 22:09:54] : Snapmirror status is:"Transferring" - 11
+[02/03/2018 22:09:54] : Waiting 10sec to next check
+[02/03/2018 22:10:05] : Snapmirror status is:"Transferring" - 12
+[02/03/2018 22:10:05] : Waiting 10sec to next check
+[02/03/2018 22:10:16] : Snapmirror status is:"Transferring" - 13
+[02/03/2018 22:10:16] : Waiting 10sec to next check
+[02/03/2018 22:10:27] : Snapmirror status is:"Transferring" - 14
+[02/03/2018 22:10:27] : Waiting 10sec to next check
+[02/03/2018 22:10:38] : Snapmirror status is:"Transferring" - 15
+[02/03/2018 22:10:38] : Waiting 10sec to next check
+[02/03/2018 22:10:49] : Snapmirror status is:"Transferring" - 16
+[02/03/2018 22:10:49] : Waiting 10sec to next check
+[02/03/2018 22:11:00] : Snapmirror status is:"Transferring" - 17
+[02/03/2018 22:11:00] : Waiting 10sec to next check
+[02/03/2018 22:11:11] : Snapmirror status is:"Transferring" - 18
+[02/03/2018 22:11:11] : Waiting 10sec to next check
+[02/03/2018 22:11:21] : Snapmirror status is:"Idle" - 19
+[02/03/2018 22:11:21] : Snapmirror update - Finished O.K. 
+[02/03/2018 22:11:21] : Running "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command 
+[02/03/2018 22:11:28] : RunProgram------ The output of the "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command is:
+[02/03/2018 22:11:28] : RunProgram------ [Job 1829] Job is queued: Create ReplicManClone_clone1.                        [Job 1829] Job succeeded: Successful                                           
+[02/03/2018 22:11:28] : RunProgram------ 
+[02/03/2018 22:11:29] : Going to map lun "/vol/ReplicManClone_clone1/vg1_1" to host "RHEL1"
+[02/03/2018 22:11:29] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_1 -igroup RHEL1" command 
+[02/03/2018 22:11:31] : Lun mapped - Finished O.K.
+[02/03/2018 22:11:31] : Going to map lun "/vol/ReplicManClone_clone1/vg1_2" to host "RHEL1"
+[02/03/2018 22:11:31] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_2 -igroup RHEL1" command 
+[02/03/2018 22:11:34] : Lun mapped - Finished O.K.
+[02/03/2018 22:11:34] : Going to map lun "/vol/ReplicManClone_clone1/vg1_3" to host "RHEL1"
+[02/03/2018 22:11:34] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_3 -igroup RHEL1" command 
+[02/03/2018 22:11:36] : Lun mapped - Finished O.K.
+[02/03/2018 22:11:36] : Going to map lun "/vol/ReplicManClone_clone1/vg2_1" to host "RHEL1"
+[02/03/2018 22:11:36] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_1 -igroup RHEL1" command 
+[02/03/2018 22:11:38] : Lun mapped - Finished O.K.
+[02/03/2018 22:11:38] : Going to map lun "/vol/ReplicManClone_clone1/vg2_2" to host "RHEL1"
+[02/03/2018 22:11:38] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_2 -igroup RHEL1" command 
+[02/03/2018 22:11:40] : Lun mapped - Finished O.K.
+[02/03/2018 22:11:40] : Step 60 DoTheSplit END
+[02/03/2018 22:11:40] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #            #  #   ##  
+#           #     #        #     #           #   #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #               #     ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #               #      ####   
+
+[02/03/2018 22:11:40] : DESCRIPTION: VgChange Befor Mount on the target
+[02/03/2018 22:11:40] : Step 70 VGChangeBeforMmount BEGIN
+[02/03/2018 22:11:40] : Checking if I need to vgchangeid or vgimport (VGIM = 0)
+[02/03/2018 22:11:40] : Getting Target VG List
+[02/03/2018 22:11:40] : Getting Target VG List - Done.
+[02/03/2018 22:11:40] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[02/03/2018 22:11:40] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[02/03/2018 22:11:40] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[02/03/2018 22:11:40] : RunProgram------   Volume group "vg1" is already not clustered
+[02/03/2018 22:11:41] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[02/03/2018 22:11:41] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[02/03/2018 22:11:41] : RunProgram------   Volume group "vg1" is already not clustered
+[02/03/2018 22:11:41] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[02/03/2018 22:11:41] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[02/03/2018 22:11:41] : RunProgram------   Volume group "vg1" is already not clustered
+[02/03/2018 22:11:41] : Disable Cluster Attribute - Finished O.K.
+[02/03/2018 22:11:41] : Running : vgchange -a y vg1
+[02/03/2018 22:11:42] : RunProgram------   3 logical volume(s) in volume group "vg1" now active
+[02/03/2018 22:11:42] : vgchange -a y vg1 - Finished O.K.
+[02/03/2018 22:11:42] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[02/03/2018 22:11:42] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[02/03/2018 22:11:42] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[02/03/2018 22:11:42] : RunProgram------   Volume group "vg2" is already not clustered
+[02/03/2018 22:11:42] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[02/03/2018 22:11:42] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[02/03/2018 22:11:42] : RunProgram------   Volume group "vg2" is already not clustered
+[02/03/2018 22:11:43] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[02/03/2018 22:11:43] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[02/03/2018 22:11:43] : RunProgram------   Volume group "vg2" is already not clustered
+[02/03/2018 22:11:43] : Disable Cluster Attribute - Finished O.K.
+[02/03/2018 22:11:43] : Running : vgchange -a y vg2
+[02/03/2018 22:11:43] : RunProgram------   2 logical volume(s) in volume group "vg2" now active
+[02/03/2018 22:11:43] : vgchange -a y vg2 - Finished O.K.
+[02/03/2018 22:11:43] : Step 70 VGChangeBeforMmount END
+[02/03/2018 22:11:43] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####  #####  
+#     #     #     #        #     #            #  #      
+#           #     #        #     #           #   #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #               #         #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #               #     #####  
+
+[02/03/2018 22:11:43] : DESCRIPTION: Mount filesystems on the target hos
+[02/03/2018 22:11:43] : Step 75 MountTargetFS BEGIN
+[02/03/2018 22:11:43] : Mounting FileSystems on Host RHEL1
+[02/03/2018 22:11:43] : Getting list of FileSystem...
+[02/03/2018 22:11:43] : Getting list of FileSystem -  Finished O.K.
+[02/03/2018 22:11:43] : Checking /vg1/lv1
+[02/03/2018 22:11:44] : Running tune2fs on /dev/vg1/lv1
+[02/03/2018 22:11:44] : Running FSCK on /dev/vg1/lv1
+[02/03/2018 22:11:44] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv1" command is:
+[02/03/2018 22:11:44] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[02/03/2018 22:11:44] : RunProgram------ 2
+[02/03/2018 22:11:44] : RunProgram------ /dev/mapper/vg1-lv1: clean, 11/38400 files, 6629/153600 blocks
+[02/03/2018 22:11:44] : Mounting /vg1/lv1
+[02/03/2018 22:11:45] : Checking /vg1/lv2
+[02/03/2018 22:11:45] : Running tune2fs on /dev/vg1/lv2
+[02/03/2018 22:11:45] : Running FSCK on /dev/vg1/lv2
+[02/03/2018 22:11:46] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv2" command is:
+[02/03/2018 22:11:46] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[02/03/2018 22:11:46] : RunProgram------ 2
+[02/03/2018 22:11:46] : RunProgram------ /dev/mapper/vg1-lv2: clean, 11/38400 files, 6629/153600 blocks
+[02/03/2018 22:11:46] : Mounting /vg1/lv2
+[02/03/2018 22:11:46] : Checking /vg1/lv3
+[02/03/2018 22:11:46] : Running tune2fs on /dev/vg1/lv3
+[02/03/2018 22:11:47] : Running FSCK on /dev/vg1/lv3
+[02/03/2018 22:11:47] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv3" command is:
+[02/03/2018 22:11:47] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[02/03/2018 22:11:47] : RunProgram------ 2
+[02/03/2018 22:11:47] : RunProgram------ /dev/mapper/vg1-lv3: clean, 11/38400 files, 6629/153600 blocks
+[02/03/2018 22:11:47] : Mounting /vg1/lv3
+[02/03/2018 22:11:48] : Checking /vg2/lv1
+[02/03/2018 22:11:48] : Running tune2fs on /dev/vg2/lv1
+[02/03/2018 22:11:48] : Running FSCK on /dev/vg2/lv1
+[02/03/2018 22:11:49] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv1" command is:
+[02/03/2018 22:11:49] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[02/03/2018 22:11:49] : RunProgram------ 2
+[02/03/2018 22:11:49] : RunProgram------ /dev/mapper/vg2-lv1: clean, 11/38400 files, 6629/153600 blocks
+[02/03/2018 22:11:49] : Mounting /vg2/lv1
+[02/03/2018 22:11:49] : Checking /vg2/lv2
+[02/03/2018 22:11:50] : Running tune2fs on /dev/vg2/lv2
+[02/03/2018 22:11:50] : Running FSCK on /dev/vg2/lv2
+[02/03/2018 22:11:50] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv2" command is:
+[02/03/2018 22:11:50] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[02/03/2018 22:11:50] : RunProgram------ 2
+[02/03/2018 22:11:50] : RunProgram------ /dev/mapper/vg2-lv2: clean, 11/38400 files, 6629/153600 blocks
+[02/03/2018 22:11:50] : Mounting /vg2/lv2
+[02/03/2018 22:11:51] : Mounting FileSystems on Host RHEL1 Finished O.K.
+[02/03/2018 22:11:51] : Step 75 MountTargetFS END
+[02/03/2018 22:11:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[02/03/2018 22:11:51] : DESCRIPTION: Up the DB on the target host
+[02/03/2018 22:11:51] : Step 80 UpTargetDB BEGIN
+[02/03/2018 22:11:51] : No Need to up the target DB
+[02/03/2018 22:11:51] : Step 80 UpTargetDB END
+[02/03/2018 22:11:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######          ###   #####  
+      #     #     #        #              #   #      #  
+#     #     #     #        #              #   #      #  
+ #####      #     #######  #               ###   #####  
+
+[02/03/2018 22:11:51] : DESCRIPTION: Post Split Command
+[02/03/2018 22:11:51] : Step 85 SplitPostCommand BEGIN
+[02/03/2018 22:11:51] : Running PostSplit Command
+[02/03/2018 22:11:51] : Running PostSplit Command Finished O.K.
+[02/03/2018 22:11:51] : Step 85 SplitPostCommand END
+[02/03/2018 22:11:51] : -------------------------------------------------------
+[02/03/2018 22:11:51] : ReplicMan FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
