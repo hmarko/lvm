@@ -127,6 +127,8 @@ sub ReadParamFile() {
 		$CMD = $GParam{"CLIDIR"} ."/symsnap" ;
 	}elsif ($Param{"MSGRP"} eq "Netapp") {
 		$CMD = "Netapp";
+	}elsif ($Param{"MSGRP"} eq 'XIV|NetappSAN') {
+		$CMD = "XIV for Step 30, NetappSAN for step 60";
 	}elsif ($Param{"MSGRP"} eq "NetappSAN") {
 		$CMD = "NetappSAN";		
 	}elsif ($Param{"MSGRP"} eq "XIV") {
@@ -135,7 +137,7 @@ sub ReadParamFile() {
 		$CMD = "SVC";
 	}else {
 		Debug("ReadParamFile","The Parameter <MSGRP> can be TimeFinder , SRDF , Clone , SYMSNAP, Netapp, XIV, SVC Only \n");
-		Exit ("\nThe Parameter <MSGRP> can be TimeFinder , SRDF , Clone , SYMSNAP, Netapp Only !!",1) ;
+		Exit ("\nThe Parameter <MSGRP> can be TimeFinder , SRDF , Clone , SYMSNAP, XIV, Netapp, NetappSAN, XIV|NetappSAN Only !!",1) ;
 	}
 	Debug ("ReadParamFile", "The Command is : $CMD") ;
 
@@ -342,12 +344,16 @@ sub CreateNetappMap () {
 	}
 	
 	# NetappSAN - build 6 arrays of the netapp to support lun paths
-	if ( $GroupParams{"MSGRP"} eq "NetappSAN" ) {
+	if ( $GroupParams{"MSGRP"} eq "NetappSAN" or $MigrationPeriod) {
 		my $line;
 		my $index=0;
 		
-		# Open group file for netapp:volume list
-		open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
+		if (not $MigrationPeriod) {
+			# Open group file for netapp:volume list
+			open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
+		} else {
+			open (GrpFile, "$GroupsDir/$GROUP_NAME".'.NetappSANMigration') || die "Cannot open Group file $GroupsDir/$GROUP_NAME".'.NetappSANMigration'."\n";
+		}
 		
 		# Fill the 6 arrays with the following params:
 		#when file-clone - srcsvm:dstsvm:srcvol[/srcqtree],dstvol->dstqtree  (src and dst svm and qtree should be equal)
@@ -892,7 +898,7 @@ sub CheckGroupStatus() {
 		}
 	}
 	# NetappSAN
-	if ($GroupParams{"MSGRP"} eq "NetappSAN" ) {
+	if ($GroupParams{"MSGRP"} eq "NetappSAN" or $MigrationPeriod) {
 		Info ("NetappSAN Configuration");
 		for (my $index = 0; $index <= $#netapps; $index++) {
 			#check with method been used for cloning, file-clone is being used only when src and dst are equal (SVM and Vol)
@@ -1503,6 +1509,10 @@ sub PrepForHotSplit() {
 # Step 60 : Do the split !                                                    #
 #-----------------------------------------------------------------------------#
 sub DoTheSplit() {
+
+	#will be used only during migration period from XIV to NetappSAN 
+	$GroupParams{"MSGRP"} = "NetappSAN" if $MigrationPeriod;
+
 	# SRDF (Both Sync and Async)
 	if ( $CommandPrefix =~ /symrdf/ ) {
 		# SRDF/A
@@ -3380,7 +3390,15 @@ if ( ! -f  "$GroupsDir/$GROUP_NAME" ) {
 
 %GroupParams = ReadParamFile () ;
 CreateGlobalParameterse () ;
-# Fills the 3 arrays of netapps, src_vols and tgt_vols in data according the group file
+
+#this will be used during the migration from XIV to NetApp 
+our $MigrationPeriod = 0;
+if ($GroupParams{"MSGRP"} =~/XIV\|NetappSAN/) {
+	$MigrationPeriod = 1;
+	$GroupParams{"MSGRP"} = 'XIV';
+}
+
+# Fills the array for Netapp and NetappSAN 
 CreateNetappMap () ;
 # Fills the 2 arrays of XIV  src_vols and tgt_vols in data according the group file
 CreateXivMap () ;
@@ -3460,7 +3478,7 @@ if ($GroupParams{"MSGRP"} eq "Netapp" ) {
 	AddStep("60", "DoTheSplit", "Split The Group") ;
 	AddStep("85", "SplitPostCommand", "Post Split Command") ;	
 }
-elsif ($GroupParams{"MSGRP"} eq "NetappSAN" ) {
+elsif ($GroupParams{"MSGRP"} eq "NetappSAN") {
 
 	# Establish Proccess
 	AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
