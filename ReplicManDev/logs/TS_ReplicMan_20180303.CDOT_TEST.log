@@ -7769,3 +7769,2244 @@
 [03/03/2018 19:53:35] : XIV Configuration
 [03/03/2018 19:53:35] : Checking if Volume svm_linux exists on XIV Box  
 [03/03/2018 19:53:35] : Error: The volume does NOT exists on the XIV - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 19:56:14] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 19:56:14] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 19:56:14] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 19:56:14] : computer: RHEL1 process: 20780 tty: /dev/pts/0
+[03/03/2018 19:56:14] : ----------------- environment variables ----------------
+[03/03/2018 19:56:14] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 19:56:14] : CVS_RSH=ssh
+[03/03/2018 19:56:14] : G_BROKEN_FILENAMES=1
+[03/03/2018 19:56:14] : HISTCONTROL=ignoredups
+[03/03/2018 19:56:14] : HISTSIZE=1000
+[03/03/2018 19:56:14] : HOME=/root
+[03/03/2018 19:56:14] : HOSTNAME=RHEL1
+[03/03/2018 19:56:14] : LANG=en_US.UTF-8
+[03/03/2018 19:56:14] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 19:56:14] : LOADEDMODULES=
+[03/03/2018 19:56:14] : LOGNAME=root
+[03/03/2018 19:56:14] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 19:56:14] : MAIL=/var/spool/mail/root
+[03/03/2018 19:56:14] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 19:56:14] : MODULESHOME=/usr/share/Modules
+[03/03/2018 19:56:14] : OLDPWD=/root/lvm
+[03/03/2018 19:56:14] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 19:56:14] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 19:56:14] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 19:56:14] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 19:56:14] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 19:56:14] : SHELL=/bin/bash
+[03/03/2018 19:56:14] : SHLVL=1
+[03/03/2018 19:56:14] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 19:56:14] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 19:56:14] : SSH_TTY=/dev/pts/0
+[03/03/2018 19:56:14] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 19:56:14] : SYMCLI_MODE=V72
+[03/03/2018 19:56:14] : TERM=xterm
+[03/03/2018 19:56:14] : USER=root
+[03/03/2018 19:56:14] : _=./ReplicMan.pl
+[03/03/2018 19:56:14] : ----------------- environment variables ----------------
+[03/03/2018 19:56:14] : ReplicMan STARTED
+[03/03/2018 19:56:14] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 19:56:14] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 19:56:14] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 19:56:14] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 19:56:14] : XIV Configuration
+[03/03/2018 19:56:14] : Checking if Volume svm_linux exists on XIV Box  
+[03/03/2018 19:56:14] : Error: The volume does NOT exists on the XIV - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 21:07:01] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 21:07:01] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 21:07:01] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 21:07:01] : computer: RHEL1 process: 13814 tty: /dev/pts/0
+[03/03/2018 21:07:01] : ----------------- environment variables ----------------
+[03/03/2018 21:07:01] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 21:07:01] : CVS_RSH=ssh
+[03/03/2018 21:07:01] : G_BROKEN_FILENAMES=1
+[03/03/2018 21:07:01] : HISTCONTROL=ignoredups
+[03/03/2018 21:07:01] : HISTSIZE=1000
+[03/03/2018 21:07:01] : HOME=/root
+[03/03/2018 21:07:01] : HOSTNAME=RHEL1
+[03/03/2018 21:07:01] : LANG=en_US.UTF-8
+[03/03/2018 21:07:01] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 21:07:01] : LOADEDMODULES=
+[03/03/2018 21:07:01] : LOGNAME=root
+[03/03/2018 21:07:01] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 21:07:01] : MAIL=/var/spool/mail/root
+[03/03/2018 21:07:01] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 21:07:01] : MODULESHOME=/usr/share/Modules
+[03/03/2018 21:07:01] : OLDPWD=/root/lvm
+[03/03/2018 21:07:01] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 21:07:01] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 21:07:01] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 21:07:01] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 21:07:01] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 21:07:01] : SHELL=/bin/bash
+[03/03/2018 21:07:01] : SHLVL=1
+[03/03/2018 21:07:01] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 21:07:01] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 21:07:01] : SSH_TTY=/dev/pts/0
+[03/03/2018 21:07:01] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 21:07:01] : SYMCLI_MODE=V72
+[03/03/2018 21:07:01] : TERM=xterm
+[03/03/2018 21:07:01] : USER=root
+[03/03/2018 21:07:01] : _=./ReplicMan.pl
+[03/03/2018 21:07:01] : ----------------- environment variables ----------------
+[03/03/2018 21:07:01] : ReplicMan STARTED
+[03/03/2018 21:07:01] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 21:07:01] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 21:07:01] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 21:07:01] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 21:07:01] : NetappSAN Configuration
+[03/03/2018 21:07:01] : Validating that src:"svm_linux:rhel1_oracle" is replicated to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 21:07:01] : Snapmirror relationship found - Finished O.K.
+[03/03/2018 21:07:01] : Flex Clone name will be "ReplicMan_clone1" - prefix been added for protection
+[03/03/2018 21:07:01] : Step 05 CheckGroupStatus END
+[03/03/2018 21:07:01] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[03/03/2018 21:07:01] : DESCRIPTION: Check for running syncs from the same source
+[03/03/2018 21:07:01] : Step 06 CheckRunningSyncs BEGIN
+[03/03/2018 21:07:01] : Checking for other running syncs ...
+[03/03/2018 21:07:01] : Step 06 CheckRunningSyncs END
+[03/03/2018 21:07:01] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 21:07:01] : DESCRIPTION: Pre Establish Command
+[03/03/2018 21:07:01] : Step 10 EstPreCommand BEGIN
+[03/03/2018 21:07:01] : Running PreEstablish Command
+[03/03/2018 21:07:01] : Running PreEstablish Command Finished O.K.
+[03/03/2018 21:07:01] : Step 10 EstPreCommand END
+[03/03/2018 21:07:01] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 21:07:01] : DESCRIPTION: ShutDown DataBase on the target host
+[03/03/2018 21:07:01] : Step 15 ShutDownTargetDB BEGIN
+[03/03/2018 21:07:01] : No Need to shutdown DB - TARGET have No DB !!!
+[03/03/2018 21:07:01] : Step 15 ShutDownTargetDB END
+[03/03/2018 21:07:01] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 21:07:01] : DESCRIPTION: Umount FileSystems on the target host
+[03/03/2018 21:07:01] : Step 20 UmountTargetFS BEGIN
+[03/03/2018 21:07:01] : Un-mounting FileSystems on Host RHEL1
+[03/03/2018 21:07:01] : Getting list of FileSystem...
+[03/03/2018 21:07:02] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 21:07:02] : Going to UN-mount /vg2/lv2 ...
+[03/03/2018 21:07:02] : /vg2/lv2 is Un-Mounted on RHEL1
+[03/03/2018 21:07:02] : Going to UN-mount /vg2/lv1 ...
+[03/03/2018 21:07:02] : /vg2/lv1 is Un-Mounted on RHEL1
+[03/03/2018 21:07:02] : Going to UN-mount /vg1/lv3 ...
+[03/03/2018 21:07:02] : /vg1/lv3 is Un-Mounted on RHEL1
+[03/03/2018 21:07:02] : Going to UN-mount /vg1/lv2 ...
+[03/03/2018 21:07:02] : /vg1/lv2 is Un-Mounted on RHEL1
+[03/03/2018 21:07:02] : Going to UN-mount /vg1/lv1 ...
+[03/03/2018 21:07:02] : /vg1/lv1 is Un-Mounted on RHEL1
+[03/03/2018 21:07:02] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[03/03/2018 21:07:02] : Step 20 UmountTargetFS END
+[03/03/2018 21:07:02] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 21:07:02] : DESCRIPTION: VgChange after umount on the target
+[03/03/2018 21:07:02] : Step 25 VGChangeAfterUmount BEGIN
+[03/03/2018 21:07:02] : Getting Target VG List
+[03/03/2018 21:07:02] : Getting Target VG List - Done.
+[03/03/2018 21:07:02] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 21:07:02] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:02] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:02] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 21:07:02] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:02] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:02] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 21:07:03] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:03] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:03] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 21:07:03] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 21:07:03] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 21:07:03] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:03] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:03] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 21:07:03] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:03] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:03] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 21:07:03] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:03] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:03] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 21:07:03] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 21:07:03] : Running : vgchange -a n vg1
+[03/03/2018 21:07:03] : RunProgram------   0 logical volume(s) in volume group "vg1" now active
+[03/03/2018 21:07:03] : vgchange -a n vg1 - Finished O.K.
+[03/03/2018 21:07:03] : Running : vgchange -a n vg2
+[03/03/2018 21:07:03] : RunProgram------   0 logical volume(s) in volume group "vg2" now active
+[03/03/2018 21:07:03] : vgchange -a n vg2 - Finished O.K.
+[03/03/2018 21:07:03] : Step 25 VGChangeAfterUmount END
+[03/03/2018 21:07:03] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #            #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 21:07:03] : DESCRIPTION: Delete Target LUNs
+[03/03/2018 21:07:03] : Step 30 DoTheEstablish BEGIN
+[03/03/2018 21:07:03] : Checking if Target Flex Clone Volume "ReplicManClone_clone1" exists on "svm_linux"
+[03/03/2018 21:07:04] : Going to take offline previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 21:07:04] : Running "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command 
+[03/03/2018 21:07:05] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command is:
+[03/03/2018 21:07:05] : RunProgram------ 
+[03/03/2018 21:07:05] : RunProgram------ Volume "svm_linux:ReplicManClone_clone1" is now offline.                       
+[03/03/2018 21:07:05] : RunProgram------ 
+[03/03/2018 21:07:06] : Volume taken offline successfully
+[03/03/2018 21:07:06] : Going to delete previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 21:07:06] : Running "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command 
+[03/03/2018 21:07:12] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command is:
+[03/03/2018 21:07:12] : RunProgram------ 
+[03/03/2018 21:07:12] : RunProgram------ [Job 1887] Job is queued: Delete ReplicManClone_clone1.                        [Job 1887] Job succeeded: Successful                                           
+[03/03/2018 21:07:12] : RunProgram------ 
+[03/03/2018 21:07:13] : FlexClone deleted successfully
+[03/03/2018 21:07:13] : Going to check if snapshot ReplicMan_RHEL1 exists on svm_linux rhel1_oracle
+[03/03/2018 21:07:14] : Going to delete snapshot ReplicMan_RHEL1 from svm_linux:rhel1_oracle
+[03/03/2018 21:07:14] : Running "ssh vsadmin@svm_linux "set -conf off;set -privilege diagnostic; snap delete -volume rhel1_oracle -snapshot ReplicMan_RHEL1 -ignore-owners true"" command 
+[03/03/2018 21:07:16] : The snapshot ReplicMan_RHEL1 in svm_linux:rhel1_oracle was Deleted
+[03/03/2018 21:07:16] : Step 30 DoTheEstablish END
+[03/03/2018 21:07:16] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[03/03/2018 21:07:16] : DESCRIPTION: Post Establish Command
+[03/03/2018 21:07:16] : Step 40 EstPostCommand BEGIN
+[03/03/2018 21:07:16] : Running PostEstablish Command
+[03/03/2018 21:07:16] : Running PostEstablish Command Finished O.K.
+[03/03/2018 21:07:16] : Step 40 EstPostCommand END
+[03/03/2018 21:07:16] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #        #      #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 21:07:16] : DESCRIPTION: Pre Split Command
+[03/03/2018 21:07:16] : Step 50 SplitPreCommand BEGIN
+[03/03/2018 21:07:16] : Running PreSplit Command
+[03/03/2018 21:07:16] : Running PreSplit Command Finished O.K.
+[03/03/2018 21:07:16] : Step 50 SplitPreCommand END
+[03/03/2018 21:07:16] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         ####   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 21:07:16] : DESCRIPTION: Split The Group
+[03/03/2018 21:07:16] : Step 60 DoTheSplit BEGIN
+[03/03/2018 21:07:17] : Going to create a snapshot named "ReplicMan_RHEL1" on "rhel1_oracle" - Netapp "svm_linux"
+[03/03/2018 21:07:17] : Running "ssh vsadmin@svm_linux snap create rhel1_oracle ReplicMan_RHEL1" command 
+[03/03/2018 21:07:21] : Snapshot Creation Finished O.K.
+[03/03/2018 21:07:22] : Starting Snapmirror update from src:"svm_linux:rhel1_oracle" to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 21:07:22] : Snapmirror status is:"Idle" - 1
+[03/03/2018 21:07:22] : Starting snapmirror update
+[03/03/2018 21:07:24] : Snapmirror status is:"Idle" - 1
+[03/03/2018 21:07:24] : Snapmirror update - Finished O.K. 
+[03/03/2018 21:07:24] : Running "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command 
+[03/03/2018 21:07:30] : RunProgram------ The output of the "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command is:
+[03/03/2018 21:07:30] : RunProgram------ [Job 1888] Job is queued: Create ReplicManClone_clone1.                        [Job 1888] Job succeeded: Successful                                           
+[03/03/2018 21:07:30] : RunProgram------ 
+[03/03/2018 21:07:32] : Going to map lun "/vol/ReplicManClone_clone1/vg1_1" to host "RHEL1"
+[03/03/2018 21:07:32] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_1 -igroup RHEL1" command 
+[03/03/2018 21:07:34] : Lun mapped - Finished O.K.
+[03/03/2018 21:07:34] : Going to map lun "/vol/ReplicManClone_clone1/vg1_2" to host "RHEL1"
+[03/03/2018 21:07:34] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_2 -igroup RHEL1" command 
+[03/03/2018 21:07:36] : Lun mapped - Finished O.K.
+[03/03/2018 21:07:36] : Going to map lun "/vol/ReplicManClone_clone1/vg1_3" to host "RHEL1"
+[03/03/2018 21:07:36] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_3 -igroup RHEL1" command 
+[03/03/2018 21:07:38] : Lun mapped - Finished O.K.
+[03/03/2018 21:07:38] : Going to map lun "/vol/ReplicManClone_clone1/vg2_1" to host "RHEL1"
+[03/03/2018 21:07:38] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_1 -igroup RHEL1" command 
+[03/03/2018 21:07:40] : Lun mapped - Finished O.K.
+[03/03/2018 21:07:40] : Going to map lun "/vol/ReplicManClone_clone1/vg2_2" to host "RHEL1"
+[03/03/2018 21:07:40] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_2 -igroup RHEL1" command 
+[03/03/2018 21:07:42] : Lun mapped - Finished O.K.
+[03/03/2018 21:07:42] : Scanning the target host:"RHEL1" for new devices
+[03/03/2018 21:07:43] : RunProgram------ The output of the "multipath -r -b /tmp/bindings.$$" command is:
+[03/03/2018 21:07:43] : RunProgram------ create: mpatha (3600a0980774f6a344b3f4c4f6f396836) undef NETAPP,LUN C-Mode
+[03/03/2018 21:07:43] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 21:07:43] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 21:07:43] : RunProgram------ | |- 3:0:0:0 sdb 8:16  undef ready running
+[03/03/2018 21:07:43] : RunProgram------ | `- 5:0:0:0 sdh 8:112 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 21:07:43] : RunProgram------   |- 8:0:0:0 sde 8:64  undef ready running
+[03/03/2018 21:07:43] : RunProgram------   `- 9:0:0:0 sdo 8:224 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ create: mpathb (3600a0980774f6a344b3f4c4f6f396844) undef NETAPP,LUN C-Mode
+[03/03/2018 21:07:43] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 21:07:43] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 21:07:43] : RunProgram------ | |- 3:0:0:2 sdd 8:48  undef ready running
+[03/03/2018 21:07:43] : RunProgram------ | `- 5:0:0:2 sdn 8:208 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 21:07:43] : RunProgram------   |- 8:0:0:2 sdi 8:128 undef ready running
+[03/03/2018 21:07:43] : RunProgram------   `- 9:0:0:2 sds 65:32 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ create: mpathc (3600a0980774f6a344b3f4c4f6f396843) undef NETAPP,LUN C-Mode
+[03/03/2018 21:07:43] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 21:07:43] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 21:07:43] : RunProgram------ | |- 3:0:0:1 sdc 8:32  undef ready running
+[03/03/2018 21:07:43] : RunProgram------ | `- 5:0:0:1 sdl 8:176 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 21:07:43] : RunProgram------   |- 8:0:0:1 sdf 8:80  undef ready running
+[03/03/2018 21:07:43] : RunProgram------   `- 9:0:0:1 sdq 65:0  undef ready running
+[03/03/2018 21:07:43] : RunProgram------ create: mpathd (3600a0980774f6a344b3f4c4f6f396845) undef NETAPP,LUN C-Mode
+[03/03/2018 21:07:43] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 21:07:43] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 21:07:43] : RunProgram------ | |- 3:0:0:3 sdg 8:96  undef ready running
+[03/03/2018 21:07:43] : RunProgram------ | `- 5:0:0:3 sdp 8:240 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 21:07:43] : RunProgram------   |- 8:0:0:3 sdj 8:144 undef ready running
+[03/03/2018 21:07:43] : RunProgram------   `- 9:0:0:3 sdt 65:48 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ create: mpathe (3600a0980774f6a344b3f4c4f6f396837) undef NETAPP,LUN C-Mode
+[03/03/2018 21:07:43] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 21:07:43] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 21:07:43] : RunProgram------ | |- 3:0:0:4 sdk 8:160 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ | `- 5:0:0:4 sdr 65:16 undef ready running
+[03/03/2018 21:07:43] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 21:07:43] : RunProgram------   |- 8:0:0:4 sdm 8:192 undef ready running
+[03/03/2018 21:07:43] : RunProgram------   `- 9:0:0:4 sdu 65:64 undef ready running
+[03/03/2018 21:07:48] : Step 60 DoTheSplit END
+[03/03/2018 21:07:48] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #            #  #   ##  
+#           #     #        #     #           #   #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #               #     ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #               #      ####   
+
+[03/03/2018 21:07:48] : DESCRIPTION: VgChange Befor Mount on the target
+[03/03/2018 21:07:48] : Step 70 VGChangeBeforMmount BEGIN
+[03/03/2018 21:07:48] : Checking if I need to vgchangeid or vgimport (VGIM = 0)
+[03/03/2018 21:07:48] : Getting Target VG List
+[03/03/2018 21:07:48] : Getting Target VG List - Done.
+[03/03/2018 21:07:48] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 21:07:48] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:48] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:48] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 21:07:49] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:49] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:49] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 21:07:49] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:49] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:49] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 21:07:49] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 21:07:49] : Running : vgchange -a y vg1
+[03/03/2018 21:07:49] : RunProgram------   3 logical volume(s) in volume group "vg1" now active
+[03/03/2018 21:07:49] : vgchange -a y vg1 - Finished O.K.
+[03/03/2018 21:07:49] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 21:07:50] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:50] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:50] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 21:07:50] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:50] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:50] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 21:07:50] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 21:07:50] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 21:07:50] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 21:07:50] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 21:07:50] : Running : vgchange -a y vg2
+[03/03/2018 21:07:51] : RunProgram------   2 logical volume(s) in volume group "vg2" now active
+[03/03/2018 21:07:51] : vgchange -a y vg2 - Finished O.K.
+[03/03/2018 21:07:51] : Step 70 VGChangeBeforMmount END
+[03/03/2018 21:07:51] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####  #####  
+#     #     #     #        #     #            #  #      
+#           #     #        #     #           #   #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #               #         #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #               #     #####  
+
+[03/03/2018 21:07:51] : DESCRIPTION: Mount filesystems on the target hos
+[03/03/2018 21:07:51] : Step 75 MountTargetFS BEGIN
+[03/03/2018 21:07:51] : Mounting FileSystems on Host RHEL1
+[03/03/2018 21:07:51] : Getting list of FileSystem...
+[03/03/2018 21:07:51] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 21:07:51] : Checking /vg1/lv1
+[03/03/2018 21:07:51] : Running tune2fs on /dev/vg1/lv1
+[03/03/2018 21:07:51] : Running FSCK on /dev/vg1/lv1
+[03/03/2018 21:07:52] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv1" command is:
+[03/03/2018 21:07:52] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 21:07:52] : RunProgram------ 2
+[03/03/2018 21:07:52] : RunProgram------ /dev/mapper/vg1-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 21:07:52] : Mounting /vg1/lv1
+[03/03/2018 21:07:52] : Checking /vg1/lv2
+[03/03/2018 21:07:52] : Running tune2fs on /dev/vg1/lv2
+[03/03/2018 21:07:52] : Running FSCK on /dev/vg1/lv2
+[03/03/2018 21:07:53] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv2" command is:
+[03/03/2018 21:07:53] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 21:07:53] : RunProgram------ 2
+[03/03/2018 21:07:53] : RunProgram------ /dev/mapper/vg1-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 21:07:53] : Mounting /vg1/lv2
+[03/03/2018 21:07:53] : Checking /vg1/lv3
+[03/03/2018 21:07:53] : Running tune2fs on /dev/vg1/lv3
+[03/03/2018 21:07:54] : Running FSCK on /dev/vg1/lv3
+[03/03/2018 21:07:54] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv3" command is:
+[03/03/2018 21:07:54] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 21:07:54] : RunProgram------ 2
+[03/03/2018 21:07:54] : RunProgram------ /dev/mapper/vg1-lv3: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 21:07:54] : Mounting /vg1/lv3
+[03/03/2018 21:07:54] : Checking /vg2/lv1
+[03/03/2018 21:07:55] : Running tune2fs on /dev/vg2/lv1
+[03/03/2018 21:07:55] : Running FSCK on /dev/vg2/lv1
+[03/03/2018 21:07:55] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv1" command is:
+[03/03/2018 21:07:55] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 21:07:55] : RunProgram------ 2
+[03/03/2018 21:07:55] : RunProgram------ /dev/mapper/vg2-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 21:07:55] : Mounting /vg2/lv1
+[03/03/2018 21:07:55] : Checking /vg2/lv2
+[03/03/2018 21:07:56] : Running tune2fs on /dev/vg2/lv2
+[03/03/2018 21:07:56] : Running FSCK on /dev/vg2/lv2
+[03/03/2018 21:07:56] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv2" command is:
+[03/03/2018 21:07:56] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 21:07:56] : RunProgram------ 2
+[03/03/2018 21:07:56] : RunProgram------ /dev/mapper/vg2-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 21:07:56] : Mounting /vg2/lv2
+[03/03/2018 21:07:57] : Mounting FileSystems on Host RHEL1 Finished O.K.
+[03/03/2018 21:07:57] : Step 75 MountTargetFS END
+[03/03/2018 21:07:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 21:07:57] : DESCRIPTION: Up the DB on the target host
+[03/03/2018 21:07:57] : Step 80 UpTargetDB BEGIN
+[03/03/2018 21:07:57] : No Need to up the target DB
+[03/03/2018 21:07:57] : Step 80 UpTargetDB END
+[03/03/2018 21:07:57] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######          ###   #####  
+      #     #     #        #              #   #      #  
+#     #     #     #        #              #   #      #  
+ #####      #     #######  #               ###   #####  
+
+[03/03/2018 21:07:57] : DESCRIPTION: Post Split Command
+[03/03/2018 21:07:57] : Step 85 SplitPostCommand BEGIN
+[03/03/2018 21:07:57] : Running PostSplit Command
+[03/03/2018 21:07:57] : Running PostSplit Command Finished O.K.
+[03/03/2018 21:07:57] : Step 85 SplitPostCommand END
+[03/03/2018 21:07:57] : -------------------------------------------------------
+[03/03/2018 21:07:57] : ReplicMan FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 21:38:56] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 21:38:56] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 21:38:56] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 21:38:56] : computer: RHEL1 process: 4026 tty: /dev/pts/0
+[03/03/2018 21:38:56] : ----------------- environment variables ----------------
+[03/03/2018 21:38:56] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 21:38:56] : CVS_RSH=ssh
+[03/03/2018 21:38:56] : G_BROKEN_FILENAMES=1
+[03/03/2018 21:38:56] : HISTCONTROL=ignoredups
+[03/03/2018 21:38:56] : HISTSIZE=1000
+[03/03/2018 21:38:56] : HOME=/root
+[03/03/2018 21:38:56] : HOSTNAME=RHEL1
+[03/03/2018 21:38:56] : LANG=en_US.UTF-8
+[03/03/2018 21:38:56] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 21:38:56] : LOADEDMODULES=
+[03/03/2018 21:38:56] : LOGNAME=root
+[03/03/2018 21:38:56] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 21:38:56] : MAIL=/var/spool/mail/root
+[03/03/2018 21:38:56] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 21:38:56] : MODULESHOME=/usr/share/Modules
+[03/03/2018 21:38:56] : OLDPWD=/root/lvm
+[03/03/2018 21:38:56] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 21:38:56] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 21:38:56] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 21:38:56] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 21:38:56] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 21:38:56] : SHELL=/bin/bash
+[03/03/2018 21:38:56] : SHLVL=1
+[03/03/2018 21:38:56] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 21:38:56] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 21:38:56] : SSH_TTY=/dev/pts/0
+[03/03/2018 21:38:56] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 21:38:56] : SYMCLI_MODE=V72
+[03/03/2018 21:38:56] : TERM=xterm
+[03/03/2018 21:38:56] : USER=root
+[03/03/2018 21:38:56] : _=./ReplicMan.pl
+[03/03/2018 21:38:56] : ----------------- environment variables ----------------
+[03/03/2018 21:38:56] : ReplicMan STARTED
+[03/03/2018 21:38:56] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 21:38:56] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 21:38:56] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 21:38:56] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 21:38:56] : XIV Configuration
+[03/03/2018 21:38:56] : Checking if Volume svm_linux exists on XIV Box  
+[03/03/2018 21:38:56] : Error: The volume does NOT exists on the XIV - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 22:19:12] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 22:19:12] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 22:19:12] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 22:19:12] : computer: RHEL1 process: 6758 tty: /dev/pts/0
+[03/03/2018 22:19:12] : ----------------- environment variables ----------------
+[03/03/2018 22:19:12] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 22:19:12] : CVS_RSH=ssh
+[03/03/2018 22:19:12] : G_BROKEN_FILENAMES=1
+[03/03/2018 22:19:12] : HISTCONTROL=ignoredups
+[03/03/2018 22:19:12] : HISTSIZE=1000
+[03/03/2018 22:19:12] : HOME=/root
+[03/03/2018 22:19:12] : HOSTNAME=RHEL1
+[03/03/2018 22:19:12] : LANG=en_US.UTF-8
+[03/03/2018 22:19:12] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 22:19:12] : LOADEDMODULES=
+[03/03/2018 22:19:12] : LOGNAME=root
+[03/03/2018 22:19:12] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 22:19:12] : MAIL=/var/spool/mail/root
+[03/03/2018 22:19:12] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 22:19:12] : MODULESHOME=/usr/share/Modules
+[03/03/2018 22:19:12] : OLDPWD=/root/lvm
+[03/03/2018 22:19:12] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 22:19:12] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 22:19:12] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 22:19:12] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 22:19:12] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 22:19:12] : SHELL=/bin/bash
+[03/03/2018 22:19:12] : SHLVL=1
+[03/03/2018 22:19:12] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 22:19:12] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 22:19:12] : SSH_TTY=/dev/pts/0
+[03/03/2018 22:19:12] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 22:19:12] : SYMCLI_MODE=V72
+[03/03/2018 22:19:12] : TERM=xterm
+[03/03/2018 22:19:12] : USER=root
+[03/03/2018 22:19:12] : _=./ReplicMan.pl
+[03/03/2018 22:19:12] : ----------------- environment variables ----------------
+[03/03/2018 22:19:12] : ReplicMan STARTED
+[03/03/2018 22:19:12] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 22:19:12] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 22:19:12] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 22:19:12] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 22:19:12] : NetappSAN Configuration
+[03/03/2018 22:19:12] : Validating that src:"svm_linux:rhel1_oracle" is replicated to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 22:19:12] : Snapmirror relationship found - Finished O.K.
+[03/03/2018 22:19:12] : Flex Clone name will be "ReplicMan_clone1" - prefix been added for protection
+[03/03/2018 22:19:12] : Step 05 CheckGroupStatus END
+[03/03/2018 22:19:12] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[03/03/2018 22:19:13] : DESCRIPTION: Check for running syncs from the same source
+[03/03/2018 22:19:13] : Step 06 CheckRunningSyncs BEGIN
+[03/03/2018 22:19:13] : Checking for other running syncs ...
+[03/03/2018 22:19:13] : Step 06 CheckRunningSyncs END
+[03/03/2018 22:19:13] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:19:13] : DESCRIPTION: Pre Establish Command
+[03/03/2018 22:19:13] : Step 10 EstPreCommand BEGIN
+[03/03/2018 22:19:13] : Running PreEstablish Command
+[03/03/2018 22:19:13] : Running PreEstablish Command Finished O.K.
+[03/03/2018 22:19:13] : Step 10 EstPreCommand END
+[03/03/2018 22:19:13] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 22:19:13] : DESCRIPTION: ShutDown DataBase on the target host
+[03/03/2018 22:19:13] : Step 15 ShutDownTargetDB BEGIN
+[03/03/2018 22:19:13] : No Need to shutdown DB - TARGET have No DB !!!
+[03/03/2018 22:19:13] : Step 15 ShutDownTargetDB END
+[03/03/2018 22:19:13] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:19:13] : DESCRIPTION: Umount FileSystems on the target host
+[03/03/2018 22:19:13] : Step 20 UmountTargetFS BEGIN
+[03/03/2018 22:19:13] : Un-mounting FileSystems on Host RHEL1
+[03/03/2018 22:19:13] : Getting list of FileSystem...
+[03/03/2018 22:19:13] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 22:19:13] : Going to UN-mount /vg2/lv2 ...
+[03/03/2018 22:19:13] : /vg2/lv2 is Un-Mounted on RHEL1
+[03/03/2018 22:19:13] : Going to UN-mount /vg2/lv1 ...
+[03/03/2018 22:19:13] : /vg2/lv1 is Un-Mounted on RHEL1
+[03/03/2018 22:19:13] : Going to UN-mount /vg1/lv3 ...
+[03/03/2018 22:19:13] : /vg1/lv3 is Un-Mounted on RHEL1
+[03/03/2018 22:19:13] : Going to UN-mount /vg1/lv2 ...
+[03/03/2018 22:19:13] : /vg1/lv2 is Un-Mounted on RHEL1
+[03/03/2018 22:19:13] : Going to UN-mount /vg1/lv1 ...
+[03/03/2018 22:19:13] : /vg1/lv1 is Un-Mounted on RHEL1
+[03/03/2018 22:19:13] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[03/03/2018 22:19:13] : Step 20 UmountTargetFS END
+[03/03/2018 22:19:13] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 22:19:13] : DESCRIPTION: VgChange after umount on the target
+[03/03/2018 22:19:13] : Step 25 VGChangeAfterUmount BEGIN
+[03/03/2018 22:19:13] : Getting Target VG List
+[03/03/2018 22:19:13] : Getting Target VG List - Done.
+[03/03/2018 22:19:13] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 22:19:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:19:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:19:14] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:19:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:19:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:19:14] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:19:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:19:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:19:14] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:19:14] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:19:14] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 22:19:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:19:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:19:14] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:19:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:19:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:19:14] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:19:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:19:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:19:14] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:19:14] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:19:14] : Running : vgchange -a n vg1
+[03/03/2018 22:19:14] : RunProgram------   0 logical volume(s) in volume group "vg1" now active
+[03/03/2018 22:19:14] : vgchange -a n vg1 - Finished O.K.
+[03/03/2018 22:19:14] : Running : vgchange -a n vg2
+[03/03/2018 22:19:15] : RunProgram------   0 logical volume(s) in volume group "vg2" now active
+[03/03/2018 22:19:15] : vgchange -a n vg2 - Finished O.K.
+[03/03/2018 22:19:15] : Step 25 VGChangeAfterUmount END
+[03/03/2018 22:19:15] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #            #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:19:15] : DESCRIPTION: Delete Target LUNs
+[03/03/2018 22:19:15] : Step 30 DoTheEstablish BEGIN
+[03/03/2018 22:19:15] : Checking if Target Flex Clone Volume "ReplicManClone_clone1" exists on "svm_linux"
+[03/03/2018 22:19:16] : Going to take offline previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 22:19:16] : Running "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command 
+[03/03/2018 22:19:17] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command is:
+[03/03/2018 22:19:17] : RunProgram------ 
+[03/03/2018 22:19:17] : RunProgram------ Volume "svm_linux:ReplicManClone_clone1" is now offline.                       
+[03/03/2018 22:19:17] : RunProgram------ 
+[03/03/2018 22:19:18] : Volume taken offline successfully
+[03/03/2018 22:19:18] : Going to delete previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 22:19:18] : Running "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command 
+[03/03/2018 22:19:24] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command is:
+[03/03/2018 22:19:24] : RunProgram------ 
+[03/03/2018 22:19:24] : RunProgram------ [Job 1889] Job is queued: Delete ReplicManClone_clone1.                        [Job 1889] Job succeeded: Successful                                           
+[03/03/2018 22:19:24] : RunProgram------ 
+[03/03/2018 22:19:24] : FlexClone deleted successfully
+[03/03/2018 22:19:24] : Going to check if snapshot ReplicMan_RHEL1 exists on svm_linux rhel1_oracle
+[03/03/2018 22:19:25] : Going to delete snapshot ReplicMan_RHEL1 from svm_linux:rhel1_oracle
+[03/03/2018 22:19:25] : Running "ssh vsadmin@svm_linux "set -conf off;set -privilege diagnostic; snap delete -volume rhel1_oracle -snapshot ReplicMan_RHEL1 -ignore-owners true"" command 
+[03/03/2018 22:19:27] : The snapshot ReplicMan_RHEL1 in svm_linux:rhel1_oracle was Deleted
+[03/03/2018 22:19:27] : Step 30 DoTheEstablish END
+[03/03/2018 22:19:27] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[03/03/2018 22:19:27] : DESCRIPTION: Post Establish Command
+[03/03/2018 22:19:27] : Step 40 EstPostCommand BEGIN
+[03/03/2018 22:19:27] : Running PostEstablish Command
+[03/03/2018 22:19:27] : Running PostEstablish Command Finished O.K.
+[03/03/2018 22:19:27] : Step 40 EstPostCommand END
+[03/03/2018 22:19:27] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #        #      #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:19:27] : DESCRIPTION: Pre Split Command
+[03/03/2018 22:19:27] : Step 50 SplitPreCommand BEGIN
+[03/03/2018 22:19:27] : Running PreSplit Command
+[03/03/2018 22:19:27] : Running PreSplit Command Finished O.K.
+[03/03/2018 22:19:27] : Step 50 SplitPreCommand END
+[03/03/2018 22:19:27] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         ####   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:19:27] : DESCRIPTION: Split The Group
+[03/03/2018 22:19:27] : Step 60 DoTheSplit BEGIN
+[03/03/2018 22:19:28] : Going to create a snapshot named "ReplicMan_RHEL1" on "rhel1_oracle" - Netapp "svm_linux"
+[03/03/2018 22:19:28] : Running "ssh vsadmin@svm_linux snap create rhel1_oracle ReplicMan_RHEL1" command 
+[03/03/2018 22:19:32] : Snapshot Creation Finished O.K.
+[03/03/2018 22:19:33] : Starting Snapmirror update from src:"svm_linux:rhel1_oracle" to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 22:19:34] : Snapmirror status is:"Idle" - 1
+[03/03/2018 22:19:34] : Starting snapmirror update
+[03/03/2018 22:19:36] : Snapmirror status is:"Idle" - 1
+[03/03/2018 22:19:36] : Snapmirror update - Finished O.K. 
+[03/03/2018 22:19:36] : Running "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command 
+[03/03/2018 22:19:42] : RunProgram------ The output of the "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command is:
+[03/03/2018 22:19:42] : RunProgram------ [Job 1890] Job is queued: Create ReplicManClone_clone1.                        [Job 1890] Job succeeded: Successful                                           
+[03/03/2018 22:19:42] : RunProgram------ 
+[03/03/2018 22:19:43] : Going to map lun "/vol/ReplicManClone_clone1/vg1_1" to host "RHEL1"
+[03/03/2018 22:19:43] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_1 -igroup RHEL1" command 
+[03/03/2018 22:19:45] : Lun mapped - Finished O.K.
+[03/03/2018 22:19:45] : Going to map lun "/vol/ReplicManClone_clone1/vg1_2" to host "RHEL1"
+[03/03/2018 22:19:45] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_2 -igroup RHEL1" command 
+[03/03/2018 22:19:47] : Lun mapped - Finished O.K.
+[03/03/2018 22:19:47] : Going to map lun "/vol/ReplicManClone_clone1/vg1_3" to host "RHEL1"
+[03/03/2018 22:19:47] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_3 -igroup RHEL1" command 
+[03/03/2018 22:19:49] : Lun mapped - Finished O.K.
+[03/03/2018 22:19:49] : Going to map lun "/vol/ReplicManClone_clone1/vg2_1" to host "RHEL1"
+[03/03/2018 22:19:49] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_1 -igroup RHEL1" command 
+[03/03/2018 22:19:51] : Lun mapped - Finished O.K.
+[03/03/2018 22:19:51] : Going to map lun "/vol/ReplicManClone_clone1/vg2_2" to host "RHEL1"
+[03/03/2018 22:19:51] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_2 -igroup RHEL1" command 
+[03/03/2018 22:19:53] : Lun mapped - Finished O.K.
+[03/03/2018 22:19:53] : Scanning the target host:"RHEL1" for new devices
+[03/03/2018 22:19:55] : RunProgram------ The output of the "multipath -r -B" command is:
+[03/03/2018 22:19:55] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396846 undef NETAPP,LUN C-Mode
+[03/03/2018 22:19:55] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:19:55] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:19:55] : RunProgram------ | |- 3:0:0:0 sdb 8:16  undef ready running
+[03/03/2018 22:19:55] : RunProgram------ | `- 5:0:0:0 sdh 8:112 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:19:55] : RunProgram------   |- 8:0:0:0 sde 8:64  undef ready running
+[03/03/2018 22:19:55] : RunProgram------   `- 9:0:0:0 sdo 8:224 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f39684e undef NETAPP,LUN C-Mode
+[03/03/2018 22:19:55] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:19:55] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:19:55] : RunProgram------ | |- 3:0:0:2 sdd 8:48  undef ready running
+[03/03/2018 22:19:55] : RunProgram------ | `- 5:0:0:2 sdn 8:208 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:19:55] : RunProgram------   |- 8:0:0:2 sdi 8:128 undef ready running
+[03/03/2018 22:19:55] : RunProgram------   `- 9:0:0:2 sds 65:32 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f39684d undef NETAPP,LUN C-Mode
+[03/03/2018 22:19:55] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:19:55] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:19:55] : RunProgram------ | |- 3:0:0:1 sdc 8:32  undef ready running
+[03/03/2018 22:19:55] : RunProgram------ | `- 5:0:0:1 sdl 8:176 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:19:55] : RunProgram------   |- 8:0:0:1 sdf 8:80  undef ready running
+[03/03/2018 22:19:55] : RunProgram------   `- 9:0:0:1 sdq 65:0  undef ready running
+[03/03/2018 22:19:55] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f39684f undef NETAPP,LUN C-Mode
+[03/03/2018 22:19:55] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:19:55] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:19:55] : RunProgram------ | |- 3:0:0:3 sdg 8:96  undef ready running
+[03/03/2018 22:19:55] : RunProgram------ | `- 5:0:0:3 sdp 8:240 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:19:55] : RunProgram------   |- 8:0:0:3 sdj 8:144 undef ready running
+[03/03/2018 22:19:55] : RunProgram------   `- 9:0:0:3 sdt 65:48 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396847 undef NETAPP,LUN C-Mode
+[03/03/2018 22:19:55] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:19:55] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:19:55] : RunProgram------ | |- 3:0:0:4 sdk 8:160 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ | `- 5:0:0:4 sdr 65:16 undef ready running
+[03/03/2018 22:19:55] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:19:55] : RunProgram------   |- 8:0:0:4 sdm 8:192 undef ready running
+[03/03/2018 22:19:55] : RunProgram------   `- 9:0:0:4 sdu 65:64 undef ready running
+[03/03/2018 22:20:00] : Step 60 DoTheSplit END
+[03/03/2018 22:20:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #            #  #   ##  
+#           #     #        #     #           #   #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #               #     ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #               #      ####   
+
+[03/03/2018 22:20:00] : DESCRIPTION: VgChange Befor Mount on the target
+[03/03/2018 22:20:00] : Step 70 VGChangeBeforMmount BEGIN
+[03/03/2018 22:20:00] : Checking if I need to vgchangeid or vgimport (VGIM = 0)
+[03/03/2018 22:20:00] : Getting Target VG List
+[03/03/2018 22:20:00] : Getting Target VG List - Done.
+[03/03/2018 22:20:00] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 22:20:00] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:20:00] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:20:00] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:20:00] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:20:00] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:20:00] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:20:01] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:20:01] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:20:01] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:20:01] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:20:01] : Running : vgchange -a y vg1
+[03/03/2018 22:20:01] : RunProgram------   3 logical volume(s) in volume group "vg1" now active
+[03/03/2018 22:20:01] : vgchange -a y vg1 - Finished O.K.
+[03/03/2018 22:20:01] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 22:20:01] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:20:01] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:20:01] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:20:02] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:20:02] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:20:02] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:20:02] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:20:02] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:20:02] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:20:02] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:20:02] : Running : vgchange -a y vg2
+[03/03/2018 22:20:02] : RunProgram------   2 logical volume(s) in volume group "vg2" now active
+[03/03/2018 22:20:02] : vgchange -a y vg2 - Finished O.K.
+[03/03/2018 22:20:02] : Step 70 VGChangeBeforMmount END
+[03/03/2018 22:20:02] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####  #####  
+#     #     #     #        #     #            #  #      
+#           #     #        #     #           #   #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #               #         #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #               #     #####  
+
+[03/03/2018 22:20:02] : DESCRIPTION: Mount filesystems on the target hos
+[03/03/2018 22:20:02] : Step 75 MountTargetFS BEGIN
+[03/03/2018 22:20:02] : Mounting FileSystems on Host RHEL1
+[03/03/2018 22:20:02] : Getting list of FileSystem...
+[03/03/2018 22:20:03] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 22:20:03] : Checking /vg1/lv1
+[03/03/2018 22:20:03] : Running tune2fs on /dev/vg1/lv1
+[03/03/2018 22:20:03] : Running FSCK on /dev/vg1/lv1
+[03/03/2018 22:20:03] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv1" command is:
+[03/03/2018 22:20:03] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:20:03] : RunProgram------ 2
+[03/03/2018 22:20:03] : RunProgram------ /dev/mapper/vg1-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:20:03] : Mounting /vg1/lv1
+[03/03/2018 22:20:04] : Checking /vg1/lv2
+[03/03/2018 22:20:04] : Running tune2fs on /dev/vg1/lv2
+[03/03/2018 22:20:04] : Running FSCK on /dev/vg1/lv2
+[03/03/2018 22:20:05] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv2" command is:
+[03/03/2018 22:20:05] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:20:05] : RunProgram------ 2
+[03/03/2018 22:20:05] : RunProgram------ /dev/mapper/vg1-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:20:05] : Mounting /vg1/lv2
+[03/03/2018 22:20:05] : Checking /vg1/lv3
+[03/03/2018 22:20:05] : Running tune2fs on /dev/vg1/lv3
+[03/03/2018 22:20:05] : Running FSCK on /dev/vg1/lv3
+[03/03/2018 22:20:06] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv3" command is:
+[03/03/2018 22:20:06] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:20:06] : RunProgram------ 2
+[03/03/2018 22:20:06] : RunProgram------ /dev/mapper/vg1-lv3: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:20:06] : Mounting /vg1/lv3
+[03/03/2018 22:20:06] : Checking /vg2/lv1
+[03/03/2018 22:20:06] : Running tune2fs on /dev/vg2/lv1
+[03/03/2018 22:20:07] : Running FSCK on /dev/vg2/lv1
+[03/03/2018 22:20:07] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv1" command is:
+[03/03/2018 22:20:07] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:20:07] : RunProgram------ 2
+[03/03/2018 22:20:07] : RunProgram------ /dev/mapper/vg2-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:20:07] : Mounting /vg2/lv1
+[03/03/2018 22:20:07] : Checking /vg2/lv2
+[03/03/2018 22:20:08] : Running tune2fs on /dev/vg2/lv2
+[03/03/2018 22:20:08] : Running FSCK on /dev/vg2/lv2
+[03/03/2018 22:20:08] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv2" command is:
+[03/03/2018 22:20:08] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:20:08] : RunProgram------ 2
+[03/03/2018 22:20:08] : RunProgram------ /dev/mapper/vg2-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:20:08] : Mounting /vg2/lv2
+[03/03/2018 22:20:09] : Mounting FileSystems on Host RHEL1 Finished O.K.
+[03/03/2018 22:20:09] : Step 75 MountTargetFS END
+[03/03/2018 22:20:09] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:20:09] : DESCRIPTION: Up the DB on the target host
+[03/03/2018 22:20:09] : Step 80 UpTargetDB BEGIN
+[03/03/2018 22:20:09] : No Need to up the target DB
+[03/03/2018 22:20:09] : Step 80 UpTargetDB END
+[03/03/2018 22:20:09] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######          ###   #####  
+      #     #     #        #              #   #      #  
+#     #     #     #        #              #   #      #  
+ #####      #     #######  #               ###   #####  
+
+[03/03/2018 22:20:09] : DESCRIPTION: Post Split Command
+[03/03/2018 22:20:09] : Step 85 SplitPostCommand BEGIN
+[03/03/2018 22:20:09] : Running PostSplit Command
+[03/03/2018 22:20:09] : Running PostSplit Command Finished O.K.
+[03/03/2018 22:20:09] : Step 85 SplitPostCommand END
+[03/03/2018 22:20:09] : -------------------------------------------------------
+[03/03/2018 22:20:09] : ReplicMan FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 22:22:30] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 22:22:30] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 22:22:30] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 22:22:30] : computer: RHEL1 process: 28407 tty: /dev/pts/0
+[03/03/2018 22:22:30] : ----------------- environment variables ----------------
+[03/03/2018 22:22:30] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 22:22:30] : CVS_RSH=ssh
+[03/03/2018 22:22:30] : G_BROKEN_FILENAMES=1
+[03/03/2018 22:22:30] : HISTCONTROL=ignoredups
+[03/03/2018 22:22:30] : HISTSIZE=1000
+[03/03/2018 22:22:30] : HOME=/root
+[03/03/2018 22:22:30] : HOSTNAME=RHEL1
+[03/03/2018 22:22:30] : LANG=en_US.UTF-8
+[03/03/2018 22:22:30] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 22:22:30] : LOADEDMODULES=
+[03/03/2018 22:22:30] : LOGNAME=root
+[03/03/2018 22:22:30] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 22:22:30] : MAIL=/var/spool/mail/root
+[03/03/2018 22:22:30] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 22:22:30] : MODULESHOME=/usr/share/Modules
+[03/03/2018 22:22:30] : OLDPWD=/root/lvm
+[03/03/2018 22:22:30] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 22:22:30] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 22:22:30] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 22:22:30] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 22:22:30] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 22:22:30] : SHELL=/bin/bash
+[03/03/2018 22:22:30] : SHLVL=1
+[03/03/2018 22:22:30] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 22:22:30] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 22:22:30] : SSH_TTY=/dev/pts/0
+[03/03/2018 22:22:30] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 22:22:30] : SYMCLI_MODE=V72
+[03/03/2018 22:22:30] : TERM=xterm
+[03/03/2018 22:22:30] : USER=root
+[03/03/2018 22:22:30] : _=./ReplicMan.pl
+[03/03/2018 22:22:30] : ----------------- environment variables ----------------
+[03/03/2018 22:22:30] : ReplicMan STARTED
+[03/03/2018 22:22:30] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 22:22:30] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 22:22:30] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 22:22:30] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 22:22:30] : XIV Configuration
+[03/03/2018 22:22:30] : Checking if Volume svm_linux exists on XIV Box  
+[03/03/2018 22:22:30] : Error: The volume does NOT exists on the XIV - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 22:23:03] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 22:23:03] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 22:23:03] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 22:23:03] : computer: RHEL1 process: 28477 tty: /dev/pts/0
+[03/03/2018 22:23:03] : ----------------- environment variables ----------------
+[03/03/2018 22:23:03] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 22:23:03] : CVS_RSH=ssh
+[03/03/2018 22:23:03] : G_BROKEN_FILENAMES=1
+[03/03/2018 22:23:03] : HISTCONTROL=ignoredups
+[03/03/2018 22:23:03] : HISTSIZE=1000
+[03/03/2018 22:23:03] : HOME=/root
+[03/03/2018 22:23:03] : HOSTNAME=RHEL1
+[03/03/2018 22:23:03] : LANG=en_US.UTF-8
+[03/03/2018 22:23:03] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 22:23:03] : LOADEDMODULES=
+[03/03/2018 22:23:03] : LOGNAME=root
+[03/03/2018 22:23:03] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 22:23:03] : MAIL=/var/spool/mail/root
+[03/03/2018 22:23:03] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 22:23:03] : MODULESHOME=/usr/share/Modules
+[03/03/2018 22:23:03] : OLDPWD=/root/lvm
+[03/03/2018 22:23:03] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 22:23:03] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 22:23:03] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 22:23:03] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 22:23:03] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 22:23:03] : SHELL=/bin/bash
+[03/03/2018 22:23:03] : SHLVL=1
+[03/03/2018 22:23:03] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 22:23:03] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 22:23:03] : SSH_TTY=/dev/pts/0
+[03/03/2018 22:23:03] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 22:23:03] : SYMCLI_MODE=V72
+[03/03/2018 22:23:03] : TERM=xterm
+[03/03/2018 22:23:03] : USER=root
+[03/03/2018 22:23:03] : _=./ReplicMan.pl
+[03/03/2018 22:23:03] : ----------------- environment variables ----------------
+[03/03/2018 22:23:03] : ReplicMan STARTED
+[03/03/2018 22:23:03] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 22:23:03] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 22:23:03] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 22:23:03] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 22:23:03] : XIV Configuration
+[03/03/2018 22:23:03] : Checking if Volume svm_linux exists on XIV Box  
+[03/03/2018 22:23:03] : Error: The volume does NOT exists on the XIV - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 22:25:24] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 22:25:24] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 22:25:24] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 22:25:24] : computer: RHEL1 process: 32347 tty: /dev/pts/0
+[03/03/2018 22:25:24] : ----------------- environment variables ----------------
+[03/03/2018 22:25:24] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 22:25:24] : CVS_RSH=ssh
+[03/03/2018 22:25:24] : G_BROKEN_FILENAMES=1
+[03/03/2018 22:25:24] : HISTCONTROL=ignoredups
+[03/03/2018 22:25:24] : HISTSIZE=1000
+[03/03/2018 22:25:24] : HOME=/root
+[03/03/2018 22:25:24] : HOSTNAME=RHEL1
+[03/03/2018 22:25:24] : LANG=en_US.UTF-8
+[03/03/2018 22:25:24] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 22:25:24] : LOADEDMODULES=
+[03/03/2018 22:25:24] : LOGNAME=root
+[03/03/2018 22:25:24] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 22:25:24] : MAIL=/var/spool/mail/root
+[03/03/2018 22:25:24] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 22:25:24] : MODULESHOME=/usr/share/Modules
+[03/03/2018 22:25:24] : OLDPWD=/root/lvm
+[03/03/2018 22:25:24] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 22:25:24] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 22:25:24] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 22:25:24] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 22:25:24] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 22:25:24] : SHELL=/bin/bash
+[03/03/2018 22:25:24] : SHLVL=1
+[03/03/2018 22:25:24] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 22:25:24] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 22:25:24] : SSH_TTY=/dev/pts/0
+[03/03/2018 22:25:24] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 22:25:24] : SYMCLI_MODE=V72
+[03/03/2018 22:25:24] : TERM=xterm
+[03/03/2018 22:25:24] : USER=root
+[03/03/2018 22:25:24] : _=./ReplicMan.pl
+[03/03/2018 22:25:24] : ----------------- environment variables ----------------
+[03/03/2018 22:25:24] : ReplicMan STARTED
+[03/03/2018 22:25:24] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 22:25:24] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 22:25:24] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 22:25:24] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 22:25:24] : NetappSAN Configuration
+[03/03/2018 22:25:24] : Validating that src:"svm_linux:rhel1_oracle" is replicated to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 22:25:25] : Snapmirror relationship found - Finished O.K.
+[03/03/2018 22:25:25] : Flex Clone name will be "ReplicMan_clone1" - prefix been added for protection
+[03/03/2018 22:25:25] : Step 05 CheckGroupStatus END
+[03/03/2018 22:25:25] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[03/03/2018 22:25:25] : DESCRIPTION: Check for running syncs from the same source
+[03/03/2018 22:25:25] : Step 06 CheckRunningSyncs BEGIN
+[03/03/2018 22:25:25] : Checking for other running syncs ...
+[03/03/2018 22:25:25] : Step 06 CheckRunningSyncs END
+[03/03/2018 22:25:25] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:25:25] : DESCRIPTION: Pre Establish Command
+[03/03/2018 22:25:25] : Step 10 EstPreCommand BEGIN
+[03/03/2018 22:25:25] : Running PreEstablish Command
+[03/03/2018 22:25:25] : Running PreEstablish Command Finished O.K.
+[03/03/2018 22:25:25] : Step 10 EstPreCommand END
+[03/03/2018 22:25:25] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 22:25:25] : DESCRIPTION: ShutDown DataBase on the target host
+[03/03/2018 22:25:25] : Step 15 ShutDownTargetDB BEGIN
+[03/03/2018 22:25:25] : No Need to shutdown DB - TARGET have No DB !!!
+[03/03/2018 22:25:25] : Step 15 ShutDownTargetDB END
+[03/03/2018 22:25:25] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:25:25] : DESCRIPTION: Umount FileSystems on the target host
+[03/03/2018 22:25:25] : Step 20 UmountTargetFS BEGIN
+[03/03/2018 22:25:25] : Un-mounting FileSystems on Host RHEL1
+[03/03/2018 22:25:25] : Getting list of FileSystem...
+[03/03/2018 22:25:25] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 22:25:25] : Going to UN-mount /vg2/lv2 ...
+[03/03/2018 22:25:25] : /vg2/lv2 is Un-Mounted on RHEL1
+[03/03/2018 22:25:25] : Going to UN-mount /vg2/lv1 ...
+[03/03/2018 22:25:25] : /vg2/lv1 is Un-Mounted on RHEL1
+[03/03/2018 22:25:25] : Going to UN-mount /vg1/lv3 ...
+[03/03/2018 22:25:25] : /vg1/lv3 is Un-Mounted on RHEL1
+[03/03/2018 22:25:26] : Going to UN-mount /vg1/lv2 ...
+[03/03/2018 22:25:26] : /vg1/lv2 is Un-Mounted on RHEL1
+[03/03/2018 22:25:26] : Going to UN-mount /vg1/lv1 ...
+[03/03/2018 22:25:26] : /vg1/lv1 is Un-Mounted on RHEL1
+[03/03/2018 22:25:26] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[03/03/2018 22:25:26] : Step 20 UmountTargetFS END
+[03/03/2018 22:25:26] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 22:25:26] : DESCRIPTION: VgChange after umount on the target
+[03/03/2018 22:25:26] : Step 25 VGChangeAfterUmount BEGIN
+[03/03/2018 22:25:26] : Getting Target VG List
+[03/03/2018 22:25:26] : Getting Target VG List - Done.
+[03/03/2018 22:25:26] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 22:25:26] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:25:26] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:25:26] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:25:26] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:25:26] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:25:26] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:25:26] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:25:26] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:25:26] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:25:26] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:25:26] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 22:25:26] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:25:26] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:25:26] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:25:27] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:25:27] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:25:27] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:25:27] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:25:27] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:25:27] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:25:27] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:25:27] : Running : vgchange -a n vg1
+[03/03/2018 22:25:27] : RunProgram------   0 logical volume(s) in volume group "vg1" now active
+[03/03/2018 22:25:27] : vgchange -a n vg1 - Finished O.K.
+[03/03/2018 22:25:27] : Running : vgchange -a n vg2
+[03/03/2018 22:25:27] : RunProgram------   0 logical volume(s) in volume group "vg2" now active
+[03/03/2018 22:25:27] : vgchange -a n vg2 - Finished O.K.
+[03/03/2018 22:25:27] : Step 25 VGChangeAfterUmount END
+[03/03/2018 22:25:27] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #            #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:25:27] : DESCRIPTION: Delete Target LUNs
+[03/03/2018 22:25:27] : Step 30 DoTheEstablish BEGIN
+[03/03/2018 22:25:27] : Checking if Target Flex Clone Volume "ReplicManClone_clone1" exists on "svm_linux"
+[03/03/2018 22:25:28] : Going to take offline previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 22:25:28] : Running "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command 
+[03/03/2018 22:25:29] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command is:
+[03/03/2018 22:25:29] : RunProgram------ 
+[03/03/2018 22:25:29] : RunProgram------ Volume "svm_linux:ReplicManClone_clone1" is now offline.                       
+[03/03/2018 22:25:29] : RunProgram------ 
+[03/03/2018 22:25:30] : Volume taken offline successfully
+[03/03/2018 22:25:30] : Going to delete previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 22:25:30] : Running "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command 
+[03/03/2018 22:25:36] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command is:
+[03/03/2018 22:25:36] : RunProgram------ 
+[03/03/2018 22:25:36] : RunProgram------ [Job 1891] Job is queued: Delete ReplicManClone_clone1.                        [Job 1891] Job succeeded: Successful                                           
+[03/03/2018 22:25:36] : RunProgram------ 
+[03/03/2018 22:25:37] : FlexClone deleted successfully
+[03/03/2018 22:25:37] : Going to check if snapshot ReplicMan_RHEL1 exists on svm_linux rhel1_oracle
+[03/03/2018 22:25:38] : Going to delete snapshot ReplicMan_RHEL1 from svm_linux:rhel1_oracle
+[03/03/2018 22:25:38] : Running "ssh vsadmin@svm_linux "set -conf off;set -privilege diagnostic; snap delete -volume rhel1_oracle -snapshot ReplicMan_RHEL1 -ignore-owners true"" command 
+[03/03/2018 22:25:40] : The snapshot ReplicMan_RHEL1 in svm_linux:rhel1_oracle was Deleted
+[03/03/2018 22:25:40] : Step 30 DoTheEstablish END
+[03/03/2018 22:25:40] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[03/03/2018 22:25:40] : DESCRIPTION: Post Establish Command
+[03/03/2018 22:25:40] : Step 40 EstPostCommand BEGIN
+[03/03/2018 22:25:40] : Running PostEstablish Command
+[03/03/2018 22:25:40] : Running PostEstablish Command Finished O.K.
+[03/03/2018 22:25:40] : Step 40 EstPostCommand END
+[03/03/2018 22:25:40] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #        #      #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:25:40] : DESCRIPTION: Pre Split Command
+[03/03/2018 22:25:40] : Step 50 SplitPreCommand BEGIN
+[03/03/2018 22:25:40] : Running PreSplit Command
+[03/03/2018 22:25:40] : Running PreSplit Command Finished O.K.
+[03/03/2018 22:25:40] : Step 50 SplitPreCommand END
+[03/03/2018 22:25:40] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         ####   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:25:40] : DESCRIPTION: Split The Group
+[03/03/2018 22:25:40] : Step 60 DoTheSplit BEGIN
+[03/03/2018 22:25:41] : Going to create a snapshot named "ReplicMan_RHEL1" on "rhel1_oracle" - Netapp "svm_linux"
+[03/03/2018 22:25:41] : Running "ssh vsadmin@svm_linux snap create rhel1_oracle ReplicMan_RHEL1" command 
+[03/03/2018 22:25:45] : Snapshot Creation Finished O.K.
+[03/03/2018 22:25:46] : Starting Snapmirror update from src:"svm_linux:rhel1_oracle" to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 22:25:46] : Snapmirror status is:"Idle" - 1
+[03/03/2018 22:25:46] : Starting snapmirror update
+[03/03/2018 22:25:48] : Snapmirror status is:"Idle" - 1
+[03/03/2018 22:25:48] : Snapmirror update - Finished O.K. 
+[03/03/2018 22:25:48] : Running "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command 
+[03/03/2018 22:25:54] : RunProgram------ The output of the "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command is:
+[03/03/2018 22:25:54] : RunProgram------ [Job 1892] Job is queued: Create ReplicManClone_clone1.                        [Job 1892] Job succeeded: Successful                                           
+[03/03/2018 22:25:54] : RunProgram------ 
+[03/03/2018 22:25:56] : Going to map lun "/vol/ReplicManClone_clone1/vg1_1" to host "RHEL1"
+[03/03/2018 22:25:56] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_1 -igroup RHEL1" command 
+[03/03/2018 22:25:58] : Lun mapped - Finished O.K.
+[03/03/2018 22:25:58] : Going to map lun "/vol/ReplicManClone_clone1/vg1_2" to host "RHEL1"
+[03/03/2018 22:25:58] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_2 -igroup RHEL1" command 
+[03/03/2018 22:26:00] : Lun mapped - Finished O.K.
+[03/03/2018 22:26:00] : Going to map lun "/vol/ReplicManClone_clone1/vg1_3" to host "RHEL1"
+[03/03/2018 22:26:00] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_3 -igroup RHEL1" command 
+[03/03/2018 22:26:02] : Lun mapped - Finished O.K.
+[03/03/2018 22:26:02] : Going to map lun "/vol/ReplicManClone_clone1/vg2_1" to host "RHEL1"
+[03/03/2018 22:26:02] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_1 -igroup RHEL1" command 
+[03/03/2018 22:26:04] : Lun mapped - Finished O.K.
+[03/03/2018 22:26:04] : Going to map lun "/vol/ReplicManClone_clone1/vg2_2" to host "RHEL1"
+[03/03/2018 22:26:04] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_2 -igroup RHEL1" command 
+[03/03/2018 22:26:06] : Lun mapped - Finished O.K.
+[03/03/2018 22:26:06] : Scanning the target host:"RHEL1" for new devices
+[03/03/2018 22:26:07] : RunProgram------ The output of the "multipath -r -B" command is:
+[03/03/2018 22:26:07] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396850 undef NETAPP,LUN C-Mode
+[03/03/2018 22:26:07] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:26:07] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:26:07] : RunProgram------ | |- 3:0:0:0 sdb 8:16  undef ready running
+[03/03/2018 22:26:07] : RunProgram------ | `- 5:0:0:0 sdh 8:112 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:26:07] : RunProgram------   |- 8:0:0:0 sde 8:64  undef ready running
+[03/03/2018 22:26:07] : RunProgram------   `- 9:0:0:0 sdo 8:224 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396858 undef NETAPP,LUN C-Mode
+[03/03/2018 22:26:07] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:26:07] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:26:07] : RunProgram------ | |- 3:0:0:2 sdd 8:48  undef ready running
+[03/03/2018 22:26:07] : RunProgram------ | `- 5:0:0:2 sdn 8:208 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:26:07] : RunProgram------   |- 8:0:0:2 sdi 8:128 undef ready running
+[03/03/2018 22:26:07] : RunProgram------   `- 9:0:0:2 sds 65:32 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396857 undef NETAPP,LUN C-Mode
+[03/03/2018 22:26:07] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:26:07] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:26:07] : RunProgram------ | |- 3:0:0:1 sdc 8:32  undef ready running
+[03/03/2018 22:26:07] : RunProgram------ | `- 5:0:0:1 sdl 8:176 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:26:07] : RunProgram------   |- 8:0:0:1 sdf 8:80  undef ready running
+[03/03/2018 22:26:07] : RunProgram------   `- 9:0:0:1 sdq 65:0  undef ready running
+[03/03/2018 22:26:07] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396859 undef NETAPP,LUN C-Mode
+[03/03/2018 22:26:07] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:26:07] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:26:07] : RunProgram------ | |- 3:0:0:3 sdg 8:96  undef ready running
+[03/03/2018 22:26:07] : RunProgram------ | `- 5:0:0:3 sdp 8:240 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:26:07] : RunProgram------   |- 8:0:0:3 sdj 8:144 undef ready running
+[03/03/2018 22:26:07] : RunProgram------   `- 9:0:0:3 sdt 65:48 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396851 undef NETAPP,LUN C-Mode
+[03/03/2018 22:26:07] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:26:07] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:26:07] : RunProgram------ | |- 3:0:0:4 sdk 8:160 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ | `- 5:0:0:4 sdr 65:16 undef ready running
+[03/03/2018 22:26:07] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:26:07] : RunProgram------   |- 8:0:0:4 sdm 8:192 undef ready running
+[03/03/2018 22:26:07] : RunProgram------   `- 9:0:0:4 sdu 65:64 undef ready running
+[03/03/2018 22:26:12] : Step 60 DoTheSplit END
+[03/03/2018 22:26:12] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #            #  #   ##  
+#           #     #        #     #           #   #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #               #     ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #               #      ####   
+
+[03/03/2018 22:26:12] : DESCRIPTION: VgChange Befor Mount on the target
+[03/03/2018 22:26:12] : Step 70 VGChangeBeforMmount BEGIN
+[03/03/2018 22:26:12] : Checking if I need to vgchangeid or vgimport (VGIM = 0)
+[03/03/2018 22:26:12] : Getting Target VG List
+[03/03/2018 22:26:12] : Getting Target VG List - Done.
+[03/03/2018 22:26:12] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 22:26:12] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:26:12] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:26:12] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:26:13] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:26:13] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:26:13] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:26:13] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:26:13] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:26:13] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:26:13] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:26:13] : Running : vgchange -a y vg1
+[03/03/2018 22:26:13] : RunProgram------   3 logical volume(s) in volume group "vg1" now active
+[03/03/2018 22:26:13] : vgchange -a y vg1 - Finished O.K.
+[03/03/2018 22:26:13] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 22:26:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:26:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:26:14] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:26:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:26:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:26:14] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:26:14] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:26:14] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:26:14] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:26:14] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:26:14] : Running : vgchange -a y vg2
+[03/03/2018 22:26:15] : RunProgram------   2 logical volume(s) in volume group "vg2" now active
+[03/03/2018 22:26:15] : vgchange -a y vg2 - Finished O.K.
+[03/03/2018 22:26:15] : Step 70 VGChangeBeforMmount END
+[03/03/2018 22:26:15] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####  #####  
+#     #     #     #        #     #            #  #      
+#           #     #        #     #           #   #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #               #         #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #               #     #####  
+
+[03/03/2018 22:26:15] : DESCRIPTION: Mount filesystems on the target hos
+[03/03/2018 22:26:15] : Step 75 MountTargetFS BEGIN
+[03/03/2018 22:26:15] : Mounting FileSystems on Host RHEL1
+[03/03/2018 22:26:15] : Getting list of FileSystem...
+[03/03/2018 22:26:15] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 22:26:15] : Checking /vg1/lv1
+[03/03/2018 22:26:15] : Running tune2fs on /dev/vg1/lv1
+[03/03/2018 22:26:15] : Running FSCK on /dev/vg1/lv1
+[03/03/2018 22:26:16] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv1" command is:
+[03/03/2018 22:26:16] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:26:16] : RunProgram------ 2
+[03/03/2018 22:26:16] : RunProgram------ /dev/mapper/vg1-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:26:16] : Mounting /vg1/lv1
+[03/03/2018 22:26:16] : Checking /vg1/lv2
+[03/03/2018 22:26:16] : Running tune2fs on /dev/vg1/lv2
+[03/03/2018 22:26:17] : Running FSCK on /dev/vg1/lv2
+[03/03/2018 22:26:17] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv2" command is:
+[03/03/2018 22:26:17] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:26:17] : RunProgram------ 2
+[03/03/2018 22:26:17] : RunProgram------ /dev/mapper/vg1-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:26:17] : Mounting /vg1/lv2
+[03/03/2018 22:26:17] : Checking /vg1/lv3
+[03/03/2018 22:26:17] : Running tune2fs on /dev/vg1/lv3
+[03/03/2018 22:26:18] : Running FSCK on /dev/vg1/lv3
+[03/03/2018 22:26:18] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv3" command is:
+[03/03/2018 22:26:18] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:26:18] : RunProgram------ 2
+[03/03/2018 22:26:18] : RunProgram------ /dev/mapper/vg1-lv3: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:26:18] : Mounting /vg1/lv3
+[03/03/2018 22:26:18] : Checking /vg2/lv1
+[03/03/2018 22:26:19] : Running tune2fs on /dev/vg2/lv1
+[03/03/2018 22:26:19] : Running FSCK on /dev/vg2/lv1
+[03/03/2018 22:26:19] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv1" command is:
+[03/03/2018 22:26:19] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:26:19] : RunProgram------ 2
+[03/03/2018 22:26:19] : RunProgram------ /dev/mapper/vg2-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:26:19] : Mounting /vg2/lv1
+[03/03/2018 22:26:20] : Checking /vg2/lv2
+[03/03/2018 22:26:20] : Running tune2fs on /dev/vg2/lv2
+[03/03/2018 22:26:20] : Running FSCK on /dev/vg2/lv2
+[03/03/2018 22:26:21] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv2" command is:
+[03/03/2018 22:26:21] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:26:21] : RunProgram------ 2
+[03/03/2018 22:26:21] : RunProgram------ /dev/mapper/vg2-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:26:21] : Mounting /vg2/lv2
+[03/03/2018 22:26:21] : Mounting FileSystems on Host RHEL1 Finished O.K.
+[03/03/2018 22:26:21] : Step 75 MountTargetFS END
+[03/03/2018 22:26:21] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:26:21] : DESCRIPTION: Up the DB on the target host
+[03/03/2018 22:26:21] : Step 80 UpTargetDB BEGIN
+[03/03/2018 22:26:21] : No Need to up the target DB
+[03/03/2018 22:26:21] : Step 80 UpTargetDB END
+[03/03/2018 22:26:21] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######          ###   #####  
+      #     #     #        #              #   #      #  
+#     #     #     #        #              #   #      #  
+ #####      #     #######  #               ###   #####  
+
+[03/03/2018 22:26:21] : DESCRIPTION: Post Split Command
+[03/03/2018 22:26:21] : Step 85 SplitPostCommand BEGIN
+[03/03/2018 22:26:21] : Running PostSplit Command
+[03/03/2018 22:26:21] : Running PostSplit Command Finished O.K.
+[03/03/2018 22:26:21] : Step 85 SplitPostCommand END
+[03/03/2018 22:26:21] : -------------------------------------------------------
+[03/03/2018 22:26:21] : ReplicMan FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 22:28:01] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 22:28:01] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 22:28:01] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 22:28:01] : computer: RHEL1 process: 21527 tty: /dev/pts/0
+[03/03/2018 22:28:01] : ----------------- environment variables ----------------
+[03/03/2018 22:28:01] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 22:28:01] : CVS_RSH=ssh
+[03/03/2018 22:28:01] : G_BROKEN_FILENAMES=1
+[03/03/2018 22:28:01] : HISTCONTROL=ignoredups
+[03/03/2018 22:28:01] : HISTSIZE=1000
+[03/03/2018 22:28:01] : HOME=/root
+[03/03/2018 22:28:01] : HOSTNAME=RHEL1
+[03/03/2018 22:28:01] : LANG=en_US.UTF-8
+[03/03/2018 22:28:01] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 22:28:01] : LOADEDMODULES=
+[03/03/2018 22:28:01] : LOGNAME=root
+[03/03/2018 22:28:01] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 22:28:01] : MAIL=/var/spool/mail/root
+[03/03/2018 22:28:01] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 22:28:01] : MODULESHOME=/usr/share/Modules
+[03/03/2018 22:28:01] : OLDPWD=/root/lvm
+[03/03/2018 22:28:01] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 22:28:01] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 22:28:01] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 22:28:01] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 22:28:01] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 22:28:01] : SHELL=/bin/bash
+[03/03/2018 22:28:01] : SHLVL=1
+[03/03/2018 22:28:01] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 22:28:01] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 22:28:01] : SSH_TTY=/dev/pts/0
+[03/03/2018 22:28:01] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 22:28:01] : SYMCLI_MODE=V72
+[03/03/2018 22:28:01] : TERM=xterm
+[03/03/2018 22:28:01] : USER=root
+[03/03/2018 22:28:01] : _=./ReplicMan.pl
+[03/03/2018 22:28:01] : ----------------- environment variables ----------------
+[03/03/2018 22:28:01] : ReplicMan STARTED
+[03/03/2018 22:28:01] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 22:28:01] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 22:28:01] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 22:28:01] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 22:28:01] : XIV Configuration
+[03/03/2018 22:28:01] : Checking if Volume svm_linux exists on XIV Box  
+[03/03/2018 22:28:01] : Error: The volume does NOT exists on the XIV - i have to exit
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[03/03/2018 22:28:37] : ReplicMan: working directory set to /usr/RHEL1/ReplicMan/logs
+[03/03/2018 22:28:37] : The Sequence file is : /usr/RHEL1/ReplicMan/logs/TS_ReplicMan.CDOT_TEST.seq
+[03/03/2018 22:28:37] : START: ./ReplicMan.pl -g CDOT_TEST
+[03/03/2018 22:28:37] : computer: RHEL1 process: 21610 tty: /dev/pts/0
+[03/03/2018 22:28:37] : ----------------- environment variables ----------------
+[03/03/2018 22:28:37] : BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`}
+[03/03/2018 22:28:37] : CVS_RSH=ssh
+[03/03/2018 22:28:37] : G_BROKEN_FILENAMES=1
+[03/03/2018 22:28:37] : HISTCONTROL=ignoredups
+[03/03/2018 22:28:37] : HISTSIZE=1000
+[03/03/2018 22:28:37] : HOME=/root
+[03/03/2018 22:28:37] : HOSTNAME=RHEL1
+[03/03/2018 22:28:37] : LANG=en_US.UTF-8
+[03/03/2018 22:28:37] : LESSOPEN=||/usr/bin/lesspipe.sh %s
+[03/03/2018 22:28:37] : LOADEDMODULES=
+[03/03/2018 22:28:37] : LOGNAME=root
+[03/03/2018 22:28:37] : LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+[03/03/2018 22:28:37] : MAIL=/var/spool/mail/root
+[03/03/2018 22:28:37] : MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+[03/03/2018 22:28:37] : MODULESHOME=/usr/share/Modules
+[03/03/2018 22:28:37] : OLDPWD=/root/lvm
+[03/03/2018 22:28:37] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+[03/03/2018 22:28:37] : PWD=/root/lvm/ReplicManDev
+[03/03/2018 22:28:37] : QTDIR=/usr/lib64/qt-3.3
+[03/03/2018 22:28:37] : QTINC=/usr/lib64/qt-3.3/include
+[03/03/2018 22:28:37] : QTLIB=/usr/lib64/qt-3.3/lib
+[03/03/2018 22:28:37] : SHELL=/bin/bash
+[03/03/2018 22:28:37] : SHLVL=1
+[03/03/2018 22:28:37] : SSH_CLIENT=192.168.0.5 49707 22
+[03/03/2018 22:28:37] : SSH_CONNECTION=192.168.0.5 49707 192.168.0.61 22
+[03/03/2018 22:28:37] : SSH_TTY=/dev/pts/0
+[03/03/2018 22:28:37] : SYMCLI_CTL_ACCESS=PARALLEL
+[03/03/2018 22:28:37] : SYMCLI_MODE=V72
+[03/03/2018 22:28:37] : TERM=xterm
+[03/03/2018 22:28:37] : USER=root
+[03/03/2018 22:28:37] : _=./ReplicMan.pl
+[03/03/2018 22:28:37] : ----------------- environment variables ----------------
+[03/03/2018 22:28:37] : ReplicMan STARTED
+[03/03/2018 22:28:37] : LOG_FILE=/usr/RHEL1/ReplicMan/logs/TS_ReplicMan_20180303.CDOT_TEST.log
+[03/03/2018 22:28:37] : DISK=/usr/RHEL1/ReplicMan/logs  YYYYMMDD=20180303 FROM_STEP=05 TO_STEP=85
+
+
+ #####   #######  #######  ######          ####   #####  
+#     #     #     #        #     #        #   ##  #      
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  #####  
+      #     #     #        #              ##   #      #  
+#     #     #     #        #              #    #      #  
+ #####      #     #######  #               ####   #####  
+
+[03/03/2018 22:28:37] : DESCRIPTION: Check the group status Before the Establish
+[03/03/2018 22:28:37] : Step 05 CheckGroupStatus BEGIN
+[03/03/2018 22:28:37] : NetappSAN Configuration
+[03/03/2018 22:28:37] : Validating that src:"svm_linux:rhel1_oracle" is replicated to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 22:28:38] : Snapmirror relationship found - Finished O.K.
+[03/03/2018 22:28:38] : Flex Clone name will be "ReplicMan_clone1" - prefix been added for protection
+[03/03/2018 22:28:38] : Step 05 CheckGroupStatus END
+[03/03/2018 22:28:38] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ####    ###   
+#     #     #     #        #     #        #   ##  #   #  
+#           #     #        #     #        #  # #  #      
+ #####      #     #####    ######         # #  #  ####   
+      #     #     #        #              ##   #  #   #  
+#     #     #     #        #              #    #  #   #  
+ #####      #     #######  #               ####    ###   
+
+[03/03/2018 22:28:38] : DESCRIPTION: Check for running syncs from the same source
+[03/03/2018 22:28:38] : Step 06 CheckRunningSyncs BEGIN
+[03/03/2018 22:28:38] : Checking for other running syncs ...
+[03/03/2018 22:28:38] : Step 06 CheckRunningSyncs END
+[03/03/2018 22:28:38] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:28:38] : DESCRIPTION: Pre Establish Command
+[03/03/2018 22:28:38] : Step 10 EstPreCommand BEGIN
+[03/03/2018 22:28:38] : Running PreEstablish Command
+[03/03/2018 22:28:38] : Running PreEstablish Command Finished O.K.
+[03/03/2018 22:28:38] : Step 10 EstPreCommand END
+[03/03/2018 22:28:38] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######           #    #####  
+#     #     #     #        #     #         ##    #      
+#           #     #        #     #        # #    #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #                #        #  
+#     #     #     #        #                #        #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 22:28:38] : DESCRIPTION: ShutDown DataBase on the target host
+[03/03/2018 22:28:38] : Step 15 ShutDownTargetDB BEGIN
+[03/03/2018 22:28:38] : No Need to shutdown DB - TARGET have No DB !!!
+[03/03/2018 22:28:38] : Step 15 ShutDownTargetDB END
+[03/03/2018 22:28:38] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######            #   # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:28:38] : DESCRIPTION: Umount FileSystems on the target host
+[03/03/2018 22:28:38] : Step 20 UmountTargetFS BEGIN
+[03/03/2018 22:28:38] : Un-mounting FileSystems on Host RHEL1
+[03/03/2018 22:28:38] : Getting list of FileSystem...
+[03/03/2018 22:28:38] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 22:28:38] : Going to UN-mount /vg2/lv2 ...
+[03/03/2018 22:28:38] : /vg2/lv2 is Un-Mounted on RHEL1
+[03/03/2018 22:28:38] : Going to UN-mount /vg2/lv1 ...
+[03/03/2018 22:28:38] : /vg2/lv1 is Un-Mounted on RHEL1
+[03/03/2018 22:28:38] : Going to UN-mount /vg1/lv3 ...
+[03/03/2018 22:28:38] : /vg1/lv3 is Un-Mounted on RHEL1
+[03/03/2018 22:28:38] : Going to UN-mount /vg1/lv2 ...
+[03/03/2018 22:28:38] : /vg1/lv2 is Un-Mounted on RHEL1
+[03/03/2018 22:28:38] : Going to UN-mount /vg1/lv1 ...
+[03/03/2018 22:28:39] : /vg1/lv1 is Un-Mounted on RHEL1
+[03/03/2018 22:28:39] : Un-mounting FileSystems on TARGET Host Finished O.K.
+[03/03/2018 22:28:39] : Step 20 UmountTargetFS END
+[03/03/2018 22:28:39] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######            #   #####  
+      #     #     #        #                #        #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #              #####  #####  
+
+[03/03/2018 22:28:39] : DESCRIPTION: VgChange after umount on the target
+[03/03/2018 22:28:39] : Step 25 VGChangeAfterUmount BEGIN
+[03/03/2018 22:28:39] : Getting Target VG List
+[03/03/2018 22:28:39] : Getting Target VG List - Done.
+[03/03/2018 22:28:39] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 22:28:39] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:28:39] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:28:39] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:28:39] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:28:39] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:28:39] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:28:39] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:28:39] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:28:39] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:28:39] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:28:39] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 22:28:39] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:28:39] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:28:39] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:28:39] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:28:39] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:28:39] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:28:39] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:28:39] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:28:39] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:28:39] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:28:39] : Running : vgchange -a n vg1
+[03/03/2018 22:28:40] : RunProgram------   0 logical volume(s) in volume group "vg1" now active
+[03/03/2018 22:28:40] : vgchange -a n vg1 - Finished O.K.
+[03/03/2018 22:28:40] : Running : vgchange -a n vg2
+[03/03/2018 22:28:40] : RunProgram------   0 logical volume(s) in volume group "vg2" now active
+[03/03/2018 22:28:40] : vgchange -a n vg2 - Finished O.K.
+[03/03/2018 22:28:40] : Step 25 VGChangeAfterUmount END
+[03/03/2018 22:28:40] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #            #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:28:40] : DESCRIPTION: Delete Target LUNs
+[03/03/2018 22:28:40] : Step 30 DoTheEstablish BEGIN
+[03/03/2018 22:28:40] : Checking if Target Flex Clone Volume "ReplicManClone_clone1" exists on "svm_linux"
+[03/03/2018 22:28:41] : Going to take offline previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 22:28:41] : Running "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command 
+[03/03/2018 22:28:42] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol offline ReplicManClone_clone1 -f true -foreground true"" command is:
+[03/03/2018 22:28:42] : RunProgram------ 
+[03/03/2018 22:28:42] : RunProgram------ Volume "svm_linux:ReplicManClone_clone1" is now offline.                       
+[03/03/2018 22:28:42] : RunProgram------ 
+[03/03/2018 22:28:43] : Volume taken offline successfully
+[03/03/2018 22:28:43] : Going to delete previous FlexClone "svm_linux:ReplicManClone_clone1"
+[03/03/2018 22:28:43] : Running "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command 
+[03/03/2018 22:28:49] : RunProgram------ The output of the "ssh vsadmin@svm_linux "set -conf off; vol delete ReplicManClone_clone1 -foreground true"" command is:
+[03/03/2018 22:28:49] : RunProgram------ 
+[03/03/2018 22:28:49] : RunProgram------ [Job 1893] Job is queued: Delete ReplicManClone_clone1.                        [Job 1893] Job succeeded: Successful                                           
+[03/03/2018 22:28:49] : RunProgram------ 
+[03/03/2018 22:28:50] : FlexClone deleted successfully
+[03/03/2018 22:28:50] : Going to check if snapshot ReplicMan_RHEL1 exists on svm_linux rhel1_oracle
+[03/03/2018 22:28:51] : Going to delete snapshot ReplicMan_RHEL1 from svm_linux:rhel1_oracle
+[03/03/2018 22:28:51] : Running "ssh vsadmin@svm_linux "set -conf off;set -privilege diagnostic; snap delete -volume rhel1_oracle -snapshot ReplicMan_RHEL1 -ignore-owners true"" command 
+[03/03/2018 22:28:53] : The snapshot ReplicMan_RHEL1 in svm_linux:rhel1_oracle was Deleted
+[03/03/2018 22:28:53] : Step 30 DoTheEstablish END
+[03/03/2018 22:28:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[03/03/2018 22:28:53] : DESCRIPTION: Post Establish Command
+[03/03/2018 22:28:53] : Step 40 EstPostCommand BEGIN
+[03/03/2018 22:28:53] : Running PostEstablish Command
+[03/03/2018 22:28:53] : Running PostEstablish Command Finished O.K.
+[03/03/2018 22:28:53] : Step 40 EstPostCommand END
+[03/03/2018 22:28:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #        #      #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #              #####   ####   
+
+[03/03/2018 22:28:53] : DESCRIPTION: Pre Split Command
+[03/03/2018 22:28:53] : Step 50 SplitPreCommand BEGIN
+[03/03/2018 22:28:53] : Running PreSplit Command
+[03/03/2018 22:28:53] : Running PreSplit Command Finished O.K.
+[03/03/2018 22:28:53] : Step 50 SplitPreCommand END
+[03/03/2018 22:28:53] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #      #  # #  
+ #####      #     #####    ######         ####   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:28:53] : DESCRIPTION: Split The Group
+[03/03/2018 22:28:53] : Step 60 DoTheSplit BEGIN
+[03/03/2018 22:28:53] : Going to create a snapshot named "ReplicMan_RHEL1" on "rhel1_oracle" - Netapp "svm_linux"
+[03/03/2018 22:28:53] : Running "ssh vsadmin@svm_linux snap create rhel1_oracle ReplicMan_RHEL1" command 
+[03/03/2018 22:28:57] : Snapshot Creation Finished O.K.
+[03/03/2018 22:28:58] : Starting Snapmirror update from src:"svm_linux:rhel1_oracle" to dst:"svm_linux:rhel1_oracle_rep"
+[03/03/2018 22:28:59] : Snapmirror status is:"Idle" - 1
+[03/03/2018 22:28:59] : Starting snapmirror update
+[03/03/2018 22:29:01] : Snapmirror status is:"Idle" - 1
+[03/03/2018 22:29:01] : Snapmirror update - Finished O.K. 
+[03/03/2018 22:29:01] : Running "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command 
+[03/03/2018 22:29:07] : RunProgram------ The output of the "ssh vsadmin@svm_linux volume clone create -flexclone ReplicManClone_clone1 -parent-volume rhel1_oracle_rep -s none -parent-snapshot ReplicMan_RHEL1 -foreground true" command is:
+[03/03/2018 22:29:07] : RunProgram------ [Job 1894] Job is queued: Create ReplicManClone_clone1.                        [Job 1894] Job succeeded: Successful                                           
+[03/03/2018 22:29:07] : RunProgram------ 
+[03/03/2018 22:29:09] : Going to map lun "/vol/ReplicManClone_clone1/vg1_1" to host "RHEL1"
+[03/03/2018 22:29:09] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_1 -igroup RHEL1" command 
+[03/03/2018 22:29:11] : Lun mapped - Finished O.K.
+[03/03/2018 22:29:11] : Going to map lun "/vol/ReplicManClone_clone1/vg1_2" to host "RHEL1"
+[03/03/2018 22:29:11] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_2 -igroup RHEL1" command 
+[03/03/2018 22:29:13] : Lun mapped - Finished O.K.
+[03/03/2018 22:29:13] : Going to map lun "/vol/ReplicManClone_clone1/vg1_3" to host "RHEL1"
+[03/03/2018 22:29:13] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg1_3 -igroup RHEL1" command 
+[03/03/2018 22:29:15] : Lun mapped - Finished O.K.
+[03/03/2018 22:29:15] : Going to map lun "/vol/ReplicManClone_clone1/vg2_1" to host "RHEL1"
+[03/03/2018 22:29:15] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_1 -igroup RHEL1" command 
+[03/03/2018 22:29:17] : Lun mapped - Finished O.K.
+[03/03/2018 22:29:17] : Going to map lun "/vol/ReplicManClone_clone1/vg2_2" to host "RHEL1"
+[03/03/2018 22:29:17] : Running "ssh vsadmin@svm_linux lun map -path /vol/ReplicManClone_clone1/vg2_2 -igroup RHEL1" command 
+[03/03/2018 22:29:19] : Lun mapped - Finished O.K.
+[03/03/2018 22:29:19] : Scanning the target host:"RHEL1" for new devices
+[03/03/2018 22:29:20] : RunProgram------ The output of the "multipath -r -B" command is:
+[03/03/2018 22:29:20] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f39685a undef NETAPP,LUN C-Mode
+[03/03/2018 22:29:20] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:29:20] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:29:21] : RunProgram------ | |- 3:0:0:0 sdb 8:16  undef ready running
+[03/03/2018 22:29:21] : RunProgram------ | `- 5:0:0:0 sdh 8:112 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:29:21] : RunProgram------   |- 8:0:0:0 sde 8:64  undef ready running
+[03/03/2018 22:29:21] : RunProgram------   `- 9:0:0:0 sdo 8:224 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396867 undef NETAPP,LUN C-Mode
+[03/03/2018 22:29:21] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:29:21] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:29:21] : RunProgram------ | |- 3:0:0:2 sdd 8:48  undef ready running
+[03/03/2018 22:29:21] : RunProgram------ | `- 5:0:0:2 sdn 8:208 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:29:21] : RunProgram------   |- 8:0:0:2 sdi 8:128 undef ready running
+[03/03/2018 22:29:21] : RunProgram------   `- 9:0:0:2 sds 65:32 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396866 undef NETAPP,LUN C-Mode
+[03/03/2018 22:29:21] : RunProgram------ size=101G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:29:21] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:29:21] : RunProgram------ | |- 3:0:0:1 sdc 8:32  undef ready running
+[03/03/2018 22:29:21] : RunProgram------ | `- 5:0:0:1 sdl 8:176 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:29:21] : RunProgram------   |- 8:0:0:1 sdf 8:80  undef ready running
+[03/03/2018 22:29:21] : RunProgram------   `- 9:0:0:1 sdq 65:0  undef ready running
+[03/03/2018 22:29:21] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f396868 undef NETAPP,LUN C-Mode
+[03/03/2018 22:29:21] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:29:21] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:29:21] : RunProgram------ | |- 3:0:0:3 sdg 8:96  undef ready running
+[03/03/2018 22:29:21] : RunProgram------ | `- 5:0:0:3 sdp 8:240 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:29:21] : RunProgram------   |- 8:0:0:3 sdj 8:144 undef ready running
+[03/03/2018 22:29:21] : RunProgram------   `- 9:0:0:3 sdt 65:48 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ create: 3600a0980774f6a344b3f4c4f6f39682f undef NETAPP,LUN C-Mode
+[03/03/2018 22:29:21] : RunProgram------ size=81G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=undef
+[03/03/2018 22:29:21] : RunProgram------ |-+- policy='round-robin 0' prio=50 status=undef
+[03/03/2018 22:29:21] : RunProgram------ | |- 3:0:0:4 sdk 8:160 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ | `- 5:0:0:4 sdr 65:16 undef ready running
+[03/03/2018 22:29:21] : RunProgram------ `-+- policy='round-robin 0' prio=10 status=undef
+[03/03/2018 22:29:21] : RunProgram------   |- 8:0:0:4 sdm 8:192 undef ready running
+[03/03/2018 22:29:21] : RunProgram------   `- 9:0:0:4 sdu 65:64 undef ready running
+[03/03/2018 22:29:26] : Step 60 DoTheSplit END
+[03/03/2018 22:29:26] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####   ####   
+#     #     #     #        #     #            #  #   ##  
+#           #     #        #     #           #   #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #               #     ##   #  
+#     #     #     #        #               #     #    #  
+ #####      #     #######  #               #      ####   
+
+[03/03/2018 22:29:26] : DESCRIPTION: VgChange Befor Mount on the target
+[03/03/2018 22:29:26] : Step 70 VGChangeBeforMmount BEGIN
+[03/03/2018 22:29:26] : Checking if I need to vgchangeid or vgimport (VGIM = 0)
+[03/03/2018 22:29:26] : Getting Target VG List
+[03/03/2018 22:29:26] : Getting Target VG List - Done.
+[03/03/2018 22:29:26] : Running : vgchange -c n vg1 --config 'global {locking_type = 0}'
+[03/03/2018 22:29:26] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:29:26] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:29:26] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:29:26] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:29:26] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:29:26] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:29:26] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg1 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:29:26] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:29:26] : RunProgram------   Volume group "vg1" is already not clustered
+[03/03/2018 22:29:26] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:29:26] : Running : vgchange -a y vg1
+[03/03/2018 22:29:27] : RunProgram------   3 logical volume(s) in volume group "vg1" now active
+[03/03/2018 22:29:27] : vgchange -a y vg1 - Finished O.K.
+[03/03/2018 22:29:27] : Running : vgchange -c n vg2 --config 'global {locking_type = 0}'
+[03/03/2018 22:29:27] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:29:27] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:29:27] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:29:27] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:29:27] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:29:27] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:29:28] : RunProgram------ The output of the "/usr/sbin/vgchange -c n vg2 --config 'global {locking_type = 0}'" command is:
+[03/03/2018 22:29:28] : RunProgram------   WARNING: Locking disabled. Be careful! This could corrupt your metadata.
+[03/03/2018 22:29:28] : RunProgram------   Volume group "vg2" is already not clustered
+[03/03/2018 22:29:28] : Disable Cluster Attribute - Finished O.K.
+[03/03/2018 22:29:28] : Running : vgchange -a y vg2
+[03/03/2018 22:29:28] : RunProgram------   2 logical volume(s) in volume group "vg2" now active
+[03/03/2018 22:29:28] : vgchange -a y vg2 - Finished O.K.
+[03/03/2018 22:29:28] : Step 70 VGChangeBeforMmount END
+[03/03/2018 22:29:28] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #####  #####  
+#     #     #     #        #     #            #  #      
+#           #     #        #     #           #   #      
+ #####      #     #####    ######           #    #####  
+      #     #     #        #               #         #  
+#     #     #     #        #               #         #  
+ #####      #     #######  #               #     #####  
+
+[03/03/2018 22:29:28] : DESCRIPTION: Mount filesystems on the target hos
+[03/03/2018 22:29:28] : Step 75 MountTargetFS BEGIN
+[03/03/2018 22:29:28] : Mounting FileSystems on Host RHEL1
+[03/03/2018 22:29:28] : Getting list of FileSystem...
+[03/03/2018 22:29:28] : Getting list of FileSystem -  Finished O.K.
+[03/03/2018 22:29:28] : Checking /vg1/lv1
+[03/03/2018 22:29:28] : Running tune2fs on /dev/vg1/lv1
+[03/03/2018 22:29:29] : Running FSCK on /dev/vg1/lv1
+[03/03/2018 22:29:29] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv1" command is:
+[03/03/2018 22:29:29] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:29:29] : RunProgram------ 2
+[03/03/2018 22:29:29] : RunProgram------ /dev/mapper/vg1-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:29:29] : Mounting /vg1/lv1
+[03/03/2018 22:29:29] : Checking /vg1/lv2
+[03/03/2018 22:29:30] : Running tune2fs on /dev/vg1/lv2
+[03/03/2018 22:29:30] : Running FSCK on /dev/vg1/lv2
+[03/03/2018 22:29:30] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv2" command is:
+[03/03/2018 22:29:30] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:29:30] : RunProgram------ 2
+[03/03/2018 22:29:30] : RunProgram------ /dev/mapper/vg1-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:29:30] : Mounting /vg1/lv2
+[03/03/2018 22:29:30] : Checking /vg1/lv3
+[03/03/2018 22:29:31] : Running tune2fs on /dev/vg1/lv3
+[03/03/2018 22:29:31] : Running FSCK on /dev/vg1/lv3
+[03/03/2018 22:29:31] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg1/lv3" command is:
+[03/03/2018 22:29:31] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:29:31] : RunProgram------ 2
+[03/03/2018 22:29:31] : RunProgram------ /dev/mapper/vg1-lv3: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:29:31] : Mounting /vg1/lv3
+[03/03/2018 22:29:32] : Checking /vg2/lv1
+[03/03/2018 22:29:32] : Running tune2fs on /dev/vg2/lv1
+[03/03/2018 22:29:32] : Running FSCK on /dev/vg2/lv1
+[03/03/2018 22:29:33] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv1" command is:
+[03/03/2018 22:29:33] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:29:33] : RunProgram------ 2
+[03/03/2018 22:29:33] : RunProgram------ /dev/mapper/vg2-lv1: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:29:33] : Mounting /vg2/lv1
+[03/03/2018 22:29:33] : Checking /vg2/lv2
+[03/03/2018 22:29:33] : Running tune2fs on /dev/vg2/lv2
+[03/03/2018 22:29:34] : Running FSCK on /dev/vg2/lv2
+[03/03/2018 22:29:34] : RunProgram------ The output of the "/usr/sbin/fsck -y /dev/vg2/lv2" command is:
+[03/03/2018 22:29:34] : RunProgram------ e2fsck 1.41.12 (17-May-2010)
+[03/03/2018 22:29:34] : RunProgram------ 2
+[03/03/2018 22:29:34] : RunProgram------ /dev/mapper/vg2-lv2: clean, 11/38400 files, 6629/153600 blocks
+[03/03/2018 22:29:34] : Mounting /vg2/lv2
+[03/03/2018 22:29:34] : Mounting FileSystems on Host RHEL1 Finished O.K.
+[03/03/2018 22:29:34] : Step 75 MountTargetFS END
+[03/03/2018 22:29:34] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[03/03/2018 22:29:34] : DESCRIPTION: Up the DB on the target host
+[03/03/2018 22:29:34] : Step 80 UpTargetDB BEGIN
+[03/03/2018 22:29:34] : No Need to up the target DB
+[03/03/2018 22:29:34] : Step 80 UpTargetDB END
+[03/03/2018 22:29:34] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###   #####  
+#     #     #     #        #     #        #   #  #      
+#           #     #        #     #        #   #  #      
+ #####      #     #####    ######          ###   #####  
+      #     #     #        #              #   #      #  
+#     #     #     #        #              #   #      #  
+ #####      #     #######  #               ###   #####  
+
+[03/03/2018 22:29:34] : DESCRIPTION: Post Split Command
+[03/03/2018 22:29:34] : Step 85 SplitPostCommand BEGIN
+[03/03/2018 22:29:34] : Running PostSplit Command
+[03/03/2018 22:29:34] : Running PostSplit Command Finished O.K.
+[03/03/2018 22:29:34] : Step 85 SplitPostCommand END
+[03/03/2018 22:29:34] : -------------------------------------------------------
+[03/03/2018 22:29:34] : ReplicMan FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+

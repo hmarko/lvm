@@ -88,20 +88,28 @@ sub ReadParamFile() {
 			die "Parameters File ($ParamFile) can not be open !" ;
 		while (my $line = <INPUT>) {
 			chomp $line ;
+			$line =~ s/\s*$//;
 			if ($line =~ /<\/GROUP_NAME>/ && $FLAG == 1) { 
 				close (INPUT) ;
 				return %Params ;
 			}
 			if ($FLAG == 1) {
-					my $var = (split (">", $line))[0] ;
-					$var =~ s/\t<//g ;
-					my $value = $line ;
-					$value =~ s/\t<$var>//g;			$value =~ s/<\/$var>//g;
-					if ($SectionName == /default/ )	{	$Params{$var} = $value ;	}
-					elsif (exists $Params{$var})	{	$Params{$var} = $value ;	}
-						else {	Exit ("\nParameter $var is InValid !", 1) ;		}
+				my $var = (split (">", $line))[0] ;
+				$var =~ s/\t<//g ;
+				my $value = $line ;
+				$value =~ s/\t<$var>//g;			
+				$value =~ s/<\/$var>//g;
+				if ($SectionName == /default/ )	{	
+					$Params{$var} = $value ;	
+				} elsif (exists $Params{$var}) {	
+					$Params{$var} = $value ;	
+				} else {	
+					Exit("\nParameter $var is InValid !", 1) ;		
+				}
 			}
-			if ( $line =~ /<GROUP_NAME value=\"$SectionName\">/ ) {	$FLAG = 1 ; }
+			if ( $line =~ /<GROUP_NAME value=\"$SectionName\">/ ) {	
+				$FLAG = 1 ;
+			}
 		}
 		close (INPUT) ;
 		Debug("ReadParamFile","No Group named $GROUP_NAME in the prm file $ParamFile \n");
@@ -111,9 +119,8 @@ sub ReadParamFile() {
 	%Param = GetSection ("default") ;
 	%Param = GetSection ($GROUP_NAME) ;
 	foreach $key (keys %Param) {
-		Debug ("ReadParamFile", "$key=$Param{$key}") ;
+		Debug ("ReadParamFile", "$key=$Param{$key}".'aaa') ;
 	}
-	
 	$CMD = "" ;
 	if ($Param{"MSGRP"} eq "SRDF") {
 		$CMD = $GParam{"CLIDIR"} ."/symrdf -RDFG " . $Param{"RA_GRP"};	
@@ -129,15 +136,17 @@ sub ReadParamFile() {
 		$CMD = "Netapp";
 	}elsif ($Param{"MSGRP"} eq 'XIV|NetappSAN') {
 		$CMD = "XIV for Step 30, NetappSAN for step 60";
+	}elsif ($Param{"MSGRP"} eq 'SVC|NetappSAN') {
+		$CMD = "SVC for Step 30, NetappSAN for step 60";
 	}elsif ($Param{"MSGRP"} eq "NetappSAN") {
-		$CMD = "NetappSAN";		
+		$CMD = "NetappSAN";
 	}elsif ($Param{"MSGRP"} eq "XIV") {
 		$CMD = "XIV";
 	}elsif ($Param{"MSGRP"} eq "SVC") {
 		$CMD = "SVC";
 	}else {
 		Debug("ReadParamFile","The Parameter <MSGRP> can be TimeFinder , SRDF , Clone , SYMSNAP, Netapp, XIV, SVC Only \n");
-		Exit ("\nThe Parameter <MSGRP> can be TimeFinder , SRDF , Clone , SYMSNAP, XIV, Netapp, NetappSAN, XIV|NetappSAN Only !!",1) ;
+		Exit ("\nThe Parameter <MSGRP> can be TimeFinder , SRDF , Clone , SYMSNAP, XIV, Netapp, NetappSAN, XIV|NetappSAN, SVC|NetappSAN Only !!",1) ;
 	}
 	Debug ("ReadParamFile", "The Command is : $CMD") ;
 
@@ -348,12 +357,9 @@ sub CreateNetappMap () {
 		my $line;
 		my $index=0;
 		
-		if (not $MigrationPeriod) {
-			# Open group file for netapp:volume list
-			open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
-		} else {
-			open (GrpFile, "$GroupsDir/$GROUP_NAME".'.NetappSANMigration') || die "Cannot open Group file $GroupsDir/$GROUP_NAME".'.NetappSANMigration'."\n";
-		}
+
+		# Open group file for netapp:volume list
+		open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
 		
 		# Fill the 6 arrays with the following params:
 		#when file-clone - srcsvm:dstsvm:srcvol[/srcqtree],dstvol->dstqtree  (src and dst svm and qtree should be equal)
@@ -385,8 +391,12 @@ sub CreateXivMap () {
 		my $line;
 		my $index=0;
 		
-		# Open group file for netapp:volume list
-		open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
+		#if this group been marked with XIV|NetappSAN
+		if ($MigrationPeriod) {
+			open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
+		} else {
+			open (GrpFile, "$GroupsDir/$GROUP_NAME".'.MigrationToNetapp') || die "Cannot open Group file $GroupsDir/$GROUP_NAME".'.MigrationToNetapp'."\n";
+		}
 		
 		# Fill the 2 arrays with the source vol, and dest vol
 		foreach $line (<GrpFile>) {
@@ -409,9 +419,13 @@ sub CreateSVCMap () {
 	if ( $GroupParams{"MSGRP"} =~ /SVC/ ) {
 		my $line;
 		my $index=0;
-		
-		# Open group file for netapp:volume list
-		open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
+
+		#if this group been marked with SVC|NetappSAN
+		if ($MigrationPeriod) {
+			open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
+		} else {
+			open (GrpFile, "$GroupsDir/$GROUP_NAME".'.MigrationToNetapp') || die "Cannot open Group file $GroupsDir/$GROUP_NAME".'.MigrationToNetapp'."\n";
+		}
 		
 		# Fill the array with FlashCopy Groups
 		foreach $line (<GrpFile>) {
@@ -1722,6 +1736,14 @@ sub DoTheSplit() {
 					}
 				}
 				
+				#rescan for new disks
+				if ($GroupParams{"OS_VERSION"} eq "Linux") {
+					Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
+					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
+					#ReTry ($GroupParams{"TARGET_HOST"}, 'iscsiadm -m session --rescan');
+					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
+					sleep 5;				
+				}
 			}
 		}
 	}
@@ -2677,10 +2699,6 @@ sub VGChangeAfterUmount() {
 sub VGChangeBeforMmount() {
 	# Build target VG List
 	# VGIM = 1 -> vgimport
-	ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -b /tmp/bindings.$$');
-	ReTry ($GroupParams{"TARGET_HOST"}, 'iscsiadm -m session --rescan');
-	ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -b /tmp/bindings.$$');
-	sleep 5;
 	Info ("Checking if I need to vgchangeid or vgimport (VGIM = $VGIM)");
 	if ($VGIM && $GroupParams{OS_VERSION} ne "Linux") {
 		if ($GroupParams{"MAP_FILL"} eq "1" ) {
@@ -3396,6 +3414,50 @@ our $MigrationPeriod = 0;
 if ($GroupParams{"MSGRP"} =~/XIV\|NetappSAN/) {
 	$MigrationPeriod = 1;
 	$GroupParams{"MSGRP"} = 'XIV';
+} elsif ($GroupParams{"MSGRP"} =~/SVC\|NetappSAN/) {
+	$MigrationPeriod = 1;
+	$GroupParams{"MSGRP"} = 'SVC';
+}
+
+if ($MigrationPeriod and $GroupParams{"OS_VERSION"} eq "Linux") {
+	Info("When in MigrationPeriod from XIV to NetappSAN tring to validate if VGs are located on NetApp or XIV");
+	my @vgs = split(':',$GroupParams{"VG_LIST"});
+	my $cmd = "multipath -ll";
+	my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+	my @mpll = GetCommandResult();
+	my %NetappDevices = ();
+	foreach my $line (@mpll) {
+		chomp $line;
+		if ($line=~/(\S+)\s+\(\S+\)\s+(\S+).+NETAPP.+/) {
+			$NetappDevices{$1} = 'NetappLUN';
+			Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
+		}
+		if ($line=~/(\S+)\s+(\S+).+NETAPP.+/) {
+			$NetappDevices{$1} = 'NetappLUN';
+			Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
+		}		
+	}
+	$cmd = "pvs";
+	$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+	my @pvs = GetCommandResult();
+	my $onnetapp = 1;
+	foreach my $vg (@vgs) {
+		foreach my $line (@pvs) {
+			chomp $line;
+			if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vg/) {
+				if (not exists $NetappDevices{$1}) {
+					$onnetapp = 0;
+					Info("Device:$1 is part of vg:$vg but it is not on Netapp LUN :-(");
+				} else {
+					Info("Device:$1 is part of vg:$vg and is on Netapp LUN :-)");
+				}
+			}
+		}
+	}
+	if ($onnetapp) {
+		Info("Setting MSGRP as NetappSAN becuase of all VGs are on Netapp");
+		$GroupParams{"MSGRP"} = "NetappSAN";
+	}
 }
 
 # Fills the array for Netapp and NetappSAN 
