@@ -1,4 +1,5 @@
 
+
 ssh vsadmin@svm_linux vol create -volume XIV -space-guarantee none -aggregate aggr3 -size 100g -state online -percent-snapshot-space 0
 ssh vsadmin@svm_linux vol efficiency on -volume XIV
 ssh vsadmin@svm_linux vol efficiency modify -volume XIV -inline-compression true -compression true -policy default
