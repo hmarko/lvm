@@ -1,2 +1,2 @@
-svm_linux:svm_linux:rhel1_oracle:rhel1_oracle_rep->clone1
+svm_linux:svm_linux:RHEL1_kopongan:RHEL1_kopongan->ravit_test
 #svm_linux:svm_linux:rhel1_oracle:rhel1_oracle->clone1
