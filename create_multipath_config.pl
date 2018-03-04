@@ -17,11 +17,11 @@ $drsched = $ARGV[8];
 $wwidprefix = '3600a0980';
 $deviceprefix = '/dev/mapper/';
 $pvcreateparams = '--dataalignment 4k';
-$rescancmd5="iscsiadm -m session --rescan";
-#$rescancmd1="\"echo '- - -' > /sys/class/scsi_host/host0/scan\"";
-#$rescancmd2="\"echo '- - -' > /sys/class/scsi_host/host1/scan\"";
-#$rescancmd3="\"echo '- - -' > /sys/class/scsi_host/host2/scan\"";
-#$rescancmd4="\"echo '- - -' > /sys/class/scsi_host/host3/scan\"";
+#$rescancmd5="iscsiadm -m session --rescan";
+$rescancmd1="\"echo '- - -' > /sys/class/scsi_host/host0/scan\"";
+$rescancmd2="\"echo '- - -' > /sys/class/scsi_host/host1/scan\"";
+$rescancmd3="\"echo '- - -' > /sys/class/scsi_host/host2/scan\"";
+$rescancmd4="\"echo '- - -' > /sys/class/scsi_host/host3/scan\"";
 $newdevprefix = 'cdotsan_';
 $oldlvolsuffix = '_old_to_delete_XIV';
 
@@ -356,6 +356,7 @@ open (MPCONF,">$mpfile") || die "ERROR cannot open  $mpfile for writing\n";
 print MPCONF "$newfile\n";
 close(MPCONF);
 $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server:/etc/multipath.conf";
+print "$cmd\n";
 `$sshcmdserver $cmd`;
 
 print "\nrescanning new devices\n";
