@@ -17,11 +17,6 @@ $drsched = $ARGV[8];
 $wwidprefix = '3600a0980';
 $deviceprefix = '/dev/mapper/';
 $pvcreateparams = '--dataalignment 4k';
-#$rescancmd5="iscsiadm -m session --rescan";
-$rescancmd1="\"echo '- - -' > /sys/class/scsi_host/host0/scan\"";
-$rescancmd2="\"echo '- - -' > /sys/class/scsi_host/host1/scan\"";
-$rescancmd3="\"echo '- - -' > /sys/class/scsi_host/host2/scan\"";
-$rescancmd4="\"echo '- - -' > /sys/class/scsi_host/host3/scan\"";
 $newdevprefix = 'cdotsan_';
 $oldlvolsuffix = '_old_to_delete_XIV';
 
@@ -361,9 +356,9 @@ $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $m
 
 print "\nrescanning new devices\n";
 print "coping rescan script $rescanscript to the server\n";
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/var/tmp/scsi-rescan';
+$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/root/scsi-rescan';
 `$cmd`;
-$out = `$sshcmdserver bash /tmp/scsi-rescan`;
+$out = `$sshcmdserver bash /root/scsi-rescan`;
 print $out;
 sleep 10;
 

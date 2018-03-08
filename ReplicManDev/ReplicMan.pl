@@ -1059,7 +1059,7 @@ sub DoTheEstablish() {
 		foreach my $vg (@vgs) {
 			foreach my $line (@pvs) {
 				chomp $line;
-				$vgtarget = (split(':',$vg)[1];
+				$vgtarget = (split(':',$vg))[1];
 				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgtarget/) {
 					if (not exists $NetappDevices{$1}) {
 						$onnetapp = 0;
@@ -1600,7 +1600,7 @@ sub DoTheSplit() {
 		foreach my $vg (@vgs) {
 			foreach my $line (@pvs) {
 				chomp $line;
-				$vgmaster = (split(':',$vg)[0];
+				$vgmaster = (split(':',$vg))[0];
 				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgmaster/) {
 					if (not exists $NetappDevices{$1}) {
 						$onnetapp = 0;
@@ -1831,7 +1831,8 @@ sub DoTheSplit() {
 				if ($GroupParams{"OS_VERSION"} eq "Linux") {
 					Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
-					ReTry ($GroupParams{"TARGET_HOST"}, '/usr/bin/scsi-rescan');
+					ReTry ($GroupParams{"TARGET_HOST"}, '/root/scsi-rescan');
+					ReTry ($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
 					sleep 5;				
 				}
