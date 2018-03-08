@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 
-#shalom
-
 use POSIX;
 use JSON;
 use Data::Dumper;
@@ -365,7 +363,7 @@ print "\nrescanning new devices\n";
 print "coping rescan script $rescanscript to the server\n";
 $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/var/tmp/scsi-rescan';
 `$cmd`;
-$out = `$sshcmdserver bash /var/tmp/scsi-rescan`;
+$out = `$sshcmdserver bash /tmp/scsi-rescan`;
 print $out;
 sleep 10;
 
@@ -379,17 +377,16 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 		$devicealias = $vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'};
 		if (not exists $pv{$devicealias}) {
 			print "ERROR: multipath device $deviceprefix$devicealias could not be found\n";
-			exit 1; $deviceprefix$devicealias`;
-			print "$out[0]";
+			exit 1;
 		} elsif (not $pv{$devicealias}{configured}) {
 			print "creating pv:$devicealias :";
-			@out = `$sshcmdserver pvcreate $pvcreateparams
+			@out = `$sshcmdserver pvcreate $pvcreateparams $deviceprefix$devicealias`;
+			print "$out[0]";
 		} else {
 			print "pv:$devicealias already configured as pv\n";
 		}
 	}
-}::q!
-:qQ
+}
 
 print "\nextending VG based on new devices\n";
 createpvmapping();
