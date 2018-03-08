@@ -1826,16 +1826,16 @@ sub DoTheSplit() {
 						}						
 					}
 				}
+			}
 				
-				#rescan for new disks
-				if ($GroupParams{"OS_VERSION"} eq "Linux") {
-					Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
-					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
-					ReTry ($GroupParams{"TARGET_HOST"}, '/root/scsi-rescan');
-					ReTry ($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
-					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
-					sleep 5;				
-				}
+			#rescan for new disks
+			if ($GroupParams{"OS_VERSION"} eq "Linux") {
+				Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
+				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
+				ReTry ($GroupParams{"TARGET_HOST"}, '/root/scsi-rescan');
+				ReTry ($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
+				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
+				sleep 5;				
 			}
 		}
 	}
