@@ -33,6 +33,7 @@ $vol{'initial-size-factor'} = 2;
 $vol{'initial-max-autosize-factor'} = 4;
 
 $hak = '/root/netapp_linux_unified_host_utilities-7-1.x86_64.rpm';
+$rescanscript = '/root/lvm/scsi-rescan';
 
 $sshcmd = 'ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey ';
 $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
@@ -355,16 +356,17 @@ $mpfile = "/tmp/multipath_$server.tmp";
 open (MPCONF,">$mpfile") || die "ERROR cannot open  $mpfile for writing\n";
 print MPCONF "$newfile\n";
 close(MPCONF);
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server:/etc/multipath.conf";
+$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server".':/etc/multipath.conf';
 `$sshcmdserver $cmd`;
 
 print "\nrescanning new devices\n";
-`$sshcmdserver $rescancmd1` if $rescancmd1;
-`$sshcmdserver $rescancmd2` if $rescancmd2;
-`$sshcmdserver $rescancmd3` if $rescancmd3;
-`$sshcmdserver $rescancmd4` if $rescancmd4;
-`$sshcmdserver $rescancmd5` if $rescancmd5;
+print "coping rescan script $rescanscript to the server\n";
+$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/tmp/scsi-rescan';
+`$cmd`;
+$out = `$sshcmdserver bash /tmp/scsi-rescan`;
+print $out;
 sleep 10;
+
 print "\nconfiguration of dmultipath devices\n";
 `$sshcmdserver multipath -r`;
 

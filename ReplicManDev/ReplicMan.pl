@@ -1740,7 +1740,7 @@ sub DoTheSplit() {
 				if ($GroupParams{"OS_VERSION"} eq "Linux") {
 					Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
-					#ReTry ($GroupParams{"TARGET_HOST"}, 'iscsiadm -m session --rescan');
+					ReTry ($GroupParams{"TARGET_HOST"}, 'iscsiadm -m session --rescan');
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
 					sleep 5;				
 				}

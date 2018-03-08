@@ -60,7 +60,7 @@
 	<MASTER_FILESYSTEM>/vg1/|/vg2/</MASTER_FILESYSTEM>
 	<TARGET_FILESYSTEM>/vg1/|/vg2/</TARGET_FILESYSTEM>
 	<VG_LIST>vg1:vg1;vg2:vg2</VG_LIST>
-	<MSGRP>NetappSAN</MSGRP>	
+	<MSGRP>XIV|NetappSAN</MSGRP>	
 #	<PRE_COND_SPLIT>/usr/drpauxdb1/bin/ABORT_DB -g PRDOL1_DRPSHAVDB1_DRPAUXDB1 -d PRDOL1:drpauxdb1</PRE_COND_SPLIT>
 #	<PRE_COND_EST>/rhcluster/lib//STOP_RECOVER_PRDOL1:drpprdol1db</PRE_COND_EST>
 #	<POST_COND_SPLIT>/rhcluster/lib/START_RECOVER_PRDOL1:drpprdol1db&/usr/drpauxdb1/bin/UP_PRDOL1:drpauxdb1&/usr/drpauxdb1/bin/send_infor4ncr PRDOL1:drpauxdb1</POST_COND_SPLIT>
