@@ -6,14 +6,15 @@ use Sys::Hostname;
 use File::Basename;
 use Data::Dumper;
 
+use lib '.';
 use Pelephone::User ;
 use Pelephone::Logger ;
 use Pelephone::Oracle ;
-use Pelephone::System ;
+use Pelephone::System;
 use Pelephone::System::Debug;
 
-use Pelephone::Storage ;
-use Pelephone::Netapp ;
+use Pelephone::Storage;
+use Pelephone::Netapp;
 use Pelephone::XIV ;
 use Pelephone::StepDriver ;
 use Pelephone::SVC ;
@@ -24,7 +25,7 @@ $| = 1 ;
 %GParam = () ;
 $OK = "Finished O.K." ;
 
-our $runserver = `hostname`;
+our $runserver ='sparta' ;
 
 #-----------------------------------------------------------------------------#
 # Open-View Message To The ITO !                                              #
@@ -392,7 +393,7 @@ sub CreateXivMap () {
 		my $index=0;
 		
 		#if this group been marked with XIV|NetappSAN
-		if ($MigrationPeriod) {
+		if (not $MigrationPeriod) {
 			open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
 		} else {
 			open (GrpFile, "$GroupsDir/$GROUP_NAME".'.MigrationToNetapp') || die "Cannot open Group file $GroupsDir/$GROUP_NAME".'.MigrationToNetapp'."\n";
@@ -421,7 +422,7 @@ sub CreateSVCMap () {
 		my $index=0;
 
 		#if this group been marked with SVC|NetappSAN
-		if ($MigrationPeriod) {
+		if (not $MigrationPeriod) {
 			open (GrpFile, "$GroupsDir/$GROUP_NAME") || die "Cannot open Group file $GroupsDir/$GROUP_NAME\n";
 		} else {
 			open (GrpFile, "$GroupsDir/$GROUP_NAME".'.MigrationToNetapp') || die "Cannot open Group file $GroupsDir/$GROUP_NAME".'.MigrationToNetapp'."\n";
@@ -1740,7 +1741,11 @@ sub DoTheSplit() {
 				if ($GroupParams{"OS_VERSION"} eq "Linux") {
 					Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
+<<<<<<< HEAD
 					ReTry ($GroupParams{"TARGET_HOST"}, 'iscsiadm -m session --rescan');
+=======
+					ReTry ($GroupParams{"TARGET_HOST"}, '/usr/bin/rescan-scsi-bus.sh');
+>>>>>>> origin
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
 					sleep 5;				
 				}
