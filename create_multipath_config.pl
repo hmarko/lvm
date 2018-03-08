@@ -27,6 +27,7 @@ $vol{'autosize-shrink-threshold-percent'} =  75;
 $vol{'initial-size-factor'} = 2;
 $vol{'initial-max-autosize-factor'} = 4;
 
+$hbaapicmd = 'yum install -y libhbaapi*';
 $hak = '/root/netapp_linux_unified_host_utilities-7-1.x86_64.rpm';
 $rescanscript = '/root/lvm/scsi-rescan';
 
@@ -151,6 +152,7 @@ if (not $version=~/NetApp/) {
 }
 
 print "installing $hak on server\n";
+$cmd = `$sshcmd $hbaapicmd`;
 $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $hak $server:$hak";
 `$cmd`;
 
