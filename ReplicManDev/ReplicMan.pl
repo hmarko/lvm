@@ -1032,6 +1032,52 @@ sub UmountTargetFS() {
 # Step 30 : Do the establish !!!                                              #
 #-----------------------------------------------------------------------------#
 sub DoTheEstablish() {
+
+	#automaticaly set $GroupParams{"MSGRP"} during migration period 
+	if ($MigrationPeriod and $GroupParams{"OS_VERSION"} eq "Linux") {
+		Info("When in MigrationPeriod from XIV/SVC to NetappSAN trying to validate if target VGs are located on NetApp or XIV");
+		my @vgs = split(';',$GroupParams{"VG_LIST"});
+		my $cmd = "multipath -ll";
+		my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+		my @mpll = GetCommandResult();
+		my %NetappDevices = ();
+		foreach my $line (@mpll) {
+			chomp $line;
+			if ($line=~/(\S+)\s+\(\S+\)\s+(\S+).+NETAPP.+/) {
+				$NetappDevices{$1} = 'NetappLUN';
+				Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
+			}
+			if ($line=~/(\S+)\s+(\S+).+NETAPP.+/) {
+				$NetappDevices{$1} = 'NetappLUN';
+				Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
+			}		
+		}
+		$cmd = "pvs";
+		$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+		my @pvs = GetCommandResult();
+		my $onnetapp = 1;
+		foreach my $vg (@vgs) {
+			foreach my $line (@pvs) {
+				chomp $line;
+				$vgtarget = (split(':',$vg)[1];
+				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgtarget/) {
+					if (not exists $NetappDevices{$1}) {
+						$onnetapp = 0;
+						Info("Device:$1 is part of vg:$vgtarget but it is not on Netapp LUN :-(");
+					} else {
+						Info("Device:$1 is part of vg:$vgtarget and is on Netapp LUN :-)");
+					}
+				}
+			}
+		}
+		
+		if ($onnetapp) {
+			Info("Setting MSGRP as NetappSAN becuase of all VGs are on Netapp");
+			$GroupParams{"MSGRP"} = "NetappSAN";
+		}
+	}
+
+
 	# Clone
 	if ( $CommandPrefix =~ /symclone/ ) {
 		# Check if user asked for FULL sync
@@ -1525,9 +1571,53 @@ sub PrepForHotSplit() {
 #-----------------------------------------------------------------------------#
 sub DoTheSplit() {
 
-	#will be used only during migration period from XIV to NetappSAN 
-	$GroupParams{"MSGRP"} = "NetappSAN" if $MigrationPeriod;
-
+	#automaticaly set $GroupParams{"MSGRP"} during migration period 
+	if ($MigrationPeriod and $GroupParams{"OS_VERSION"} eq "Linux") {
+		#setup $GroupParams{"MSGRP"} as XIV or SVC accrding to the original config. This will change to NetappSAN if master luns are already on Netapp. 
+		$GroupParams{"MSGRP"} = $GroupParams{"OLDMSGRP"};
+		
+		Info("When in MigrationPeriod from XIV/SVC to NetappSAN trying to validate if target VGs are located on NetApp or XIV");
+		my @vgs = split(';',$GroupParams{"VG_LIST"});
+		my $cmd = "multipath -ll";
+		my $ExitCode = RunProgramQuiet($GroupParams{"MASTER_HOST"}, "$cmd") ;
+		my @mpll = GetCommandResult();
+		my %NetappDevices = ();
+		foreach my $line (@mpll) {
+			chomp $line;
+			if ($line=~/(\S+)\s+\(\S+\)\s+(\S+).+NETAPP.+/) {
+				$NetappDevices{$1} = 'NetappLUN';
+				Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
+			}
+			if ($line=~/(\S+)\s+(\S+).+NETAPP.+/) {
+				$NetappDevices{$1} = 'NetappLUN';
+				Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
+			}		
+		}
+		$cmd = "pvs";
+		$ExitCode = RunProgramQuiet($GroupParams{"MASTER_HOST"}, "$cmd") ;
+		my @pvs = GetCommandResult();
+		my $onnetapp = 1;
+		foreach my $vg (@vgs) {
+			foreach my $line (@pvs) {
+				chomp $line;
+				$vgmaster = (split(':',$vg)[0];
+				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgmaster/) {
+					if (not exists $NetappDevices{$1}) {
+						$onnetapp = 0;
+						Info("Device:$1 is part of vg:$vgmaster but it is not on Netapp LUN :-(");
+					} else {
+						Info("Device:$1 is part of vg:$vgmaster and is on Netapp LUN :-)");
+					}
+				}
+			}
+		}
+		
+		if ($onnetapp) {
+			Info("Setting MSGRP as NetappSAN becuase of all VGs are on Netapp");
+			$GroupParams{"MSGRP"} = "NetappSAN";
+		}
+	}	
+	
 	# SRDF (Both Sync and Async)
 	if ( $CommandPrefix =~ /symrdf/ ) {
 		# SRDF/A
@@ -1741,11 +1831,7 @@ sub DoTheSplit() {
 				if ($GroupParams{"OS_VERSION"} eq "Linux") {
 					Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
-<<<<<<< HEAD
-					ReTry ($GroupParams{"TARGET_HOST"}, 'iscsiadm -m session --rescan');
-=======
-					ReTry ($GroupParams{"TARGET_HOST"}, '/usr/bin/rescan-scsi-bus.sh');
->>>>>>> origin
+					ReTry ($GroupParams{"TARGET_HOST"}, '/usr/bin/scsi-rescan');
 					ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
 					sleep 5;				
 				}
@@ -3419,50 +3505,11 @@ our $MigrationPeriod = 0;
 if ($GroupParams{"MSGRP"} =~/XIV\|NetappSAN/) {
 	$MigrationPeriod = 1;
 	$GroupParams{"MSGRP"} = 'XIV';
+	$GroupParams{"OLDMSGRP"} = 'XIV';
 } elsif ($GroupParams{"MSGRP"} =~/SVC\|NetappSAN/) {
 	$MigrationPeriod = 1;
 	$GroupParams{"MSGRP"} = 'SVC';
-}
-
-if ($MigrationPeriod and $GroupParams{"OS_VERSION"} eq "Linux") {
-	Info("When in MigrationPeriod from XIV to NetappSAN tring to validate if VGs are located on NetApp or XIV");
-	my @vgs = split(':',$GroupParams{"VG_LIST"});
-	my $cmd = "multipath -ll";
-	my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
-	my @mpll = GetCommandResult();
-	my %NetappDevices = ();
-	foreach my $line (@mpll) {
-		chomp $line;
-		if ($line=~/(\S+)\s+\(\S+\)\s+(\S+).+NETAPP.+/) {
-			$NetappDevices{$1} = 'NetappLUN';
-			Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
-		}
-		if ($line=~/(\S+)\s+(\S+).+NETAPP.+/) {
-			$NetappDevices{$1} = 'NetappLUN';
-			Info("Identified device \"/dev/mapper/$1\" as Netapp LUN");
-		}		
-	}
-	$cmd = "pvs";
-	$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
-	my @pvs = GetCommandResult();
-	my $onnetapp = 1;
-	foreach my $vg (@vgs) {
-		foreach my $line (@pvs) {
-			chomp $line;
-			if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vg/) {
-				if (not exists $NetappDevices{$1}) {
-					$onnetapp = 0;
-					Info("Device:$1 is part of vg:$vg but it is not on Netapp LUN :-(");
-				} else {
-					Info("Device:$1 is part of vg:$vg and is on Netapp LUN :-)");
-				}
-			}
-		}
-	}
-	if ($onnetapp) {
-		Info("Setting MSGRP as NetappSAN becuase of all VGs are on Netapp");
-		$GroupParams{"MSGRP"} = "NetappSAN";
-	}
+	$GroupParams{"OLDMSGRP"} = 'SVC';
 }
 
 # Fills the array for Netapp and NetappSAN 
