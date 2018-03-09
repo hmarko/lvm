@@ -29,9 +29,11 @@ $vol{'initial-max-autosize-factor'} = 4;
 
 $hbaapicmd = 'yum install -y libhbaapi*';
 $hak = '/root/netapp_linux_unified_host_utilities-7-1.x86_64.rpm';
+$sd = '/root/netapp.snapdrive.linux_x86_64_5_3_1P2.rpm';
+$pwd = 'Aa123456';
 $rescanscript = '/root/lvm/scsi-rescan';
 
-$sshcmd = 'ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey ';
+$sshcmd = 'ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey';
 $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
 $sshcmddrsvm = $sshcmd.' vsadmin@'.$drsvm.' ';
 $sshcmdserver = $sshcmd.' '.$server.' ';
@@ -154,12 +156,41 @@ if (not $version=~/NetApp/) {
 print "installing $hak on server\n";
 $cmd = `$sshcmd $hbaapicmd`;
 $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $hak $server:$hak";
+print "$cmd\n";
+`$cmd`;
+$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $sd $server:$sd";
+print "$cmd\n";
 `$cmd`;
 
 $cmd = "$sshcmdserver rpm -i $hak";
+print "$cmd\n";
+`$cmd`;
+$cmd = "$sshcmdserver rpm -i $sd";
+print "$cmd\n";
 `$cmd`;
 
-print "creating/modifing netapp volume and luns\n" ;
+$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey snapdrive.conf ".$server.':/opt/NetApp/snapdrive/snapdrive.conf';
+print "$cmd\n";
+`$cmd`;
+
+$cmd = "$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived stop";
+print "$cmd\n";
+`$cmd`;
+
+$cmd = "$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived start";
+print "$cmd\n";
+`$cmd`;
+
+$cmd = "$sshcmdserver snapdrive config delete $svm";
+print "$cmd\n";
+`$cmd`;
+
+$cmd = "$sshcmdserver \"printf '".$pwd.'\n'.$pwd.'\n'."'".' | snapdrive config set vsadmin '.$svm.'"';
+print "$cmd\n";
+`$cmd`;
+
+
+print "\ncreating/modifing netapp volume and luns\n" ;
 
 @pvdisplay = `$sshcmd $server pvdisplay -C -o pv_name,vg_name,pv_size --units g`;
 foreach $inputvg (split(/,/,$vgs)) {

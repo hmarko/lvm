@@ -1,5 +1,4 @@
 
-
 ssh vsadmin@svm_linux vol create -volume XIV -space-guarantee none -aggregate aggr3 -size 100g -state online -percent-snapshot-space 0
 ssh vsadmin@svm_linux vol efficiency on -volume XIV
 ssh vsadmin@svm_linux vol efficiency modify -volume XIV -inline-compression true -compression true -policy default
@@ -37,3 +36,10 @@ mkfs -t ext4 /dev/vg1/lv2
 mkfs -t ext4 /dev/vg1/lv3
 mkfs -t ext4 /dev/vg2/lv1
 mkfs -t ext4 /dev/vg2/lv2
+
+sanlun lun show  | grep "<unknown>" | awk '{print $3}' | awk -F "/" '{system("echo 1 > /sys/block/"$3"/device/delete")}'
+multipath -ll | grep failed  | awk '{system("echo 1 > /sys/block/"$(NF-4)"/device/delete")}'
+sanlun lun show | grep "<unknown>" | awk '{print $3}' | awk -F '/' '{system("echo 1 > /sys/block/"$3"/device/delete")}'
+
+
+https://elkano.org/blog/removing-multipath-device/ - removing hang multipath device 
