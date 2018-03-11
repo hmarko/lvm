@@ -30,7 +30,7 @@ $vol{'initial-max-autosize-factor'} = 4;
 $hbaapicmd = 'yum install -y libhbaapi*';
 $hak = '/root/netapp_linux_unified_host_utilities-7-1.x86_64.rpm';
 $sd = '/root/netapp.snapdrive.linux_x86_64_5_3_1P2.rpm';
-$svmpwd = 'Aa123456';
+$svmpwd = 'St0rage1';
 $rescanscript = '/root/lvm/scsi-rescan';
 
 $sshcmd = 'ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey';
@@ -127,15 +127,17 @@ sub createpvmapping {
 		}
 	}
 
-	@diskscan = `$sshcmdserver pvs --units m`;
+	@diskscan = `$sshcmdserver pvs --units m -o +pv_pe_count`;
 	foreach my $line (@diskscan) {
 		chomp $line;
-		if ($line=~/$deviceprefix(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)/) {
+		if ($line=~/$deviceprefix(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)\s+(\d+)/) {
 			$pv{$1}{vg} = $2;
 			$pv{$1}{vgsize} = $5;
 			$pv{$1}{vgsizequantifer} = $6;
 			$pv{$1}{vgfree} = $7;
 			$pv{$1}{vgfreequatifier} = $8;
+			$pv{$1}{lastpe} = $9;
+			$pv{$1}{lastpe}--;
 		}
 	}
 	dumpjson();
@@ -407,20 +409,19 @@ END_TEXT
 }
 
 print "backing up and recreating /etc/multipath.conf\n";
-`$sshcmdserver \" yes|cp -rf /etc/multipath.conf /etc/multipath.conf.orig\"`;
+`$sshcmdserver \"yes|cp -rf /etc/multipath.conf /etc/multipath.conf.orig\"`;
 $mpfile = "/tmp/multipath_$server.tmp";
 open (MPCONF,">$mpfile") || die "ERROR cannot open  $mpfile for writing\n";
 print MPCONF "$newfile\n";
 close(MPCONF);
 $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server".':/etc/multipath.conf';
-`$sshcmdserver $cmd`;
+`$cmd`;
 
 print "\nrescanning new devices\n";
 print "coping rescan script $rescanscript to the server\n";
 $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/root/scsi-rescan';
 `$cmd`;
 $out = `$sshcmdserver bash /root/scsi-rescan`;
-print $out;
 sleep 10;
 
 print "\nconfiguration of dmultipath devices\n";
@@ -475,7 +476,13 @@ while ($continue) {
 	foreach $vg (keys %{$vol{'vgs'}}) {
 		if (exists $lv{$vg}) {
 			foreach $lvol (keys %{$lv{$vg}}) {
-				if (not $lv{$vg}{$lvol}{'attr'} =~ /m/ and not exists $lv{$vg}{$lvol.$oldlvolsuffix} and not $lvol =~ /$oldlvolsuffix$/ and not $lvol =~/\[/) {
+				$copypercent = floor($lv{$vg}{$lvol}{'copy-percent'});
+				$copying = 0; $copying = 1 if $copypercent > 0 and $copypercent <100;
+				$copying = 1 if $copypercent <100 and length($lv{$vg}{$lvol}{'copy-percent'}) > 0;
+				if ($copying) {
+					print "LV:$vg/$lvol is currently copying, $copypercent".'% completed'."\n";
+					sleep 5;
+				} elsif (not $lv{$vg}{$lvol}{'attr'} =~ /m/ and not exists $lv{$vg}{$lvol.$oldlvolsuffix} and not $lvol =~ /$oldlvolsuffix$/ and not $lvol =~/\[/ and not $lvol =~ /_rimage_/ and not $lvol =~ /_rmeta_/ and not $copying) {
 					$mirrortopvs = '';
 					foreach $pv (keys %{$lv{$vg}{$lvol}{'pe-used'}}) {
 						if ($vol{'vgs'}{$vg}{'old-dev-list'} =~ /\s*$deviceprefix$pv\s+/) {
@@ -493,20 +500,22 @@ while ($continue) {
 								$pes = $perange->{'pe-start'};
 								$pee = $perange->{'pe-end'};
 								$mirrortopvs .= $deviceprefix.$replacementdevice.':'.$pes.'-'.$pee.' ';
+								$pvforadditionalpe = $replacementdevice;
+								$additionalpe = $deviceprefix.$replacementdevice.':'.$pv{$replacementdevice}{lastpe}.'-';
 							}
 						}	
 					}
 					if ($mirrortopvs) {
 						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
 						print "setting up mirror for LV:$vg/$lvol: \n";
-						$lvmcmd = 'lvconvert -i 10 -m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs;
+						$lvmcmd = 'lvconvert -i 10 -m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
+						$pv{$pvforadditionalpe}{lastpe}--;
 						system("$sshcmdserver $lvmcmd");
-						print "$out";
+						sleep 5;
 					} else {
 						print "LV: $vg/$lvol is not located on old devices\n";
 						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
 					}
-					
 				} elsif (exists $lv{$vg}{$lvol.$oldlvolsuffix}) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
 				} elsif ($lv{$vg}{$lvol}{'attr'} =~ /m/ and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
