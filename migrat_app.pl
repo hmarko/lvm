@@ -518,7 +518,7 @@ while ($continue) {
 					}
 				} elsif (exists $lv{$vg}{$lvol.$oldlvolsuffix}) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
-				} elsif ($lv{$vg}{$lvol}{'attr'} =~ /m/ and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
+				} elsif (($lv{$vg}{$lvol}{'attr'} =~ /m/ or $lv{$vg}{$lvol}{'attr'} =~ /r--/) and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
 					print "splitting mirror for LV:$vg/$lvol and keeping backup LV as:$vg/$lvol$oldlvolsuffix :";
 					$lvmcmd = 'lvconvert --splitmirrors 1 --name '.$lvol.$oldlvolsuffix.' '.$vg.'/'.$lvol.' '.$vol{'vgs'}{$vg}{'old-dev-list'};
