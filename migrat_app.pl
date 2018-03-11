@@ -154,15 +154,15 @@ if (not $version=~/NetApp/) {
 	exit 1;
 }
 
-$majorver =  `$sshcmdserver \"lsb_release -s -r | cut -d '.' -f 1\"`; chomp $majorver;
+$majorver = `$sshcmdserver \"lsb_release -s -r | cut -d '.' -f 1\"`; chomp $majorver;
 $minorver = `$sshcmdserver \"lsb_release -s -r | cut -d '.' -f 2\"`; chomp $minorver;
 
-
-print "$majorver $minorver \n";
-exit;
+if ( $majorver or $minorver) {
+	print "Identified RedHat release as $majorver".'.'."$minorver\n";
+}
 
 print "installing $hak on server\n";
-$cmd = `$sshcmd $hbaapicmd`;
+$cmd = `$sshcmdserver $hbaapicmd`;
 $cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $hak $server:$hak";
 print "$cmd\n";
 `$cmd`;
@@ -343,26 +343,45 @@ if ($multipathconf =~ /\s*vendor\s+\"NETAPP\"/) {
 }
 
 $newfile = '';
+
+$path_checker = 'tur';
+$features = '"3 queue_if_no_path pg_init_retries 50"';
+$prio = 'prio_callout "/sbin/mpath_prio_alua /dev/%n"';
+$getuid_callout = '"/sbin/scsi_id -g -u -s /block/%n"';
+
+if ($majorver == '5' and $minorver <= 6) {
+	$path_checker = 'directio';
+	$features = '"1 queue_if_no_path"';
+}
+if ($majorver == '6') {
+	$prio = 'prio "alua"';
+	$getuid_callout = '"/lib/udev/scsi_id -g -u -d /dev/%n"';
+}
+print "\tpath_checker been set as: $path_checker\n";
+print "\tfeatures been set as: $features\n";
+print "\tprio been set as: $prio\n";
+print "\tgetuid_callout been set as: $getuid_callout\n";
+
 foreach $line (split(/\n/,$multipathconf)) {
 	$newfile .= "$line\n";
 	
 	chomp $line;
 	if ($line =~ /^\s*devices\s*\{\s*$/ and $addvendor) {
 		$addvendor = 0;
-		$newfile .= << 'END_TEXT'
+		$newfile .= << "END_TEXT"
 	device {
 		vendor "NETAPP"
 		product "LUN"
 		path_grouping_policy group_by_prio
-		features "3 queue_if_no_path pg_init_retries 50"
-		prio_callout "/sbin/mpath_prio_alua /dev/%n"
-		path_checker tur
+		features $features
+		$prio
+		path_checker $path_checker
 		path_selector "round-robin 0"
 		failback immediate
 		hardware_handler "1 alua"
 		rr_weight uniform
 		rr_min_io 128
-		getuid_callout "/sbin/scsi_id -g -u -s /block/%n"
+		getuid_callout $getuid_callout
 	}
 END_TEXT
 	}
