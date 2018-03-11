@@ -481,6 +481,7 @@ while ($continue) {
 				$copying = 1 if $copypercent <100 and length($lv{$vg}{$lvol}{'copy-percent'}) > 0;
 				if ($copying) {
 					print "LV:$vg/$lvol is currently copying, $copypercent".'% completed'."\n";
+					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'}=0;
 					sleep 5;
 				} elsif (not $lv{$vg}{$lvol}{'attr'} =~ /m/ and not exists $lv{$vg}{$lvol.$oldlvolsuffix} and not $lvol =~ /$oldlvolsuffix$/ and not $lvol =~/\[/ and not $lvol =~ /_rimage_/ and not $lvol =~ /_rmeta_/ and not $copying) {
 					$mirrortopvs = '';
@@ -518,7 +519,7 @@ while ($continue) {
 					}
 				} elsif (exists $lv{$vg}{$lvol.$oldlvolsuffix}) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
-				} elsif (($lv{$vg}{$lvol}{'attr'} =~ /m/ or $lv{$vg}{$lvol}{'attr'} =~ /r--/) and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
+				} elsif (($lv{$vg}{$lvol}{'attr'} =~ /m/ or $lv{$vg}{$lvol}{'attr'} =~ /r--/) and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/ and not $lvol =~ /_rimage_/ and not $lvol =~ /_rmeta_/) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
 					print "splitting mirror for LV:$vg/$lvol and keeping backup LV as:$vg/$lvol$oldlvolsuffix :";
 					$lvmcmd = 'lvconvert --splitmirrors 1 --name '.$lvol.$oldlvolsuffix.' '.$vg.'/'.$lvol.' '.$vol{'vgs'}{$vg}{'old-dev-list'};
