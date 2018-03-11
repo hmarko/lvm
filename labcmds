@@ -43,3 +43,6 @@ sanlun lun show | grep "<unknown>" | awk '{print $3}' | awk -F '/' '{system("ech
 
 
 https://elkano.org/blog/removing-multipath-device/ - removing hang multipath device 
+
+
+10.57.18.103 (root/Aa123456) lmeddb1 connected 
