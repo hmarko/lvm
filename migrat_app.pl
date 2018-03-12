@@ -1,8 +1,12 @@
 #!/usr/bin/perl
 
-use POSIX;
 use JSON;
 use Data::Dumper;
+use Time::localtime qw( );
+use POSIX;
+
+$debug = 1;
+
 
 $server = $ARGV[0];
 $svm = $ARGV[1];
@@ -38,27 +42,68 @@ $sshcmdsvm = $sshcmd.' vsadmin@'.$svm.' ';
 $sshcmddrsvm = $sshcmd.' vsadmin@'.$drsvm.' ';
 $sshcmdserver = $sshcmd.' '.$server.' ';
 
+$logpath = '/root/lvm/log/';
+$logfile = 'migrate_app';
+system("mkdir -p $logpath");
+my $starttime = $day.$month.$year.$hour.$minute;
+
+sub runcmd {
+    my $cmd = $_[0];
+    my @output;
+   
+	write_log("running comamnd:") if $debug;
+	write_log($cmd,1,1);
+	@output = `$cmd`;
+	write_log("commnad output:") if $debug;
+	foreach $line (@output) {
+		chomp $line;
+		write_log($line,1,1) if $debug;
+	}
+
+    return @output;
+}
+
+sub write_log {
+    my $logline = $_[0];
+    my $dontwritetime = $_[1];
+    my $indent = $_[2];
+	
+    $now = Time::localtime::ctime();
+
+    open(LOGFILE, ">>$logpath.$logfile.$server.$app.$starttime.log") || die "cannot open syslog file: $logpath.$logfile.$server.$app.$starttime.log for writing\n";
+
+    $logline = "$now - $logline" if not $dontwritetime;
+    print "$logline\n" if not $indent;
+    print "\t$logline\n" if $indent;
+
+	if (not $indent) {
+		print LOGFILE "$logline\n";
+	} else {
+		print LOGFILE "\t$logline\n";
+	}	
+}
+
 sub dumpjson {
 	my $pvjson = encode_json \%pv;
 	my $lvjson = encode_json \%lv;
 	my $voljson = encode_json \%vol;
 
-	open (P,">/tmp/pvjson");
+	open (P,">$logpath.pvjson.$server.$app.$starttime.json");
 	print P $pvjson;
 	close (P);
 
-	open (P,">/tmp/lvjson");
+	open (P,">$logpath.lvjson.$server.$app.$starttime.json");
 	print P $lvjson;
 	close (P);
 
-	open (P,">/tmp/voljson");
+	open (P,">$logpath.voljson.$server.$app.$starttime.json");
 	print P $voljson;
 	close (P);
 }
 
 sub createlvmapping {
 	%lv = ();
-	@lvs = `$sshcmdserver lvs --all --units g --separator ^ -o lv_name,vg_name,size,devices,copy_percent,lv_attr`;
+	@lvs = runcmd("$sshcmdserver lvs --all --units g --separator ^ -o lv_name,vg_name,size,devices,copy_percent,lv_attr");
 	foreach my $line (@lvs) {
 		chomp $line;
 		@param = split(/\^/,$line);
@@ -77,7 +122,7 @@ sub createlvmapping {
 			}			
 		}
 	}
-	@extents = `$sshcmdserver pvdisplay -m`;
+	@extents = runcmd("$sshcmdserver pvdisplay -m");
 	foreach my $line (@extents) {
 		chomp $line;
 		if ($line =~ /-- Physical volume ---/) {
@@ -118,7 +163,7 @@ sub createlvmapping {
 
 sub createpvmapping {
 
-	@diskscan = `$sshcmdserver lvmdiskscan`;
+	@diskscan = runcmd("$sshcmdserver lvmdiskscan");
 	foreach my $line (@diskscan) {
 		chomp $line;
 		if ($line=~/$deviceprefix(\S+).+\[\s+([0-9]*\.[0-9]+|[0-9]+)\s+(\S+)\]\s+(LVM physical volume)/) {
@@ -133,7 +178,7 @@ sub createpvmapping {
 		}
 	}
 
-	@diskscan = `$sshcmdserver pvs --units m -o +pv_pe_count`;
+	@diskscan = runcmd("$sshcmdserver pvs --units m -o +pv_pe_count");
 	foreach my $line (@diskscan) {
 		chomp $line;
 		if ($line=~/$deviceprefix(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)\s+([0-9]*\.[0-9]+|[0-9]+)(\w+)\s+(\d+)/) {
@@ -149,66 +194,47 @@ sub createpvmapping {
 	dumpjson();
 }
 
-$version = `$sshcmdserver uname -a`;
+$version = (runcmd("$sshcmdserver uname -a"))[0];
 if (not $version=~/Linux/) {
-	print "server $server is not Linux or couldnot be contacted using ssh public key\n";
+	write_log("server $server is not Linux or couldnot be contacted using ssh public key");
 	exit 1;
 }
 
 
-$version = `$sshcmdsvm version`;
+$version = (runcmd("$sshcmdsvm version"))[0];
 if (not $version=~/NetApp/) {
-	print "svm $svm is not cDOT SVM or couldnot be contacted using ssh public key\n";
+	write_log("ERROR: svm $svm is not cDOT SVM or couldnot be contacted using ssh public key");
 	exit 1;
 }
 
-$majorver = `$sshcmdserver \"lsb_release -s -r | cut -d '.' -f 1\"`; chomp $majorver;
-$minorver = `$sshcmdserver \"lsb_release -s -r | cut -d '.' -f 2\"`; chomp $minorver;
+$majorver = (runcmd("$sshcmdserver \"lsb_release -s -r | cut -d '.' -f 1\""))[0]; chomp $majorver;
+$minorver = (runcmd("$sshcmdserver \"lsb_release -s -r | cut -d '.' -f 2\""))[0]; chomp $minorver;
 
 if ( $majorver or $minorver) {
-	print "Identified RedHat release as $majorver".'.'."$minorver\n";
+	write_log("identified RedHat release as $majorver".'.'."$minorver");
 }
 
-print "installing $hak on server\n";
-$cmd = `$sshcmdserver $hbaapicmd`;
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $hak $server:$hak";
-print "$cmd\n";
-`$cmd`;
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $sd $server:$sd";
-print "$cmd\n";
-`$cmd`;
-
-$cmd = "$sshcmdserver rpm -i $hak";
-print "$cmd\n";
-`$cmd`;
-$cmd = "$sshcmdserver rpm -i $sd";
-print "$cmd\n";
-`$cmd`;
-
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey snapdrive.conf ".$server.':/opt/NetApp/snapdrive/snapdrive.conf';
-print "$cmd\n";
-`$cmd`;
-
-$cmd = "$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived stop";
-print "$cmd\n";
-`$cmd`;
-
-$cmd = "$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived start";
-print "$cmd\n";
-`$cmd`;
-
-$cmd = "$sshcmdserver snapdrive config delete $svm";
-print "$cmd\n";
-`$cmd`;
-
-$cmd = "$sshcmdserver \"printf '".$svmpwd.'\n'.$svmpwd.'\n'."'".' | snapdrive config set vsadmin '.$svm.'"';
-print "$cmd\n";
-`$cmd`;
+write_log("installing HAK and SD on server");
+runcmd("$sshcmdserver $hbaapicmd");
+runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $hak $server:$hak");
+runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $sd $server:$sd");
 
 
-print "\ncreating/modifing netapp volume and luns\n" ;
+runcmd("$sshcmdserver rpm -i $hak");
+runcmd("$sshcmdserver rpm -i $sd");
 
-@pvdisplay = `$sshcmd $server pvdisplay -C -o pv_name,vg_name,pv_size --units g`;
+runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey snapdrive.conf ".$server.':/opt/NetApp/snapdrive/snapdrive.conf');
+
+runcmd("$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived stop");
+runcmd("$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived start");
+
+runcmd("$sshcmdserver snapdrive config delete $svm");
+runcmd("$sshcmdserver \"printf '".$svmpwd.'\n'.$svmpwd.'\n'."'".' | snapdrive config set vsadmin '.$svm.'"');
+
+write_log("",1);
+write_log("creating/modifing netapp volume and luns");
+
+@pvdisplay = runcmd("$sshcmd $server pvdisplay -C -o pv_name,vg_name,pv_size --units g");
 foreach $inputvg (split(/,/,$vgs)) {
 	foreach $line (@pvdisplay) {
 		chomp $line;
@@ -231,7 +257,7 @@ foreach $inputvg (split(/,/,$vgs)) {
 	}
 	
 	if (not $vol{'vgs'}{$inputvg}{'lun-count'}) {
-		print "ERROR: could not identify PVs for VG or all been migrated: $inputvg\n";
+		write_log("ERROR: could not identify PVs for VG or all been migrated: $inputvg");
 		exit 1;
 	}
 }
@@ -243,49 +269,49 @@ if ($vol{'total-pv-size'} * 2 > 100) {
 }
 
 $cmd = "volume show -volume $volume -field state,type";
-@out = `$sshcmdsvm $cmd`;
+@out = runcmd("$sshcmdsvm $cmd");
 
 if ($out[2]=~/$svm\s+$volume\s+(\S+)\s+(\S+)/) {
 	$state = $1;
 	$type = $2;
 	if ($state ne 'online' or $type ne 'RW') {
-		print "ERROR: volume $volume exists on the SVM with state:$state type:$type\n";
+		write_log("ERROR: volume $volume exists on the SVM with state:$state type:$type");
 		exit 1;
 	}
-	print "modifing volume:$volume size:$vol{'initial-size'}g\n";
+	write_log("modifing volume:$volume size:$vol{'initial-size'}g");
 	$cmd = "volume modify -volume $volume -size +".$vol{'initial-size'}."g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'}  -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
 } else {
-	print "creating volume:$volume size:$vol{'initial-size'}g\n";
+	write_log("creating volume:$volume size:$vol{'initial-size'}g");
 	$cmd = "volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'} -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
 }
 
 #create/modify the volume 
-@out = `$sshcmdsvm $cmd`;
-$cmd = "volume efficiency on -volume $volume";
-@out = `$sshcmdsvm $cmd`;
+@out = runcmd("$sshcmdsvm $cmd");
+$cmd = "volume efficiencys on -volume $volume";
+@out = runcmd("$sshcmdsvm $cmd");
 
 if ($drsvm and $draggr and $drsched) {
 	$version = `$sshcmddrsvm version`;
 	if (not $version=~/NetApp/) {
-		print "DR svm $drsvm is not cDOT SVM or couldnot be contacted using ssh public key\n";
+		write_log("ERROR:DR svm $drsvm is not cDOT SVM or couldnot be contacted using ssh public key");
 		exit 1;
 	}
-	print "creating snapmirror replication\n";
+	write_log("creating snapmirror replication");
 	$cmd = "volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'} -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'} -type DP";
-	@out = `$sshcmddrsvm $cmd`;
+	@out = runcmd("$sshcmddrsvm $cmd");
 	$cmd = "snapmirror create -source-path $svm:$volume -destination-path $drsvm:$volume -type DP -schedule $drsched";
-	@out = `$sshcmddrsvm $cmd`;
+	@out = runcmd("$sshcmddrsvm $cmd");
 	$cmd = "snapmirror initialize -destination-path $drsvm:$volume";
-	@out = `$sshcmddrsvm $cmd`;
+	@out = runcmd("$sshcmddrsvm $cmd");
 }
 
-@existingluns = `$sshcmdsvm \"set -units gb;lun show -fields path,size,state,mapped -volume $volume\"`;
-@existinglunmappingss = `$sshcmdsvm lun mapping show -volume $volume -fields path,igroup`;
+@existingluns = runcmd("$sshcmdsvm \"set -units gb;lun show -fields path,size,state,mapped -volume $volume\"");
+@existinglunmappingss = runcmd("$sshcmdsvm lun mapping show -volume $volume -fields path,igroup");
 
-@igroup = `$sshcmdsvm igroup show $igroup -fields initiator`;
+@igroup = runcmd("$sshcmdsvm igroup show $igroup -fields initiator");
 
 if (not $igroup[2] =~ /\s+($igroup)\s+/) {
-	print "ERROR: igroup:$igroup does not exists\n";
+	write_log("ERROR: igroup:$igroup does not exists");
 	exit 1;
 }
 
@@ -299,18 +325,18 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 			if ($lun =~/^(\S+)\s+($lunpath)\s+(\d+)GB\s+(\S+)/) {
 				$size = $3.'GB';
 				$state = $4;
-				print "WARNING: lun $lunpath already exists on this volume with size:$size state:$state\n";
+				write_log("WARNING: lun $lunpath already exists on this volume with size:$size state:$state");
 				$found = 1;
 			}
 		}
 		if (not $found) {
-			print "creating lun: $lunpath\n";
+			write_log("creating lun: $lunpath");
 			$cmd = "lun create -path $lunpath -size $lunsize".'GB -ostype linux -space-reserve disable -space-allocation enabled';
-			`$sshcmdsvm $cmd`;
+			runcmd("$sshcmdsvm $cmd");
 		}
 
 		$cmd = "lun show -path $lunpath -fields serial-hex";
-		@luninfo = `$sshcmdsvm $cmd`;
+		@luninfo = runcmd("$sshcmdsvm $cmd");
 		if ($luninfo[2] =~/$lunpath\s+(\S+)/) {
 			$serial = $1;
 			$vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'serial'} = $serial;
@@ -324,16 +350,16 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 			if ($lun=~/\S+\s+($lunpath)\s+(\S+)/) {
 				$mappedigroup = $2;
 				if ($mappedigroup ne $igroup) {
-					print "ERROR: lun:$lunpath is already mapped to another igroup:$mappedigroup\n";
+					write_log("ERROR: lun:$lunpath is already mapped to another igroup:$mappedigroup");
 					exit 1;
 				}
 				$mapped =1;
 			}
 		}
 		if (not $mapped) {
-			print "mapping lun: $lunpath to igroup:$igroup\n";
+			write_log("mapping lun: $lunpath to igroup:$igroup");
 			$cmd = "lun map -path $lunpath -igroup $igroup";
-			`$sshcmdsvm $cmd`;
+			runcmd("$sshcmdsvm $cmd");
 		}
 		$found = 0;				
 	}
@@ -341,10 +367,7 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 
 
 
-$redhat = `$sshcmdserver cat /etc/redhat-release`;
-
-$multipathconf = `$sshcmdserver cat /etc/multipath.conf`;
-
+$multipathconf = (runcmd("$sshcmdserver cat /etc/multipath.conf"))[0];
 $addvendor = 1;
 if ($multipathconf =~ /\s*vendor\s+\"NETAPP\"/) {
 	$addvendor = 0;
@@ -365,10 +388,10 @@ if ($majorver == '6') {
 	$prio = 'prio "alua"';
 	$getuid_callout = '"/lib/udev/scsi_id -g -u -d /dev/%n"';
 }
-print "\tpath_checker been set as: $path_checker\n";
-print "\tfeatures been set as: $features\n";
-print "\tprio been set as: $prio\n";
-print "\tgetuid_callout been set as: $getuid_callout\n";
+write_log("path_checker been set as: $path_checker",0,1);
+write_log("features been set as: $features",0,1);
+write_log("prio been set as: $prio",0,1);
+write_log("getuid_callout been set as: $getuid_callout",0,1);
 
 foreach $line (split(/\n/,$multipathconf)) {
 	$newfile .= "$line\n";
@@ -414,67 +437,70 @@ END_TEXT
 	
 }
 
-print "backing up and recreating /etc/multipath.conf\n";
-`$sshcmdserver \"yes|cp -rf /etc/multipath.conf /etc/multipath.conf.orig\"`;
+write_log("backing up and recreating /etc/multipath.conf");
+runcmd("$sshcmdserver \"yes|cp -rf /etc/multipath.conf /etc/multipath.conf.orig\"");
 $mpfile = "/tmp/multipath_$server.tmp";
-open (MPCONF,">$mpfile") || die "ERROR cannot open  $mpfile for writing\n";
+open (MPCONF,">$mpfile") || die "ERROR: cannot open $mpfile for writing\n";
 print MPCONF "$newfile\n";
 close(MPCONF);
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server".':/etc/multipath.conf';
-`$cmd`;
 
-print "\nrescanning new devices\n";
-print "coping rescan script $rescanscript to the server\n";
-$cmd = "scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/root/scsi-rescan';
-`$cmd`;
-$out = `$sshcmdserver bash /root/scsi-rescan`;
+runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $mpfile $server".':/etc/multipath.conf');
+
+write_log("",1);
+write_log("rescanning new devices");
+write_log("coping rescan script $rescanscript to the server");
+runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/root/scsi-rescan');
+$out = runcmd("$sshcmdserver bash /root/scsi-rescan");
 sleep 10;
+write_log("",1);
+write_log("configuration of dmultipath devices");
+runcmd("$sshcmdserver multipath -r");
 
-print "\nconfiguration of dmultipath devices\n";
-`$sshcmdserver multipath -r`;
-
-print "\ncreating PV from new devices\n";
+write_log("",1);
+write_log("creating PV from new devices");
 createpvmapping();
 foreach $vg (keys %{$vol{'vgs'}}) {
 	foreach $lunpath (keys %{$vol{'vgs'}{$vg}{'created-luns'}}) {
 		$devicealias = $vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'};
 		if (not exists $pv{$devicealias}) {
-			print "ERROR: multipath device $deviceprefix$devicealias could not be found\n";
+			write_log("ERROR: multipath device $deviceprefix$devicealias could not be found");
 			exit 1;
 		} elsif (not $pv{$devicealias}{configured}) {
-			print "creating pv:$devicealias :";
-			@out = `$sshcmdserver pvcreate $pvcreateparams $deviceprefix$devicealias`;
-			print "$out[0]";
+			write_log("creating pv:$devicealias :");
+			@out = runcmd("$sshcmdserver pvcreate $pvcreateparams $deviceprefix$devicealias");
+			write_log($out[0],1);
 		} else {
-			print "pv:$devicealias already configured as pv\n";
+			write_log("pv:$devicealias already configured as pv");
 		}
 	}
 }
 
-print "\nextending VG based on new devices\n";
+write_log("",1);
+write_log("extending VG based on new devices");
 createpvmapping();
 foreach $vg (keys %{$vol{'vgs'}}) {
 	foreach $lunpath (keys %{$vol{'vgs'}{$vg}{'created-luns'}}) {
 		$devicealias = $vol{'vgs'}{$vg}{'created-luns'}{$lunpath}{'device-alias'};
 		if ($pv{$devicealias}{configured}) {
 			if (not exists $pv{$devicealias}{vg}) {
-				print "extending vg:$vg with pv:$deviceprefix$devicealias :";
-				@out = `$sshcmdserver vgextend $vg $deviceprefix$devicealias`;
-				print "$out[0]";
+				write_log("extending vg:$vg with pv:$deviceprefix$devicealias :");
+				@out = runcmd("$sshcmdserver vgextend $vg $deviceprefix$devicealias");
+				write_log($out[0],1);
 			} elsif ( $pv{$devicealias}{vg} ne $vg) {
-				print "ERROR: pv:$devicealias is part of vg:$pv{$devicealias}{vg} while it should be part of vg:$vg\n";
+				write_log("ERROR: pv:$devicealias is part of vg:$pv{$devicealias}{vg} while it should be part of vg:$vg");
 				exit 1;
 			} else {
-				print "pv:$devicealias is already part of vg:$vg\n";
+				write_log("pv:$devicealias is already part of vg:$vg");
 			}
 		} else {
-			print "ERROR: pv:$devicealias could not be created\n";
+			write_log("ERROR: pv:$devicealias could not be created");
 			exit 1;
 		}
 	}
 }
 
-print "\ncreating lvmirrors\n";
+write_log("",1);
+write_log("creating lvmirrors");
 
 $continue = 1 ;
 while ($continue) {
@@ -486,7 +512,7 @@ while ($continue) {
 				$copying = 0; $copying = 1 if $copypercent > 0 and $copypercent <100;
 				$copying = 1 if $copypercent <100 and length($lv{$vg}{$lvol}{'copy-percent'}) > 0;
 				if ($copying) {
-					print "LV:$vg/$lvol is currently copying, $copypercent".'% completed'."\n";
+					write_log("LV:$vg/$lvol is currently copying, $copypercent".'% completed');
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'}=0;
 					sleep 5;
 				} elsif (not $lv{$vg}{$lvol}{'attr'} =~ /m/ and not $lv{$vg}{$lvol}{'attr'} =~ /r---/ and not exists $lv{$vg}{$lvol.$oldlvolsuffix} and not $lvol =~ /$oldlvolsuffix$/ and not $lvol =~/\[/ and not $lvol =~ /_rimage_/ and not $lvol =~ /_rmeta_/ and not $copying) {
@@ -500,7 +526,7 @@ while ($continue) {
 								}
 							}
 							if (not $replacementdevice) {
-								print "ERROR: could not identify new replacment device for PV:$pv\n";
+								write_log("ERROR: could not identify new replacment device for PV:$pv");
 								exit 1;
 							}
 							foreach $perange (@{$lv{$vg}{$lvol}{'pe-used'}{$pv}}) {
@@ -514,26 +540,26 @@ while ($continue) {
 					}
 					if ($mirrortopvs) {
 						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
-						print "setting up mirror for LV:$vg/$lvol: \n";
+						write_log("setting up mirror for LV:$vg/$lvol: ");
 						$lvmcmd = 'lvconvert -i 10 -m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
 						$pv{$pvforadditionalpe}{lastpe}--;
-						system("$sshcmdserver $lvmcmd");
+						runcmd("$sshcmdserver $lvmcmd");
 						sleep 5;
 					} else {
-						print "LV: $vg/$lvol is not located on old devices\n";
+						runcmd("LV: $vg/$lvol is not located on old devices");
 						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
 					}
 				} elsif (exists $lv{$vg}{$lvol.$oldlvolsuffix}) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
 				} elsif (($lv{$vg}{$lvol}{'attr'} =~ /m/ or $lv{$vg}{$lvol}{'attr'} =~ /r---/) and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
-					print "splitting mirror for LV:$vg/$lvol and keeping backup LV as:$vg/$lvol$oldlvolsuffix :";
+					write_log("splitting mirror for LV:$vg/$lvol and keeping backup LV as:$vg/$lvol$oldlvolsuffix :");
 					$lvmcmd = 'lvconvert --splitmirrors 1 --name '.$lvol.$oldlvolsuffix.' '.$vg.'/'.$lvol.' '.$vol{'vgs'}{$vg}{'old-dev-list'};
-					$out = `$sshcmdserver $lvmcmd`;
-					print "$out";
-					print "deactivating of backup LV:$vg/$lvol$oldlvolsuffix\n"; 
+					$out = (runcmd("$sshcmdserver $lvmcmd"))[0];
+					write_log($out,1);
+					write_lof("deactivating of backup LV:$vg/$lvol$oldlvolsuffix"); 
 					$lvmcmd = 'lvchange -a n '.$vg.'/'.$lvol.$oldlvolsuffix;
-					$out = `$sshcmdserver $lvmcmd`;
+					$out = runcmd("$sshcmdserver $lvmcmd");
 				}
 			}
 		}
@@ -551,14 +577,13 @@ while ($continue) {
 		}
 		if ($vgdone) {
 			$lvmcmd = "vgsplit $vg $vg$oldlvolsuffix $vol{'vgs'}{$vg}{'old-dev-list'}";
-			print "$lvmcmd\n";
-			print "spliting vg:$vg keeping old lvs on vg:$vg$oldlvolsuffix :";
-			$out = `$sshcmdserver $lvmcmd`;
-			print $out;
+			write_log("spliting vg:$vg keeping old lvs on vg:$vg$oldlvolsuffix :");
+			$out = (runcmd("$sshcmdserver $lvmcmd"))[0];
+			write_log($out,1);
 		}
 	}
 	
-	print "all done\n" if not $continue;
+	write_log("all done") if not $continue;
 }
 
 my $pvjson = encode_json \%pv;
