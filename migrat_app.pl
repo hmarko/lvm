@@ -102,6 +102,12 @@ sub createlvmapping {
 			if ($lv =~ /_mimage_(\d+)/) {
 				$lv = '['.$lv.']';
 			}
+			if ($lv =~ /_rimage_(\d+)/) {
+				$lv = '['.$lv.']';
+			}	
+			if ($lv =~ /_rmeta_(\d+)/) {
+				$lv = '['.$lv.']';
+			}				
 			if ($peend and $pv and $vg) {		
 				push @{$lv{$vg}{$lv}{'pe-used'}{$pv}}, {'pe-start' => $pestart, 'pe-end' => $peend};
 				$pestart = 0; $peend = 0; $lv = '';
