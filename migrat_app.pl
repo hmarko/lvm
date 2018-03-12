@@ -551,6 +551,7 @@ while ($continue) {
 		}
 		if ($vgdone) {
 			$lvmcmd = "vgsplit $vg $vg$oldlvolsuffix $vol{'vgs'}{$vg}{'old-dev-list'}";
+			print "$lvmcmd\n";
 			print "spliting vg:$vg keeping old lvs on vg:$vg$oldlvolsuffix :";
 			$out = `$sshcmdserver $lvmcmd`;
 			print $out;
