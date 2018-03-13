@@ -581,7 +581,7 @@ while ($continue) {
 						runcmd("$sshcmdserver $lvmcmd");
 						write_log("setting up mirror for LV:$vg/$lvol: ");
 						$wait = '-i 10 ';
-						$wait = '' if $runalllvmirroratonce;
+						$wait = '-b ' if $runalllvmirroratonce;
 						$lvmcmd = 'lvconvert '.$wait.'-m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
 						$pv{$pvforadditionalpe}{lastpe}--;
 						runcmd("$sshcmdserver $lvmcmd");
