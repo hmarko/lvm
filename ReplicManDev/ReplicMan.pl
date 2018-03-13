@@ -1834,6 +1834,8 @@ sub DoTheSplit() {
 				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
 				ReTry ($GroupParams{"TARGET_HOST"}, '/root/scsi-rescan');
 				ReTry ($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
+				my $rescancmd = "grep mpt /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
+				ReTry ($GroupParams{"TARGET_HOST"}, $rescancmd);
 				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
 				sleep 5;				
 			}

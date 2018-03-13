@@ -27,8 +27,14 @@ vgremove -f vg2
 vgremove -f vg1_old_to_delete_XIV
 vgremove -f vg2_old_to_delete_XIV
 
-ssh vsadmin@svm_linux "set -confirmation offf;vol offline -volume RHEL1_koko"
-ssh vsadmin@svm_linux "set -confirmation offf;vol delete -volume RHEL1_koko"
+pvremove /dev/mapper/cdotsan_RHEL1_vg1_1
+pvremove /dev/mapper/cdotsan_RHEL1_vg1_2
+pvremove /dev/mapper/cdotsan_RHEL1_vg1_3
+pvremove /dev/mapper/cdotsan_RHEL1_vg2_1
+pvremove /dev/mapper/cdotsan_RHEL1_vg2_2
+
+ssh vsadmin@svm_linux "set -confirmation off;vol offline -volume RHEL1_koko"
+ssh vsadmin@svm_linux "set -confirmation off;vol delete -volume RHEL1_koko"
 
 iscsiadm -m session --rescan
 sanlun lun show  | grep "<unknown>" | awk '{print $3}' | awk -F "/" '{system("echo 1 > /sys/block/"$3"/device/delete")}'
@@ -41,6 +47,8 @@ pvcreate /dev/mapper/mpathf
 pvcreate /dev/mapper/mpathg
 pvcreate /dev/mapper/mpathd 
 
+vgcreate vg1 /dev/mapper/mpathd /dev/mapper/mpathf /dev/mapper/mpathg
+vgcreate vg2 /dev/mapper/mpathc /dev/mapper/mpathe
 
 lvcreate -I1024 -i3 -L 600m -n lv1 vg1
 lvcreate -I1024 -i3 -L 600m -n lv2 vg1
@@ -53,6 +61,13 @@ mkfs -t ext4 /dev/vg1/lv2
 mkfs -t ext4 /dev/vg1/lv3
 mkfs -t ext4 /dev/vg2/lv1
 mkfs -t ext4 /dev/vg2/lv2
+
+mount -a
+
+./migrat_app.pl  RHEL1 svm_linux koko aggr2 RHEL1 vg1,vg2
+
+echo "- - -" > /sys/class/scsi_host/host0/scan
+grep mpt /sys/class/scsi_host/host?/proc_name | awk -F '/' '{print "scanning scsi host adapter:"$5, system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'
 
 sanlun lun show  | grep "<unknown>" | awk '{print $3}' | awk -F "/" '{system("echo 1 > /sys/block/"$3"/device/delete")}'
 multipath -ll | grep failed  | awk '{system("echo 1 > /sys/block/"$(NF-4)"/device/delete")}'
