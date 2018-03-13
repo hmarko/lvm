@@ -284,6 +284,7 @@ foreach $inputvg (split(/,/,$vgs)) {
 	}
 }
 $volume = $server.'_'.$app;
+$volume =~ s/\-/\_/g;
 
 if ($vol{'total-pv-size'} * 2 > 100) {
 	$vol{'initial-size'} = floor($vol{'total-pv-size'}) * $vol{'initial-size-factor'};
