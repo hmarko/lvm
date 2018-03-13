@@ -91,7 +91,7 @@ sub write_log {
 	
     $now = Time::localtime::ctime();
 
-    open(LOGFILE, '>>'.$logpath.$logfile.'.'.$server.'.'.$app.'.'.$starttime.'.log') || die "cannot open syslog file: ".$logpath.$logfile.'.'.$server.'.'.$app.'.'.$starttime.".log for writing\n";
+    open(LOGFILE, '>>'.$logpath.$logfile.'.'.$server.'.'.$volume.'.'.$starttime.'.log') || die "cannot open syslog file: ".$logpath.$logfile.'.'.$server.'.'.$volume.'.'.$starttime.".log for writing\n";
 
     $logline = "$now - $logline" if not $dontwritetime;
     print "$logline\n" if not $indent;
@@ -110,15 +110,15 @@ sub dumpjson {
 	my $lvjson = encode_json \%lv;
 	my $voljson = encode_json \%vol;
 
-	open (P,">$logpath".'pvjson.'."$server.$app.$starttime.json");
+	open (P,">$logpath".'pvjson.'."$server.$volume.$starttime.json");
 	print P $pvjson;
 	close (P);
 
-	open (P,">$logpath".'lvjson.'."$server.$app.$starttime.json");
+	open (P,">$logpath".'lvjson.'."$server.$volume.$starttime.json");
 	print P $lvjson;
 	close (P);
 
-	open (P,">$logpath".'voljson.'."$server.$app.$starttime.json");
+	open (P,">$logpath".'voljson.'."$server.$volume.$starttime.json");
 	print P $voljson;
 	close (P);
 }
@@ -283,7 +283,7 @@ foreach $inputvg (split(/,/,$vgs)) {
 		exit 1;
 	}
 }
-$volume = $server.'_'.$app;
+
 $volume =~ s/\-/\_/g;
 
 if ($vol{'total-pv-size'} * 2 > 100) {
@@ -310,7 +310,7 @@ if ($out[2]=~/$svm\s+$volume\s+(\S+)\s+(\S+)/) {
 
 #create/modify the volume 
 @out = runcmd("$sshcmdsvm $cmd");
-$cmd = "volume efficiencys on -volume $volume";
+$cmd = "volume efficiency on -volume $volume";
 @out = runcmd("$sshcmdsvm $cmd");
 
 if ($drsvm and $draggr and $drsched) {
@@ -480,7 +480,7 @@ write_log("coping rescan script $rescanscript to the server");
 runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/root/scsi-rescan');
 $out = runcmd("$sshcmdserver bash /root/scsi-rescan");
 $out = runcmd("$sshcmdserver iscsiadm -m session --rescan");
-$cmd = "grep mpt /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
+$cmd = "grep \"\" /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
 $out = runcmd("$sshcmdserver $cmd");
 sleep 10;
 
