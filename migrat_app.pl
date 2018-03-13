@@ -5,8 +5,8 @@ use Data::Dumper;
 use Time::localtime qw( );
 use POSIX;
 
-$debug = 1;
-
+$debug = 0;
+$runalllvmirroratonce = 1;
 
 $server = $ARGV[0];
 $svm = $ARGV[1];
@@ -23,8 +23,6 @@ $deviceprefix = '/dev/mapper/';
 $pvcreateparams = '--dataalignment 4k';
 $newdevprefix = 'cdotsan_';
 $oldlvolsuffix = '_old_to_delete_XIV';
-
-$runalllvmirroratonce = 1;
 
 $vol{'size'} = '100';
 $vol{'max-autosize'} = '15t';
@@ -568,8 +566,8 @@ while ($continue) {
 								%copy = %{$perange};
 								$pes = $copy{'pe-start'}; $pes = '0' if not $pes;
 								$pee = $copy{'pe-end'};
-								print Dumper(\%copy);
-								print "IIIIIII $pes $pee\n";
+#								print Dumper(\%copy);
+#								print "IIIIIII $pes $pee\n";
 								$mirrortopvs .= $deviceprefix.$replacementdevice.':'.$pes.'-'.$pee.' ';
 								$pvforadditionalpe = $replacementdevice;
 								$additionalpe = $deviceprefix.$replacementdevice.':'.$pv{$replacementdevice}{lastpe}.'-';
