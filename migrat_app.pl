@@ -566,6 +566,8 @@ while ($continue) {
 								%copy = %{$perange};
 								$pes = $copy{'pe-start'}; $pes = '0' if not $pes;
 								$pee = $copy{'pe-end'};
+								print Dumper(\%copy);
+								print "IIIIIII $pes $pee\n";
 								$mirrortopvs .= $deviceprefix.$replacementdevice.':'.$pes.'-'.$pee.' ';
 								$pvforadditionalpe = $replacementdevice;
 								$additionalpe = $deviceprefix.$replacementdevice.':'.$pv{$replacementdevice}{lastpe}.'-';
