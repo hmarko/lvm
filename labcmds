@@ -14,16 +14,33 @@ ssh vsadmin@svm_linux lun map -path /vol/XIV/vg1-3 -igroup RHEL1
 ssh vsadmin@svm_linux lun map -path /vol/XIV/vg2-1 -igroup RHEL1
 ssh vsadmin@svm_linux lun map -path /vol/XIV/vg2-2 -igroup RHEL1
 
+
+umount /vg1/lv1
+umount /vg1/lv2
+umount /vg1/lv3
+umount /vg2/lv1
+umount /vg2/lv2
+vgchange -a n vg1
+vgchange -a n vg2
+vgremove -f vg1
+vgremove -f vg2
+vgremove -f vg1_old_to_delete_XIV
+vgremove -f vg2_old_to_delete_XIV
+
+ssh vsadmin@svm_linux "set -confirmation offf;vol offline -volume RHEL1_koko"
+ssh vsadmin@svm_linux "set -confirmation offf;vol delete -volume RHEL1_koko"
+
 iscsiadm -m session --rescan
+sanlun lun show  | grep "<unknown>" | awk '{print $3}' | awk -F "/" '{system("echo 1 > /sys/block/"$3"/device/delete")}'
+
 
 pvcreate /dev/mapper/mpathc
 pvcreate /dev/mapper/mpathe
 pvcreate /dev/mapper/mpathd
-
 pvcreate /dev/mapper/mpathf
 pvcreate /dev/mapper/mpathg
+pvcreate /dev/mapper/mpathd 
 
-pvcreate /dev/mapper/mpathd /dev/mapper/mpathc /dev/mapper/mpathe
 
 lvcreate -I1024 -i3 -L 600m -n lv1 vg1
 lvcreate -I1024 -i3 -L 600m -n lv2 vg1

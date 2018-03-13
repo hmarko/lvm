@@ -45,6 +45,14 @@ $sshcmdserver = $sshcmd.' '.$server.' ';
 $logpath = '/root/lvm/log/';
 $logfile = 'migrate_app';
 system("mkdir -p $logpath");
+
+
+my ($sec,$minute,$hour,$day,$month,$year,$wday,$yday,$isdst) = localtime(time);
+$year += 1900;
+$month = '0'.$month if $month < 10;
+$day = '0'.$day if $day < 10;
+$hour = '0'.$hour if $hour < 10;
+$minute = '0'.$minute if $minute < 10;
 my $starttime = $day.$month.$year.$hour.$minute;
 
 sub runcmd {
@@ -52,7 +60,7 @@ sub runcmd {
     my @output;
    
 	write_log("running comamnd:") if $debug;
-	write_log($cmd,1,1);
+	write_log($cmd,1,1) if $debug;
 	@output = `$cmd`;
 	write_log("commnad output:") if $debug;
 	foreach $line (@output) {
@@ -63,6 +71,19 @@ sub runcmd {
     return @output;
 }
 
+sub runcmdnoarr {
+    my $cmd = $_[0];
+    my $output;
+   
+	write_log("running comamnd:") if $debug;
+	write_log($cmd,1,1);
+	$output = `$cmd`;
+	write_log("commnad output:") if $debug;
+	write_log($output,1,1) if $debug;
+
+    return $output;
+}
+
 sub write_log {
     my $logline = $_[0];
     my $dontwritetime = $_[1];
@@ -70,7 +91,7 @@ sub write_log {
 	
     $now = Time::localtime::ctime();
 
-    open(LOGFILE, ">>$logpath.$logfile.$server.$app.$starttime.log") || die "cannot open syslog file: $logpath.$logfile.$server.$app.$starttime.log for writing\n";
+    open(LOGFILE, '>>'.$logpath.$logfile.'.'.$server.'.'.$app.'.'.$starttime.'.log') || die "cannot open syslog file: ".$logpath.$logfile.'.'.$server.'.'.$app.'.'.$starttime.".log for writing\n";
 
     $logline = "$now - $logline" if not $dontwritetime;
     print "$logline\n" if not $indent;
@@ -81,6 +102,7 @@ sub write_log {
 	} else {
 		print LOGFILE "\t$logline\n";
 	}	
+	close (LOGFILE);
 }
 
 sub dumpjson {
@@ -88,15 +110,15 @@ sub dumpjson {
 	my $lvjson = encode_json \%lv;
 	my $voljson = encode_json \%vol;
 
-	open (P,">$logpath.pvjson.$server.$app.$starttime.json");
+	open (P,">$logpath".'pvjson.'."$server.$app.$starttime.json");
 	print P $pvjson;
 	close (P);
 
-	open (P,">$logpath.lvjson.$server.$app.$starttime.json");
+	open (P,">$logpath".'lvjson.'."$server.$app.$starttime.json");
 	print P $lvjson;
 	close (P);
 
-	open (P,">$logpath.voljson.$server.$app.$starttime.json");
+	open (P,">$logpath".'voljson.'."$server.$app.$starttime.json");
 	print P $voljson;
 	close (P);
 }
@@ -112,7 +134,7 @@ sub createlvmapping {
 			$lv =~ s/\s//g;
 			$vg = $param[1];
 			$lv{$vg}{$lv}{'attr'} = $param[5];
-			$lv{$vg}{$lv}{'sizeg'} = $param[3];
+			$lv{$vg}{$lv}{'sizeg'} = $param[2];
 			$lv{$vg}{$lv}{'sizeg'} =~ s/g$//;
 			$lv{$vg}{$lv}{'copy-percent'} = $param[4];
 			@devices = split(/,/,$param[3]);
@@ -367,7 +389,7 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 
 
 
-$multipathconf = (runcmd("$sshcmdserver cat /etc/multipath.conf"))[0];
+$multipathconf = runcmdnoarr("$sshcmdserver cat /etc/multipath.conf");
 $addvendor = 1;
 if ($multipathconf =~ /\s*vendor\s+\"NETAPP\"/) {
 	$addvendor = 0;
@@ -393,6 +415,10 @@ write_log("features been set as: $features",0,1);
 write_log("prio been set as: $prio",0,1);
 write_log("getuid_callout been set as: $getuid_callout",0,1);
 
+if (not $multipathconf =~ /^\s*multipaths\s*\{\s*$/) {
+	$multipathconf .= "\nmultipaths {\n}\n";
+}
+
 foreach $line (split(/\n/,$multipathconf)) {
 	$newfile .= "$line\n";
 	
@@ -416,6 +442,7 @@ foreach $line (split(/\n/,$multipathconf)) {
 	}
 END_TEXT
 	}
+	
 	if ($line =~ /^\s*multipaths\s*\{\s*$/) {
 		
 		foreach $vg (keys %{$vol{'vgs'}}) {
@@ -451,7 +478,11 @@ write_log("rescanning new devices");
 write_log("coping rescan script $rescanscript to the server");
 runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/root/scsi-rescan');
 $out = runcmd("$sshcmdserver bash /root/scsi-rescan");
+$out = runcmd("$sshcmdserver iscsiadm -m session --rescan");
+$cmd = "grep mpt /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
+$out = runcmd("$sshcmdserver $cmd");
 sleep 10;
+
 write_log("",1);
 write_log("configuration of dmultipath devices");
 runcmd("$sshcmdserver multipath -r");
@@ -505,6 +536,7 @@ write_log("creating lvmirrors");
 $continue = 1 ;
 while ($continue) {
 	createlvmapping();
+	dumpjson();
 	foreach $vg (keys %{$vol{'vgs'}}) {
 		if (exists $lv{$vg}) {
 			foreach $lvol (keys %{$lv{$vg}}) {
@@ -530,8 +562,9 @@ while ($continue) {
 								exit 1;
 							}
 							foreach $perange (@{$lv{$vg}{$lvol}{'pe-used'}{$pv}}) {
-								$pes = $perange->{'pe-start'};
-								$pee = $perange->{'pe-end'};
+								%copy = %{$perange};
+								$pes = $copy{'pe-start'}; $pes = '0' if not $pes;
+								$pee = $copy{'pe-end'};
 								$mirrortopvs .= $deviceprefix.$replacementdevice.':'.$pes.'-'.$pee.' ';
 								$pvforadditionalpe = $replacementdevice;
 								$additionalpe = $deviceprefix.$replacementdevice.':'.$pv{$replacementdevice}{lastpe}.'-';
@@ -551,15 +584,17 @@ while ($continue) {
 					}
 				} elsif (exists $lv{$vg}{$lvol.$oldlvolsuffix}) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
+					$lvmcmd = 'lvchange -a n '.$vg.'/'.$lvol.$oldlvolsuffix;
+					runcmd("$sshcmdserver $lvmcmd");
 				} elsif (($lv{$vg}{$lvol}{'attr'} =~ /m/ or $lv{$vg}{$lvol}{'attr'} =~ /r---/) and $lv{$vg}{$lvol}{'copy-percent'} eq '100.00' and not $lvol =~/\[/) {
 					$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
 					write_log("splitting mirror for LV:$vg/$lvol and keeping backup LV as:$vg/$lvol$oldlvolsuffix :");
 					$lvmcmd = 'lvconvert --splitmirrors 1 --name '.$lvol.$oldlvolsuffix.' '.$vg.'/'.$lvol.' '.$vol{'vgs'}{$vg}{'old-dev-list'};
 					$out = (runcmd("$sshcmdserver $lvmcmd"))[0];
 					write_log($out,1);
-					write_lof("deactivating of backup LV:$vg/$lvol$oldlvolsuffix"); 
+					write_log("deactivating of backup LV:$vg/$lvol$oldlvolsuffix"); 
 					$lvmcmd = 'lvchange -a n '.$vg.'/'.$lvol.$oldlvolsuffix;
-					$out = runcmd("$sshcmdserver $lvmcmd");
+					runcmd("$sshcmdserver $lvmcmd");
 				}
 			}
 		}
@@ -586,15 +621,3 @@ while ($continue) {
 	write_log("all done") if not $continue;
 }
 
-my $pvjson = encode_json \%pv;
-my $lvjson = encode_json \%lv;
-my $voljson = encode_json \%vol;
-
-open (P,">/tmp/pvjson");
-print P $pvjson;
-
-open (P,">/tmp/lvjson");
-print P $lvjson;
-
-open (P,">/tmp/voljson");
-print P $voljson;
