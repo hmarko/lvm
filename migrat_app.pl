@@ -5,7 +5,7 @@ use Data::Dumper;
 use Time::localtime qw( );
 use POSIX;
 
-$debug = 0;
+$debug = 1;
 $runalllvmirroratonce = 1;
 
 $server = $ARGV[0];
