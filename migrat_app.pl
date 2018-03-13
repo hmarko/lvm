@@ -24,6 +24,8 @@ $pvcreateparams = '--dataalignment 4k';
 $newdevprefix = 'cdotsan_';
 $oldlvolsuffix = '_old_to_delete_XIV';
 
+$runalllvmirroratonce = 1;
+
 $vol{'size'} = '100';
 $vol{'max-autosize'} = '15t';
 $vol{'autosize-grow-threshold-percent'} =  90;
@@ -580,7 +582,9 @@ while ($continue) {
 						$lvmcmd = 'lvchange -a y '.$vg.'/'.$lvol;
 						runcmd("$sshcmdserver $lvmcmd");
 						write_log("setting up mirror for LV:$vg/$lvol: ");
-						$lvmcmd = 'lvconvert -i 10 -m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
+						$wait = '-i 10 ';
+						$wait = '' if $runalllvmirroratonce;
+						$lvmcmd = 'lvconvert '.$wait.'-m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
 						$pv{$pvforadditionalpe}{lastpe}--;
 						runcmd("$sshcmdserver $lvmcmd");
 						sleep 5;
