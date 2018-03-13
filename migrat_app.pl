@@ -576,6 +576,9 @@ while ($continue) {
 					}
 					if ($mirrortopvs) {
 						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 0;
+						write_log("making sure LV:$vg/$lvol is active");
+						$lvmcmd = 'lvchange -a y '.$vg.'/'.$lvol;
+						runcmd("$sshcmdserver $lvmcmd");
 						write_log("setting up mirror for LV:$vg/$lvol: ");
 						$lvmcmd = 'lvconvert -i 10 -m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
 						$pv{$pvforadditionalpe}{lastpe}--;
