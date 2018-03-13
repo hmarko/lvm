@@ -59,10 +59,10 @@ sub runcmd {
     my $cmd = $_[0];
     my @output;
    
-	write_log("running comamnd:") if $debug;
+	write_log("running command:") if $debug;
 	write_log($cmd,1,1) if $debug;
 	@output = `$cmd`;
-	write_log("commnad output:") if $debug;
+	write_log("commnad output:") if $debug and $#output;
 	foreach $line (@output) {
 		chomp $line;
 		write_log($line,1,1) if $debug;
@@ -416,7 +416,7 @@ write_log("features been set as: $features",0,1);
 write_log("prio been set as: $prio",0,1);
 write_log("getuid_callout been set as: $getuid_callout",0,1);
 
-if (not $multipathconf =~ /^\s*multipaths\s*\{\s*$/) {
+if (not $multipathconf =~ /multipaths\s*{/) {
 	$multipathconf .= "\nmultipaths {\n}\n";
 }
 
