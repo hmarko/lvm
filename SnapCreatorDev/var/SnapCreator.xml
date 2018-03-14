@@ -1,0 +1,260 @@
+<GROUP_NAME value="default">
+	<TARGET_HOST>NoHost</TARGET_HOST>
+	<UP_DB_COMMAND>no</UP_DB_COMMAND>
+	<DOWN_DB_COMMAND>no</DOWN_DB_COMMAND>
+	<STOP_DG_COMMAND>no</STOP_DG_COMMAND>
+	<START_DG_COMMAND>no</START_DG_COMMAND>
+	<SNAP_COUNT>0</SNAP_COUNT>
+	<SNAP_ON_DR>no</SNAP_ON_DR>
+	# XIV Config
+	<LOCAL_XIV>no</LOCAL_XIV>
+	<XIV_CG>no</XIV_CG>
+	# SVC Config
+	<SVC_NAME>none</SVC_NAME>
+	<SVC_CG>no</SVC_CG>
+</GROUP_NAME>
+##################################################################################
+#	DRP
+##################################################################################
+#########################################
+# Shavit - 24 Snapshots, 1 Per hour
+#########################################
+<GROUP_NAME value="ESXVER_DS_SSD">
+	<SVC_NAME>drpsvccl</SVC_NAME>
+	<SVC_CG>yes</SVC_CG>
+</GROUP_NAME>
+<GROUP_NAME value="DrpShavDB_PRDICS1">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="DrpShavDB_PRDMAF">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="DrpShavDB_PRDOL1">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="DrpShavDB_PRDUSG1">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="DrpShavDB_PRDUSG2">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="DrpShavDB_PRDUSG3">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# Shavit - 16 Snapshots, 1 Per 3 hour
+#########################################
+<GROUP_NAME value="ShavDB_PRDICS1">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>16</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="ShavDB_PRDMAF">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>16</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="ShavDB_PRDOL1">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>16</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="ShavDB_PRDUSG1">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>16</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="ShavDB_PRDUSG2">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>16</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="ShavDB_PRDUSG3">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>16</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# DRP Maof - 24 Snapshots, 1 Per hour
+#########################################
+<GROUP_NAME value="DrpMaofdb_MAOF10">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# Maof - 24 Snapshots, 1 Per 3 hour
+#########################################
+<GROUP_NAME value="MaofDB_Maof">
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# Credit Guard - - 24 Snapshots, 1 Per hour
+#########################################
+<GROUP_NAME value="DrpCGprod_CG">
+	<SVC_NAME>drpsvccl</SVC_NAME>
+	<SVC_CG>yes</SVC_CG>
+</GROUP_NAME>
+#########################################
+# Credit Guard - - 24 Snapshots, 1 Per 3 hour
+#########################################
+<GROUP_NAME value="CGprod_CG">
+	<SVC_NAME>svccl</SVC_NAME>
+	<SVC_CG>yes</SVC_CG>
+</GROUP_NAME>
+#########################################
+# Self Service - 24 Snapshots, 1 Per hour
+#########################################
+<GROUP_NAME value="DrpWebprod_LOGPROD">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# Self Service - 8 Snapshots, 1 Per 3 hour
+#########################################
+<GROUP_NAME value="Webprod_LOGPROD">
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# NPG - - 24 Snapshots, 1 Per hour
+#########################################
+<GROUP_NAME value="DrpNpgProd_CG">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# NPG - - 8 Snapshots, 1 Per 3 hour
+#########################################
+<GROUP_NAME value="NpgProd_Npg">
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+	<SNAP_COUNT>24</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# DrpLinPROD
+#########################################
+<GROUP_NAME value="Drplinprod_ESI">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>3</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_SHAVITLN">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>8</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_INCENTDB">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>24</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_LINKS11G">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>8</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_MAOFRTDB">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>8</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_PROD11G">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>16</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_PROD11UC">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>8</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_PRODHD">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>8</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpLinprod_SCMDB">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>8</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+<GROUP_NAME value="DrpKeyprod_Key">
+	<LOCAL_XIV>drpxiv1</LOCAL_XIV>
+	<SNAP_COUNT>24</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+##################################################################################
+#	Vered
+##################################################################################
+#########################################
+# Provider1
+#########################################
+<GROUP_NAME value="Firewall_Provider_Vered">
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>no</XIV_CG>
+	<SNAP_COUNT>8</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# Ixos
+#########################################
+<GROUP_NAME value="Ixos_Leaone_CG">
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>5</SNAP_COUNT>
+</GROUP_NAME>
+#########################################
+# Exhcange
+#########################################
+<GROUP_NAME value="Exchange_Post1">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>3</SNAP_COUNT>
+</GROUP_NAME>
+<GROUP_NAME value="Exchange_Post2">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>3</SNAP_COUNT>
+</GROUP_NAME>
+######################################
+#        Etl Prod                    #
+######################################
+<GROUP_NAME value="Etlprdv1_PRDETL">
+	<LOCAL_XIV>xiv2</LOCAL_XIV>
+	<SNAP_COUNT>8</SNAP_COUNT>
+	<SNAP_ON_DR>yes</SNAP_ON_DR>
+</GROUP_NAME>
+#########################################
+# ITSMDB 
+#########################################
+<GROUP_NAME value="Linprod_ITSMDB">
+	<LOCAL_XIV>xiv1</LOCAL_XIV>
+	<XIV_CG>yes</XIV_CG>
+	<SNAP_COUNT>8</SNAP_COUNT>
+</GROUP_NAME>

@@ -1,0 +1,824 @@
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 01:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 01:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 01:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 01:10:00] : computer: sparta process: 14692 tty: remote
+[22/02/2018 01:10:00] : ----------------- environment variables ----------------
+[22/02/2018 01:10:00] : CVS_RSH=ssh
+[22/02/2018 01:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 01:10:00] : HISTSIZE=1000
+[22/02/2018 01:10:00] : HOME=/root
+[22/02/2018 01:10:00] : HOSTNAME=sparta
+[22/02/2018 01:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 01:10:00] : LANG=en_US.UTF-8
+[22/02/2018 01:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 01:10:00] : LOGNAME=root
+[22/02/2018 01:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 01:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 01:10:00] : PWD=/root
+[22/02/2018 01:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 01:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 01:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 01:10:00] : SHELL=/bin/bash
+[22/02/2018 01:10:00] : SHLVL=2
+[22/02/2018 01:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 01:10:00] : TERM=xterm
+[22/02/2018 01:10:00] : USER=root
+[22/02/2018 01:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 01:10:00] : ----------------- environment variables ----------------
+[22/02/2018 01:10:00] : SnapCreator STARTED
+[22/02/2018 01:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 01:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 01:10:00] : DESCRIPTION: Welcome
+[22/02/2018 01:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 01:10:00] : SnapCreator
+[22/02/2018 01:10:00] : Step 10 GenetalInfo END
+[22/02/2018 01:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 01:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 01:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 01:10:00] : -- CG config --
+[22/02/2018 01:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__01_10_00
+[22/02/2018 01:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__01_10_00" on XIV "xiv2" 
+[22/02/2018 01:10:03] : RunProgram------ Command executed successfully.
+[22/02/2018 01:10:04] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 01:10:04] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 01:10:06] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__01_10_00          " on XIV "xiv2" 
+[22/02/2018 01:10:09] : RunProgram------ Command executed successfully.
+[22/02/2018 01:10:11] : Step 40 CreateBackupPointXIV END
+[22/02/2018 01:10:11] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 01:10:11] : DESCRIPTION: Good Bye
+[22/02/2018 01:10:11] : Step 80 GenetalInfo BEGIN
+[22/02/2018 01:10:11] : SnapCreator
+[22/02/2018 01:10:11] : Step 80 GenetalInfo END
+[22/02/2018 01:10:11] : -------------------------------------------------------
+[22/02/2018 01:10:11] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 04:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 04:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 04:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 04:10:00] : computer: sparta process: 28293 tty: remote
+[22/02/2018 04:10:00] : ----------------- environment variables ----------------
+[22/02/2018 04:10:00] : CVS_RSH=ssh
+[22/02/2018 04:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 04:10:00] : HISTSIZE=1000
+[22/02/2018 04:10:00] : HOME=/root
+[22/02/2018 04:10:00] : HOSTNAME=sparta
+[22/02/2018 04:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 04:10:00] : LANG=en_US.UTF-8
+[22/02/2018 04:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 04:10:00] : LOGNAME=root
+[22/02/2018 04:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 04:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 04:10:00] : PWD=/root
+[22/02/2018 04:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 04:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 04:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 04:10:00] : SHELL=/bin/bash
+[22/02/2018 04:10:00] : SHLVL=2
+[22/02/2018 04:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 04:10:00] : TERM=xterm
+[22/02/2018 04:10:00] : USER=root
+[22/02/2018 04:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 04:10:00] : ----------------- environment variables ----------------
+[22/02/2018 04:10:00] : SnapCreator STARTED
+[22/02/2018 04:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 04:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 04:10:00] : DESCRIPTION: Welcome
+[22/02/2018 04:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 04:10:00] : SnapCreator
+[22/02/2018 04:10:00] : Step 10 GenetalInfo END
+[22/02/2018 04:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 04:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 04:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 04:10:00] : -- CG config --
+[22/02/2018 04:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__04_10_00
+[22/02/2018 04:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__04_10_00" on XIV "xiv2" 
+[22/02/2018 04:10:01] : RunProgram------ Command executed successfully.
+[22/02/2018 04:10:03] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 04:10:03] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 04:10:04] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__04_10_00          " on XIV "xiv2" 
+[22/02/2018 04:10:06] : RunProgram------ Command executed successfully.
+[22/02/2018 04:10:07] : Step 40 CreateBackupPointXIV END
+[22/02/2018 04:10:07] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 04:10:07] : DESCRIPTION: Good Bye
+[22/02/2018 04:10:07] : Step 80 GenetalInfo BEGIN
+[22/02/2018 04:10:07] : SnapCreator
+[22/02/2018 04:10:07] : Step 80 GenetalInfo END
+[22/02/2018 04:10:07] : -------------------------------------------------------
+[22/02/2018 04:10:07] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 07:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 07:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 07:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 07:10:00] : computer: sparta process: 3114 tty: remote
+[22/02/2018 07:10:00] : ----------------- environment variables ----------------
+[22/02/2018 07:10:00] : CVS_RSH=ssh
+[22/02/2018 07:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 07:10:00] : HISTSIZE=1000
+[22/02/2018 07:10:00] : HOME=/root
+[22/02/2018 07:10:00] : HOSTNAME=sparta
+[22/02/2018 07:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 07:10:00] : LANG=en_US.UTF-8
+[22/02/2018 07:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 07:10:00] : LOGNAME=root
+[22/02/2018 07:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 07:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 07:10:00] : PWD=/root
+[22/02/2018 07:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 07:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 07:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 07:10:00] : SHELL=/bin/bash
+[22/02/2018 07:10:00] : SHLVL=2
+[22/02/2018 07:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 07:10:00] : TERM=xterm
+[22/02/2018 07:10:00] : USER=root
+[22/02/2018 07:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 07:10:00] : ----------------- environment variables ----------------
+[22/02/2018 07:10:00] : SnapCreator STARTED
+[22/02/2018 07:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 07:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 07:10:00] : DESCRIPTION: Welcome
+[22/02/2018 07:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 07:10:00] : SnapCreator
+[22/02/2018 07:10:00] : Step 10 GenetalInfo END
+[22/02/2018 07:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 07:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 07:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 07:10:00] : -- CG config --
+[22/02/2018 07:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__07_10_00
+[22/02/2018 07:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__07_10_00" on XIV "xiv2" 
+[22/02/2018 07:10:01] : RunProgram------ Command executed successfully.
+[22/02/2018 07:10:03] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 07:10:03] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 07:10:04] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__07_10_00          " on XIV "xiv2" 
+[22/02/2018 07:10:06] : RunProgram------ Command executed successfully.
+[22/02/2018 07:10:07] : Step 40 CreateBackupPointXIV END
+[22/02/2018 07:10:07] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 07:10:07] : DESCRIPTION: Good Bye
+[22/02/2018 07:10:07] : Step 80 GenetalInfo BEGIN
+[22/02/2018 07:10:07] : SnapCreator
+[22/02/2018 07:10:07] : Step 80 GenetalInfo END
+[22/02/2018 07:10:07] : -------------------------------------------------------
+[22/02/2018 07:10:07] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 10:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 10:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 10:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 10:10:00] : computer: sparta process: 15983 tty: remote
+[22/02/2018 10:10:00] : ----------------- environment variables ----------------
+[22/02/2018 10:10:00] : CVS_RSH=ssh
+[22/02/2018 10:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 10:10:00] : HISTSIZE=1000
+[22/02/2018 10:10:00] : HOME=/root
+[22/02/2018 10:10:00] : HOSTNAME=sparta
+[22/02/2018 10:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 10:10:00] : LANG=en_US.UTF-8
+[22/02/2018 10:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 10:10:00] : LOGNAME=root
+[22/02/2018 10:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 10:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 10:10:00] : PWD=/root
+[22/02/2018 10:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 10:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 10:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 10:10:00] : SHELL=/bin/bash
+[22/02/2018 10:10:00] : SHLVL=2
+[22/02/2018 10:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 10:10:00] : TERM=xterm
+[22/02/2018 10:10:00] : USER=root
+[22/02/2018 10:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 10:10:00] : ----------------- environment variables ----------------
+[22/02/2018 10:10:00] : SnapCreator STARTED
+[22/02/2018 10:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 10:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 10:10:00] : DESCRIPTION: Welcome
+[22/02/2018 10:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 10:10:00] : SnapCreator
+[22/02/2018 10:10:00] : Step 10 GenetalInfo END
+[22/02/2018 10:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 10:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 10:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 10:10:00] : -- CG config --
+[22/02/2018 10:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__10_10_00
+[22/02/2018 10:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__10_10_00" on XIV "xiv2" 
+[22/02/2018 10:10:01] : RunProgram------ Command executed successfully.
+[22/02/2018 10:10:03] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 10:10:03] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 10:10:04] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__10_10_00          " on XIV "xiv2" 
+[22/02/2018 10:10:05] : RunProgram------ Command executed successfully.
+[22/02/2018 10:10:07] : Step 40 CreateBackupPointXIV END
+[22/02/2018 10:10:07] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 10:10:07] : DESCRIPTION: Good Bye
+[22/02/2018 10:10:07] : Step 80 GenetalInfo BEGIN
+[22/02/2018 10:10:07] : SnapCreator
+[22/02/2018 10:10:07] : Step 80 GenetalInfo END
+[22/02/2018 10:10:07] : -------------------------------------------------------
+[22/02/2018 10:10:07] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 13:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 13:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 13:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 13:10:00] : computer: sparta process: 27388 tty: remote
+[22/02/2018 13:10:00] : ----------------- environment variables ----------------
+[22/02/2018 13:10:00] : CVS_RSH=ssh
+[22/02/2018 13:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 13:10:00] : HISTSIZE=1000
+[22/02/2018 13:10:00] : HOME=/root
+[22/02/2018 13:10:00] : HOSTNAME=sparta
+[22/02/2018 13:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 13:10:00] : LANG=en_US.UTF-8
+[22/02/2018 13:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 13:10:00] : LOGNAME=root
+[22/02/2018 13:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 13:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 13:10:00] : PWD=/root
+[22/02/2018 13:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 13:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 13:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 13:10:00] : SHELL=/bin/bash
+[22/02/2018 13:10:00] : SHLVL=2
+[22/02/2018 13:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 13:10:00] : TERM=xterm
+[22/02/2018 13:10:00] : USER=root
+[22/02/2018 13:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 13:10:00] : ----------------- environment variables ----------------
+[22/02/2018 13:10:00] : SnapCreator STARTED
+[22/02/2018 13:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 13:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 13:10:00] : DESCRIPTION: Welcome
+[22/02/2018 13:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 13:10:00] : SnapCreator
+[22/02/2018 13:10:00] : Step 10 GenetalInfo END
+[22/02/2018 13:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 13:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 13:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 13:10:00] : -- CG config --
+[22/02/2018 13:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__13_10_00
+[22/02/2018 13:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__13_10_00" on XIV "xiv2" 
+[22/02/2018 13:10:01] : RunProgram------ Command executed successfully.
+[22/02/2018 13:10:02] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 13:10:02] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 13:10:04] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__13_10_00          " on XIV "xiv2" 
+[22/02/2018 13:10:05] : RunProgram------ Command executed successfully.
+[22/02/2018 13:10:06] : Step 40 CreateBackupPointXIV END
+[22/02/2018 13:10:06] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 13:10:06] : DESCRIPTION: Good Bye
+[22/02/2018 13:10:06] : Step 80 GenetalInfo BEGIN
+[22/02/2018 13:10:06] : SnapCreator
+[22/02/2018 13:10:06] : Step 80 GenetalInfo END
+[22/02/2018 13:10:06] : -------------------------------------------------------
+[22/02/2018 13:10:06] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 16:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 16:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 16:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 16:10:00] : computer: sparta process: 2866 tty: remote
+[22/02/2018 16:10:00] : ----------------- environment variables ----------------
+[22/02/2018 16:10:00] : CVS_RSH=ssh
+[22/02/2018 16:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 16:10:00] : HISTSIZE=1000
+[22/02/2018 16:10:00] : HOME=/root
+[22/02/2018 16:10:00] : HOSTNAME=sparta
+[22/02/2018 16:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 16:10:00] : LANG=en_US.UTF-8
+[22/02/2018 16:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 16:10:00] : LOGNAME=root
+[22/02/2018 16:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 16:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 16:10:00] : PWD=/root
+[22/02/2018 16:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 16:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 16:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 16:10:00] : SHELL=/bin/bash
+[22/02/2018 16:10:00] : SHLVL=2
+[22/02/2018 16:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 16:10:00] : TERM=xterm
+[22/02/2018 16:10:00] : USER=root
+[22/02/2018 16:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 16:10:00] : ----------------- environment variables ----------------
+[22/02/2018 16:10:00] : SnapCreator STARTED
+[22/02/2018 16:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 16:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 16:10:00] : DESCRIPTION: Welcome
+[22/02/2018 16:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 16:10:00] : SnapCreator
+[22/02/2018 16:10:00] : Step 10 GenetalInfo END
+[22/02/2018 16:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 16:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 16:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 16:10:00] : -- CG config --
+[22/02/2018 16:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__16_10_00
+[22/02/2018 16:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__16_10_00" on XIV "xiv2" 
+[22/02/2018 16:10:01] : RunProgram------ Command executed successfully.
+[22/02/2018 16:10:03] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 16:10:03] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 16:10:04] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__16_10_00          " on XIV "xiv2" 
+[22/02/2018 16:10:05] : RunProgram------ Command executed successfully.
+[22/02/2018 16:10:07] : Step 40 CreateBackupPointXIV END
+[22/02/2018 16:10:07] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 16:10:07] : DESCRIPTION: Good Bye
+[22/02/2018 16:10:07] : Step 80 GenetalInfo BEGIN
+[22/02/2018 16:10:07] : SnapCreator
+[22/02/2018 16:10:07] : Step 80 GenetalInfo END
+[22/02/2018 16:10:07] : -------------------------------------------------------
+[22/02/2018 16:10:07] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 19:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 19:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 19:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 19:10:00] : computer: sparta process: 7312 tty: remote
+[22/02/2018 19:10:00] : ----------------- environment variables ----------------
+[22/02/2018 19:10:00] : CVS_RSH=ssh
+[22/02/2018 19:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 19:10:00] : HISTSIZE=1000
+[22/02/2018 19:10:00] : HOME=/root
+[22/02/2018 19:10:00] : HOSTNAME=sparta
+[22/02/2018 19:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 19:10:00] : LANG=en_US.UTF-8
+[22/02/2018 19:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 19:10:00] : LOGNAME=root
+[22/02/2018 19:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 19:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 19:10:00] : PWD=/root
+[22/02/2018 19:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 19:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 19:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 19:10:00] : SHELL=/bin/bash
+[22/02/2018 19:10:00] : SHLVL=2
+[22/02/2018 19:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 19:10:00] : TERM=xterm
+[22/02/2018 19:10:00] : USER=root
+[22/02/2018 19:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 19:10:00] : ----------------- environment variables ----------------
+[22/02/2018 19:10:00] : SnapCreator STARTED
+[22/02/2018 19:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 19:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 19:10:00] : DESCRIPTION: Welcome
+[22/02/2018 19:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 19:10:00] : SnapCreator
+[22/02/2018 19:10:00] : Step 10 GenetalInfo END
+[22/02/2018 19:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 19:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 19:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 19:10:00] : -- CG config --
+[22/02/2018 19:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__19_10_00
+[22/02/2018 19:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__19_10_00" on XIV "xiv2" 
+[22/02/2018 19:10:01] : RunProgram------ Command executed successfully.
+[22/02/2018 19:10:02] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 19:10:02] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 19:10:04] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__19_10_00          " on XIV "xiv2" 
+[22/02/2018 19:10:05] : RunProgram------ Command executed successfully.
+[22/02/2018 19:10:06] : Step 40 CreateBackupPointXIV END
+[22/02/2018 19:10:06] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 19:10:06] : DESCRIPTION: Good Bye
+[22/02/2018 19:10:06] : Step 80 GenetalInfo BEGIN
+[22/02/2018 19:10:06] : SnapCreator
+[22/02/2018 19:10:06] : Step 80 GenetalInfo END
+[22/02/2018 19:10:06] : -------------------------------------------------------
+[22/02/2018 19:10:06] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
+
+
+                #####   #######     #     ######   #######                 
+               #     #     #       # #    #     #     #                    
+               #           #      #   #   #     #     #                    
+#######         #####      #     #     #  ######      #           #######  
+                     #     #     #######  #   #       #                    
+               #     #     #     #     #  #    #      #                    
+                #####      #     #     #  #     #     #                    
+
+[22/02/2018 22:10:00] : SnapCreator: working directory set to /usr/sparta/SnapCreator/logs
+[22/02/2018 22:10:00] : The Sequence file is : /usr/sparta/SnapCreator/logs/TS_SnapCreator.ShavDB_PRDOL1.seq
+[22/02/2018 22:10:00] : START: /usr/sparta/SnapCreator/SnapCreator.pl -g ShavDB_PRDOL1
+[22/02/2018 22:10:00] : computer: sparta process: 26385 tty: remote
+[22/02/2018 22:10:00] : ----------------- environment variables ----------------
+[22/02/2018 22:10:00] : CVS_RSH=ssh
+[22/02/2018 22:10:00] : G_BROKEN_FILENAMES=1
+[22/02/2018 22:10:00] : HISTSIZE=1000
+[22/02/2018 22:10:00] : HOME=/root
+[22/02/2018 22:10:00] : HOSTNAME=sparta
+[22/02/2018 22:10:00] : INPUTRC=/etc/inputrc
+[22/02/2018 22:10:00] : LANG=en_US.UTF-8
+[22/02/2018 22:10:00] : LESSOPEN=|/usr/bin/lesspipe.sh %s
+[22/02/2018 22:10:00] : LOGNAME=root
+[22/02/2018 22:10:00] : MAIL=/var/spool/mail/root
+[22/02/2018 22:10:00] : PATH=/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/X11R6/bin:/root/bin:/usr/symcli/bin:/root/IBM_XIV_Storage_Management_GUI/
+[22/02/2018 22:10:00] : PWD=/root
+[22/02/2018 22:10:00] : QTDIR=/usr/lib64/qt-3.3
+[22/02/2018 22:10:00] : QTINC=/usr/lib64/qt-3.3/include
+[22/02/2018 22:10:00] : QTLIB=/usr/lib64/qt-3.3/lib
+[22/02/2018 22:10:00] : SHELL=/bin/bash
+[22/02/2018 22:10:00] : SHLVL=2
+[22/02/2018 22:10:00] : SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+[22/02/2018 22:10:00] : TERM=xterm
+[22/02/2018 22:10:00] : USER=root
+[22/02/2018 22:10:00] : _=/usr/sparta/SnapCreator/SnapCreator.pl
+[22/02/2018 22:10:00] : ----------------- environment variables ----------------
+[22/02/2018 22:10:00] : SnapCreator STARTED
+[22/02/2018 22:10:00] : LOG_FILE=/usr/sparta/SnapCreator/logs/TS_SnapCreator_20180222.ShavDB_PRDOL1.log
+[22/02/2018 22:10:00] : DISK=/usr/sparta/SnapCreator/logs  YYYYMMDD=20180222 FROM_STEP=10 TO_STEP=80
+
+
+ #####   #######  #######  ######           #     ####   
+#     #     #     #        #     #         ##    #   ##  
+#           #     #        #     #        # #    #  # #  
+ #####      #     #####    ######           #    # #  #  
+      #     #     #        #                #    ##   #  
+#     #     #     #        #                #    #    #  
+ #####      #     #######  #              #####   ####   
+
+[22/02/2018 22:10:00] : DESCRIPTION: Welcome
+[22/02/2018 22:10:00] : Step 10 GenetalInfo BEGIN
+[22/02/2018 22:10:00] : SnapCreator
+[22/02/2018 22:10:00] : Step 10 GenetalInfo END
+[22/02/2018 22:10:00] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######         #   #   ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######         #####  # #  #  
+      #     #     #        #                  #  ##   #  
+#     #     #     #        #                  #  #    #  
+ #####      #     #######  #                  #   ####   
+
+[22/02/2018 22:10:00] : DESCRIPTION: Create the backup copy
+[22/02/2018 22:10:00] : Step 40 CreateBackupPointXIV BEGIN
+[22/02/2018 22:10:00] : -- CG config --
+[22/02/2018 22:10:00] : Going to Duplicate snapshot group last-replicated-CG_ShavDB_PRDOL1_DR to PRDOL1_SnapC_22_02__22_10_00
+[22/02/2018 22:10:00] : Going to Duplicate a CG Snapshot from "last-replicated-CG_ShavDB_PRDOL1_DR" to "PRDOL1_SnapC_22_02__22_10_00" on XIV "xiv2" 
+[22/02/2018 22:10:01] : RunProgram------ Command executed successfully.
+[22/02/2018 22:10:03] : There are 17 on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 22:10:03] : There are 17 snapshtos on CG "CG_ShavDB_PRDOL1_DR"
+[22/02/2018 22:10:04] : Going to Delete the Snapshot Group "PRDOL1_SnapC_20_02__22_10_00          " on XIV "xiv2" 
+[22/02/2018 22:10:05] : RunProgram------ Command executed successfully.
+[22/02/2018 22:10:07] : Step 40 CreateBackupPointXIV END
+[22/02/2018 22:10:07] : -------------------------------------------------------
+
+
+ #####   #######  #######  ######          ###    ####   
+#     #     #     #        #     #        #   #  #   ##  
+#           #     #        #     #        #   #  #  # #  
+ #####      #     #####    ######          ###   # #  #  
+      #     #     #        #              #   #  ##   #  
+#     #     #     #        #              #   #  #    #  
+ #####      #     #######  #               ###    ####   
+
+[22/02/2018 22:10:07] : DESCRIPTION: Good Bye
+[22/02/2018 22:10:07] : Step 80 GenetalInfo BEGIN
+[22/02/2018 22:10:07] : SnapCreator
+[22/02/2018 22:10:07] : Step 80 GenetalInfo END
+[22/02/2018 22:10:07] : -------------------------------------------------------
+[22/02/2018 22:10:07] : SnapCreator FINISHED
+
+
+               #######  ###  #     #  ###   #####   #     #                 
+               #         #   ##    #   #   #     #  #     #                 
+               #         #   # #   #   #   #        #     #                 
+#######        #####     #   #  #  #   #    #####   #######        #######  
+               #         #   #   # #   #         #  #     #                 
+               #         #   #    ##   #   #     #  #     #                 
+               #        ###  #     #  ###   #####   #     #                 
+
