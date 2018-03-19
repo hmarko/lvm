@@ -5,7 +5,7 @@ use Data::Dumper;
 use Time::localtime qw( );
 use POSIX;
 
-$debug = 1;
+$debug = 0;
 $runalllvmirroratonce = 1;
 
 $server = $ARGV[0];
@@ -281,8 +281,8 @@ foreach $inputvg (split(/,/,$vgs)) {
 	}
 	
 	if (not $vol{'vgs'}{$inputvg}{'lun-count'}) {
-		write_log("ERROR: could not identify PVs for VG or all been migrated: $inputvg");
-		exit 1;
+		write_log("WARNING: could not identify PVs for VG or all been migrated: $inputvg");
+#		exit 1;
 	}
 }
 
