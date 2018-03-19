@@ -292,9 +292,12 @@ $volume =~ s/\-/\_/g;
 #	$vol{'total-pv-size'} = 1;
 #}
 dumpjson();
-if ($vol{'total-pv-size'} * 2 > 100) {
+if ($vol{'total-pv-size'} * 2 > 50) {
 	$vol{'initial-size'} = floor($vol{'total-pv-size'}) * $vol{'initial-size-factor'};
 	$vol{'max-autosize'} = floor($vol{'total-pv-size'}) * $vol{'initial-max-autosize-factor'};
+} else {
+	$vol{'initial-size'} = 50 * $vol{'initial-size-factor'};
+	$vol{'max-autosize'} = 50 * $vol{'initial-max-autosize-factor'};
 }
 
 $cmd = "volume show -volume $volume -field state,type";
