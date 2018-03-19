@@ -10,7 +10,7 @@ $runalllvmirroratonce = 1;
 
 $server = $ARGV[0];
 $svm = $ARGV[1];
-$app = $ARGV[2];
+$volume = $ARGV[2];
 $aggr = $ARGV[3];
 $igroup = $ARGV[4];
 $vgs = $ARGV[5];
@@ -587,7 +587,7 @@ while ($continue) {
 						$lvmcmd = 'lvconvert '.$wait.'-m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
 						$pv{$pvforadditionalpe}{lastpe}--;
 						runcmd("$sshcmdserver $lvmcmd");
-						sleep 5;
+						sleep 30;
 					} else {
 						runcmd("LV: $vg/$lvol is not located on old devices");
 						$vol{'vgs'}{$vg}{'lvols'}{$lvol}{'done-mirror'} = 1;
