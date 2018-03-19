@@ -288,6 +288,10 @@ foreach $inputvg (split(/,/,$vgs)) {
 
 $volume =~ s/\-/\_/g;
 
+#if (not $vol{'total-pv-size'}) {
+#	$vol{'total-pv-size'} = 1;
+#}
+dumpjson();
 if ($vol{'total-pv-size'} * 2 > 100) {
 	$vol{'initial-size'} = floor($vol{'total-pv-size'}) * $vol{'initial-size-factor'};
 	$vol{'max-autosize'} = floor($vol{'total-pv-size'}) * $vol{'initial-max-autosize-factor'};
