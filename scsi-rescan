@@ -5,6 +5,8 @@
 # (c) 2006--2013 Hannes Reinecke, GNU GPL v2 or later
 # $Id: rescan-scsi-bus.sh,v 1.57 2012/03/31 14:08:48 garloff Exp $
 
+grep "" /sys/class/scsi_host/host?/proc_name | awk -F '/' '{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'
+
 SCAN_WILD_CARD=4294967295
 
 setcolor ()
