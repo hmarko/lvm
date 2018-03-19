@@ -1060,7 +1060,7 @@ sub DoTheEstablish() {
 			foreach my $line (@pvs) {
 				chomp $line;
 				$vgtarget = (split(':',$vg))[1];
-				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgtarget/) {
+				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgtarget\s+/) {
 					if (not exists $NetappDevices{$1}) {
 						$onnetapp = 0;
 						Info("Device:$1 is part of vg:$vgtarget but it is not on Netapp LUN :-(");
@@ -1601,7 +1601,7 @@ sub DoTheSplit() {
 			foreach my $line (@pvs) {
 				chomp $line;
 				$vgmaster = (split(':',$vg))[0];
-				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgmaster/) {
+				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgmaster\s+/) {
 					if (not exists $NetappDevices{$1}) {
 						$onnetapp = 0;
 						Info("Device:$1 is part of vg:$vgmaster but it is not on Netapp LUN :-(");
