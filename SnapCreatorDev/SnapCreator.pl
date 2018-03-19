@@ -5,9 +5,11 @@ use Getopt::Std ;
 use Sys::Hostname;
 use File::Basename;
 
+use lib '../ReplicManDev';
 use Pelephone::User ;
 use Pelephone::Logger ;
 use Pelephone::System ;
+use Pelephone::Netapp;
 
 use Pelephone::StepDriver ;
 
@@ -15,6 +17,8 @@ use Pelephone::StepDriver ;
 %GParam = () ;
 $OK = "Finished O.K." ;
 $| = 1 ;
+
+our $runserver =`hostname` ;
 
 
 ###############################################################################
@@ -626,7 +630,7 @@ trap_signals() ;
 
 # Check if the user is root
 MustRunAs("root") ;
-MustRunOn("sparta") ;
+MustRunOn($runserver) ;
 
 #-----------------------------------------------------------------------------#
 # Global Parameters															  #

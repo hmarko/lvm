@@ -14,9 +14,11 @@ $app = $ARGV[2];
 $aggr = $ARGV[3];
 $igroup = $ARGV[4];
 $vgs = $ARGV[5];
-$drsvm = $ARGV[6];
-$draggr = $ARGV[7];
-$drsched = $ARGV[8];
+$snapshotpolicy = $ARGV[6]; $snapshotpolicy="default" if not $snapshotpolicy;
+$drsvm = $ARGV[7];
+$draggr = $ARGV[8];
+$drsched = $ARGV[9];
+
 
 $wwidprefix = '3600a0980';
 $deviceprefix = '/dev/mapper/';
@@ -302,10 +304,10 @@ if ($out[2]=~/$svm\s+$volume\s+(\S+)\s+(\S+)/) {
 		exit 1;
 	}
 	write_log("modifing volume:$volume size:$vol{'initial-size'}g");
-	$cmd = "volume modify -volume $volume -size +".$vol{'initial-size'}."g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'}  -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
+	$cmd = "set -confirmation off;volume modify -volume $volume -size +".$vol{'initial-size'}."g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'}  -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'} -snapshot-policy $snapshotpolicy";
 } else {
 	write_log("creating volume:$volume size:$vol{'initial-size'}g");
-	$cmd = "volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'} -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'}";
+	$cmd = "set -confirmation off;volume create -volume $volume -aggregate $aggr -size $vol{'initial-size'}g -space-guarantee none -percent-snapshot-space 0 -autosize-mode grow-shrink -max-autosize $vol{'max-autosize'}g -min-autosize $vol{'initial-size'}g -autosize-grow-threshold-percent $vol{'autosize-grow-threshold-percent'} -autosize-shrink-threshold-percent $vol{'autosize-shrink-threshold-percent'} -snapshot-policy $snapshotpolicy";
 }
 
 #create/modify the volume 
