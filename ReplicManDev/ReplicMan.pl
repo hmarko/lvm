@@ -3614,7 +3614,9 @@ elsif ($GroupParams{"MSGRP"} eq "NetappSAN") {
 elsif ($GroupParams{"MSGRP"} =~ /XIV/ ) {
 
 	# Establish Proccess
-	AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
+	if (not $MigrationPeriod) {
+		AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
+	}
 	AddStep("06", "CheckRunningSyncs", "Check for running syncs from the same source") ; 
 	AddStep("10", "EstPreCommand", "Pre Establish Command") ;
 	AddStep("40", "EstPostCommand", "Post Establish Command") ;
@@ -3634,7 +3636,9 @@ elsif ($GroupParams{"MSGRP"} =~ /XIV/ ) {
 elsif ($GroupParams{"MSGRP"} =~ /SVC/ ) {
 
 	# Establish Proccess
-	AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
+	if (not $MigrationPeriod) {	
+		AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
+	}
 	AddStep("06", "CheckRunningSyncs", "Check for running syncs from the same source") ; 
 	AddStep("10", "EstPreCommand", "Pre Establish Command") ;
 	AddStep("30", "DoTheEstablish", "Delete Target Volume") ;

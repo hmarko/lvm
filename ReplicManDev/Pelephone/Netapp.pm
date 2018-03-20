@@ -16,7 +16,7 @@ BEGIN {
 
 	@ISA         = qw(Exporter);
 	@EXPORT      = qw(&deleteSnapIgnoreOwnertsCOT &snapmirrorUpdateDOT &createFlexCloneNoJunctionCOT &isVolSnapmirrorExistsCOT &createNetappQtreeCOT &mapNetappLunCOT &createNetappLunCloneCOT &getVolCommentCOT &deleteLunCOT &getLunsCOT &isVolExists &offlineFlexClone &deleteFlexClone &offlineVolCOT &createSvSched &createNetappSnap &createFlexClone &deleteSnapCOT &isSnapExistsCOT
-						&exportNetappVol &addVol2Vfiler &checkSmIdle &updateSM &isVolExistsCOT &deleteVolCOT &createNetappSnapCOT &createFlexCloneCOT &exportNetappVolCOT &getNetappLastSnapCOT);
+						&createNetappSnapWaitForSISCloneCOT &exportNetappVol &addVol2Vfiler &checkSmIdle &updateSM &isVolExistsCOT &deleteVolCOT &createNetappSnapCOT &createFlexCloneCOT &exportNetappVolCOT &getNetappLastSnapCOT);
 	%EXPORT_TAGS = ( );     # eg: TAG => [ qw!name1 name2! ],
 
 }
@@ -363,6 +363,52 @@ sub createNetappSnap($$$) {
 	}
 	return $ExitCode;
 }
+
+
+sub createNetappSnapWaitForSISCloneCOTs($$$) {
+	my $netapp = shift ;		chomp $netapp ;
+	my $src_volume = shift ;	chomp $src_volume ;
+	my $snap = shift ;			chomp $snap ;
+	my $cmd = "ssh vsadmin\@$netapp snap create $src_volume $snap" ;
+	Info ("Running \"$cmd\" command \n");
+	my $ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	my @Text = GetCommandResult();
+
+	#checking if snapshot crreation failed due to file clone currently spliting
+	if (grep(/Snapshot operation not allowed due to clones backed by snapshots/, @Text)) {
+		my $snapshotbusy = 1;
+		my $counter = 0;
+		while ($snapshotbusy) {
+			$snapshotbusy = 0;
+			$cmd = "ssh vsadmin\@$netapp snapshot show $src_volume -fields snapshot,busy,owners" ;
+			$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+			@Text = GetCommandResult();
+			foreach my $line (@Text) {
+				chomp $line;
+				if ($line =~ /(\S+)\s+$src_volume\s+(\S+)\s+true\s+(.+)/) {
+					$snapshotbusy = 1;
+					Info("Snapshot cannot be created now becuase SIS clone split operation still running on Snapshot:$2 , it will take it few minutes to finish");
+					sleep 30;
+				}
+			}
+			$counter ++;
+			if ($counter > 60) {
+				$ExitCode =1;
+				Info("ERROR: Snapshot is busy after 60 tried, aborting");
+				$snapshotbusy = 0;
+			}
+		}
+	}
+	
+	# I have to check wheter the snapshot created
+	sleep 2;
+	$cmd = "ssh vsadmin\@$netapp snap show -volume $src_volume | grep -w $snap";
+	$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
+	
+	return $ExitCode;
+}
+
+
 
 sub createNetappSnapCOT($$$) {
 	my $netapp = shift ;		chomp $netapp ;
