@@ -6,7 +6,6 @@ use Sys::Hostname;
 use File::Basename;
 use Data::Dumper;
 
-use lib '.';
 use Pelephone::User ;
 use Pelephone::Logger ;
 use Pelephone::Oracle ;
@@ -1060,7 +1059,7 @@ sub DoTheEstablish() {
 			foreach my $line (@pvs) {
 				chomp $line;
 				$vgtarget = (split(':',$vg))[1];
-				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgtarget/) {
+				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgtarget\s+/) {
 					if (not exists $NetappDevices{$1}) {
 						$onnetapp = 0;
 						Info("Device:$1 is part of vg:$vgtarget but it is not on Netapp LUN :-(");
@@ -1074,6 +1073,9 @@ sub DoTheEstablish() {
 		if ($onnetapp) {
 			Info("Setting MSGRP as NetappSAN becuase of all VGs are on Netapp");
 			$GroupParams{"MSGRP"} = "NetappSAN";
+		} elsif (not $GroupParams{"XIV_FROM_MIRROR"} eq "yes" and $GroupParams{"MSGRP"} =~ "XIV") {
+			Info("Since storage is XIV and not XIV_FROM_MIRROR=yes terminating step 30");
+			return;
 		}
 	}
 
@@ -1601,7 +1603,7 @@ sub DoTheSplit() {
 			foreach my $line (@pvs) {
 				chomp $line;
 				$vgmaster = (split(':',$vg))[0];
-				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgmaster/) {
+				if ($line =~ /^\s*\/dev\/mapper\/(\S+)\s+$vgmaster\s+/) {
 					if (not exists $NetappDevices{$1}) {
 						$onnetapp = 0;
 						Info("Device:$1 is part of vg:$vgmaster but it is not on Netapp LUN :-(");
@@ -3618,7 +3620,7 @@ elsif ($GroupParams{"MSGRP"} =~ /XIV/ ) {
 	AddStep("40", "EstPostCommand", "Post Establish Command") ;
 	
 	# If this is a Remote volume - XIV Mirror involved
-	if ($GroupParams{"XIV_FROM_MIRROR"} eq "yes") {
+	if ($GroupParams{"XIV_FROM_MIRROR"} eq "yes" or $MigrationPeriod) {
 		AddStep("30", "DoTheEstablish", "Delete Target Volume") ;
 	}
 	
