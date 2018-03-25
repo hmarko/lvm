@@ -24,7 +24,7 @@ $| = 1 ;
 %GParam = () ;
 $OK = "Finished O.K." ;
 
-our $runserver ='sparta' ;
+our $runserver ='RHEL1' ;
 
 #-----------------------------------------------------------------------------#
 # Open-View Message To The ITO !                                              #
@@ -1215,6 +1215,36 @@ sub DoTheEstablish() {
 		# Run for every volume
 		for (my $index = 0; $index <= $#netapps; $index++) {
 		
+			if ($GroupParams{"OS_VERSION"} eq "Linux") {
+				Info("Removing the devices from the OS before refreshing LUNs on the target");
+				
+				my $cmd = "pvs --separator ^ -o vgname,pvname";
+				my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+				my @pvs = GetCommandResult(); 
+				$cmd = "multipath -ll";
+				my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+				my @mlp = GetCommandResult(); 
+				
+				Info ("Getting Target VG List") ;
+				my @allVglist = split (';', $GroupParams{"VG_LIST"}) ;
+				my @TargetVGs ;
+				foreach my $value (@allVglist) {
+					my $VG = (split (':', $value))[1] ;
+					Info ("Getting list of PVs for VG:$VG");
+					foreach my $pvsline (@pvs) {
+						chomp $pvsline;
+						if ($pvsline =~ /^\s*$VG\^(\S+)\s*$/) {
+							for each my $mlpline (@mlp) {
+							}
+						}
+					}
+					
+				}		
+				foreach my $VG (
+				
+			}
+			
+		
 			Debug("DoTheEstablish","NetApp SAN data parsed: S:$netapps[$index] D:$netappd[$index] S:$src_vols[$index] P:$src_path[$index] T:$tgt_vols[$index] P:$tgt_path[$index]");
 			#check with method been used for cloning, file-clone is being used only when src and dst are equal (SVM and Vol)
 			$use_clone_type = 'flex-clone';
@@ -1288,7 +1318,7 @@ sub DoTheEstablish() {
 				# Delete the snapshot
 				Info("Going to delete snapshot $Uniq_Snapshot from $netapps[$index]\:$src_vols[$index]");
 				if (deleteSnapIgnoreOwnertsCOT($netapps[$index], $src_vols[$index],$Uniq_Snapshot) eq 0 ) {
-					Info("The snapshot $Uniq_Snapshot in $netapps[$index]\:$src_vols[$index] was Deleted");
+					Info("The snapshot $Uniq_Snapshot in $netapps[$index]\:$src_vols[$index] was deleted");
 				}
 				else {
 					Exit("ERROR: Cannot delete snapshot - I have to EXIT",1);
@@ -1729,7 +1759,7 @@ sub DoTheSplit() {
 				Exit ("ERROR: The Snapshot $Uniq_Snapshot still exists in $netapps[$index]:$src_vols[$index] ! Please go back to Step 30 !",1);
 			} else {
 				Info ("Going to create a snapshot named \"$Uniq_Snapshot\" on \"$src_vols[$index]\" - Netapp \"$netapps[$index]\"");
-				if ( createNetappSnapCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
+				if ( createNetappSnapWaitForSISCloneCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
 					Info ("Snapshot Creation $OK");
 				}
 				else {
@@ -1836,7 +1866,7 @@ sub DoTheSplit() {
 				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
 				ReTry ($GroupParams{"TARGET_HOST"}, '/root/scsi-rescan');
 				ReTry ($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
-				my $rescancmd = "grep mpt /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
+				my $rescancmd = "grep \"\" /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
 				ReTry ($GroupParams{"TARGET_HOST"}, $rescancmd);
 				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
 				sleep 5;				
@@ -3614,9 +3644,7 @@ elsif ($GroupParams{"MSGRP"} eq "NetappSAN") {
 elsif ($GroupParams{"MSGRP"} =~ /XIV/ ) {
 
 	# Establish Proccess
-	if (not $MigrationPeriod) {
-		AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
-	}
+	AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
 	AddStep("06", "CheckRunningSyncs", "Check for running syncs from the same source") ; 
 	AddStep("10", "EstPreCommand", "Pre Establish Command") ;
 	AddStep("40", "EstPostCommand", "Post Establish Command") ;
@@ -3636,9 +3664,7 @@ elsif ($GroupParams{"MSGRP"} =~ /XIV/ ) {
 elsif ($GroupParams{"MSGRP"} =~ /SVC/ ) {
 
 	# Establish Proccess
-	if (not $MigrationPeriod) {	
-		AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
-	}
+	AddStep("05", "CheckGroupStatus", "Check the group status Before the Establish") ;
 	AddStep("06", "CheckRunningSyncs", "Check for running syncs from the same source") ; 
 	AddStep("10", "EstPreCommand", "Pre Establish Command") ;
 	AddStep("30", "DoTheEstablish", "Delete Target Volume") ;

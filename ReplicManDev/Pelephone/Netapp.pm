@@ -185,7 +185,7 @@ sub getLunsCOT($$$$) {
 	my $cmd;
 	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | awk '{print ".'$2'."}'" if not $search;
 	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | grep \"$search\" | awk '{print".' $2'."}'" if $search;
-	#print "$cmd\n";
+	print "$cmd\n";
 	
 	RunProgramQuiet($main::RunnigHost, "$cmd"); 
 	my @Text = GetCommandResult();
@@ -193,8 +193,8 @@ sub getLunsCOT($$$$) {
 	my @LUNs = ();
 	foreach my $lun (@Text) {
 		chomp $lun;
-		push @LUNs,$lun if $qtree and $lun =~ /\/vol\/$volume\/$qtree\/\w+$/;
-		push @LUNs,$lun if not $qtree and $lun =~ /\/vol\/$volume\/\w+$/;
+		push @LUNs,$lun if $qtree and $lun =~ /\/vol\/$volume\/$qtree\/\S+$/;
+		push @LUNs,$lun if not $qtree and $lun =~ /\/vol\/$volume\/\S+$/;
 	}
 	return @LUNs;
 }
