@@ -18,6 +18,7 @@ use Pelephone::XIV ;
 use Pelephone::StepDriver ;
 use Pelephone::SVC ;
 
+
 $| = 1 ;
 
 %WorkingFiles = () ;
@@ -1221,9 +1222,6 @@ sub DoTheEstablish() {
 				my $cmd = "pvs --separator ^ -o vgname,pvname";
 				my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
 				my @pvs = GetCommandResult(); 
-				$cmd = "multipath -ll";
-				my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
-				my @mlp = GetCommandResult(); 
 				
 				Info ("Getting Target VG List") ;
 				my @allVglist = split (';', $GroupParams{"VG_LIST"}) ;
@@ -1234,14 +1232,30 @@ sub DoTheEstablish() {
 					foreach my $pvsline (@pvs) {
 						chomp $pvsline;
 						if ($pvsline =~ /^\s*$VG\^(\S+)\s*$/) {
-							for each my $mlpline (@mlp) {
+							my $mpdev = $1;
+							$cmd = "multipath -ll $mpdev";
+							$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+							my @mlp = GetCommandResult(); 
+							Info("Removing multipath device:$mpdev which is part of VG:$VG");
+							$cmd = "multipath -f $mpdev";
+							$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+							if ($ExitCode eq 1) {
+								Exit ("Error: Could not delete device $mpdev on ".$GroupParams{"TARGET_HOST"},1);
+							}
+							foreach my $mlpline (@mlp) {
+								chomp $mlpline;
+								if ($mlpline =~ /\s+(sd\S+)\s+/) {
+									$underlyingdevice = $1;
+									Info("Removing underlying device $underlyingdevice");
+									$cmd = "echo 1 > /sys/block/$underlyingdevice/device/delete";
+									Info("CMD is: $cmd");
+									$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, $cmd) ; 
+								}
 							}
 						}
 					}
 					
-				}		
-				foreach my $VG (
-				
+				}						
 			}
 			
 		
@@ -1759,7 +1773,8 @@ sub DoTheSplit() {
 				Exit ("ERROR: The Snapshot $Uniq_Snapshot still exists in $netapps[$index]:$src_vols[$index] ! Please go back to Step 30 !",1);
 			} else {
 				Info ("Going to create a snapshot named \"$Uniq_Snapshot\" on \"$src_vols[$index]\" - Netapp \"$netapps[$index]\"");
-				if ( createNetappSnapWaitForSISCloneCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
+				#if ( createNetappSnapWaitForSISCloneCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
+				if ( createNetappSnapCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
 					Info ("Snapshot Creation $OK");
 				}
 				else {

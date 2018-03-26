@@ -54,8 +54,8 @@
 # All Shavit Copys Group's
 ###############################################################################
 <GROUP_NAME value="CDOT_TEST">
-	<MASTER_HOST>localhost</MASTER_HOST>
-	<TARGET_HOST>RHEL1</TARGET_HOST>
+	<MASTER_HOST>RHEL1</MASTER_HOST>
+	<TARGET_HOST>localhost</TARGET_HOST>
 	<OS_VERSION>Linux</OS_VERSION>
 	<MASTER_FILESYSTEM>/vg1/|/vg2/</MASTER_FILESYSTEM>
 	<TARGET_FILESYSTEM>/vg1/|/vg2/</TARGET_FILESYSTEM>

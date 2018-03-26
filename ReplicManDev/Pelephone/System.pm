@@ -251,8 +251,8 @@ sub RunCommandOnRemote($$) {
 	}
 
 	# Run Command on Remote Host
-	if (IsSecureMode()) { @Result = `ssh $host "ksh $TempFile"` ; }
-	else                { @Result = `rsh $host "ksh $TempFile"` ; }
+	if (IsSecureMode()) { `ssh $host chmod +x $TempFile`;@Result = `ssh $host "$TempFile"` ; }
+	else                { @Result = `rsh $host "$TempFile"` ; }
 	$ExitCode = pop @Result ;		chomp $ExitCode ;
 	Debug ("RunCommandOnRemote", "The exit code is : $ExitCode") ;
 	Debug ("RunCommandOnRemote", "The Results are : @Result") ;
