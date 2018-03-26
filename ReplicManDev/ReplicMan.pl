@@ -25,7 +25,7 @@ $| = 1 ;
 %GParam = () ;
 $OK = "Finished O.K." ;
 
-our $runserver ='RHEL1' ;
+our $runserver ='sparta' ;
 
 #-----------------------------------------------------------------------------#
 # Open-View Message To The ITO !                                              #
@@ -1219,7 +1219,7 @@ sub DoTheEstablish() {
 			if ($GroupParams{"OS_VERSION"} eq "Linux") {
 				Info("Removing the devices from the OS before refreshing LUNs on the target");
 				
-				my $cmd = "pvs --separator ^ -o vgname,pvname";
+				my $cmd = "pvs --separator ^";
 				my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
 				my @pvs = GetCommandResult(); 
 				
@@ -1231,8 +1231,11 @@ sub DoTheEstablish() {
 					Info ("Getting list of PVs for VG:$VG");
 					foreach my $pvsline (@pvs) {
 						chomp $pvsline;
-						if ($pvsline =~ /^\s*$VG\^(\S+)\s*$/) {
-							my $mpdev = $1;
+						my @pvinfo = split(/\^/,$pvsline);
+						if ($pvinfo[1] eq $VG) {
+							my $mpdev = $pvinfo[0];
+							$mpdev =~ /.+\/(\S+)/;
+							$mpdev = $1;
 							$cmd = "multipath -ll $mpdev";
 							$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
 							my @mlp = GetCommandResult(); 
@@ -1248,8 +1251,8 @@ sub DoTheEstablish() {
 									$underlyingdevice = $1;
 									Info("Removing underlying device $underlyingdevice");
 									$cmd = "echo 1 > /sys/block/$underlyingdevice/device/delete";
-									Info("CMD is: $cmd");
-									$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, $cmd) ; 
+									#Info("CMD is: $cmd");
+									$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, $cmd) ; 
 								}
 							}
 						}
@@ -1773,8 +1776,7 @@ sub DoTheSplit() {
 				Exit ("ERROR: The Snapshot $Uniq_Snapshot still exists in $netapps[$index]:$src_vols[$index] ! Please go back to Step 30 !",1);
 			} else {
 				Info ("Going to create a snapshot named \"$Uniq_Snapshot\" on \"$src_vols[$index]\" - Netapp \"$netapps[$index]\"");
-				#if ( createNetappSnapWaitForSISCloneCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
-				if ( createNetappSnapCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
+				if ( createNetappSnapWaitForSISCloneCOT($netapps[$index], $src_vols[$index], $Uniq_Snapshot) eq 0 ) {
 					Info ("Snapshot Creation $OK");
 				}
 				else {
@@ -1878,12 +1880,10 @@ sub DoTheSplit() {
 			#rescan for new disks
 			if ($GroupParams{"OS_VERSION"} eq "Linux") {
 				Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
-				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
-				ReTry ($GroupParams{"TARGET_HOST"}, '/root/scsi-rescan');
-				ReTry ($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
+				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
 				my $rescancmd = "grep \"\" /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
-				ReTry ($GroupParams{"TARGET_HOST"}, $rescancmd);
-				ReTry ($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
+				RunProgramQuiet($GroupParams{"TARGET_HOST"}, $rescancmd);
+				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
 				sleep 5;				
 			}
 		}
