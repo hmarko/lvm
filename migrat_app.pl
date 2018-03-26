@@ -247,13 +247,13 @@ runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $s
 runcmd("$sshcmdserver rpm -i $hak");
 runcmd("$sshcmdserver rpm -i $sd");
 
-runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey snapdrive.conf ".$server.':/opt/NetApp/snapdrive/snapdrive.conf');
+runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey /root/lvm/snapdrive.conf ".$server.':/opt/NetApp/snapdrive/snapdrive.conf');
 
-runcmd("$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived stop");
-runcmd("$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived start");
+#runcmd("$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived stop");
+#runcmd("$sshcmdserver /opt/NetApp/snapdrive/bin/snapdrived start");
 
-runcmd("$sshcmdserver snapdrive config delete $svm");
-runcmd("$sshcmdserver \"printf '".$svmpwd.'\n'.$svmpwd.'\ny\n'."'".' | snapdrive config set vsadmin '.$svm.'"');
+#runcmd("$sshcmdserver snapdrive config delete $svm");
+#runcmd("$sshcmdserver \"printf '".$svmpwd.'\n'.$svmpwd.'\ny\n'."'".' | snapdrive config set vsadmin '.$svm.'"');
 
 write_log("",1);
 write_log("creating/modifing netapp volume and luns");

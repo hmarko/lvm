@@ -185,7 +185,7 @@ sub getLunsCOT($$$$) {
 	my $cmd;
 	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | awk '{print ".'$2'."}'" if not $search;
 	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | grep \"$search\" | awk '{print".' $2'."}'" if $search;
-	print "$cmd\n";
+	#print "$cmd\n";
 	
 	RunProgramQuiet($main::RunnigHost, "$cmd"); 
 	my @Text = GetCommandResult();
@@ -193,8 +193,8 @@ sub getLunsCOT($$$$) {
 	my @LUNs = ();
 	foreach my $lun (@Text) {
 		chomp $lun;
-		push @LUNs,$lun if $qtree and $lun =~ /\/vol\/$volume\/$qtree\/\S+$/;
-		push @LUNs,$lun if not $qtree and $lun =~ /\/vol\/$volume\/\S+$/;
+		push @LUNs,$lun if $qtree and $lun =~ /\/vol\/$volume\/$qtree\/\w+$/;
+		push @LUNs,$lun if not $qtree and $lun =~ /\/vol\/$volume\/\w+$/;
 	}
 	return @LUNs;
 }
@@ -365,7 +365,7 @@ sub createNetappSnap($$$) {
 }
 
 
-sub createNetappSnapWaitForSISCloneCOTs($$$) {
+sub createNetappSnapWaitForSISCloneCOT($$$) {
 	my $netapp = shift ;		chomp $netapp ;
 	my $src_volume = shift ;	chomp $src_volume ;
 	my $snap = shift ;			chomp $snap ;
@@ -387,7 +387,7 @@ sub createNetappSnapWaitForSISCloneCOTs($$$) {
 				chomp $line;
 				if ($line =~ /(\S+)\s+$src_volume\s+(\S+)\s+true\s+(.+)/) {
 					$snapshotbusy = 1;
-					Info("Snapshot cannot be created now becuase SIS clone split operation still running on Snapshot:$2 , it will take it few minutes to finish");
+					Info("Snapshot cannot be created now because SIS clone split operation is still running on Snapshot:$2 ,it will take few minutes to finish $counter");
 					sleep 30;
 				}
 			}
@@ -396,6 +396,10 @@ sub createNetappSnapWaitForSISCloneCOTs($$$) {
 				$ExitCode =1;
 				Info("ERROR: Snapshot is busy after 60 tried, aborting");
 				$snapshotbusy = 0;
+			} elsif (not $snapshotbusy) {
+				$cmd = "ssh vsadmin\@$netapp snap create $src_volume $snap" ;
+				Info ("Running \"$cmd\" command \n");
+				$ExitCode = RunProgramQuiet($main::RunnigHost, "$cmd") ;
 			}
 		}
 	}
