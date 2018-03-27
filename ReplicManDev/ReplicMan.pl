@@ -1256,7 +1256,6 @@ sub DoTheEstablish() {
                                                                 }
 								
 								if ($mlpline =~ /$mpdev\s+/ or $mlpline =~ /\($mpdev\)/) {
-									Info("CMD is: found $mpdev");
 									$found = 1;		
 								}
 
@@ -1902,7 +1901,7 @@ sub DoTheSplit() {
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
 
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
-				sleep 5;				
+				sleep 15;				
 			}
 		}
 	}
