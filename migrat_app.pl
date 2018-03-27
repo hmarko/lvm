@@ -260,6 +260,8 @@ write_log("creating/modifing netapp volume and luns");
 
 @pvdisplay = runcmd("$sshcmd $server pvdisplay -C -o pv_name,vg_name,pv_size --units g");
 foreach $inputvg (split(/,/,$vgs)) {
+	#this is used when we want the luns for this specific VG to be created within a qtree (needed for archive logs)
+	($inputvg,$inputqtree) = split(/:/,$inputvg);
 	foreach $line (@pvdisplay) {
 		chomp $line;
 		if ($line =~ /$deviceprefix(\S+)\s+(\S+)\s+([0-9]*\.[0-9]+|[0-9]+)(g|G)/) {
@@ -272,6 +274,7 @@ foreach $inputvg (split(/,/,$vgs)) {
 					$vol{'total-pv-size'} += $sizeg;
 					$vol{'vgs'}{$vg}{'lun-count'} += 1;
 					$vol{'vgs'}{$vg}{'old-dev-list'} .= "$deviceprefix$dev ";
+					$vol{'vgs'}{$vg}{'create-in-qtree'} = $inputqtree;
 					$vol{'vgs'}{$vg}{'luns'}[$vol{'vgs'}{$vg}{'lun-count'}]{'sizeg'} = $sizeg;
 					$vol{'vgs'}{$vg}{'luns'}[$vol{'vgs'}{$vg}{'lun-count'}]{'old-device'} = $dev;
 					$vol{'vgs'}{$vg}{'luns'}[$vol{'vgs'}{$vg}{'lun-count'}]{'new-device'} = $newdevprefix.$server.'_'.$vg.'_'.$vol{'vgs'}{$vg}{'lun-count'};			
@@ -349,7 +352,11 @@ if (not $igroup[2] =~ /\s+($igroup)\s+/) {
 
 foreach $vg (keys %{$vol{'vgs'}}) {
 	for ($lun=1;$lun <= $vol{'vgs'}{$vg}{'lun-count'};$lun++) {
-		$lunpath = '/vol/'.$volume.'/'.$vg.'_'.$lun;
+		if (not $vol{'vgs'}{$vg}{'create-in-qtree'} ) {
+			$lunpath = '/vol/'.$volume.'/'.$vg.'_'.$lun;
+		} else {
+			$lunpath = '/vol/'.$volume.'/'.$vol{'vgs'}{$vg}{'create-in-qtree'}.'/'.$vg.'_'.$lun;
+		}
 		$lunsize = $vol{'vgs'}{$vg}{'luns'}[$lun]{'sizeg'};
 		
 		$found = 0;
@@ -362,6 +369,11 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 			}
 		}
 		if (not $found) {
+			if ($vol{'vgs'}{$vg}{'create-in-qtree'} and $lun == 1) {
+				write_log("creting qtree:".$vol{'vgs'}{$vg}{'create-in-qtree'}." to host the luns of vg:$vg");
+				$cmd = "qtree create -volume $volume -qtree ".$vol{'vgs'}{$vg}{'create-in-qtree'};
+				runcmd("$sshcmdsvm $cmd");
+			}
 			write_log("creating lun: $lunpath");
 			$cmd = "lun create -path $lunpath -size $lunsize".'GB -ostype linux -space-reserve disable -space-allocation enabled';
 			runcmd("$sshcmdsvm $cmd");
@@ -485,12 +497,12 @@ runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $m
 
 write_log("",1);
 write_log("rescanning new devices");
-write_log("coping rescan script $rescanscript to the server");
+write_log("copying rescan script $rescanscript to the server");
 runcmd("scp -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey $rescanscript $server".':/root/scsi-rescan');
 $out = runcmd("$sshcmdserver bash /root/scsi-rescan");
 $out = runcmd("$sshcmdserver iscsiadm -m session --rescan");
-$cmd = "grep \"\" /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
-$out = runcmd("$sshcmdserver $cmd");
+#$cmd = "grep \"\" /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
+#$out = runcmd("$sshcmdserver $cmd");
 sleep 10;
 
 write_log("",1);
@@ -546,6 +558,7 @@ write_log("creating lvmirrors");
 $continue = 1 ;
 while ($continue) {
 	createlvmapping();
+	createpvmapping();
 	dumpjson();
 	foreach $vg (keys %{$vol{'vgs'}}) {
 		if (exists $lv{$vg}) {
@@ -575,11 +588,16 @@ while ($continue) {
 								%copy = %{$perange};
 								$pes = $copy{'pe-start'}; $pes = '0' if not $pes;
 								$pee = $copy{'pe-end'};
-#								print Dumper(\%copy);
-#								print "IIIIIII $pes $pee\n";
+								#print "jjjjjjj\n";
+								#print Dumper(\%copy);
+								#print "IIIIIII $pes $pee\n";
 								$mirrortopvs .= $deviceprefix.$replacementdevice.':'.$pes.'-'.$pee.' ';
+								#print "AAAAAAA $mirrortopvs\n";
 								$pvforadditionalpe = $replacementdevice;
+								#print "LALALAL $replacementdevice $pv{$replacementdevice}{lastpe}\n";
 								$additionalpe = $deviceprefix.$replacementdevice.':'.$pv{$replacementdevice}{lastpe}.'-';
+								#print "LLLLLLL $mirrortopvs\n";
+
 							}
 						}	
 					}
@@ -588,7 +606,7 @@ while ($continue) {
 						write_log("making sure LV:$vg/$lvol is active");
 						$lvmcmd = 'lvchange -a y '.$vg.'/'.$lvol;
 						runcmd("$sshcmdserver $lvmcmd");
-						write_log("setting up mirror for LV:$vg/$lvol: ");
+						write_log("setting up mirror for LV:$vg/$lvol");
 						$wait = '-i 10 ';
 						$wait = '-b ' if $runalllvmirroratonce;
 						$lvmcmd = 'lvconvert '.$wait.'-m 1 --mirrorlog core '.$vg.'/'.$lvol.' '.$mirrortopvs.' '.$additionalpe;
