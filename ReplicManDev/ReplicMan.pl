@@ -1892,16 +1892,21 @@ sub DoTheSplit() {
 			#rescan for new disks
 			if ($GroupParams{"OS_VERSION"} eq "Linux") {
 				Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
-				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
+				
+                                #RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
+
 
 				my $rescancmd = "grep \"\" /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, $rescancmd);
-                                RunProgramQuiet($GroupParams{"TARGET_HOST"}, '/root/scsi-rescan');
+				RunProgramQuiet($GroupParams{"TARGET_HOST"}, $rescancmd);
+				RunProgramQuiet($GroupParams{"TARGET_HOST"}, $rescancmd);
+				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
 
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
-				sleep 15;				
+				sleep 30;				
+				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'lvmdiskscan');
 			}
 		}
 	}
@@ -2879,6 +2884,12 @@ sub VGChangeBeforMmount() {
 	}
 	Debug ("VGChangeAfterUmount", "The target vg's are : @TargetVGs") ;
 	Info ("Getting Target VG List - Done.") ;
+
+	if ($GroupParams{"OS_VERSION"} eq "Linux") {
+		Info ("Rescanning disks on the server");
+		RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
+		RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'lvmdiskrescan');
+	}
 
 	foreach my $vg (@TargetVGs) {
 		if ($GroupParams{"SERVICE_GAURD"} eq "yes") {

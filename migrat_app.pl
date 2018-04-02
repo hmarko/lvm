@@ -375,7 +375,7 @@ foreach $vg (keys %{$vol{'vgs'}}) {
 				runcmd("$sshcmdsvm $cmd");
 			}
 			write_log("creating lun: $lunpath");
-			$cmd = "lun create -path $lunpath -size $lunsize".'GB -ostype linux -space-reserve disable -space-allocation enabled';
+			$cmd = "lun create -path $lunpath -size $lunsize".'GB -ostype linux -space-reserve disable';
 			runcmd("$sshcmdsvm $cmd");
 		}
 
