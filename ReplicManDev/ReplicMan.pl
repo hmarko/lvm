@@ -1239,32 +1239,34 @@ sub DoTheEstablish() {
 							my $mpdev = $pvinfo[0];
 							$mpdev =~ /.+\/(\S+)/;
 							$mpdev = $1;
-							#$cmd = "multipath -ll $mpdev";
-							#$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
-							#my @mlp = GetCommandResult(); 
-							Info("Removing multipath device:$mpdev which is part of VG:$VG");
-							$cmd = "multipath -f $mpdev";
-							$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
-							if ($ExitCode eq 1) {
-								Exit ("Error: Could not delete device $mpdev on ".$GroupParams{"TARGET_HOST"},1);
-							}
-							my $found = 0;
-							foreach my $mlpline (@mpll) {
-								chomp $mlpline;
-                                                                if ($found and not $mlpline =~ /\_/) {
-                                                                        $found =0;
-                                                                }
-								
-								if ($mlpline =~ /$mpdev\s+/ or $mlpline =~ /\($mpdev\)/) {
-									$found = 1;		
+							if ($mpdev) {
+								#$cmd = "multipath -ll $mpdev";
+								#$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+								#my @mlp = GetCommandResult(); 
+								Info("Removing multipath device:$mpdev which is part of VG:$VG");
+								$cmd = "multipath -f $mpdev";
+								$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+								if ($ExitCode eq 1) {
+									Exit ("Error: Could not delete device $mpdev on ".$GroupParams{"TARGET_HOST"},1);
 								}
+								my $found = 0;
+								foreach my $mlpline (@mpll) {
+									chomp $mlpline;
+									if ($found and not $mlpline =~ /\_/ and not $mlpline =~ /size=/ and not $mlpline =~ /\|/ and not $mpline =~ /status=/) {
+											$found =0;
+									}
+									
+									if ($mlpline =~ /$mpdev\s+/ or $mlpline =~ /\($mpdev\)/) {
+										$found = 1;		
+									}
 
-								if ($mlpline =~ /\s+(sd\S+)\s+/ and $found) {
-									$underlyingdevice = $1;
-									Info("Removing underlying device $underlyingdevice");
-									$cmd = "echo 1 > /sys/block/$underlyingdevice/device/delete";
-									#Info("CMD is: $cmd");
-									$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, $cmd) ; 
+									if ($mlpline =~ /\s+(sd\S+)\s+/ and $found) {
+										$underlyingdevice = $1;
+										Info("Removing underlying device $underlyingdevice");
+										$cmd = "echo 1 > /sys/block/$underlyingdevice/device/delete";
+										#Info("CMD is: $cmd");
+										$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, $cmd) ; 
+									}
 								}
 							}
 						}
