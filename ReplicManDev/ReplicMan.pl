@@ -1319,7 +1319,7 @@ sub DoTheEstablish() {
 						if ($Pelephone::Netapp::LUNsSerialHEX{$lun}) {
 							#device wwid for lun serial 
 							my $mpdev = '3600a0980'.$Pelephone::Netapp::LUNsSerialHEX{$lun};
-							Info ("Validating LUN doesn't have multipath device:$mpdev leftovers (Identified as bug with multipathd in some RH version)");
+							Info ("Validating LUN doesn't have multipath device:$mpdev leftovers (Identified as bug with multipathd)");
 							
 							$cmd = "multipath -ll";
 							my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
