@@ -183,18 +183,18 @@ sub getLunsCOT($$$$) {
 	my $search  = shift ; 	chomp $search ;
 	
 	my $cmd;
-	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | awk '{print ".'$2'."}'" if not $search;
-	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path | grep \"$netapp\"| grep \"$volume\" | grep \"$search\" | awk '{print".' $2'."}'" if $search;
-	#print "$cmd\n";
-	
+	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path,serial-hex | grep \"$netapp\"| grep \"$volume\"" if not $search;
+	$cmd = "ssh vsadmin\@$netapp lun show -volume $volume -fields path,serial-hex | grep \"$netapp\"| grep \"$volume\" | grep \"$search\"" if $search;
 	RunProgramQuiet($main::RunnigHost, "$cmd"); 
 	my @Text = GetCommandResult();
-	
 	my @LUNs = ();
-	foreach my $lun (@Text) {
-		chomp $lun;
-		push @LUNs,$lun if $qtree and $lun =~ /\/vol\/$volume\/$qtree\/\w+$/;
-		push @LUNs,$lun if not $qtree and $lun =~ /\/vol\/$volume\/\w+$/;
+	our %LUNsSerialHEX = ();
+	foreach my $line (@Text) {
+		chomp $line;
+		my ($svm, $lun,$serial) = split(/\s+/,$line);
+		push @LUNs,$lun if $qtree and $lun =~ /\/vol\/$volume\/$qtree\/[^\/]+$/;
+		push @LUNs,$lun if not $qtree and $lun =~ /\/vol\/$volume\/[^\/]+$/;
+		$LUNsSerialHEX{$lun} = $serial;
 	}
 	return @LUNs;
 }

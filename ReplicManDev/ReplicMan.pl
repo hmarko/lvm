@@ -6,6 +6,7 @@ use Sys::Hostname;
 use File::Basename;
 use Data::Dumper;
 
+use lib '.';
 use Pelephone::User ;
 use Pelephone::Logger ;
 use Pelephone::Oracle ;
@@ -25,7 +26,7 @@ $| = 1 ;
 %GParam = () ;
 $OK = "Finished O.K." ;
 
-our $runserver ='sparta' ;
+our $runserver ='RHEL1' ;
 
 #-----------------------------------------------------------------------------#
 # Open-View Message To The ITO !                                              #
@@ -1028,6 +1029,54 @@ sub UmountTargetFS() {
 		UmountNFSHosts("TARGET") ;
 	}
 }
+
+#-----------------------------------------------------------------------------#
+# Remove Multipath device before lun destroy                                  #
+#-----------------------------------------------------------------------------#
+sub RemoveMPDevice ($$) {
+	my $mpdev = shift;
+	my $mp = shift;
+	my @mpll = @{$mp};
+	
+	$cmd = "multipath -f $mpdev";
+	$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, "$cmd") ;
+	if ($ExitCode eq 1) {
+		Info ("Warning: Could not delete device $mpdev on ".$GroupParams{"TARGET_HOST"}.". force deleting it");
+		Info ("Force delete device $mpdev");
+		$cmd = "kpartx -d $mpdev";
+		
+		Info($cmd);
+		$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, "$cmd");
+
+		$cmd = "dmsetup remove -f $mpdev";
+		Info($cmd);
+		$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, "$cmd");
+		
+		$cmd = "multipath -f $mpdev";
+		Info($cmd);
+		$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, "$cmd") ;
+	}
+	my $found = 0;
+	foreach my $mlpline (@mpll) {
+		chomp $mlpline;
+		if ($found and (not $mlpline =~ /(\_)|(size=)|(\|)|(`-)/ or $mlpline=~/(NETAPP)|(IBM)/)) {
+				$found = 0;
+		}
+		
+		if ($mlpline =~ /$mpdev\s+/ or $mlpline =~ /\($mpdev\)/) {
+			$found = 1;		
+		}
+
+		if ($mlpline =~ /\s+(sd\S+)\s+/ and $found) {
+			$underlyingdevice = $1;
+			Info("Removing underlying device $underlyingdevice");
+			$cmd = "echo 1 > /sys/block/$underlyingdevice/device/delete";
+			#Info("CMD is: $cmd");
+			$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, $cmd) ; 
+		}
+	}
+}
+
 #-----------------------------------------------------------------------------#
 # Step 30 : Do the establish !!!                                              #
 #-----------------------------------------------------------------------------#
@@ -1240,38 +1289,11 @@ sub DoTheEstablish() {
 							$mpdev =~ /.+\/(\S+)/;
 							$mpdev = $1;
 							if ($mpdev) {
-							#$cmd = "multipath -ll $mpdev";
-							#$ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
-							#my @mlp = GetCommandResult(); 
-							Info("Removing multipath device:$mpdev which is part of VG:$VG");
-							$cmd = "multipath -f $mpdev";
-							$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, "$cmd") ;
-							if ($ExitCode eq 1) {
-								Exit ("Error: Could not delete device $mpdev on ".$GroupParams{"TARGET_HOST"},1);
-							}
-							my $found = 0;
-							foreach my $mlpline (@mpll) {
-								chomp $mlpline;
-                                                                if ($found and (not $mlpline =~ /(\_)|(size=)|(\|)|(`-)/ or $mlpline=~/(NETAPP)|(IBM)/)) {
-                                                                        $found = 0;
-                                                                }
-								
-								if ($mlpline =~ /$mpdev\s+/ or $mlpline =~ /\($mpdev\)/) {
-									$found = 1;		
-								}
-
-								if ($mlpline =~ /\s+(sd\S+)\s+/ and $found) {
-									$underlyingdevice = $1;
-									Info("Removing underlying device $underlyingdevice");
-									$cmd = "echo 1 > /sys/block/$underlyingdevice/device/delete";
-									#Info("CMD is: $cmd");
-									$ExitCode = RunProgram($GroupParams{"TARGET_HOST"}, $cmd) ; 
-								}
-							}
+								Info("Removing multipath device:$mpdev");
+								RemoveMPDevice($mpdev,\@mpll);
 							}
 						}
-					}
-					
+					}					
 				}						
 			}
 			
@@ -1285,17 +1307,28 @@ sub DoTheEstablish() {
 					Exit ("ERROR: when file-clone is used diffrent path should be provided for the destination",1);
 				}
 			}
-
 			
 			#file clone been used to create the clone 
 			if ($use_clone_type eq 'file-clone') {
 				@LUNs = getLunsCOT($netappd[$index],$tgt_vols[$index],$tgt_path[$index],'ReplicManClone_');
-
 				if ($#LUNs lt 0) {
 					Info ("There are no LUN clones starting with ".$netappd[$index].":/vol/".$tgt_vols[$index]."/".$tgt_path[$index].'/ReplicManClone_');
 				} else {
 					foreach $lun (@LUNs) {
 						Info ("Going to destroy LUN \"$netappd[$index]:$lun\"");
+						if ($Pelephone::Netapp::LUNsSerialHEX{$lun}) {
+							#device wwid for lun serial 
+							my $mpdev = '3600a0980'.$Pelephone::Netapp::LUNsSerialHEX{$lun};
+							Info ("Validating LUN doesn't have multipath device:$mpdev leftovers (Identified as bug with multipathd in some RH version)");
+							
+							$cmd = "multipath -ll";
+							my $ExitCode = RunProgramQuiet($GroupParams{"TARGET_HOST"}, "$cmd") ;
+							my @mpll = GetCommandResult();							
+							if (grep {$mpdev} @mpll) {						
+								RemoveMPDevice($mpdev,\@mpll);
+							}
+							
+						}
 						if ( deleteLunCOT($netappd[$index], $lun) eq 0 ) {
 							Info ("LUN destroyed successfully");
 						} else {
@@ -1310,13 +1343,6 @@ sub DoTheEstablish() {
 				# Check if FlexVol exists - if so, delete it
 				Info ("Checking if Target Flex Clone Volume \"ReplicManClone_$tgt_path[$index]\" exists on \"$netappd[$index]\"");
 				if (isVolExistsCOT($netappd[$index], "ReplicManClone_".$tgt_path[$index]) eq 0 ) {
-					#only destroy volumes with comment "Created by ReplicMan and can be destroyed by it"
-					#Info ("Checking if Target Volume \"$tgt_vols[$index]\" contains comment:\"Created by ReplicMan and can be destroyed by it\"");
-					#$comment = getVolCommentCOT($netappd[$index], $tgt_vols[$index]);
-					#if (not $comment =~/Created by ReplicMan and can be destroyed by it/) {
-					#	Exit ("ERROR: cannot destroy flex-clone that was not created by ReplicMan (comment was not found or diffrent)",1);
-					#}
-					#Info ("Volume comment validated");
 					# Take volume offline
 					Info ("Going to take offline previous FlexClone \"$netappd[$index]:ReplicManClone_$tgt_path[$index]\"");
 					if ( offlineVolCOT($netapps[$index], 'ReplicManClone_'.$tgt_path[$index]) eq 0 ) {
@@ -1828,7 +1854,7 @@ sub DoTheSplit() {
 					}
 					foreach $lun (@LUNs) {
 						#create the lun file-clones
-						$lun =~ /(.+)\/(\w+)$/;
+						$lun =~ /(.+)\/([^\/]+)$/;
 						$lunclone = '/vol/'.$tgt_vols[$index].'/'.$tgt_path[$index].'/ReplicManClone_'.$2;
 						
 						Info ("Going to create a lun file-clone named \"$lunclone\" from lun \"$lun\" based on snap: \"$Uniq_Snapshot\" - Netapp \"$netappd[$index]\"");
@@ -1895,16 +1921,14 @@ sub DoTheSplit() {
 			if ($GroupParams{"OS_VERSION"} eq "Linux") {
 				Info("Scanning the target host:\"".$GroupParams{"TARGET_HOST"}."\" for new devices");
 				
-                                #RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
+                #RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -F -B');
 
 				my $rescancmd = "grep \"\" /sys/class/scsi_host/host?/proc_name | awk -F \'/\' \'".'{print "scanning scsi host adapter:"$5" " system("echo \"- - -\" > /sys/class/scsi_host/"$5"/scan")}'."'";
-				RunProgramQuiet($GroupParams{"TARGET_HOST"}, $rescancmd);
-				RunProgramQuiet($GroupParams{"TARGET_HOST"}, $rescancmd);
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, $rescancmd);
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'scsi-rescan');
 
 				#RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'multipath -r -B');
-				sleep 60;				
+				#sleep 60;				
 				RunProgramQuiet($GroupParams{"TARGET_HOST"}, 'lvmdiskscan');
 			}
 		}

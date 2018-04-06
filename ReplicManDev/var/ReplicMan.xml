@@ -53,13 +53,37 @@
 ###############################################################################
 # All Shavit Copys Group's
 ###############################################################################
-<GROUP_NAME value="CDOT_TEST">
+<GROUP_NAME value="VGXIV0">
 	<MASTER_HOST>RHEL1</MASTER_HOST>
 	<TARGET_HOST>localhost</TARGET_HOST>
 	<OS_VERSION>Linux</OS_VERSION>
-	<MASTER_FILESYSTEM>/vg1/|/vg2/</MASTER_FILESYSTEM>
-	<TARGET_FILESYSTEM>/vg1/|/vg2/</TARGET_FILESYSTEM>
-	<VG_LIST>vg1:vg1;vg2:vg2</VG_LIST>
+#	<MASTER_FILESYSTEM>/vg1/|/vg2/</MASTER_FILESYSTEM>
+#	<TARGET_FILESYSTEM>/vg1/|/vg2/</TARGET_FILESYSTEM>
+	<VG_LIST>vgxiv0:vgxiv0</VG_LIST>
+	<MSGRP>NetappSAN</MSGRP>	
+#	<PRE_COND_SPLIT>/usr/drpauxdb1/bin/ABORT_DB -g PRDOL1_DRPSHAVDB1_DRPAUXDB1 -d PRDOL1:drpauxdb1</PRE_COND_SPLIT>
+#	<PRE_COND_EST>/rhcluster/lib//STOP_RECOVER_PRDOL1:drpprdol1db</PRE_COND_EST>
+#	<POST_COND_SPLIT>/rhcluster/lib/START_RECOVER_PRDOL1:drpprdol1db&/usr/drpauxdb1/bin/UP_PRDOL1:drpauxdb1&/usr/drpauxdb1/bin/send_infor4ncr PRDOL1:drpauxdb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="VGXIV1">
+	<MASTER_HOST>RHEL1</MASTER_HOST>
+	<TARGET_HOST>localhost</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+#	<MASTER_FILESYSTEM>/vg1/|/vg2/</MASTER_FILESYSTEM>
+#	<TARGET_FILESYSTEM>/vg1/|/vg2/</TARGET_FILESYSTEM>
+	<VG_LIST>vgxiv1:vgxiv1</VG_LIST>
+	<MSGRP>NetappSAN</MSGRP>	
+#	<PRE_COND_SPLIT>/usr/drpauxdb1/bin/ABORT_DB -g PRDOL1_DRPSHAVDB1_DRPAUXDB1 -d PRDOL1:drpauxdb1</PRE_COND_SPLIT>
+#	<PRE_COND_EST>/rhcluster/lib//STOP_RECOVER_PRDOL1:drpprdol1db</PRE_COND_EST>
+#	<POST_COND_SPLIT>/rhcluster/lib/START_RECOVER_PRDOL1:drpprdol1db&/usr/drpauxdb1/bin/UP_PRDOL1:drpauxdb1&/usr/drpauxdb1/bin/send_infor4ncr PRDOL1:drpauxdb1</POST_COND_SPLIT>
+</GROUP_NAME>
+<GROUP_NAME value="VGXIV2">
+	<MASTER_HOST>RHEL1</MASTER_HOST>
+	<TARGET_HOST>localhost</TARGET_HOST>
+	<OS_VERSION>Linux</OS_VERSION>
+#	<MASTER_FILESYSTEM>/vg1/|/vg2/</MASTER_FILESYSTEM>
+#	<TARGET_FILESYSTEM>/vg1/|/vg2/</TARGET_FILESYSTEM>
+	<VG_LIST>vgxiv2:vgxiv2</VG_LIST>
 	<MSGRP>NetappSAN</MSGRP>	
 #	<PRE_COND_SPLIT>/usr/drpauxdb1/bin/ABORT_DB -g PRDOL1_DRPSHAVDB1_DRPAUXDB1 -d PRDOL1:drpauxdb1</PRE_COND_SPLIT>
 #	<PRE_COND_EST>/rhcluster/lib//STOP_RECOVER_PRDOL1:drpprdol1db</PRE_COND_EST>
