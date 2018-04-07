@@ -1,0 +1,1 @@
+{"vgs":{"vg1":{"created-luns":{}},"vg2":{"created-luns":{}}},"initial-size-factor":2,"autosize-shrink-threshold-percent":75,"autosize-grow-threshold-percent":90,"initial-max-autosize-factor":4,"initial-size":100,"max-autosize":200,"size":"100"}

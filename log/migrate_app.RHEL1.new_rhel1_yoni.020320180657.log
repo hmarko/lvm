@@ -1,0 +1,83 @@
+Mon Apr  2 06:57:17 2018 - identified RedHat release as 6.8
+Mon Apr  2 06:57:17 2018 - installing HAK and SD on server
+
+Mon Apr  2 06:57:18 2018 - creating/modifing netapp volume and luns
+Mon Apr  2 06:57:19 2018 - creating volume:new_rhel1_yoni size:930g
+Mon Apr  2 06:57:28 2018 - creating lun: /vol/new_rhel1_yoni/vg1_1
+Mon Apr  2 06:57:29 2018 - mapping lun: /vol/new_rhel1_yoni/vg1_1 to igroup:RHEL1
+Mon Apr  2 06:57:30 2018 - creating lun: /vol/new_rhel1_yoni/vg1_2
+Mon Apr  2 06:57:31 2018 - mapping lun: /vol/new_rhel1_yoni/vg1_2 to igroup:RHEL1
+Mon Apr  2 06:57:32 2018 - creating lun: /vol/new_rhel1_yoni/vg1_3
+Mon Apr  2 06:57:33 2018 - mapping lun: /vol/new_rhel1_yoni/vg1_3 to igroup:RHEL1
+Mon Apr  2 06:57:34 2018 - creting qtree:archive to host the luns of vg:vg2
+Mon Apr  2 06:57:35 2018 - creating lun: /vol/new_rhel1_yoni/archive/vg2_1
+Mon Apr  2 06:57:36 2018 - mapping lun: /vol/new_rhel1_yoni/archive/vg2_1 to igroup:RHEL1
+Mon Apr  2 06:57:37 2018 - creating lun: /vol/new_rhel1_yoni/archive/vg2_2
+Mon Apr  2 06:57:38 2018 - mapping lun: /vol/new_rhel1_yoni/archive/vg2_2 to igroup:RHEL1
+	ssh -o StrictHostKeyChecking=no -o PreferredAuthentications=publickey RHEL1  cat /etc/multipath.conf
+	Mon Apr  2 06:57:39 2018 - path_checker been set as: tur
+	Mon Apr  2 06:57:39 2018 - features been set as: "3 queue_if_no_path pg_init_retries 50"
+	Mon Apr  2 06:57:39 2018 - prio been set as: prio "alua"
+	Mon Apr  2 06:57:39 2018 - getuid_callout been set as: "/lib/udev/scsi_id -g -u -d /dev/%n"
+Mon Apr  2 06:57:39 2018 - backing up and recreating /etc/multipath.conf
+
+Mon Apr  2 06:57:39 2018 - rescanning new devices
+Mon Apr  2 06:57:39 2018 - copying rescan script /root/lvm/scsi-rescan to the server
+
+Mon Apr  2 06:57:50 2018 - configuration of dmultipath devices
+
+Mon Apr  2 06:57:55 2018 - creating PV from new devices
+Mon Apr  2 06:57:55 2018 - creating pv:cdotsan_RHEL1_vg1_2 :
+  Physical volume "/dev/mapper/cdotsan_RHEL1_vg1_2" successfully created
+Mon Apr  2 06:57:56 2018 - creating pv:cdotsan_RHEL1_vg1_3 :
+  Physical volume "/dev/mapper/cdotsan_RHEL1_vg1_3" successfully created
+Mon Apr  2 06:57:56 2018 - creating pv:cdotsan_RHEL1_vg1_1 :
+  Physical volume "/dev/mapper/cdotsan_RHEL1_vg1_1" successfully created
+Mon Apr  2 06:57:56 2018 - creating pv:cdotsan_RHEL1_vg2_2 :
+  Physical volume "/dev/mapper/cdotsan_RHEL1_vg2_2" successfully created
+Mon Apr  2 06:57:56 2018 - creating pv:cdotsan_RHEL1_vg2_1 :
+  Physical volume "/dev/mapper/cdotsan_RHEL1_vg2_1" successfully created
+
+Mon Apr  2 06:57:57 2018 - extending VG based on new devices
+Mon Apr  2 06:57:57 2018 - extending vg:vg1 with pv:/dev/mapper/cdotsan_RHEL1_vg1_2 :
+  Volume group "vg1" successfully extended
+Mon Apr  2 06:57:57 2018 - extending vg:vg1 with pv:/dev/mapper/cdotsan_RHEL1_vg1_3 :
+  Volume group "vg1" successfully extended
+Mon Apr  2 06:57:58 2018 - extending vg:vg1 with pv:/dev/mapper/cdotsan_RHEL1_vg1_1 :
+  Volume group "vg1" successfully extended
+Mon Apr  2 06:57:58 2018 - extending vg:vg2 with pv:/dev/mapper/cdotsan_RHEL1_vg2_2 :
+  Volume group "vg2" successfully extended
+Mon Apr  2 06:57:59 2018 - extending vg:vg2 with pv:/dev/mapper/cdotsan_RHEL1_vg2_1 :
+  Volume group "vg2" successfully extended
+
+Mon Apr  2 06:57:59 2018 - creating lvmirrors
+Mon Apr  2 06:58:00 2018 - making sure LV:vg1/lv1 is active
+Mon Apr  2 06:58:00 2018 - setting up mirror for LV:vg1/lv1
+Mon Apr  2 06:58:30 2018 - making sure LV:vg1/lv3 is active
+Mon Apr  2 06:58:31 2018 - setting up mirror for LV:vg1/lv3
+Mon Apr  2 06:59:01 2018 - making sure LV:vg1/lv2 is active
+Mon Apr  2 06:59:01 2018 - setting up mirror for LV:vg1/lv2
+Mon Apr  2 06:59:31 2018 - making sure LV:vg2/lv1 is active
+Mon Apr  2 06:59:32 2018 - setting up mirror for LV:vg2/lv1
+Mon Apr  2 07:00:02 2018 - making sure LV:vg2/lv2 is active
+Mon Apr  2 07:00:02 2018 - setting up mirror for LV:vg2/lv2
+Mon Apr  2 07:00:33 2018 - splitting mirror for LV:vg1/lv1 and keeping backup LV as:vg1/lv1_old_to_delete_XIV :
+  Logical volume lv1 converted.
+Mon Apr  2 07:00:34 2018 - deactivating of backup LV:vg1/lv1_old_to_delete_XIV
+Mon Apr  2 07:00:34 2018 - splitting mirror for LV:vg1/lv3 and keeping backup LV as:vg1/lv3_old_to_delete_XIV :
+  Logical volume lv3 converted.
+Mon Apr  2 07:00:35 2018 - deactivating of backup LV:vg1/lv3_old_to_delete_XIV
+Mon Apr  2 07:00:35 2018 - splitting mirror for LV:vg1/lv2 and keeping backup LV as:vg1/lv2_old_to_delete_XIV :
+  Logical volume lv2 converted.
+Mon Apr  2 07:00:36 2018 - deactivating of backup LV:vg1/lv2_old_to_delete_XIV
+Mon Apr  2 07:00:36 2018 - splitting mirror for LV:vg2/lv1 and keeping backup LV as:vg2/lv1_old_to_delete_XIV :
+  Logical volume lv1 converted.
+Mon Apr  2 07:00:37 2018 - deactivating of backup LV:vg2/lv1_old_to_delete_XIV
+Mon Apr  2 07:00:37 2018 - splitting mirror for LV:vg2/lv2 and keeping backup LV as:vg2/lv2_old_to_delete_XIV :
+  Logical volume lv2 converted.
+Mon Apr  2 07:00:38 2018 - deactivating of backup LV:vg2/lv2_old_to_delete_XIV
+Mon Apr  2 07:00:40 2018 - spliting vg:vg1 keeping old lvs on vg:vg1_old_to_delete_XIV :
+  New volume group "vg1_old_to_delete_XIV" successfully split from "vg1"
+Mon Apr  2 07:00:41 2018 - spliting vg:vg2 keeping old lvs on vg:vg2_old_to_delete_XIV :
+  New volume group "vg2_old_to_delete_XIV" successfully split from "vg2"
+Mon Apr  2 07:00:41 2018 - all done

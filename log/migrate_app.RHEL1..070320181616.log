@@ -1,0 +1,21 @@
+Sat Apr  7 16:16:59 2018 - Getting Target VG List
+Sat Apr  7 16:16:59 2018 - Getting list of PVs for VG:vgxiv2
+Sat Apr  7 16:16:59 2018 - Removing multipath device:mpathjzu
+Sat Apr  7 16:16:59 2018 - Removing underlying device sdh
+Sat Apr  7 16:16:59 2018 - Removing underlying device sds
+Sat Apr  7 16:17:00 2018 - Removing multipath device:mpathjzv
+Sat Apr  7 16:17:00 2018 - Warning: Could not delete device mpathjzv force deleting it
+Sat Apr  7 16:17:00 2018 - Force delete device mpathjzv
+Sat Apr  7 16:17:00 2018 - Removing underlying device sdg
+Sat Apr  7 16:17:00 2018 - Removing underlying device sdr
+Sat Apr  7 16:17:00 2018 - Removing multipath device:mpathjzw
+Sat Apr  7 16:17:00 2018 - Warning: Could not delete device mpathjzw force deleting it
+Sat Apr  7 16:17:00 2018 - Force delete device mpathjzw
+Sat Apr  7 16:17:01 2018 - Removing underlying device sdn
+Sat Apr  7 16:17:01 2018 - Removing underlying device sdt
+Sat Apr  7 16:17:01 2018 - Removing multipath device:mpathjzx
+Sat Apr  7 16:17:01 2018 - Removing underlying device sdv
+Sat Apr  7 16:17:01 2018 - Removing underlying device sdp
+Sat Apr  7 16:17:01 2018 - Removing multipath device:mpathjzz
+Sat Apr  7 16:17:02 2018 - Removing underlying device sdo
+Sat Apr  7 16:17:02 2018 - Removing underlying device sdu
