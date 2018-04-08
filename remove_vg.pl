@@ -4,6 +4,7 @@ use Time::localtime qw( );
 
 $server = $ARGV[0];
 $vgs = $ARGV[1];
+$force = $ARGV[2];
 
 $debug = 0;
 $runalllvmirroratonce = 1;
@@ -68,12 +69,25 @@ sub RemoveMPDevice ($$) {
 	my @mpll = @{$mp};
 	
 	@out = runcmd($sshcmdserver."multipath -f $mpdev") ;
-	if ($out[0]=~/in use/) {
+	if ($out[0]=~/in use/ and $force) {
 		write_log("Warning: Could not delete device $mpdev force deleting it");
 		write_log("Force delete device $mpdev");
 		runcmd($sshcmdserver."kpartx -d $mpdev") ;
 		runcmd($sshcmdserver."dmsetup remove -f $mpdev") ;
+		runcmd($sshcmdserver."dmsetup remove -f $mpdev") ;
+		runcmd($sshcmdserver."dmsetup remove -f $mpdev") ;
+		runcmd($sshcmdserver."dmsetup remove -f $mpdev") ;
+		sleep 2;
 		runcmd($sshcmdserver."multipath -f $mpdev") ;
+		runcmd($sshcmdserver."multipath -f $mpdev") ;
+		runcmd($sshcmdserver."multipath -f $mpdev") ;
+		runcmd($sshcmdserver."multipath -f $mpdev") ;
+		runcmd($sshcmdserver."multipath -f $mpdev") ;
+	} 
+	
+	if ($out[0]=~/in use/ and not $force) {
+		write_log("Cannot delete device since it is in use and force is not set");
+		exit 1;
 	}
 	my $found = 0;
 	foreach my $mlpline (@mpll) {
